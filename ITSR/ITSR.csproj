@@ -66,6 +66,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="default.aspx" />
+    <Content Include="IMG\books.jpg" />
+    <Content Include="JS\DefaultJS.js" />
     <Content Include="packages.config" />
     <Content Include="FONTS\glyphicons-halflings-regular.eot" />
     <Content Include="FONTS\glyphicons-halflings-regular.ttf" />
@@ -94,6 +97,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>
@@ -107,8 +117,6 @@
     <Folder Include="CLASSES\ARTICLE\" />
     <Folder Include="CLASSES\USER\" />
     <Folder Include="FONTS\specimen_files\" />
-    <Folder Include="IMG\" />
-    <Folder Include="JS\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
