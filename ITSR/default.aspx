@@ -30,19 +30,20 @@
 <body>
     <form id="defaultForm" runat="server">
         <div class="menu-left">
-            <h2><strong>MENU</strong></h2>
-            <p>HEJ</p>
-            <p>HEJ</p>
-            <p>HEJ</p>
-            <p>HEJ</p>
-            <p>HEJ</p>
-            <p>HEJ</p>
-            <p>HEJ</p>
-            <p>HEJ</p>
-            <p>HEJ</p>
+            <div class="fullBox left-menu-bottom">
+                <h2 class="left-menu-title"><strong>MENU</strong></h2>
+            </div>
+                            <div>
+                                <ul class="side-left-navbar">
+                                    <li><p>ABOUT</p></li>                                    
+                                    <li><p>LINK</p></li>   
+                                    <li><p>LINK</p></li> 
+                                    <li><p>LINK</p></li> 
+                                </ul>
+                            </div>  
         </div>
 
-        <div class="page-wrap" style="position: fixed; min-width: 100%;">
+        <div class="page-wrap">
         <!-- Main page ================================================== -->
         <section class="container navbar-section">
           <div class="content default-page-width">
@@ -64,16 +65,24 @@
                 <div class="content default-page-width fill-default-page">
                     <div class="contentRow"> 
                             <div class="fullBox center-text">
-                                <br />
-                                                            <br />
-                                                            <br />
-                                                            <br />
-                                                            <br />
-                                                            <br />
-                                                            <br />
-                                <br />
-                                <br />
-                                                                                        <br /><br />
+                                <div class="fullBox def-title-box ">
+                                    <h1>IsThisSourceReliable.com</h1>
+                                </div>
+
+                                <div class="fullBox def-search-box">
+                                    <asp:TextBox 
+                                        ID="txtSearchField" 
+                                        runat="server" 
+                                        CssClass="round-txt-box">                                        
+                                    </asp:TextBox>
+                                </div>
+                                <div class="fullBox">
+                                    <asp:Button 
+                                        ID="btnSearch" 
+                                        CssClass="round-button" 
+                                        runat="server" 
+                                        Text="SEARCH" />
+                                </div>
                                 <p onclick="CloseLeftMenu();">CLOSE LEFT</p>
                                 <p onclick="CloseRightMenu();">CLOSE RIGHT</p>
                             </div>
@@ -86,6 +95,9 @@
         </div>
 
         <div class="menu-right">
+            <div class="fullBox left-menu-bottom">
+                <h2 class="right-menu-title"><strong>LOG IN</strong></h2>
+            </div>
             <p>HEJ</p>
             <p>HEJ</p>
             <p>HEJ</p>

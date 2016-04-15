@@ -78,6 +78,7 @@
     <Content Include="FONTS\lato-lig-webfont.ttf" />
     <Content Include="FONTS\lato-lig-webfont.woff" />
     <Content Include="FONTS\monofont.ttf" />
+    <Content Include="MainMaster.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -94,6 +95,7 @@
     <Content Include="FONTS\lato-lig-webfont.svg" />
     <Content Include="FONTS\stylesheet.css" />
     <Content Include="Test.aspx" />
+    <Content Include="TestMaster.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +106,13 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MainMaster.Master.cs">
+      <DependentUpon>MainMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainMaster.Master.designer.cs">
+      <DependentUpon>MainMaster.Master</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>
@@ -111,6 +120,13 @@
     </Compile>
     <Compile Include="Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestMaster.aspx.cs">
+      <DependentUpon>TestMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestMaster.aspx.designer.cs">
+      <DependentUpon>TestMaster.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
