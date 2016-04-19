@@ -138,12 +138,29 @@
 	/*text-align: center;*/
 }
 
-@media (max-width: 900px) {	
+@media (max-width: 950px) {	
 	.overlay-message  {
-        width: 100%;
-        margin: 0.5em;
+        width: 94%;        
+        margin: 0em auto;
+        margin-top: 10%;
+        margin-left: 1%;
+        margin-right: 1%;
   }
 } 
+
+@media (max-width: 768px) {	
+	.overlay-message  {
+        margin-top: 15%;
+  }
+} 
+
+@media (max-width: 480px) {	
+	.overlay-message  {
+        margin: 0em auto;
+        margin-top: 20%;
+  }
+} 
+
 
  /*****************************************************
 	TEXT and HEADINS
