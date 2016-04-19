@@ -99,10 +99,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CLASSES\ARTICLE\Article.cs" />
+    <Compile Include="CLASSES\ARTICLE\Comment.cs" />
+    <Compile Include="CLASSES\ARTICLE\Reference.cs" />
+    <Compile Include="CLASSES\ARTICLE\Report.cs" />
+    <Compile Include="CLASSES\ARTICLE\Vote.cs" />
     <Compile Include="CLASSES\USER\Administrator.cs" />
     <Compile Include="CLASSES\USER\BlockBan.cs" />
     <Compile Include="CLASSES\USER\Member.cs" />
     <Compile Include="CLASSES\USER\Moderator.cs" />
+    <Compile Include="CLASSES\USER\Password.cs" />
     <Compile Include="CLASSES\USER\User.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
