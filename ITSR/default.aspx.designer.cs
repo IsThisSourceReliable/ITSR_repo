@@ -10,16 +10,7 @@
 namespace ITSR {
     
     
-    public partial class _default {
-        
-        /// <summary>
-        /// defaultForm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm defaultForm;
+    public partial class testdef {
         
         /// <summary>
         /// txtSearchField control.

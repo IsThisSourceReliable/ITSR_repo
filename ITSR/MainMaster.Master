@@ -17,6 +17,7 @@
     <!-- CSS -->
     <link href="CSS/font.css" rel="stylesheet" />
     <link href="CSS/Style.css" rel="stylesheet" />
+    <link href="CSS/Glyphicons.css" rel="stylesheet" />
 
     <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
@@ -24,72 +25,99 @@
 
     <title>IS THIS SOURCE RELIABLE</title>
     
-    <script src="JS/DefaultJS.js"></script>
+    <script src="JS/MenuJS.js"></script>
+    <script src="JS/OverlayJS.js"></script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
+
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="MainMaster" runat="server">
+        <div class="books-background">
+            <div class="blue-overlay">
+            </div>
+        </div>
         <div class="menu-left">
+            <div class="sticky fill-any-page">
             <div class="fullBox left-menu-bottom">
                 <h2 class="left-menu-title"><strong>MENU</strong></h2>
             </div>
-                            <div>
-                                <ul class="side-left-navbar">
-                                    <li><p>ABOUT</p></li>                                    
-                                    <li><p>LINK</p></li>   
-                                    <li><p>LINK</p></li> 
-                                    <li><p>LINK</p></li> 
-                                </ul>
-                            </div>  
-        </div>
-
-        <div class="page-wrap">
-
-            <!-- Main page ================================================== -->
-            <section class="container navbar-section">
-              <div class="content default-page-width">
-                <div class="contentRow">        
-                    <ul class="main-navbar">
-                      <li id="LeftMenu" onclick="OpenLeftMenu();"><p>☰ MENU</p></li>                                              
-                    </ul> 
-                    <ul class="main-navbar right">
-                      <li id="RightMenu" onclick="OpenRightMenu();"><p>LOG IN</p></li>                                              
-                    </ul>                          
-                </div>
-              </div>
-            </section> 
-
-            <!-- Main page ================================================== -->
-            <section class="container books-background">
-                <div class="blue-overlay">
-                    <div class="content default-page-width fill-default-page">
-                        <div class="contentRow"> 
-                            <asp:ContentPlaceHolder ID="ContentHolder" runat="server">
-        
-                            </asp:ContentPlaceHolder>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+                <div>
+                    <ul class="side-left-navbar">
+                        <li><p>ABOUT</p></li>                                    
+                        <li><p>LINK</p></li>   
+                        <li><p>LINK</p></li> 
+                        <li><p>LINK</p></li> 
+                    </ul>
+                </div>  
+                <p class="left-menu-lbl">0</p>
+            </div>
         </div>
 
         <div class="menu-right">
-            <div class="fullBox left-menu-bottom">
-                <h2 class="right-menu-title"><strong>LOG IN</strong></h2>
+            <div class="sticky fill-any-page">
+                <div class="fullBox left-menu-bottom">
+                    <h2 class="right-menu-title"><strong>LOG IN</strong></h2>
+                </div>
+                <div class="fullBox center-text">
+                    <div class="fullbox username-box">
+                        <asp:TextBox 
+                            ID="txtUsername" 
+                            CssClass="txt-box" 
+                            runat="server"
+                            placeholder="Username" >
+                        </asp:TextBox> 
+                    </div>  
+                    <div class="fullBox password-box">
+                        <asp:TextBox 
+                            ID="txtPassword" 
+                            CssClass="txt-box" 
+                            runat="server"
+                            placeholder="Password" >
+                        </asp:TextBox>   
+                    </div>
+                    <div class="fullBox login-btn-box">
+                        <asp:Button 
+                            ID="btnLogin" 
+                            runat="server" 
+                            CssClass="itsr-button"
+                            Text="LOG IN" />       
+                    </div>
+                </div>
+                <p class="right-menu-lbl">0</p>
             </div>
-            <p>HEJ</p>
-            <p>HEJ</p>
-            <p>HEJ</p>
-            <p>HEJ</p>
-            <p>HEJ</p>
-            <p>HEJ</p>
-            <p>HEJ</p>
-            <p>HEJ</p>
-            <p>HEJ</p>
         </div>
+        <div class="page-wrap">
+                <!-- Main page ================================================== -->
+                <section class="container navbar-section">
+                  <div class="content default-page-width">
+                    <div class="contentRow">        
+                        <ul class="main-navbar">
+                          <li id="LeftMenu" onclick="LeftMenuOpenClose();"><p><span class="glyphicon glyphicon-menu-hamburger" style="vertical-align: text-bottom;" aria-hidden="true"></span> MENU</p></li>                                              
+                        </ul> 
+                        <ul class="main-navbar right">
+                          <li id="RightMenu" onclick="RightMenuOpenClose();"><p><span class="glyphicon glyphicon-lock"style="vertical-align: text-bottom;" aria-hidden="true"></span> LOG IN</p></li>                                              
+                        </ul>                          
+                    </div>
+                  </div>
+                </section> 
+
+                <!-- Main page ================================================== -->
+                <section class="container ">
+                        <div class="content">
+                            <div class="contentRow main-margin"> 
+                                <asp:ContentPlaceHolder ID="ContentHolder" runat="server">
+        
+                                </asp:ContentPlaceHolder>
+                            </div>
+                        </div>
+
+                </section>
+        </div>
+
+
+
     </form>
 </body>
 </html>
