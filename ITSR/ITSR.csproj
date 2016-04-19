@@ -66,8 +66,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\DefaultCSS.css" />
+    <Content Include="CSS\Glyphicons.css" />
     <Content Include="default.aspx" />
     <Content Include="IMG\books.jpg" />
+    <Content Include="JS\MenuJS.js" />
     <Content Include="JS\OverlayJS.js" />
     <Content Include="packages.config" />
     <Content Include="FONTS\glyphicons-halflings-regular.eot" />
