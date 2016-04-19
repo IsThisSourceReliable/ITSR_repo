@@ -8,6 +8,7 @@ namespace ITSR.CLASSES.USER
     public class Member:User
     {
         //Methods
-   
+
+        public void
     }
 }
