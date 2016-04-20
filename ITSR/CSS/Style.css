@@ -80,11 +80,10 @@
     margin-top: 76px;
 }
 
-.white-box {
+.white-box {    
     background: #FFFFFF;
     border-radius: 20px;
     overflow:auto;
-    padding: 1em;
 }
 
 .fullBox {
@@ -205,6 +204,12 @@ h3 {
 	margin-top: 0.1em;
 	font-size: 1.8em;
 	font-weight: 100;
+}
+
+h4 {
+    font-size: 1.4em;
+    font-weight: 100;
+    margin-top: 0.1em;
 }
 
 .h2-center {
@@ -707,6 +712,15 @@ h3 {
     width: 100%;          
   }
 }
+
+@media (max-width: 1200px) {
+	.white-box
+ {
+    width: 99%;   
+    margin-left: 0.5%;   
+  }
+}
+
 
 /*****************************************************
 	quarterBox - MEDIA STYLE

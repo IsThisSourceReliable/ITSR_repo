@@ -1,0 +1,45 @@
+﻿.article-heading {
+    margin: 0.5em;
+}
+
+.article-text {
+    margin: 1em;
+    margin-top: 0em;
+
+}
+
+/*.like-box-mobile {
+    display: none;   
+}*/
+
+.like-box-station {
+
+}
+
+.info-lbls {
+    margin: 1em;
+    margin-left: 1.5em;
+    /*font-weight: bold;*/
+}
+
+.info-titles {
+    margin-left: 0.5em;
+    font-weight: bold;
+}
+
+.info-box {
+    margin-top: 2.5em;
+}
+/*@media (max-width: 768px) {
+    .like-box-mobile
+ {
+    display: block;        
+  }
+}*/
+
+/*@media (max-width: 768px) {
+    .like-box-station
+ {
+    display: none;       
+  }
+}*/

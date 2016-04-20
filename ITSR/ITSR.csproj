@@ -48,6 +48,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>MYSQL_REF\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -67,12 +71,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Article.aspx" />
+    <Content Include="CSS\ArticleCSS.css" />
     <Content Include="CSS\DefaultCSS.css" />
     <Content Include="CSS\Glyphicons.css" />
     <Content Include="default.aspx" />
     <Content Include="IMG\books.jpg" />
     <Content Include="JS\MenuJS.js" />
     <Content Include="JS\OverlayJS.js" />
+    <Content Include="MYSQL_REF\MySql.Data.dll" />
+    <Content Include="MYSQL_REF\MySql.Data.Entity.EF5.dll" />
+    <Content Include="MYSQL_REF\MySql.Data.Entity.EF6.dll" />
+    <Content Include="MYSQL_REF\MySql.Fabric.Plugin.dll" />
+    <Content Include="MYSQL_REF\MySql.Web.dll" />
     <Content Include="packages.config" />
     <Content Include="FONTS\glyphicons-halflings-regular.eot" />
     <Content Include="FONTS\glyphicons-halflings-regular.ttf" />
