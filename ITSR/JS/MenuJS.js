@@ -44,6 +44,8 @@ function OpenLeftMenu() {
         $('.books-background').animate({
             left: '+=322px'
         });
+        $('.glyphicon-menu-hamburger').addClass('glyphicon-remove');
+        $('.glyphicon-menu-hamburger').removeClass('glyphicon-menu-hamburger');
 }
 
 //Closes left menu
@@ -57,6 +59,8 @@ function CloseLeftMenu() {
     $('.books-background').animate({
         left: '-=322px'
     });
+    $('.glyphicon-remove').addClass('glyphicon-menu-hamburger');
+    $('.glyphicon-remove').removeClass('glyphicon-remove');
 }
 
 //Opens right menu
@@ -70,6 +74,8 @@ function OpenRightMenu() {
     $('.menu-right').animate({
         right: '+=322px'
     });
+    $('.glyphicon-lock').addClass('glyphicon-remove');
+    $('.glyphicon-lock').removeClass('glyphicon-lock');
 }
 
 //Closes right menu
@@ -83,4 +89,6 @@ function CloseRightMenu() {
     $('.menu-right').animate({
         right: '-=322px'
     });
+    $('.glyphicon-remove').addClass('glyphicon-lock');
+    $('.glyphicon-remove').removeClass('glyphicon-remove');
 }

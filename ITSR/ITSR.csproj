@@ -66,6 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Article.aspx" />
     <Content Include="CSS\DefaultCSS.css" />
     <Content Include="CSS\Glyphicons.css" />
     <Content Include="default.aspx" />
@@ -101,6 +102,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Article.aspx.cs">
+      <DependentUpon>Article.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Article.aspx.designer.cs">
+      <DependentUpon>Article.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CLASSES\ARTICLE\Article.cs" />
     <Compile Include="CLASSES\USER\Administrator.cs" />
     <Compile Include="CLASSES\USER\BlockBan.cs" />

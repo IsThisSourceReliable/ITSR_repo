@@ -5,7 +5,7 @@
         <!-- Main page ================================================== -->
         <div class="page-overlay">
             <div class="overlay-message">
-                <p class="my-glyph-close"><span class="glyphicon glyphicon-remove right " onclick="CloseOverlay();"></span></p>
+                <p class="close-glyph"><span class="glyphicon glyphicon-remove right " onclick="CloseOverlay();"></span></p>
                 <br />
                 .
                 <br />
