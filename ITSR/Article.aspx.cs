@@ -43,5 +43,23 @@ namespace ITSR
                 conn.Close();
             }
         }
+
+
+
+        protected void ListView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnLinkTest_Click(object sender, EventArgs e)
+        {
+            //Response.Redirect("~/DaTest.aspx");
+            //Session["id"] = 
+        }
+
+        protected void ListView1_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            Label3.Text = "Index: " + e.Item.DataItemIndex.ToString() + " , Arg: " + e.CommandArgument;
+        }
     }
 }

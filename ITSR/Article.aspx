@@ -53,13 +53,32 @@
         <!-- COMMENT SECTION ================================================== -->
         <div class="fullBox">
             <div class="fullBox">
-                <h3>COMMENTS </h3>
+                <h3>COMMENTS <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label></h3>
             </div>
-            <asp:ListView ID="ListView1" runat="server">
+            <asp:ListView 
+                ID="ListView1" 
+                DataKeyNames="iderik_table" 
+                runat="server" 
+                OnItemCommand="ListView1_ItemCommand" 
+                OnSelectedIndexChanged="ListView1_SelectedIndexChanged">
                 <ItemTemplate>
-                    <p><%# Eval("iderik_table") %></p>
+                    <p><asp:Label 
+                        ID="Label1" 
+                        runat="server" 
+                        Text='<%# Eval("iderik_table") %>'></asp:Label></p>
+                    
                     <br />
-                    <p><%# Eval("erik_text") %></p>
+                    <p><asp:Label 
+                        ID="Label2" 
+                        runat="server" 
+                        Text='<%# Eval("erik_text") %>'></asp:Label></p>
+                    
+                    <br />
+                    <asp:LinkButton 
+                        ID="LinkButton1" 
+                        runat="server" 
+                        CommandName="Sel" 
+                        CommandArgument='<%# Eval("iderik_table") %>'>LinkButton</asp:LinkButton>
                     <br />
                 </ItemTemplate>
             </asp:ListView>
