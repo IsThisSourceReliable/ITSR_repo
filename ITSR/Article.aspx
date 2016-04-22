@@ -14,7 +14,12 @@
         <div class="fullBox">
             <div class="halfBox ">
                 <div class="fullBox like-box-mobile">
-                    <h3 style="margin-left: 0.5em; margin-bottom: 0.5em; margin-top: 0em;">LikeBox</h3>
+                    <div class="halfBox">
+                        <h3 style="margin-left: 0.5em; margin-bottom: 0.5em; margin-top: 0em;">LikeBox</h3>
+                    </div>
+                    <div class="halfBox right">
+                        <div style="width:70%; height:4px; background-color: green; display:inline-block;"></div><div style="width:30%; height:4px; background-color: red; display:inline-block;"></div>
+                    </div>
                 </div>  
                 <div class="fullBox">
                     <p class="article-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
