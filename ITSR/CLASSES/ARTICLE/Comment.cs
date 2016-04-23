@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ITSR.CLASSES.USER;
 
 namespace ITSR.CLASSES.ARTICLE
 {
@@ -15,13 +16,6 @@ namespace ITSR.CLASSES.ARTICLE
         public DateTime date { get; set; }
 
         //Methods
-        public void AddComment()
-        {
 
-        }
-        public void RemoveComment()
-        {
-
-        }
     }
 }

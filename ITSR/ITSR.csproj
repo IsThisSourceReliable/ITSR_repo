@@ -120,7 +120,7 @@
     <Compile Include="Article.aspx.designer.cs">
       <DependentUpon>Article.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CLASSES\ARTICLE\Article.cs" />
+    <Compile Include="CLASSES\ARTICLE\Articles.cs" />
     <Compile Include="CLASSES\ARTICLE\Comment.cs" />
     <Compile Include="CLASSES\ARTICLE\Reference.cs" />
     <Compile Include="CLASSES\ARTICLE\Report.cs" />

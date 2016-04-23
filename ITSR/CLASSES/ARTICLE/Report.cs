@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ITSR.CLASSES.USER;
 
 namespace ITSR.CLASSES.ARTICLE
 {

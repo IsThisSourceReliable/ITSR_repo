@@ -22,6 +22,10 @@ namespace ITSR
             m.certifedUser = true;
 
             m.CreateUser(m);
+
+            Vote v = new Vote();
+
+            v.user_id = 
         }
     }
 }
