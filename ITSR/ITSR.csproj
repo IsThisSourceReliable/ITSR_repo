@@ -78,6 +78,7 @@
     <Content Include="IMG\books.jpg" />
     <Content Include="JS\MenuJS.js" />
     <Content Include="JS\OverlayJS.js" />
+    <Content Include="martinstest.aspx" />
     <Content Include="MYSQL_REF\MySql.Data.dll" />
     <Content Include="MYSQL_REF\MySql.Data.Entity.EF5.dll" />
     <Content Include="MYSQL_REF\MySql.Data.Entity.EF6.dll" />
@@ -126,9 +127,9 @@
     <Compile Include="CLASSES\ARTICLE\Vote.cs" />
     <Compile Include="CLASSES\USER\Administrator.cs" />
     <Compile Include="CLASSES\USER\BlockBan.cs" />
-    <Compile Include="CLASSES\USER\Member.cs" />
     <Compile Include="CLASSES\USER\Moderator.cs" />
     <Compile Include="CLASSES\USER\Password.cs" />
+    <Compile Include="CLASSES\USER\Member.cs" />
     <Compile Include="CLASSES\USER\User.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
@@ -143,6 +144,13 @@
     </Compile>
     <Compile Include="MainMaster.Master.designer.cs">
       <DependentUpon>MainMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="martinstest.aspx.cs">
+      <DependentUpon>martinstest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="martinstest.aspx.designer.cs">
+      <DependentUpon>martinstest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestMaster.aspx.cs">

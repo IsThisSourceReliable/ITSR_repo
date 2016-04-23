@@ -7,5 +7,6 @@ namespace ITSR.CLASSES.USER
 {
     public class Administrator:Moderator
     {
+        
     }
 }
