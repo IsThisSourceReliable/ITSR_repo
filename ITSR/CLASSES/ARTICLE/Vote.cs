@@ -15,21 +15,5 @@ namespace ITSR.CLASSES.ARTICLE
         public int article_id { get; set; }
         
         //Methods
-        public void InsertVote()
-        {
-
-        }
-        public void UpdateUpVotes()
-        {
-
-        }
-        public void UpdateDownVotes()
-        {
-
-        }
-        public void SetUpOrDownVoteUser()
-        {
-
-        }
     }
 }

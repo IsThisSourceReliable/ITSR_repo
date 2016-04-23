@@ -24,9 +24,9 @@ namespace ITSR.CLASSES.ARTICLE
         public string domainOwner { get; set; }
         public string Financing { get; set; }
 
-        public void CreateArticle(Articles a)
+        public int GetUpVotes(Articles a)
         {
-            string sql = "INSERT INTO article (title, text, orgtype_id, lastedit_date, votes_up, votes_down, lastedituser_id, createuser_id, publisher, doaminowner, financing) VALUES(@TI, @TE, @OT, @LED, @VU, @VD, @LEU, @CU, @P, @DO, @F)";
+            string sql = "SELECT votes_up FROM article WHERE idarticle = @AID";
 
             try
             {
@@ -34,33 +34,26 @@ namespace ITSR.CLASSES.ARTICLE
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                cmd.Parameters.AddWithValue("@TI", a.Title);
-                cmd.Parameters.AddWithValue("@TE", a.Text);
-                cmd.Parameters.AddWithValue("@OT", a.TypeOfOrg_id);
-                cmd.Parameters.AddWithValue("@LED", a.lastEdit);
-                cmd.Parameters.AddWithValue("@VU", a.upVotes);
-                cmd.Parameters.AddWithValue("@VD", a.downVotes);
-                cmd.Parameters.AddWithValue("@LEU", a.lastEditUser_id);
-                cmd.Parameters.AddWithValue("@CU", a.createUser_id);
-                cmd.Parameters.AddWithValue("@P", a.Publisher);
-                cmd.Parameters.AddWithValue("@DO", a.domainOwner);
-                cmd.Parameters.AddWithValue("@F", a.Financing);
+                cmd.Parameters.AddWithValue("@AID", a.ID);
 
-                cmd.ExecuteNonQuery();
+                int UpVotes = Convert.ToInt32(cmd.ExecuteScalar());
 
+                return upVotes;
+            
             }
-            catch (MySqlException ex)
+            catch(MySqlException ex)
             {
-
+                return 0;
             }
             finally
             {
                 conn.Close();
             }
+          
         }
-        public void EditArticle(Articles a)
+        public int GetDownVotes(Articles a)
         {
-            string sql = "Update article SET title = @TI, text = @TE, orgtype_id = @OT, lastedit_date = @LED, votes_up = @VU, votes_down = @VD, lastedituser_id = @LEU, createuser_id = @CU, publisher = @P, domainowner = @DO, financing = @F WHERE idarticle = @ID";
+            string sql = "SELECT votes_down FROM article WHERE idarticle = @AID";
 
             try
             {
@@ -68,29 +61,29 @@ namespace ITSR.CLASSES.ARTICLE
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                cmd.Parameters.AddWithValue("@TI", a.Title);
-                cmd.Parameters.AddWithValue("@TE", a.Text);
-                cmd.Parameters.AddWithValue("@OT", a.TypeOfOrg_id);
-                cmd.Parameters.AddWithValue("@LED", a.lastEdit);
-                cmd.Parameters.AddWithValue("@VU", a.upVotes);
-                cmd.Parameters.AddWithValue("@VD", a.downVotes);
-                cmd.Parameters.AddWithValue("@LEU", a.lastEditUser_id);
-                cmd.Parameters.AddWithValue("@CU", a.createUser_id);
-                cmd.Parameters.AddWithValue("@P", a.Publisher);
-                cmd.Parameters.AddWithValue("@DO", a.domainOwner);
-                cmd.Parameters.AddWithValue("@F", a.Financing);
+                cmd.Parameters.AddWithValue("@AID", a.ID);
 
-                cmd.ExecuteNonQuery();
+                int downVotes = Convert.ToInt32(cmd.ExecuteScalar());
+
+                return downVotes;
 
             }
             catch (MySqlException ex)
             {
-
+                return 0;
             }
             finally
             {
                 conn.Close();
             }
+            
+        }
+        public int GetTotalVotes(Articles a)
+        {
+            int downVotes = GetDownVotes(a);
+            int upVotes = GetUpVotes(a);
+            int totalVotes = upVotes + downVotes;
+            return totalVotes;
         }
     }
 }

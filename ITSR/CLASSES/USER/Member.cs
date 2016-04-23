@@ -14,6 +14,74 @@ namespace ITSR.CLASSES.USER
 
 
         //Methods
+        public void CreateArticle(Articles a)
+        {
+            string sql = "INSERT INTO article (title, text, orgtype_id, lastedit_date, votes_up, votes_down, lastedituser_id, createuser_id, publisher, domainowner, financing) VALUES(@TI, @TE, @OT, @LED, @VU, @VD, @LEU, @CU, @P, @DO, @F)";
+
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@TI", a.Title);
+                cmd.Parameters.AddWithValue("@TE", a.Text);
+                cmd.Parameters.AddWithValue("@OT", a.TypeOfOrg_id);
+                cmd.Parameters.AddWithValue("@LED", a.lastEdit);
+                cmd.Parameters.AddWithValue("@VU", a.upVotes);
+                cmd.Parameters.AddWithValue("@VD", a.downVotes);
+                cmd.Parameters.AddWithValue("@LEU", a.lastEditUser_id);
+                cmd.Parameters.AddWithValue("@CU", a.createUser_id);
+                cmd.Parameters.AddWithValue("@P", a.Publisher);
+                cmd.Parameters.AddWithValue("@DO", a.domainOwner);
+                cmd.Parameters.AddWithValue("@F", a.Financing);
+
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (MySqlException ex)
+            {
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public void EditArticle(Articles a)
+        {
+            string sql = "Update article SET title = @TI, text = @TE, orgtype_id = @OT, lastedit_date = @LED, votes_up = @VU, votes_down = @VD, lastedituser_id = @LEU, createuser_id = @CU, publisher = @P, domainowner = @DO, financing = @F WHERE idarticle = @ID";
+
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@TI", a.Title);
+                cmd.Parameters.AddWithValue("@TE", a.Text);
+                cmd.Parameters.AddWithValue("@OT", a.TypeOfOrg_id);
+                cmd.Parameters.AddWithValue("@LED", a.lastEdit);
+                cmd.Parameters.AddWithValue("@VU", a.upVotes);
+                cmd.Parameters.AddWithValue("@VD", a.downVotes);
+                cmd.Parameters.AddWithValue("@LEU", a.lastEditUser_id);
+                cmd.Parameters.AddWithValue("@CU", a.createUser_id);
+                cmd.Parameters.AddWithValue("@P", a.Publisher);
+                cmd.Parameters.AddWithValue("@DO", a.domainOwner);
+                cmd.Parameters.AddWithValue("@F", a.Financing);
+
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (MySqlException ex)
+            {
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
         public void CommentOnArticle(Comment c)
         {
             string sql = "INSERT INTO comment (comment_text, user_id, article_id, removed) VALUES(@CT, @UID, @AID, @R)";
@@ -43,18 +111,24 @@ namespace ITSR.CLASSES.USER
         public void UpVoteArticle(Vote v)
         {
             string sql = "INSERT INTO vote (user_id, article_id, vote) VALUES(@UID, @AID, @V)";
-
+            string sql2 = "UPDATE article SET votes_up = votes_up + 1 WHERE idarticle = @AID";
             try
             {
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlCommand cmd2 = new MySqlCommand(sql2, conn);
 
                 cmd.Parameters.AddWithValue("@UID", v.user_id);
                 cmd.Parameters.AddWithValue("@AID", v.article_id);
                 cmd.Parameters.AddWithValue("@V", true);
 
+                cmd2.Parameters.AddWithValue("@AID", v.article_id);
+
                 cmd.ExecuteNonQuery();
+                cmd2.ExecuteNonQuery();
+
+                
             }
             catch (MySqlException ex)
             {
@@ -68,6 +142,35 @@ namespace ITSR.CLASSES.USER
         public void DownVoteArticle(Vote v)
         {
             string sql = "INSERT INTO vote (user_id, article_id, vote) VALUES(@UID, @AID, @V)";
+            string sql2 = "UPDATE article SET votes_down = votes_down + 1 WHERE idarticle = @AID";
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlCommand cmd2 = new MySqlCommand(sql2, conn);
+
+                cmd.Parameters.AddWithValue("@UID", v.user_id);
+                cmd.Parameters.AddWithValue("@AID", v.article_id);
+                cmd.Parameters.AddWithValue("@V", false);
+
+                cmd2.Parameters.AddWithValue("@AID", v.article_id);
+
+                cmd.ExecuteNonQuery();
+                cmd2.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public void ReportArticle(Report r)
+        {
+            string sql = "INSERT INTO report_article (article_id, text, user_id) VALUES(@AID, @T, @UID)";
 
             try
             {
@@ -75,10 +178,10 @@ namespace ITSR.CLASSES.USER
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                cmd.Parameters.AddWithValue("@UID", v.user_id);
-                cmd.Parameters.AddWithValue("@AID", v.article_id);
-                cmd.Parameters.AddWithValue("@V", false);
-
+                
+                cmd.Parameters.AddWithValue("@AID", r.articleORcomment_id);
+                cmd.Parameters.AddWithValue("@T", r.text);
+                cmd.Parameters.AddWithValue("@UID", r.user_id);
                 cmd.ExecuteNonQuery();
             }
             catch (MySqlException ex)
@@ -90,13 +193,30 @@ namespace ITSR.CLASSES.USER
                 conn.Close();
             }
         }
-        public void ReportArticle()
+        public void ReportComment(Report r)
         {
+            string sql = "INSERT INTO report_comment (comment_id, text, user_id) VALUES(@CID, @T, @UID)";
 
-        }
-        public void ReportComment()
-        {
+            try
+            {
+                conn.Open();
 
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+
+                cmd.Parameters.AddWithValue("@CID", r.articleORcomment_id);
+                cmd.Parameters.AddWithValue("@T", r.text);
+                cmd.Parameters.AddWithValue("@UID", r.user_id);
+                cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
 

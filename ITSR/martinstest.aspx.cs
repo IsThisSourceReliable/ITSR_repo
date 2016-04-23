@@ -14,18 +14,13 @@ namespace ITSR
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Member m = new Member();
-            m.userName = "Myrtass";
-            m.Password = "Test";
-            m.role_id = 4;
-            m.Email = "Myrtass@gmail.com";
-            m.certifedUser = true;
+            BlockBan b = new BlockBan();
 
-            m.CreateUser(m);
+            b.fromDate = DateTime.Today;
+            b.toDate = DateTime.Today.AddDays(1);
+            b.user_id = 21;
 
-            Vote v = new Vote();
-
-            v.user_id = 
+           b.BlockUser(b);
         }
     }
 }
