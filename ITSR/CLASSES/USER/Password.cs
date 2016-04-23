@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Data;
 using System.Text;
 
-namespace ITSR.CLASSES.USER
+namespace ITSR
 {
     public class Password
     {

@@ -7,5 +7,6 @@ namespace ITSR
 {
     public class Member:User
     {
+
     }
 }
