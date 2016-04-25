@@ -59,7 +59,37 @@ namespace ITSR
 
         protected void ListView1_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
-            Label3.Text = "Index: " + e.Item.DataItemIndex.ToString() + " , Arg: " + e.CommandArgument;
+            //Label3.Text = "Index: " + e.Item.DataItemIndex.ToString() + " , Arg: " + e.CommandArgument;
+            //if(e.CommandName == "ReportComment")
+            //{
+            //    Label3.Text = "Report!";
+            //}
+            string value = e.CommandName.ToString();
+            switch (value)
+            {
+                case "ReportComment":
+                    Label3.Text = "Report!";
+                    lblIndexListView.Text = e.Item.DataItemIndex.ToString();
+                    lblIndexDataBase.Text = e.CommandArgument.ToString();
+                    Label lbltext = (Label)e.Item.FindControl("Label2");
+                    lblUserName.Text = lbltext.Text;
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
+                    break;
+
+                case "DeleteComment":
+                    Label3.Text = "Delete!";
+                    lblIndexListView.Text = e.Item.DataItemIndex.ToString();
+                    lblIndexDataBase.Text = e.CommandArgument.ToString();
+                    Label lbltext1 = (Label)e.Item.FindControl("Label2");
+                    lblUserName.Text = lbltext1.Text;
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
+                    break;
+
+                default:
+                    Label3.Text = "Default";
+                    break;
+            }
+
         }
     }
 }

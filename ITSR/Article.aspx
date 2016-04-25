@@ -5,6 +5,20 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentHolder" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    
+    <div class="page-overlay">
+        <div class="overlay-message">
+          <p class="my-glyph-close"><span class="glyphicon glyphicon-remove right " onclick="CloseOverlay();"></span></p>
+            <p>Hej hej hej
+                <br />
+            LabelIndexListview = <asp:Label ID="lblIndexListView" runat="server" Text="Label"></asp:Label></p>
+            <br />
+            LabelIndexDatabas = <asp:Label ID="lblIndexDataBase" runat="server" Text="Label"></asp:Label>
+            <br />            
+            Label"UserName" = <asp:Label ID="lblUserName" runat="server" Text="Label"></asp:Label>
+        </div>
+    </div>
+    
     <div class="fullBox white-box">
         <!-- TITLE ================================================== -->
         <div class="fullBox">
@@ -82,9 +96,14 @@
                     <asp:LinkButton 
                         ID="LinkButton1" 
                         runat="server" 
-                        CommandName="Sel" 
-                        CommandArgument='<%# Eval("iderik_table") %>'>LinkButton</asp:LinkButton>
+                        CommandName="ReportComment" 
+                        CommandArgument='<%# Eval("iderik_table") %>'>Report</asp:LinkButton>
                     <br />
+                    <asp:LinkButton 
+                        ID="LinkButton2" 
+                        runat="server" 
+                        CommandName="DeleteComment" 
+                        CommandArgument='<%# Eval("iderik_table") %>'>Delete</asp:LinkButton>
                 </ItemTemplate>
             </asp:ListView>
         </div>
