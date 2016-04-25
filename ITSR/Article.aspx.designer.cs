@@ -58,6 +58,24 @@ namespace ITSR {
         protected global::System.Web.UI.WebControls.Label lblArticleName;
         
         /// <summary>
+        /// upvoteBar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl upvoteBar;
+        
+        /// <summary>
+        /// downvoteBar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl downvoteBar;
+        
+        /// <summary>
         /// lblTotalVotes control.
         /// </summary>
         /// <remarks>
@@ -65,6 +83,15 @@ namespace ITSR {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotalVotes;
+        
+        /// <summary>
+        /// articleText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl articleText;
         
         /// <summary>
         /// lblTypeOfOrg control.
@@ -101,6 +128,24 @@ namespace ITSR {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblFinancer;
+        
+        /// <summary>
+        /// linkBtnLastEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkBtnLastEdit;
+        
+        /// <summary>
+        /// lblEditDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEditDate;
         
         /// <summary>
         /// Label3 control.

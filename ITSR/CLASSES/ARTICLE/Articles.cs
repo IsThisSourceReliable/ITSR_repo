@@ -7,7 +7,7 @@ using ITSR.CLASSES.USER;
 using System.Data;
 
 namespace ITSR.CLASSES.ARTICLE
-{  
+{
     public class Articles
     {
         MySqlConnection conn = new MySqlConnection("Database=itsrdb; Data Source=eu-cdbr-azure-north-e.cloudapp.net; User Id=b268b5fbbce560; Password=d722d6d4");
@@ -41,9 +41,9 @@ namespace ITSR.CLASSES.ARTICLE
                 int UpVotes = Convert.ToInt32(cmd.ExecuteScalar());
 
                 return upVotes;
-            
+
             }
-            catch(MySqlException ex)
+            catch (MySqlException ex)
             {
                 return 0;
             }
@@ -51,7 +51,7 @@ namespace ITSR.CLASSES.ARTICLE
             {
                 conn.Close();
             }
-          
+
         }
         public int GetDownVotes(Articles a)
         {
@@ -78,12 +78,18 @@ namespace ITSR.CLASSES.ARTICLE
             {
                 conn.Close();
             }
-            
+
         }
         public int GetTotalVotes(Articles a)
         {
             int downVotes = GetDownVotes(a);
             int upVotes = GetUpVotes(a);
+            int totalVotes = upVotes + downVotes;
+            return totalVotes;
+        }
+
+        public int SetTotalVotes()
+        {
             int totalVotes = upVotes + downVotes;
             return totalVotes;
         }
@@ -141,4 +147,55 @@ namespace ITSR.CLASSES.ARTICLE
                 conn.Close();
             }
         }
+
+        /// <summary>
+        /// Gets a specific article with a sql question which joins user table and
+        /// typeoforg table to get the right values.
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetArticle()
+        {
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT idarticle, title, text, orgtype_id, lastedit_date, votes_up, votes_down, lastedituser_id, createuser_id, publisher, domainowner,financing, reference_xml, removed, name AS orgtype, username AS edituser FROM article " +
+                                                    "INNER JOIN typeoforg ON article.orgtype_id = typeoforg.idtypeoforg " +
+                                                    "INNER JOIN user ON article.lastedituser_id = user.iduser " +
+                                                    "WHERE idarticle = @id; ", conn);
+                cmd.Parameters.AddWithValue("@id", ID);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+
+                da.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+                return dt;
+            }
+            catch (MySqlException ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public double SetUpVotePercent(int totalVotes)
+        {            
+            double pointPercent = Convert.ToDouble(upVotes) / Convert.ToDouble(totalVotes);
+
+            double daPercent = pointPercent * 100;
+
+            double dazPercent = Math.Round(daPercent, MidpointRounding.AwayFromZero);
+
+            return dazPercent;
+        }
+
+        public int SetDownVotesPercent(double upVotePercent)
+        {
+            int downVotePercent = 100 - Convert.ToInt32(upVotePercent);
+            return downVotePercent;
+        }
+    }
 }

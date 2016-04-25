@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using MySql.Data.MySqlClient;
+using ITSR.CLASSES.ARTICLE;
 
 namespace ITSR
 {
@@ -13,9 +14,49 @@ namespace ITSR
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            LoadArticle();
             ListView1.DataSource = GetStuff();
             ListView1.DataBind();
         }
+
+        /// <summary>
+        /// Method loads article and sets lables and relevant values. 
+        /// </summary>
+        private void LoadArticle()
+        {
+            Articles getArticle = new Articles();
+            getArticle.ID = 11;
+            DataTable dt = getArticle.GetArticle();
+
+            //Sets labels.
+            lblArticleName.Text = dt.Rows[0]["title"].ToString();
+            lblTypeOfOrg.Text = dt.Rows[0]["orgtype"].ToString();
+            lblUpHouseMan.Text = dt.Rows[0]["publisher"].ToString();
+            lblDomainOwner.Text = dt.Rows[0]["domainowner"].ToString();
+            lblFinancer.Text = dt.Rows[0]["financing"].ToString();
+            lblEditDate.Text = dt.Rows[0]["lastedit_date"].ToString();
+            linkBtnLastEdit.Text = dt.Rows[0]["edituser"].ToString();
+            articleText.InnerHtml = dt.Rows[0]["text"].ToString();
+
+
+            getArticle.upVotes = int.Parse(dt.Rows[0]["votes_up"].ToString());
+            getArticle.downVotes = int.Parse(dt.Rows[0]["votes_down"].ToString());
+
+            int totalVotes = getArticle.SetTotalVotes();
+            double upVotePercent = getArticle.SetUpVotePercent(totalVotes);
+            double downVotePercent = getArticle.SetDownVotesPercent(upVotePercent);
+
+            SetVotes(totalVotes, upVotePercent, downVotePercent);
+
+        }
+
+        private void SetVotes(int totalVotes, double upVotes, double downVotes)
+        {
+            lblTotalVotes.Text = totalVotes.ToString();
+            upvoteBar.Style.Add("width", "" + upVotes + "%");
+            downvoteBar.Style.Add("width", "" + downVotes + "%");
+        }
+
 
 
         /// <summary>
@@ -77,22 +118,10 @@ namespace ITSR
             {
                 case "ReportComment":
                     ReportComment(listViewIndex, dataBaseIndex, lbltext);
-                    //Label3.Text = "Report!";
-                    //lblIndexListView.Text = e.Item.DataItemIndex.ToString();
-                    //lblIndexDataBase.Text = e.CommandArgument.ToString();
-                    //Label lbltext = (Label)e.Item.FindControl("Label2");
-                    //lblUserName.Text = lbltext.Text;
-                    //Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
                     break;
 
                 case "DeleteComment":
                     DeleteComment(listViewIndex, dataBaseIndex, lbltext);
-                    //Label3.Text = "Delete!";
-                    //lblIndexListView.Text = e.Item.DataItemIndex.ToString();
-                    //lblIndexDataBase.Text = e.CommandArgument.ToString();
-                    //Label lbltext1 = (Label)e.Item.FindControl("Label2");
-                    //lblUserName.Text = lbltext1.Text;
-                    //Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
                     break;
 
                 default:

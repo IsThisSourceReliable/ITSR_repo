@@ -8,6 +8,68 @@
 
 }
 
+.like-box {
+    margin: 2em;
+    margin-top: 0em;
+    margin-left: 10em;
+    overflow: hidden;
+}
+
+.vote-btn {
+    display: inline-block;
+    padding: 7px 8px 7px 7px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #074e67;
+}
+
+.vote-btn:hover {
+    background-color: #81c9ca;
+}
+
+.vote-btn-pressed {
+    background-color: #93d0d2
+}
+
+.vote-glyph {
+    color: #edf7f7;
+}
+
+.upvote-glyph {
+    color: #4CB482;
+}
+
+.downvote-glyph {
+    color: #B44E4C;
+}
+
+.vote-bar {
+    height:4px;
+    display:inline-block;
+}
+
+.upvote-bar {
+    background-color: #4CB482;
+}
+
+.downvote-bar {
+    background-color: #B44E4C;
+}
+/*.upvote-btn {
+    background-color: #4CB482;
+}
+
+.vote-glyph:hover {
+    background-color: #4CB482;
+}
+
+.downvote-btn {
+    background-color: #B44E4C;
+}
+
+.downvote-btn:hover {
+    background-color: #B44E4C;*/
+}
 /*.like-box-mobile {
     display: none;   
 }*/
@@ -30,13 +92,18 @@
 .info-box {
     margin-top: 2.5em;
 }
-/*@media (max-width: 768px) {
-    .like-box-mobile
- {
-    display: block;        
-  }
-}*/
+@media (max-width: 768px) {
+    .like-box
+    {
+        margin-left: 2em;    
+    }
+}
 
+.edit-text {
+    font-size: 0.9em;
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
 /*@media (max-width: 768px) {
     .like-box-station
  {

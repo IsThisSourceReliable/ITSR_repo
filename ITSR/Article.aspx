@@ -27,33 +27,29 @@
         <!-- ARTICLE ================================================== -->
         <div class="fullBox">
             <div class="halfBox ">
-                <div class="fullBox like-box-mobile">
-                    <div class="halfBox">
-<%--                        <h3 style="margin-left: 0.5em; margin-bottom: 0.5em; margin-top: 0em;">LikeBox</h3>--%>
-                    </div>
-                    <div class="halfBox right">
-                        <div class="fullBox">
-                            <div style="width:70%; height:4px; background-color: #4CB482; display:inline-block;"></div><div style="width:30%; height:4px; background-color: #B44E4C; display:inline-block;"></div>
-                        </div>
-                        <div class="fullBox">
-                            <div class="halfBox">
-                                <div class="upvote-btn">
-                                    <span class="glyphicon glyphicon-arrow-up " onclick=""></span>
-                                </div>
+                <div class="fullBox ">
+                        <div class="like-box">
+                            <div class="fullBox">
+                                <div class="vote-bar upvote-bar" id="upvoteBar" runat="server"></div><div class="vote-bar downvote-bar" id="downvoteBar" runat="server"></div>
                             </div>
-                            <div class="halfBox">
-                                <div class="downvote-btn">
-                                    <span class="glyphicon glyphicon-arrow-down " onclick="();"></span>
+                            <div class="fullBox">
+                                <div class="right"> 
+                                    <div style="display:inline-block;">
+                                        <p><asp:Label ID="lblTotalVotes" runat="server" Text="TotalVotes"></asp:Label> votes</p>
+                                    </div>
+                                    <div class="vote-btn upvote-btn">
+                                        <span class="vote-glyph glyphicon glyphicon-arrow-up " onclick=""></span>
+                                    </div>
+                                    <div class="vote-btn downvote-btn">
+                                        <span class="vote-glyph glyphicon glyphicon-arrow-down " onclick="();"></span>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
-                        <div class="fullBox">
-                            <p><strong>Total votes: </strong> <asp:Label ID="lblTotalVotes" runat="server" Text="TotalVotes"></asp:Label></p>
-                        </div>
-                    </div>
                 </div>  
                 <div class="fullBox">
-                    <p class="article-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                    <p class="article-text" id="articleText" runat="server">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
                 </div>
             </div>
             <div class="halfBox">
@@ -84,6 +80,9 @@
                         <asp:Label ID="lblFinancer" runat="server" Text="Finnacer"></asp:Label>
                     </p>
                 </div>
+            </div>
+            <div class="fullBox">
+                <p class="edit-text">Last edited by <asp:LinkButton ID="linkBtnLastEdit" runat="server">LinkButton</asp:LinkButton> at <asp:Label ID="lblEditDate" runat="server" Text="Label"></asp:Label></p>
             </div>
         </div>
         <!-- COMMENT SECTION ================================================== -->

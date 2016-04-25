@@ -15,6 +15,6 @@ namespace ITSR.CLASSES.ARTICLE
         public bool removed { get; set; }
         public DateTime date { get; set; }
 
-        }
+        
     }
 }
