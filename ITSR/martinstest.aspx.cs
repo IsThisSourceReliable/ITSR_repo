@@ -14,13 +14,13 @@ namespace ITSR
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            BlockBan b = new BlockBan();
+           // BlockBan b = new BlockBan();
 
-            b.fromDate = DateTime.Today;
-            b.toDate = DateTime.Today.AddDays(1);
-            b.user_id = 21;
+           // b.fromDate = DateTime.Today;
+           // b.toDate = DateTime.Today.AddDays(1);
+           // b.user_id = 21;
 
-           b.BlockUser(b);
+           //b.BlockUser(b);
         }
     }
 }
