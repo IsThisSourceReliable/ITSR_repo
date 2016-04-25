@@ -29,10 +29,27 @@
             <div class="halfBox ">
                 <div class="fullBox like-box-mobile">
                     <div class="halfBox">
-                        <h3 style="margin-left: 0.5em; margin-bottom: 0.5em; margin-top: 0em;">LikeBox</h3>
+<%--                        <h3 style="margin-left: 0.5em; margin-bottom: 0.5em; margin-top: 0em;">LikeBox</h3>--%>
                     </div>
                     <div class="halfBox right">
-                        <div style="width:70%; height:4px; background-color: green; display:inline-block;"></div><div style="width:30%; height:4px; background-color: red; display:inline-block;"></div>
+                        <div class="fullBox">
+                            <div style="width:70%; height:4px; background-color: #4CB482; display:inline-block;"></div><div style="width:30%; height:4px; background-color: #B44E4C; display:inline-block;"></div>
+                        </div>
+                        <div class="fullBox">
+                            <div class="halfBox">
+                                <div class="upvote-btn">
+                                    <span class="glyphicon glyphicon-arrow-up " onclick=""></span>
+                                </div>
+                            </div>
+                            <div class="halfBox">
+                                <div class="downvote-btn">
+                                    <span class="glyphicon glyphicon-arrow-down " onclick="();"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fullBox">
+                            <p><strong>Total votes: </strong> <asp:Label ID="lblTotalVotes" runat="server" Text="TotalVotes"></asp:Label></p>
+                        </div>
                     </div>
                 </div>  
                 <div class="fullBox">
