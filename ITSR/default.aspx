@@ -17,11 +17,12 @@
             </asp:TextBox>
         </div>
         <div class="fullBox">
-            <asp:Button 
+<%--            <asp:Button 
                 ID="btnSearch" 
                 CssClass="itsr-button def-search-button" 
                 runat="server" 
-                Text="SEARCH" />
+                Text="SEARCH" />--%>
+            <asp:LinkButton ID="linkBtnSearch" CssClass="itsr-button def-search-button" runat="server"><span class="glyphicon glyphicon-search" style="font-size: 1em; vertical-align: text-bottom; font-weight: lighter;" aria-hidden="true"></span> SEARCH </asp:LinkButton>
         </div>
     </div>
 
