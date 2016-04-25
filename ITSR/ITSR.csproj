@@ -74,6 +74,7 @@
     <Content Include="CSS\ArticleCSS.css" />
     <Content Include="CSS\DefaultCSS.css" />
     <Content Include="CSS\Glyphicons.css" />
+    <Content Include="CSS\RegisterCSS.css" />
     <Content Include="default.aspx" />
     <Content Include="IMG\books.jpg" />
     <Content Include="JS\MenuJS.js" />
