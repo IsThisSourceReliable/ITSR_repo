@@ -67,15 +67,12 @@ namespace ITSR.CLASSES.USER
             }
             catch (MySqlException ex)
             {
-
+                return true;
             }
             finally
             {
                 conn.Close();
-            }
-
-            return true;
-
+            }          
         }
         public void TryLogin()
         {
@@ -130,9 +127,34 @@ namespace ITSR.CLASSES.USER
                 conn.Close();
             }
         }
-        public void CheckEmail()
+        public bool CheckEmail(User user)
         {
+            string sql = "select exists(select 1 from user WHERE email = @EM)";
 
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@EM", user.Email);
+                bool exists = Convert.ToBoolean(cmd.ExecuteScalar());
+
+                if (exists)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                return true;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
-    }
+    }    
 }
