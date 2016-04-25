@@ -17,8 +17,6 @@ namespace ITSR.CLASSES.USER
         public int role_id { get; set; }
         public bool certifedUser { get; set; }
 
-
-
         //Methods
         public void CreateUser(User user)
         {

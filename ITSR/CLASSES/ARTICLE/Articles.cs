@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ITSR.CLASSES.USER;
+using System.Data;
 
 namespace ITSR.CLASSES.ARTICLE
 {  
@@ -24,6 +25,7 @@ namespace ITSR.CLASSES.ARTICLE
         public string domainOwner { get; set; }
         public string Financing { get; set; }
 
+        //Methods
         public int GetUpVotes(Articles a)
         {
             string sql = "SELECT votes_up FROM article WHERE idarticle = @AID";
@@ -85,5 +87,58 @@ namespace ITSR.CLASSES.ARTICLE
             int totalVotes = upVotes + downVotes;
             return totalVotes;
         }
-    }
+
+        public DataTable LoadAllArticles()
+        {
+            string sql = "SELECT * FROM article";
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                MySqlDataAdapter da = new MySqlDataAdapter();
+
+                da.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+                return dt;
+            }
+            catch (MySqlException ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public DataTable LoadArticleComments(Articles a)
+        {
+
+            string sql = "SELECT * FROM comment WHERE article_id = @AID";
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@AID", a.ID);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+
+                da.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+                return dt;
+            }
+            catch (MySqlException ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 }

@@ -12,15 +12,5 @@ namespace ITSR.CLASSES.ARTICLE
         public string text { get; set; }
         public int user_id { get; set; }
         public int articleORcomment_id { get; set; }
-
-        //Methods
-        public void InsertCommentReport()
-        {
-
-        }
-        public void InsertArticleReport()
-        {
-
-        }
     }
 }

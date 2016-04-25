@@ -15,9 +15,5 @@ namespace ITSR.CLASSES.USER
         public DateTime fromDate { get; set; }
         public DateTime toDate { get; set; }
         public int Count { get; set; }
-
-
-        //Methods
-
     }
 }
