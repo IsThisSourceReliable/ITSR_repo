@@ -70,25 +70,29 @@ namespace ITSR
             //    Label3.Text = "Report!";
             //}
             string value = e.CommandName.ToString();
-
+            string listViewIndex = e.Item.DataItemIndex.ToString();
+            string dataBaseIndex = e.CommandArgument.ToString();
+            Label lbltext = (Label)e.Item.FindControl("Label2");
             switch (value)
             {
                 case "ReportComment":
-                    Label3.Text = "Report!";
-                    lblIndexListView.Text = e.Item.DataItemIndex.ToString();
-                    lblIndexDataBase.Text = e.CommandArgument.ToString();
-                    Label lbltext = (Label)e.Item.FindControl("Label2");
-                    lblUserName.Text = lbltext.Text;
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
+                    ReportComment(listViewIndex, dataBaseIndex, lbltext);
+                    //Label3.Text = "Report!";
+                    //lblIndexListView.Text = e.Item.DataItemIndex.ToString();
+                    //lblIndexDataBase.Text = e.CommandArgument.ToString();
+                    //Label lbltext = (Label)e.Item.FindControl("Label2");
+                    //lblUserName.Text = lbltext.Text;
+                    //Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
                     break;
 
                 case "DeleteComment":
-                    Label3.Text = "Delete!";
-                    lblIndexListView.Text = e.Item.DataItemIndex.ToString();
-                    lblIndexDataBase.Text = e.CommandArgument.ToString();
-                    Label lbltext1 = (Label)e.Item.FindControl("Label2");
-                    lblUserName.Text = lbltext1.Text;
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
+                    DeleteComment(listViewIndex, dataBaseIndex, lbltext);
+                    //Label3.Text = "Delete!";
+                    //lblIndexListView.Text = e.Item.DataItemIndex.ToString();
+                    //lblIndexDataBase.Text = e.CommandArgument.ToString();
+                    //Label lbltext1 = (Label)e.Item.FindControl("Label2");
+                    //lblUserName.Text = lbltext1.Text;
+                    //Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
                     break;
 
                 default:
@@ -97,5 +101,24 @@ namespace ITSR
             }
 
         }
+
+        private void ReportComment(string listViewIndex, string dataBaseIndex, Label lbltext)
+        {
+            Label3.Text = "Report!";
+            lblIndexListView.Text = listViewIndex;
+            lblIndexDataBase.Text = dataBaseIndex;
+            lblUserName.Text = lbltext.Text;
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
+        }
+
+        private void DeleteComment(string listViewIndex, string dataBaseIndex, Label lbltext)
+        {
+            Label3.Text = "Delete!";
+            lblIndexListView.Text = listViewIndex;
+            lblIndexDataBase.Text = dataBaseIndex;
+            lblUserName.Text = lbltext.Text;
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
+        }
+
     }
 }
