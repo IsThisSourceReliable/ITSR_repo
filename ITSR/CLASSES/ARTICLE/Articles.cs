@@ -7,7 +7,7 @@ using ITSR.CLASSES.USER;
 using System.Data;
 
 namespace ITSR.CLASSES.ARTICLE
-{  
+{
     public class Articles
     {
         MySqlConnection conn = new MySqlConnection("Database=itsrdb; Data Source=eu-cdbr-azure-north-e.cloudapp.net; User Id=b268b5fbbce560; Password=d722d6d4");
@@ -41,9 +41,9 @@ namespace ITSR.CLASSES.ARTICLE
                 int UpVotes = Convert.ToInt32(cmd.ExecuteScalar());
 
                 return upVotes;
-            
+
             }
-            catch(MySqlException ex)
+            catch (MySqlException ex)
             {
                 return 0;
             }
@@ -51,7 +51,7 @@ namespace ITSR.CLASSES.ARTICLE
             {
                 conn.Close();
             }
-          
+
         }
         public int GetDownVotes(Articles a)
         {
@@ -78,7 +78,7 @@ namespace ITSR.CLASSES.ARTICLE
             {
                 conn.Close();
             }
-            
+
         }
         public int GetTotalVotes(Articles a)
         {
@@ -141,4 +141,5 @@ namespace ITSR.CLASSES.ARTICLE
                 conn.Close();
             }
         }
+    }
 }
