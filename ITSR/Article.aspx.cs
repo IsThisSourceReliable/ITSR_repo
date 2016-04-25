@@ -17,6 +17,11 @@ namespace ITSR
             ListView1.DataBind();
         }
 
+
+        /// <summary>
+        /// Just for testpurpose
+        /// </summary>
+        /// <returns></returns>
         private DataTable GetStuff()
         {
             MySqlConnection conn = new MySqlConnection("Database=itsrdb; Data Source=eu-cdbr-azure-north-e.cloudapp.net; User Id=b268b5fbbce560; Password=d722d6d4");
@@ -65,6 +70,7 @@ namespace ITSR
             //    Label3.Text = "Report!";
             //}
             string value = e.CommandName.ToString();
+
             switch (value)
             {
                 case "ReportComment":
