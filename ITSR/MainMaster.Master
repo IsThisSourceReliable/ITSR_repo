@@ -85,6 +85,9 @@
                             CssClass="itsr-button"
                             Text="LOG IN" />       
                     </div>
+                    <div class="fullBox">
+                        <p class="join-text">Not a member? <asp:LinkButton ID="linkBtnJoin" runat="server">Click here to join!</asp:LinkButton></p>
+                    </div>
                 </div>
                 <p class="right-menu-lbl">0</p>
             </div>
