@@ -11,8 +11,6 @@ namespace ITSR.CLASSES.USER
     {
         MySqlConnection conn = new MySqlConnection("Database=itsrdb; Data Source=eu-cdbr-azure-north-e.cloudapp.net; User Id=b268b5fbbce560; Password=d722d6d4");
 
-
-
         //Methods
         public void CreateArticle(Articles a)
         {
@@ -218,7 +216,5 @@ namespace ITSR.CLASSES.USER
                 conn.Close();
             }
         }
-
-
     }
 }

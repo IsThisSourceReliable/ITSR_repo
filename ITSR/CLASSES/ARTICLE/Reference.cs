@@ -10,7 +10,5 @@ namespace ITSR.CLASSES.ARTICLE
         public string TypeOfReference { get; set; }
         public string URL { get; set; }
         public string Author { get; set; }
-
-        //MemmberName?
     }
 }
