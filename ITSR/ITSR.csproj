@@ -71,6 +71,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Article.aspx" />
+    <Content Include="CreateArticle.aspx" />
+    <Content Include="CSS\CreateArticleCSS.css" />
     <Content Include="CSS\ArticleCSS.css" />
     <Content Include="CSS\DefaultCSS.css" />
     <Content Include="CSS\Glyphicons.css" />
@@ -133,6 +135,13 @@
     <Compile Include="CLASSES\USER\Password.cs" />
     <Compile Include="CLASSES\USER\Member.cs" />
     <Compile Include="CLASSES\USER\User.cs" />
+    <Compile Include="CreateArticle.aspx.cs">
+      <DependentUpon>CreateArticle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateArticle.aspx.designer.cs">
+      <DependentUpon>CreateArticle.aspx</DependentUpon>
+    </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
