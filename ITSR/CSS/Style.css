@@ -102,13 +102,15 @@
 .quarterBox {
 	width: 23%;
 	float: left;
-	overflow: hidden;
 }
 
-.thirdBox {
-	width: 33.1%;
+.twothirdBox {
+    width: 66.5%;
 	float: left;
-	overflow: hidden;
+}
+.thirdBox {
+	width: 31.5%;
+	float: left;
 }
 
 /*****************************************************
@@ -117,7 +119,7 @@
 .page-overlay{
     position: fixed;
     width: 100%;
-    height: 100%;
+    height: 100%
     left: 0;
     top: 0;
     background: rgba(51,51,51,0.7);
@@ -263,10 +265,10 @@ h4 {
 	text-align: center;
 	display: inline-block;
 	width: 100%;
-	padding-top:12px;
-	padding-bottom:12px;
+	padding-top:10px;
+	padding-bottom:10px;
 	color: #FFFFFF;
-	background: #4cb2b4; 
+	background-color: #4cb2b4; 
 	margin-left: 0.2em;
 	margin-right: 0.2em;
     border-radius: 12px;
@@ -679,7 +681,8 @@ h4 {
 	.boxContainer,
 	.navbarContainer,
     .sevenFiveBox,
-    .quarterBox
+    .quarterBox,
+    .twothirdBox
  {
     width: 100%;   
   }
@@ -692,7 +695,8 @@ h4 {
 	.boxContainer,	
 	.navbarContainer,
     .sevenFiveBox,
-    .quarterBox
+    .quarterBox,
+    .twothirdBox
 {
     width: 100%;        
   }
@@ -705,7 +709,8 @@ h4 {
 	.boxContainer,	
 	.navbarContainer,
     .sevenFiveBox,
-    .quarterBox
+    .quarterBox,
+    .twothirdBox
  {
     width: 100%;        
   }
@@ -755,7 +760,8 @@ h4 {
 *****************************************************/
 
 @media (max-width: 992px) {	
-	.thirdBox
+	.thirdBox,
+    .twothirdBox
 	 {
 	width: 100%;
 	height: 100%;

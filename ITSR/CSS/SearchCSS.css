@@ -1,0 +1,98 @@
+﻿/*****************************************************
+	Search
+*****************************************************/
+.Search-gridview-box{
+    padding: 1%;
+  
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; 
+}
+.gridview{
+    text-align:left;
+}
+.gridview th{
+    padding: 1%;
+    font-size:25px;
+    border-bottom:solid 1px;
+}
+.gridview td {
+    padding: 1%;
+
+}
+.gridview tr:hover {
+    background-color:cadetblue;
+    cursor:pointer;
+
+}
+.OPEN-btn {
+    display:none;
+}
+
+.def-title-box {
+    margin-top: 10%; /*It was 12em but wasn't working so well on smaller screens. Lets see haow this works on a big screen.*/
+    margin-bottom: 1em;
+}
+
+.def-title {
+    font-size: 6em;
+	color: #edf7f7; 
+}
+
+.Search-search-box {
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+.Search-search-field {
+    width: 70%;
+    margin: 0em auto;
+    text-align: center;
+    font-size: 1.8em;
+}
+
+.Search-search-button {
+    width: 35%;
+    margin: 0em auto 3%;
+}
+
+@media (max-width: 1200px) {	
+    .def-title	
+ {
+    font-size: 5.5em;  
+  }
+}
+
+@media (max-width: 992px) {	
+    .def-title	
+ {
+    font-size: 4em;  
+  }
+}
+
+@media (max-width: 768px) {	
+    .def-title	
+ {
+    font-size: 3em;  
+  }
+}
+
+@media (max-width: 524px) {	
+    .def-title	
+ {
+    font-size: 2em;  
+  }
+}
+
+@media (max-width: 768px) {	
+    .Search-search-field,
+    .Search-search-button
+ {
+    width:90%;
+  }
+}
+
+
+
+
+

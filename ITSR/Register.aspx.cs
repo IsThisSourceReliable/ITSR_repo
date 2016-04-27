@@ -26,6 +26,7 @@ namespace ITSR
 
             bool emailExists = m.CheckEmail(m);
             bool userNameExists = m.CheckUserNameExists(m);
+
             if (userNameExists == true)
             {
                 CustomValidator1.IsValid = false;

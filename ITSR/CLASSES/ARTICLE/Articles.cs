@@ -122,7 +122,6 @@ namespace ITSR.CLASSES.ARTICLE
         }
         public DataTable LoadArticleComments(Articles a)
         {
-
             string sql = "SELECT * FROM comment WHERE article_id = @AID";
 
             try
@@ -147,6 +146,83 @@ namespace ITSR.CLASSES.ARTICLE
                 conn.Close();
             }
         }
+        public DataTable SearchForSpecificArticle(string SearchString)
+        {
+            string sql = "SELECT * FROM article WHERE title = @SS OR webbadress = @SS";
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@SS", SearchString);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+
+                da.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+                return dt;
+            }
+            catch (MySqlException ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public DataTable SearchForUnspecificArticle(string SearchString)
+        {
+            string SS = "%" + SearchString + "%";
+            string sql = "SELECT * FROM article WHERE title LIKE @SS OR webbadress LIKE @SS";
+
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@SS", SS);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+
+                da.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+                return dt;
+            }
+            catch (MySqlException ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public int SearchResultCount(string SearchString)
+        {
+            string sql = "SELECT COUNT(*) FROM article WHERE title = @SS OR webbadress = @SS2";
+
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql,conn);
+                cmd.Parameters.AddWithValue("@SS", SearchString);
+                int count = Convert.ToInt16(cmd.ExecuteScalar());
+                return count;
+            }
+            catch
+            {
+                return 0;
+            }
+            finally
+            {
+                conn.Close();
+            }
+ 
+        }
+        
 
         /// <summary>
         /// Gets a specific article with a sql question which joins user table and
