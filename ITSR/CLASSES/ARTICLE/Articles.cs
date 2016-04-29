@@ -24,75 +24,49 @@ namespace ITSR.CLASSES.ARTICLE
         public string Publisher { get; set; }
         public string domainOwner { get; set; }
         public string Financing { get; set; }
+        public string Reference { get; set; }
+        public string AricleURL { get; set; }
 
         //Methods
-        public int GetUpVotes(Articles a)
+        public bool CreateArticle()
         {
-            string sql = "SELECT votes_up FROM article WHERE idarticle = @AID";
-
             try
             {
                 conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlCommand cmdCreateArticle = new MySqlCommand("INSERT INTO article (title, text, url, orgtype_id, lastedit_date, votes_up, votes_down, lastedituser_id, createuser_id, publisher, domainowner, financing, reference_xml) " +
+                                                                               "VALUES(@title, @text, @url, @typeoforg, @lasteditdate, @upvotes, @downvotes, @lastedituser, @createuserid, @publisher, @domainowner, @financer, @referencexml);", conn);
 
-                cmd.Parameters.AddWithValue("@AID", a.ID);
+                cmdCreateArticle.Parameters.AddWithValue("@title", Title);
+                cmdCreateArticle.Parameters.AddWithValue("@text", Text);
+                cmdCreateArticle.Parameters.AddWithValue("@url", AricleURL);
+                cmdCreateArticle.Parameters.AddWithValue("@typeoforg", TypeOfOrg_id);
+                cmdCreateArticle.Parameters.AddWithValue("@lasteditdate", lastEdit);
+                cmdCreateArticle.Parameters.AddWithValue("@upvotes", upVotes);
+                cmdCreateArticle.Parameters.AddWithValue("@downvotes", downVotes);
+                cmdCreateArticle.Parameters.AddWithValue("@lastedituser", lastEditUser_id);
+                cmdCreateArticle.Parameters.AddWithValue("@createuserid", createUser_id);
+                cmdCreateArticle.Parameters.AddWithValue("@publisher", Publisher);
+                cmdCreateArticle.Parameters.AddWithValue("@domainowner", domainOwner);
+                cmdCreateArticle.Parameters.AddWithValue("@financer", Financing);
+                cmdCreateArticle.Parameters.AddWithValue("@referencexml", Reference);
 
-                int UpVotes = Convert.ToInt32(cmd.ExecuteScalar());
-
-                return upVotes;
+                cmdCreateArticle.ExecuteNonQuery();
+                return true;
 
             }
             catch (MySqlException ex)
             {
-                return 0;
+                Console.Write(ex.Message);
+                return false;
             }
             finally
             {
                 conn.Close();
             }
-
-        }
-        public int GetDownVotes(Articles a)
-        {
-            string sql = "SELECT votes_down FROM article WHERE idarticle = @AID";
-
-            try
-            {
-                conn.Open();
-
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-                cmd.Parameters.AddWithValue("@AID", a.ID);
-
-                int downVotes = Convert.ToInt32(cmd.ExecuteScalar());
-
-                return downVotes;
-
-            }
-            catch (MySqlException ex)
-            {
-                return 0;
-            }
-            finally
-            {
-                conn.Close();
-            }
-
-        }
-        public int GetTotalVotes(Articles a)
-        {
-            int downVotes = GetDownVotes(a);
-            int upVotes = GetUpVotes(a);
-            int totalVotes = upVotes + downVotes;
-            return totalVotes;
         }
 
-        public int SetTotalVotes()
-        {
-            int totalVotes = upVotes + downVotes;
-            return totalVotes;
-        }
+       
 
         public DataTable LoadAllArticles()
         {
@@ -257,21 +231,127 @@ namespace ITSR.CLASSES.ARTICLE
             }
         }
 
+        public int SetTotalVotes()
+        {
+            int totalVotes = upVotes + downVotes;
+            return totalVotes;
+        }
+
         public double SetUpVotePercent(int totalVotes)
-        {            
-            double pointPercent = Convert.ToDouble(upVotes) / Convert.ToDouble(totalVotes);
+        {         
+            if(totalVotes == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                double pointPercent = Convert.ToDouble(upVotes) / Convert.ToDouble(totalVotes);
 
-            double daPercent = pointPercent * 100;
+                double daPercent = pointPercent * 100;
 
-            double dazPercent = Math.Round(daPercent, MidpointRounding.AwayFromZero);
+                double dazPercent = Math.Round(daPercent, MidpointRounding.AwayFromZero);
 
-            return dazPercent;
+                return dazPercent;
+            }
         }
 
         public int SetDownVotesPercent(double upVotePercent)
         {
-            int downVotePercent = 100 - Convert.ToInt32(upVotePercent);
-            return downVotePercent;
+            if(upVotePercent == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                int downVotePercent = 100 - Convert.ToInt32(upVotePercent);
+                return downVotePercent;
+            }
+        }
+
+        public DataTable GetTypeOfOrgs()
+        {
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM typeoforg; ", conn);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+
+                da.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+                return dt;
+            }
+            catch (MySqlException ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public int GetUpVotes(Articles a)
+        {
+            string sql = "SELECT votes_up FROM article WHERE idarticle = @AID";
+
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@AID", a.ID);
+
+                int UpVotes = Convert.ToInt32(cmd.ExecuteScalar());
+
+                return upVotes;
+
+            }
+            catch (MySqlException ex)
+            {
+                return 0;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+        public int GetDownVotes(Articles a)
+        {
+            string sql = "SELECT votes_down FROM article WHERE idarticle = @AID";
+
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@AID", a.ID);
+
+                int downVotes = Convert.ToInt32(cmd.ExecuteScalar());
+
+                return downVotes;
+
+            }
+            catch (MySqlException ex)
+            {
+                return 0;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+        public int GetTotalVotes(Articles a)
+        {
+            int downVotes = GetDownVotes(a);
+            int upVotes = GetUpVotes(a);
+            int totalVotes = upVotes + downVotes;
+            return totalVotes;
         }
     }
 }

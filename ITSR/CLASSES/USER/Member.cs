@@ -14,27 +14,25 @@ namespace ITSR.CLASSES.USER
         //Methods
         public void CreateArticle(Articles a)
         {
-            string sql = "INSERT INTO article (title, text, orgtype_id, lastedit_date, votes_up, votes_down, lastedituser_id, createuser_id, publisher, domainowner, financing) VALUES(@TI, @TE, @OT, @LED, @VU, @VD, @LEU, @CU, @P, @DO, @F)";
-
             try
             {
                 conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlCommand cmdCreateArticle = new MySqlCommand("INSERT INTO article (title, text, url, orgtype_id, lastedit_date, createuser_id, publisher, domainowner, financing, reference_xml) " +
+                                                                "VALUES(@title, @text, @url, @typeoforg, @lasteditdate, @createuserid, @publisher, @domainowner, @financer, @referencexml);", conn);
 
-                cmd.Parameters.AddWithValue("@TI", a.Title);
-                cmd.Parameters.AddWithValue("@TE", a.Text);
-                cmd.Parameters.AddWithValue("@OT", a.TypeOfOrg_id);
-                cmd.Parameters.AddWithValue("@LED", a.lastEdit);
-                cmd.Parameters.AddWithValue("@VU", a.upVotes);
-                cmd.Parameters.AddWithValue("@VD", a.downVotes);
-                cmd.Parameters.AddWithValue("@LEU", a.lastEditUser_id);
-                cmd.Parameters.AddWithValue("@CU", a.createUser_id);
-                cmd.Parameters.AddWithValue("@P", a.Publisher);
-                cmd.Parameters.AddWithValue("@DO", a.domainOwner);
-                cmd.Parameters.AddWithValue("@F", a.Financing);
+                cmdCreateArticle.Parameters.AddWithValue("@title", a.Title);
+                cmdCreateArticle.Parameters.AddWithValue("@text", a.Text);
+                cmdCreateArticle.Parameters.AddWithValue("@url", a.AricleURL);
+                cmdCreateArticle.Parameters.AddWithValue("@typeoforg", a.TypeOfOrg_id);
+                cmdCreateArticle.Parameters.AddWithValue("@lasteditdate", a.lastEdit);
+                cmdCreateArticle.Parameters.AddWithValue("@createuserid", a.createUser_id);
+                cmdCreateArticle.Parameters.AddWithValue("@publisher", a.Publisher);
+                cmdCreateArticle.Parameters.AddWithValue("@domainowner", a.domainOwner);
+                cmdCreateArticle.Parameters.AddWithValue("@financer", a.Financing);
+                cmdCreateArticle.Parameters.AddWithValue("@referencexml", a.Reference);
 
-                cmd.ExecuteNonQuery();
+                cmdCreateArticle.ExecuteNonQuery();
 
             }
             catch (MySqlException ex)

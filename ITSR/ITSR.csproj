@@ -195,6 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FONTS\specimen_files\" />
+    <Folder Include="TEST\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

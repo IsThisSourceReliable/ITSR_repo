@@ -5,6 +5,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.IO;
+using System.Xml.Serialization;
+using System.Text;
+using ITSR.CLASSES.ARTICLE;
+using ITSR.CLASSES.USER;
 
 namespace ITSR
 {
@@ -16,62 +21,36 @@ namespace ITSR
             {
                 DataTable dt = new DataTable();
                 dt.Columns.AddRange(new DataColumn[5] { new DataColumn("id"), new DataColumn("Author"), new DataColumn("Year"), new DataColumn("Title"), new DataColumn("URL") });
-                ViewState["Customers"] = dt;
+                ViewState["References"] = dt;
                 this.BindGrid();
+                BindDropDown();
             }
         }
 
+        private void BindDropDown()
+        {
+            Articles Orgs = new Articles();
+            DataTable TypeOfOrgs = Orgs.GetTypeOfOrgs();
+
+            dropDownTypeOfOrg.DataSource = TypeOfOrgs;
+            dropDownTypeOfOrg.DataTextField = "name";
+            dropDownTypeOfOrg.DataValueField = "idtypeoforg";
+            dropDownTypeOfOrg.DataBind();
+            this.dropDownTypeOfOrg.Items.Insert(0, "Choose");
+        }
         protected void BindGrid()
         {
-            gridViewReferences.DataSource = (DataTable)ViewState["Customers"];
+            gridViewReferences.DataSource = (DataTable)ViewState["References"];
             gridViewReferences.DataBind();
-        }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
-        protected void Button2_Click(object sender, EventArgs e)
-        {
-            if(Button2.Text == "Update")
+            if(gridViewReferences.Rows.Count == 0)
             {
-                DataTable dt = (DataTable)ViewState["Customers"];
-                string id = Label1.Text;
-                foreach(DataRow dr in dt.Rows)
-                {
-                    if(dr["id"].ToString() == id)
-                    {
-                        dr["Author"] = TextBox2.Text.Trim();
-                        dr["Year"] = TextBox3.Text.Trim();
-                        dr["Title"] = TextBox4.Text.Trim();
-                        dr["URL"] = TextBox5.Text.Trim();
-                    }
-                    Button2.Text = "Button";
-                }
-                ViewState["Customers"] = dt;
-                this.BindGrid();
-                TextBox1.Text = string.Empty;
-                TextBox2.Text = string.Empty;
-                TextBox3.Text = string.Empty;
-                TextBox4.Text = string.Empty;
-                TextBox5.Text = string.Empty;
+                lblRef.Text = "Add some references to this source";
             }
             else
             {
-                DataTable dt = (DataTable)ViewState["Customers"];
-                dt.Rows.Add(TextBox1.Text.Trim(), TextBox2.Text.Trim(), TextBox3.Text.Trim(), TextBox4.Text.Trim(), TextBox5.Text.Trim());
-                ViewState["Customers"] = dt;
-                this.BindGrid();
-                TextBox1.Text = string.Empty;
-                TextBox2.Text = string.Empty;
-                TextBox3.Text = string.Empty;
-                TextBox4.Text = string.Empty;
-                TextBox5.Text = string.Empty;
+                lblRef.Text = "";
             }
-
-
         }
 
         protected void gridViewReferences_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -80,14 +59,150 @@ namespace ITSR
             {
                 //Label1.Text = "EDIT!";
                 int rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
-                Label1.Text = rowIndex.ToString();
-                TextBox1.Text = gridViewReferences.Rows[rowIndex].Cells[0].Text;
-                TextBox2.Text = gridViewReferences.Rows[rowIndex].Cells[1].Text;
-                TextBox3.Text = gridViewReferences.Rows[rowIndex].Cells[2].Text;
-                TextBox4.Text = gridViewReferences.Rows[rowIndex].Cells[3].Text;
-                TextBox5.Text = gridViewReferences.Rows[rowIndex].Cells[4].Text;
-                Button2.Text = "Update";
+                lblID.Text = rowIndex.ToString();
+                txtAuthor.Text = gridViewReferences.Rows[rowIndex].Cells[1].Text;
+                txtYear.Text = gridViewReferences.Rows[rowIndex].Cells[2].Text;
+                txtTitle.Text = gridViewReferences.Rows[rowIndex].Cells[3].Text;
+                txtURL.Text = gridViewReferences.Rows[rowIndex].Cells[4].Text;
+                btnAddRef.Text = "Update";
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "OpenOverlay", "OpenOverlay();", true);
             }
+            else if(e.CommandName == "DeleteRow")
+            {
+                DataTable dt = (DataTable)ViewState["References"];
+                //int rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
+                string id = e.CommandArgument.ToString();
+                //string id = gridViewReferences.Rows[rowIndex].Cells[0].Text;
+                //Label1.Text = rowIndex.ToString();
+                for (int i = dt.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow dr = dt.Rows[i];
+                    if (dr["id"].ToString() == id)
+                        dr.Delete();
+                }
+                ViewState["References"] = dt;
+                this.BindGrid();
+            }
+        }
+
+        protected void btnAddRef_Click(object sender, EventArgs e)
+        {
+            if (btnAddRef.Text == "Update")
+            {
+                DataTable dt = (DataTable)ViewState["References"];
+                string id = lblID.Text;
+                foreach (DataRow dr in dt.Rows)
+                {
+                    if (dr["id"].ToString() == id)
+                    {
+                        dr["Author"] = txtAuthor.Text.Trim();
+                        dr["Year"] = txtYear.Text.Trim();
+                        dr["Title"] = txtTitle.Text.Trim();
+                        dr["URL"] = txtURL.Text.Trim();
+                    }
+                    btnAddRef.Text = "Add Reference";
+                }
+                ViewState["References"] = dt;
+                this.BindGrid();
+                ClearReferenceTxtBoxes();
+            }
+            else
+            {
+                DataTable dt = (DataTable)ViewState["References"];
+                int rowCount = dt.Rows.Count;
+                int newIndex = 0;
+
+                if (rowCount <= 0)
+                {
+                    newIndex = 0;
+                }
+                else
+                {
+                    int fakeIndex = rowCount - 1;
+                    string highestID = gridViewReferences.Rows[fakeIndex].Cells[0].Text;
+                    newIndex = Convert.ToInt32(highestID) + 1;
+                }
+
+                dt.Rows.Add(newIndex.ToString(), txtAuthor.Text.Trim(), txtYear.Text.Trim(), txtTitle.Text.Trim(), txtURL.Text.Trim());
+                ViewState["References"] = dt;
+                this.BindGrid();
+                ClearReferenceTxtBoxes();
+            }
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            if(AddArticle())
+            {
+                lblRef.Text = "True";
+                ResetEverything();
+            }
+            else
+            {
+                lblRef.Text = "false";
+            }
+        }
+
+        private bool AddArticle()
+        {
+            bool ok = false;
+            Articles sourceArticle = new Articles();
+
+            sourceArticle.Title = txtArticleTitle.Text;
+            sourceArticle.Text = txtInfo.Text.Replace("\r\n", "<br />");
+            sourceArticle.AricleURL = txtArticleURL.Text;
+            sourceArticle.TypeOfOrg_id = Convert.ToInt32(dropDownTypeOfOrg.SelectedValue);
+            sourceArticle.lastEdit = DateTime.Now;
+            sourceArticle.Publisher = txtUpHouseMan.Text;
+            sourceArticle.domainOwner = txtDomainOwner.Text;
+            sourceArticle.Financing = txtFinancer.Text;
+            sourceArticle.Reference = CreateXML();
+            sourceArticle.createUser_id = 21; //Has to be changed to whatever user that is logged in.
+            sourceArticle.upVotes = 0; //Standard values for now
+            sourceArticle.downVotes = 0; //Standard values for now
+            sourceArticle.lastEditUser_id = 21; //Has to be changed to whatever user that is logged in.
+
+            if (sourceArticle.CreateArticle())
+            {
+                ok = true;
+            }
+
+            return ok;
+        }
+
+        private string CreateXML()
+        {
+            DataTable dt = (DataTable)ViewState["References"];
+            MemoryStream ms = new MemoryStream();
+            dt.WriteXml(ms);
+            ms.Position = 0;
+            string xmlContentx = new StreamReader(ms).ReadToEnd();
+            return xmlContentx;
+        }
+
+        private void ClearReferenceTxtBoxes()
+        {
+            txtAuthor.Text = string.Empty;
+            txtYear.Text = string.Empty;
+            txtTitle.Text = string.Empty;
+            txtURL.Text = string.Empty;
+        }
+
+        private void ResetEverything()
+        {
+            txtArticleTitle.Text = "";
+            txtInfo.Text = "";
+            txtURL.Text = "";
+            txtUpHouseMan.Text = "";
+            txtDomainOwner.Text = "";
+            txtFinancer.Text = "";
+
+            BindDropDown();
+
+            DataTable dt = new DataTable();
+            dt.Columns.AddRange(new DataColumn[5] { new DataColumn("id"), new DataColumn("Author"), new DataColumn("Year"), new DataColumn("Title"), new DataColumn("URL") });
+            ViewState["References"] = dt;
+            this.BindGrid();
         }
     }
 }

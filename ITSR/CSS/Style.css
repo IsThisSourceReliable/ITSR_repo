@@ -83,6 +83,7 @@
     background: #FFFFFF;
     border-radius: 20px;
     overflow:auto;
+    padding-bottom: 1em;
 }
 
 .fullBox {
@@ -119,7 +120,7 @@
 .page-overlay{
     position: fixed;
     width: 100%;
-    height: 100%
+    height: 100%;
     left: 0;
     top: 0;
     background: rgba(51,51,51,0.7);
@@ -136,7 +137,7 @@
     padding-top: 1em;
 	background: white;
 	width: 900px;
-	/*text-align: center;*/
+    overflow:auto;
 }
 
 .close-glyph {
@@ -654,6 +655,37 @@ h4 {
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(50, 178, 255, .6);*/  
 }
 
+.Grid {
+    /*background-color: #fff; 
+    margin: 5px 0 10px 0; 
+    border: solid 1px #525252; 
+    border-collapse:collapse; */
+    font-family:'latolight'; 
+    color: black;
+    width: 98%;
+    margin: 0em auto;
+}
+
+.Grid td {      
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      text-align: center;
+      font-size: 1.2em;
+/*      border: solid 1px #c1c1c1; */
+}
+.Grid th  {
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      color: black;
+      /*background: #AF3C3C;
+      border-left: solid 1px #525252;*/
+      font-size: 1.3em; 
+
+}
+
+.hiddenCol {
+    display: none;
+}
 /*****************************************************
 	Glyphstorlek
 *****************************************************/
