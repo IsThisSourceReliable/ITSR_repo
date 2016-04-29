@@ -29,7 +29,22 @@ namespace ITSR
             getArticle.ID = 161;
             DataTable dt = getArticle.GetArticle();
 
-            //Sets labels.
+            string referenceXML = dt.Rows[0]["reference_xml"].ToString();
+
+            getArticle.upVotes = int.Parse(dt.Rows[0]["votes_up"].ToString());
+            getArticle.downVotes = int.Parse(dt.Rows[0]["votes_down"].ToString());
+
+            int totalVotes = getArticle.SetTotalVotes();
+            double upVotePercent = getArticle.SetUpVotePercent(totalVotes);
+            double downVotePercent = getArticle.SetDownVotesPercent(upVotePercent);
+
+            SetArticleLables(dt);
+            BindReferences(referenceXML);
+            SetVotes(totalVotes, upVotePercent, downVotePercent);
+        }
+
+        private void SetArticleLables(DataTable dt)
+        {
             lblArticleName.Text = dt.Rows[0]["title"].ToString();
             lblTypeOfOrg.Text = dt.Rows[0]["orgtype"].ToString();
             lblUpHouseMan.Text = dt.Rows[0]["publisher"].ToString();
@@ -38,18 +53,6 @@ namespace ITSR
             lblEditDate.Text = dt.Rows[0]["lastedit_date"].ToString();
             linkBtnLastEdit.Text = dt.Rows[0]["edituser"].ToString();
             articleText.InnerHtml = dt.Rows[0]["text"].ToString();
-            string referenceXML = dt.Rows[0]["reference_xml"].ToString();
-
-            BindReferences(referenceXML);
-            
-            getArticle.upVotes = int.Parse(dt.Rows[0]["votes_up"].ToString());
-            getArticle.downVotes = int.Parse(dt.Rows[0]["votes_down"].ToString());
-
-            int totalVotes = getArticle.SetTotalVotes();
-            double upVotePercent = getArticle.SetUpVotePercent(totalVotes);
-            double downVotePercent = getArticle.SetDownVotesPercent(upVotePercent);
-
-            SetVotes(totalVotes, upVotePercent, downVotePercent);
         }
 
         private void BindReferences(string xml)
