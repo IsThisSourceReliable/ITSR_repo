@@ -5,7 +5,6 @@
 .article-text {
     margin: 1em;
     margin-top: 0em;
-
 }
 
 .like-box {
@@ -100,6 +99,12 @@
 }
 
 .edit-text {
+    font-size: 0.9em;
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
+
+.ref-text {
     font-size: 0.9em;
     margin-left: 1em;
     margin-bottom: 1em;

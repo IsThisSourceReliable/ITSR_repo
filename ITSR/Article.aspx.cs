@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using MySql.Data.MySqlClient;
 using ITSR.CLASSES.ARTICLE;
+using System.IO;
 
 namespace ITSR
 {
@@ -25,7 +26,7 @@ namespace ITSR
         private void LoadArticle()
         {
             Articles getArticle = new Articles();
-            getArticle.ID = 11;
+            getArticle.ID = 161;
             DataTable dt = getArticle.GetArticle();
 
             //Sets labels.
@@ -37,8 +38,10 @@ namespace ITSR
             lblEditDate.Text = dt.Rows[0]["lastedit_date"].ToString();
             linkBtnLastEdit.Text = dt.Rows[0]["edituser"].ToString();
             articleText.InnerHtml = dt.Rows[0]["text"].ToString();
+            string referenceXML = dt.Rows[0]["reference_xml"].ToString();
 
-
+            BindReferences(referenceXML);
+            
             getArticle.upVotes = int.Parse(dt.Rows[0]["votes_up"].ToString());
             getArticle.downVotes = int.Parse(dt.Rows[0]["votes_down"].ToString());
 
@@ -47,7 +50,30 @@ namespace ITSR
             double downVotePercent = getArticle.SetDownVotesPercent(upVotePercent);
 
             SetVotes(totalVotes, upVotePercent, downVotePercent);
+        }
 
+        private void BindReferences(string xml)
+        {
+            if (xml == string.Empty)
+            {
+                lblRefText.Text = "This source article doesn't have any references";
+            }
+            else
+            {
+                lblRefText.Text = "";
+                DataTable dt = DaStuff(xml);
+                ListViewReferences.DataSource = dt;
+                ListViewReferences.DataBind();
+            }
+        }
+
+        private DataTable DaStuff(string xml)
+        {
+            StringReader theReader = new StringReader(xml);
+            DataSet theDataSet = new DataSet();
+            theDataSet.ReadXml(theReader);
+
+            return theDataSet.Tables[0];
         }
 
         private void SetVotes(int totalVotes, double upVotes, double downVotes)

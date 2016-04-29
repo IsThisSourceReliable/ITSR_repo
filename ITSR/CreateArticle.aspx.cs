@@ -173,11 +173,19 @@ namespace ITSR
         private string CreateXML()
         {
             DataTable dt = (DataTable)ViewState["References"];
-            MemoryStream ms = new MemoryStream();
-            dt.WriteXml(ms);
-            ms.Position = 0;
-            string xmlContentx = new StreamReader(ms).ReadToEnd();
-            return xmlContentx;
+            if(dt.Rows.Count == 0)
+            {
+                string empty = string.Empty;
+                return empty;
+            }
+            else
+            {
+                MemoryStream ms = new MemoryStream();
+                dt.WriteXml(ms);
+                ms.Position = 0;
+                string xmlContentx = new StreamReader(ms).ReadToEnd();
+                return xmlContentx;
+            }
         }
 
         private void ClearReferenceTxtBoxes()

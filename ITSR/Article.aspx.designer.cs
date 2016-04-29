@@ -130,6 +130,24 @@ namespace ITSR {
         protected global::System.Web.UI.WebControls.Label lblFinancer;
         
         /// <summary>
+        /// lblRefText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRefText;
+        
+        /// <summary>
+        /// ListViewReferences control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView ListViewReferences;
+        
+        /// <summary>
         /// linkBtnLastEdit control.
         /// </summary>
         /// <remarks>

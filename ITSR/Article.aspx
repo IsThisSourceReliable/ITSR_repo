@@ -82,6 +82,21 @@
                 </div>
             </div>
             <div class="fullBox">
+                <h4 class="info-titles">References</h4>
+                <p class="ref-text"><asp:Label ID="lblRefText" runat="server" Text="Label"></asp:Label></p>
+                <asp:ListView 
+                    ID="ListViewReferences" runat="server">
+                    <ItemTemplate>
+                        <p class="ref-text">
+                            <asp:Label ID="lblAuthor" runat="server" Text='<%# Eval("Author") %>'></asp:Label>. 
+                            <asp:Label ID="lblYear" runat="server" Text='<%# Eval("Year") %>'></asp:Label>.
+                            <i><asp:Label ID="lblTitle" runat="server" Text='<%# Eval("Title") %>'></asp:Label></i>.
+                            <a href='<%# Eval("URL") %>' target="_blank"><asp:Label ID="lblURL" runat="server" Text='<%# Eval("URL") %>'></asp:Label></a>
+                        </p>
+                    </ItemTemplate>
+                </asp:ListView>
+            </div>
+            <div class="fullBox">
                 <p class="edit-text">Last edited by <asp:LinkButton ID="linkBtnLastEdit" runat="server">LinkButton</asp:LinkButton> at <asp:Label ID="lblEditDate" runat="server" Text="Label"></asp:Label></p>
             </div>
         </div>
