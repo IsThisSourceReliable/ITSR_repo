@@ -88,9 +88,18 @@
                     ID="ListViewReferences" runat="server">
                     <ItemTemplate>
                         <p class="ref-text">
-                            <asp:Label ID="lblAuthor" runat="server" Text='<%# Eval("Author") %>'></asp:Label>. 
-                            <asp:Label ID="lblYear" runat="server" Text='<%# Eval("Year") %>'></asp:Label>.
-                            <i><asp:Label ID="lblTitle" runat="server" Text='<%# Eval("Title") %>'></asp:Label></i>.
+                            <asp:Label 
+                                ID="lblAuthor" 
+                                runat="server" 
+                                Text='<%# Eval("Author") %>'></asp:Label>. 
+                            <asp:Label 
+                                ID="lblYear" 
+                                runat="server" 
+                                Text='<%# Eval("Year") %>'></asp:Label>.
+                            <i><asp:Label 
+                                ID="lblTitle" 
+                                runat="server" 
+                                Text='<%# Eval("Title") %>'></asp:Label></i>.
                             <a href='<%# Eval("URL") %>' target="_blank"><asp:Label ID="lblURL" runat="server" Text='<%# Eval("URL") %>'></asp:Label></a>
                         </p>
                     </ItemTemplate>
