@@ -76,6 +76,15 @@ namespace ITSR {
         protected global::System.Web.UI.WebControls.Button btnAddRef;
         
         /// <summary>
+        /// ValidatorTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValidatorTitle;
+        
+        /// <summary>
         /// txtArticleTitle control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,15 @@ namespace ITSR {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtArticleTitle;
+        
+        /// <summary>
+        /// ValidatorInfoText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValidatorInfoText;
         
         /// <summary>
         /// txtInfo control.
@@ -94,6 +112,15 @@ namespace ITSR {
         protected global::System.Web.UI.WebControls.TextBox txtInfo;
         
         /// <summary>
+        /// ValidatorORG control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValidatorORG;
+        
+        /// <summary>
         /// dropDownTypeOfOrg control.
         /// </summary>
         /// <remarks>
@@ -101,6 +128,15 @@ namespace ITSR {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList dropDownTypeOfOrg;
+        
+        /// <summary>
+        /// ValidatorURL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValidatorURL;
         
         /// <summary>
         /// txtArticleURL control.
