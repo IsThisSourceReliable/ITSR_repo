@@ -75,7 +75,7 @@ namespace ITSR
             MySqlConnection conn = new MySqlConnection("Database=itsrdb; Data Source=eu-cdbr-azure-north-e.cloudapp.net; User Id=b268b5fbbce560; Password=d722d6d4");
 
             string SS = "%" + prefixText + "%";
-            string sql = "SELECT * FROM article WHERE title LIKE @SS OR webbadress LIKE @SS";
+            string sql = "SELECT * FROM article WHERE title LIKE @SS OR url LIKE @SS";
 
             conn.Open();
             MySqlCommand cmd = new MySqlCommand(sql, conn);

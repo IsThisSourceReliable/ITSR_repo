@@ -122,7 +122,7 @@ namespace ITSR.CLASSES.ARTICLE
         }
         public DataTable SearchForSpecificArticle(string SearchString)
         {
-            string sql = "SELECT * FROM article WHERE title = @SS OR webbadress = @SS";
+            string sql = "SELECT * FROM article WHERE title = @SS OR url = @SS";
 
             try
             {
@@ -149,7 +149,7 @@ namespace ITSR.CLASSES.ARTICLE
         public DataTable SearchForUnspecificArticle(string SearchString)
         {
             string SS = "%" + SearchString + "%";
-            string sql = "SELECT * FROM article WHERE title LIKE @SS OR webbadress LIKE @SS";
+            string sql = "SELECT * FROM article WHERE title LIKE @SS OR url LIKE @SS";
 
             try
             {
@@ -176,7 +176,7 @@ namespace ITSR.CLASSES.ARTICLE
         }
         public int SearchResultCount(string SearchString)
         {
-            string sql = "SELECT COUNT(*) FROM article WHERE title = @SS OR webbadress = @SS2";
+            string sql = "SELECT COUNT(*) FROM article WHERE title = @SS OR url = @SS2";
 
             try
             {
