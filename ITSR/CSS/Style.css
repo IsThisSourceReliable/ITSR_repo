@@ -83,6 +83,7 @@
     background: #FFFFFF;
     border-radius: 20px;
     overflow:auto;
+    padding-bottom: 1em;
 }
 
 .fullBox {
@@ -102,13 +103,15 @@
 .quarterBox {
 	width: 23%;
 	float: left;
-	overflow: hidden;
 }
 
-.thirdBox {
-	width: 33.1%;
+.twothirdBox {
+    width: 66.5%;
 	float: left;
-	overflow: hidden;
+}
+.thirdBox {
+	width: 31.5%;
+	float: left;
 }
 
 /*****************************************************
@@ -121,7 +124,7 @@
     left: 0;
     top: 0;
     background: rgba(51,51,51,0.7);
-    z-index: 500;
+    z-index: 1500;
     display: none;
 }
 
@@ -134,7 +137,7 @@
     padding-top: 1em;
 	background: white;
 	width: 900px;
-	/*text-align: center;*/
+    overflow:auto;
 }
 
 .close-glyph {
@@ -175,6 +178,11 @@ p {
 
 a {
 	text-decoration: none;
+    color: #4cb2b4;
+}
+
+a:hover {
+    color:#81c9ca;
 }
 
 .links{
@@ -211,6 +219,12 @@ h4 {
     margin-top: 0.1em;
 }
 
+.join-text {
+    margin-top: 1em;
+    font-size: 0.9em;
+    color: #edf7f7;
+}
+
 .h2-center {
 	text-align: center;
 }
@@ -235,10 +249,22 @@ h4 {
 
 .DropDown{
     font-size: 1.4em;
-    padding: 2px 2px 2px 6px;
+    margin: 0em auto;
+    padding: 5px 5px 5px 5px;
     width: 98%;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 12px;
+    border-style: solid; 
+    border-width: 1px;
+    margin: 0em auto;
+}
+
+.DropDown:focus {
+  border-radius: 12px;
+  border-style: solid; 
+  border-width: 1px;
+  border-color: #4cb2b4;
+  	outline: 0;
 }
 
 /*****************************************************
@@ -252,10 +278,10 @@ h4 {
 	text-align: center;
 	display: inline-block;
 	width: 100%;
-	padding-top:12px;
-	padding-bottom:12px;
+	padding-top:10px;
+	padding-bottom:10px;
 	color: #FFFFFF;
-	background: #4cb2b4; 
+	background-color: #4cb2b4; 
 	margin-left: 0.2em;
 	margin-right: 0.2em;
     border-radius: 12px;
@@ -605,6 +631,61 @@ h4 {
   font-family: 'latolight', helvetica, arial, sans-serif;	
 }
 
+.multiline-txt-box {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 11px;
+    border-style: solid; 
+    border-width: 1px;
+    border-color: #989898;
+    font-size: 1.4em;
+    margin: 0em auto;
+    padding: 10px 10px 10px 10px;
+    font-family: 'latolight', helvetica, arial, sans-serif;
+}
+
+.multiline-txt-box:focus {
+  border-radius: 12px;
+  border-style: solid; 
+  border-width: 1px;
+  border-color: #4cb2b4;
+  	outline: 0;	
+  /*-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(50, 50, 255, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(50, 178, 255, .6);*/  
+}
+
+.Grid {
+    /*background-color: #fff; 
+    margin: 5px 0 10px 0; 
+    border: solid 1px #525252; 
+    border-collapse:collapse; */
+    font-family:'latolight'; 
+    color: black;
+    width: 98%;
+    margin: 0em auto;
+}
+
+.Grid td {      
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      text-align: center;
+      font-size: 1.2em;
+/*      border: solid 1px #c1c1c1; */
+}
+.Grid th  {
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      color: black;
+      /*background: #AF3C3C;
+      border-left: solid 1px #525252;*/
+      font-size: 1.3em; 
+
+}
+
+.hiddenCol {
+    display: none;
+}
 /*****************************************************
 	Glyphstorlek
 *****************************************************/
@@ -613,6 +694,10 @@ h4 {
 	text-align: center;
 	margin-top: 10%;
 	color: #595959;
+}
+
+.my-glyph-close {
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {	
@@ -664,7 +749,8 @@ h4 {
 	.boxContainer,
 	.navbarContainer,
     .sevenFiveBox,
-    .quarterBox
+    .quarterBox,
+    .twothirdBox
  {
     width: 100%;   
   }
@@ -677,7 +763,8 @@ h4 {
 	.boxContainer,	
 	.navbarContainer,
     .sevenFiveBox,
-    .quarterBox
+    .quarterBox,
+    .twothirdBox
 {
     width: 100%;        
   }
@@ -690,7 +777,8 @@ h4 {
 	.boxContainer,	
 	.navbarContainer,
     .sevenFiveBox,
-    .quarterBox
+    .quarterBox,
+    .twothirdBox
  {
     width: 100%;        
   }
@@ -740,7 +828,8 @@ h4 {
 *****************************************************/
 
 @media (max-width: 992px) {	
-	.thirdBox
+	.thirdBox,
+    .twothirdBox
 	 {
 	width: 100%;
 	height: 100%;

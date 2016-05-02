@@ -22,7 +22,6 @@
     <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>  
-
     <title>IS THIS SOURCE RELIABLE</title>
     
     <script src="JS/MenuJS.js"></script>
@@ -84,6 +83,9 @@
                             runat="server" 
                             CssClass="itsr-button"
                             Text="LOG IN" />       
+                    </div>
+                    <div class="fullBox">
+                        <p class="join-text">Not a member? <asp:LinkButton ID="linkBtnJoin" runat="server">Click here to join!</asp:LinkButton></p>
                     </div>
                 </div>
                 <p class="right-menu-lbl">0</p>

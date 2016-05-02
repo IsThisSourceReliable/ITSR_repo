@@ -1,0 +1,59 @@
+﻿.ca-heading {
+    margin: 0.5em;
+}
+
+.ca-text {
+    margin-left: 2%;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+
+.ca-multi-txt {
+    width: 90%;
+    height: 300px;
+    margin-left: 2%;
+    margin-bottom: 2em;
+}
+
+@media (max-width: 768px) {
+    .ca-multi-txt
+    {
+        width: 93%;
+        margin-left: 1%;    
+    }
+}
+
+.title-h4 {
+    margin-left: 0.5em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+.ca-txt-box {
+    font-size: 1.4em;
+    width: 95%;
+    padding: 5px 5px 5px 5px;
+}
+
+.ca-txt-box:focus {
+  border-radius: 12px;
+  border-style: solid; 
+  border-width: 1px;
+  border-color: #4cb2b4;
+  	outline: 0;	
+}
+
+.ca-dropdown {
+    width: 95%;
+    margin-left: 0.5em;
+}
+.ref-btn {
+    width: 95%;
+    margin-left: 2%;
+    margin-top: 0.5em;
+}
+
+
+
+
+

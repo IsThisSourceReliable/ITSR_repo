@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=16.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.16.1.0.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -70,14 +74,21 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="About.aspx" />
     <Content Include="Article.aspx" />
+    <Content Include="CreateArticle.aspx" />
+    <Content Include="CSS\CreateArticleCSS.css" />
     <Content Include="CSS\ArticleCSS.css" />
     <Content Include="CSS\DefaultCSS.css" />
     <Content Include="CSS\Glyphicons.css" />
+    <Content Include="CSS\RegisterCSS.css" />
+    <Content Include="CSS\SearchCSS.css" />
     <Content Include="default.aspx" />
     <Content Include="IMG\books.jpg" />
+    <Content Include="JS\default.js" />
     <Content Include="JS\MenuJS.js" />
     <Content Include="JS\OverlayJS.js" />
+    <Content Include="martinstest.aspx" />
     <Content Include="MYSQL_REF\MySql.Data.dll" />
     <Content Include="MYSQL_REF\MySql.Data.Entity.EF5.dll" />
     <Content Include="MYSQL_REF\MySql.Data.Entity.EF6.dll" />
@@ -108,10 +119,19 @@
     <Content Include="FONTS\lato-lig-demo.html" />
     <Content Include="FONTS\lato-lig-webfont.svg" />
     <Content Include="FONTS\stylesheet.css" />
+    <Content Include="Register.aspx" />
+    <Content Include="Search.aspx" />
     <Content Include="TestMaster.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Article.aspx.cs">
       <DependentUpon>Article.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -119,17 +139,24 @@
     <Compile Include="Article.aspx.designer.cs">
       <DependentUpon>Article.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CLASSES\ARTICLE\Article.cs" />
+    <Compile Include="CLASSES\ARTICLE\Articles.cs" />
     <Compile Include="CLASSES\ARTICLE\Comment.cs" />
     <Compile Include="CLASSES\ARTICLE\Reference.cs" />
     <Compile Include="CLASSES\ARTICLE\Report.cs" />
     <Compile Include="CLASSES\ARTICLE\Vote.cs" />
     <Compile Include="CLASSES\USER\Administrator.cs" />
     <Compile Include="CLASSES\USER\BlockBan.cs" />
-    <Compile Include="CLASSES\USER\Member.cs" />
     <Compile Include="CLASSES\USER\Moderator.cs" />
     <Compile Include="CLASSES\USER\Password.cs" />
+    <Compile Include="CLASSES\USER\Member.cs" />
     <Compile Include="CLASSES\USER\User.cs" />
+    <Compile Include="CreateArticle.aspx.cs">
+      <DependentUpon>CreateArticle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateArticle.aspx.designer.cs">
+      <DependentUpon>CreateArticle.aspx</DependentUpon>
+    </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -144,7 +171,28 @@
     <Compile Include="MainMaster.Master.designer.cs">
       <DependentUpon>MainMaster.Master</DependentUpon>
     </Compile>
+    <Compile Include="martinstest.aspx.cs">
+      <DependentUpon>martinstest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="martinstest.aspx.designer.cs">
+      <DependentUpon>martinstest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TestMaster.aspx.cs">
       <DependentUpon>TestMaster.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -155,6 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FONTS\specimen_files\" />
+    <Folder Include="TEST\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

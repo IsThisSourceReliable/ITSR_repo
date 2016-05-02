@@ -5,6 +5,20 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentHolder" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    
+    <div class="page-overlay">
+        <div class="overlay-message">
+          <p class="my-glyph-close"><span class="glyphicon glyphicon-remove right " onclick="CloseOverlay();"></span></p>
+            <p>Hej hej hej
+                <br />
+            LabelIndexListview = <asp:Label ID="lblIndexListView" runat="server" Text="Label"></asp:Label></p>
+            <br />
+            LabelIndexDatabas = <asp:Label ID="lblIndexDataBase" runat="server" Text="Label"></asp:Label>
+            <br />            
+            Label"UserName" = <asp:Label ID="lblUserName" runat="server" Text="Label"></asp:Label>
+        </div>
+    </div>
+    
     <div class="fullBox white-box">
         <!-- TITLE ================================================== -->
         <div class="fullBox">
@@ -13,11 +27,29 @@
         <!-- ARTICLE ================================================== -->
         <div class="fullBox">
             <div class="halfBox ">
-                <div class="fullBox like-box-mobile">
-                    <h3 style="margin-left: 0.5em; margin-bottom: 0.5em; margin-top: 0em;">LikeBox</h3>
+                <div class="fullBox ">
+                        <div class="like-box">
+                            <div class="fullBox">
+                                <div class="vote-bar upvote-bar" id="upvoteBar" runat="server"></div><div class="vote-bar downvote-bar" id="downvoteBar" runat="server"></div>
+                            </div>
+                            <div class="fullBox">
+                                <div class="right"> 
+                                    <div style="display:inline-block;">
+                                        <p><asp:Label ID="lblTotalVotes" runat="server" Text="TotalVotes"></asp:Label> votes</p>
+                                    </div>
+                                    <div class="vote-btn upvote-btn">
+                                        <span class="vote-glyph glyphicon glyphicon-arrow-up " onclick=""></span>
+                                    </div>
+                                    <div class="vote-btn downvote-btn">
+                                        <span class="vote-glyph glyphicon glyphicon-arrow-down " onclick="();"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                 </div>  
                 <div class="fullBox">
-                    <p class="article-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                    <p class="article-text" id="articleText" runat="server">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
                 </div>
             </div>
             <div class="halfBox">
@@ -49,6 +81,33 @@
                     </p>
                 </div>
             </div>
+            <div class="fullBox">
+                <h4 class="info-titles">References</h4>
+                <p class="ref-text"><asp:Label ID="lblRefText" runat="server" Text="Label"></asp:Label></p>
+                <asp:ListView 
+                    ID="ListViewReferences" runat="server">
+                    <ItemTemplate>
+                        <p class="ref-text">
+                            <asp:Label 
+                                ID="lblAuthor" 
+                                runat="server" 
+                                Text='<%# Eval("Author") %>'></asp:Label>. 
+                            <asp:Label 
+                                ID="lblYear" 
+                                runat="server" 
+                                Text='<%# Eval("Year") %>'></asp:Label>.
+                            <i><asp:Label 
+                                ID="lblTitle" 
+                                runat="server" 
+                                Text='<%# Eval("Title") %>'></asp:Label></i>.
+                            <a href='<%# Eval("URL") %>' target="_blank"><asp:Label ID="lblURL" runat="server" Text='<%# Eval("URL") %>'></asp:Label></a>
+                        </p>
+                    </ItemTemplate>
+                </asp:ListView>
+            </div>
+            <div class="fullBox">
+                <p class="edit-text">Last edited by <asp:LinkButton ID="linkBtnLastEdit" runat="server">LinkButton</asp:LinkButton> at <asp:Label ID="lblEditDate" runat="server" Text="Label"></asp:Label></p>
+            </div>
         </div>
         <!-- COMMENT SECTION ================================================== -->
         <div class="fullBox">
@@ -77,9 +136,14 @@
                     <asp:LinkButton 
                         ID="LinkButton1" 
                         runat="server" 
-                        CommandName="Sel" 
-                        CommandArgument='<%# Eval("iderik_table") %>'>LinkButton</asp:LinkButton>
+                        CommandName="ReportComment" 
+                        CommandArgument='<%# Eval("iderik_table") %>'>Report</asp:LinkButton>
                     <br />
+                    <asp:LinkButton 
+                        ID="LinkButton2" 
+                        runat="server" 
+                        CommandName="DeleteComment" 
+                        CommandArgument='<%# Eval("iderik_table") %>'>Delete</asp:LinkButton>
                 </ItemTemplate>
             </asp:ListView>
         </div>
