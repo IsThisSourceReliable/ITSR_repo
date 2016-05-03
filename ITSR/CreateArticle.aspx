@@ -63,6 +63,13 @@
                 <div class="fullBox">
                     <h4 class="title-h4">Name of source: </h4>
                     <p class="ca-text">
+                        <span style="color: red;">
+                            <asp:Label
+                                ID="lblTitleFail"
+                                runat="server"
+                                Text="Label">
+                            </asp:Label>
+                        </span>
                         <asp:RequiredFieldValidator
                             ID="ValidatorTitle"
                             ControlToValidate="txtArticleTitle"
@@ -82,17 +89,17 @@
                 <div class="fullBox">
                     <p class="ca-text">Give a brief explanation of the source.</p>
                     <p class="ca-text">
-                        <asp:RequiredFieldValidator 
-                            ID="ValidatorInfoText" 
+                        <asp:RequiredFieldValidator
+                            ID="ValidatorInfoText"
                             ControlToValidate="txtInfo"
                             ValidationGroup="Required"
-                            runat="server" 
-                            ErrorMessage="Please add some information about the source" 
-                            Display="Dynamic" 
+                            runat="server"
+                            ErrorMessage="Please add some information about the source"
+                            Display="Dynamic"
                             ForeColor="Red">
                         </asp:RequiredFieldValidator>
                     </p>
-                    <asp:TextBox 
+                    <asp:TextBox
                         ID="txtInfo"
                         runat="server"
                         TextMode="MultiLine"
@@ -104,14 +111,14 @@
                 <div class="fullBox">
                     <h4 class="title-h4">Type of organisation: </h4>
                     <p class="ca-text">
-                        <asp:RequiredFieldValidator 
-                            ID="ValidatorORG" 
-                            ControlToValidate="dropDownTypeOfOrg" 
-                            ValidationGroup="Required" 
-                            InitialValue="Choose" 
-                            runat="server" 
+                        <asp:RequiredFieldValidator
+                            ID="ValidatorORG"
+                            ControlToValidate="dropDownTypeOfOrg"
+                            ValidationGroup="Required"
+                            InitialValue="Choose"
+                            runat="server"
                             ErrorMessage="Please choose what type of organisation"
-                            Display="Dynamic" 
+                            Display="Dynamic"
                             ForeColor="Red">
                         </asp:RequiredFieldValidator>
                     </p>
@@ -123,13 +130,20 @@
                 </div>
                 <div class="fullBox">
                     <h4 class="title-h4">URL: </h4>
-                    <p class="ca-text"> 
-                        <asp:RequiredFieldValidator ID="ValidatorURL" 
-                            ControlToValidate="txtArticleURL" 
-                            ValidationGroup="Required"                             
+                    <p class="ca-text">
+                        <span style="color: red;">
+                            <asp:Label
+                                ID="lblURLFail"
+                                runat="server"
+                                Text="Label">
+                            </asp:Label>
+                        </span>
+                        <asp:RequiredFieldValidator ID="ValidatorURL"
+                            ControlToValidate="txtArticleURL"
+                            ValidationGroup="Required"
                             runat="server"
                             ErrorMessage="Please add a URL to the source"
-                            Display="Dynamic" 
+                            Display="Dynamic"
                             ForeColor="Red">
                         </asp:RequiredFieldValidator>
                     </p>
@@ -233,7 +247,7 @@
                     runat="server"
                     CssClass="itsr-button ref-btn"
                     Text="Add Source"
-                    OnClick="btnAdd_Click" 
+                    OnClick="btnAdd_Click"
                     ValidationGroup="Required" />
             </div>
         </div>

@@ -155,6 +155,7 @@ namespace ITSR.CLASSES.ARTICLE
             }
         }
 
+
         public DataTable SearchForUnspecificArticle(string SearchString)
         {
             string SS = "%" + SearchString + "%";

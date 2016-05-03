@@ -24,6 +24,9 @@ namespace ITSR
                 ViewState["References"] = dt;
                 this.BindGrid();
                 BindDropDown();
+
+                lblTitleFail.Visible = false;
+                lblURLFail.Visible = false;
             }
         }
 
@@ -61,6 +64,15 @@ namespace ITSR
             }
         }
 
+        private string RemoveHTTP()
+        {
+            string oldURL = txtArticleURL.Text;
+            string newURL = oldURL.Replace("http://", "");
+            newURL = newURL.Replace("https://", "");
+
+            return newURL;
+        }
+
         /// <summary>
         /// This method uses Articles class and methods in said class to
         /// add an article to the database.
@@ -73,7 +85,7 @@ namespace ITSR
 
             sourceArticle.Title = txtArticleTitle.Text;
             sourceArticle.Text = txtInfo.Text.Replace("\r\n", "<br />");
-            sourceArticle.AricleURL = txtArticleURL.Text;
+            sourceArticle.AricleURL = RemoveHTTP();
             sourceArticle.TypeOfOrg_id = Convert.ToInt32(dropDownTypeOfOrg.SelectedValue);
             sourceArticle.lastEdit = DateTime.Now;
             sourceArticle.Publisher = txtUpHouseMan.Text;
@@ -117,6 +129,56 @@ namespace ITSR
         }
 
         /// <summary>
+        /// Checks if there already is a source with title
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckTitle()
+        {
+            Articles titleSearch = new Articles();
+            bool ok = true;
+            string title = txtArticleTitle.Text;
+            DataTable dt = titleSearch.SearchForSpecificArticle(title);
+
+            if (dt.Rows.Count <= 0)
+            {
+                ok = false;
+                lblTitleFail.Visible = false;
+            }
+            else
+            {
+                lblTitleFail.Visible = true;
+                lblTitleFail.Text = "Obs, it seems like there already is a source article with this name.";
+            }
+
+            return ok;
+        }
+
+        /// <summary>
+        /// Checks if there already is a source with URL
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckURL()
+        {
+            Articles titleSearch = new Articles();
+            bool ok = true;
+            string url = RemoveHTTP();
+            DataTable dt = titleSearch.SearchForSpecificArticle(url);
+
+            if (dt.Rows.Count <= 0)
+            {
+                ok = false;
+                lblURLFail.Visible = false;
+            }
+            else
+            {
+                lblURLFail.Visible = true;
+                lblURLFail.Text = "Obs, it seems like there already is a source article with this URL.";
+            }
+
+            return ok;
+        }
+
+        /// <summary>
         /// Clears all the textboxes.
         /// </summary>
         private void ClearReferenceTxtBoxes()
@@ -138,6 +200,10 @@ namespace ITSR
             txtUpHouseMan.Text = "";
             txtDomainOwner.Text = "";
             txtFinancer.Text = "";
+            txtArticleURL.Text = string.Empty;
+
+            lblTitleFail.Visible = false;
+            lblURLFail.Visible = false;
 
             BindDropDown();
 
@@ -238,15 +304,23 @@ namespace ITSR
         /// <param name="e"></param>
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            if(AddArticle())
+            if(CheckTitle() || CheckURL())
             {
-                lblRef.Text = "True";
-                ResetEverything();
+
             }
             else
             {
-                lblRef.Text = "false";
+                if (AddArticle())
+                {
+                    lblRef.Text = "True";
+                    ResetEverything();
+                }
+                else
+                {
+                    lblRef.Text = "false";
+                }
             }
+
         }
 
     }
