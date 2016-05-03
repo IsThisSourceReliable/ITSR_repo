@@ -27,6 +27,9 @@ namespace ITSR
             }
         }
 
+        /// <summary>
+        /// Binds dropdown with types of organisations
+        /// </summary>
         private void BindDropDown()
         {
             Articles Orgs = new Articles();
@@ -38,6 +41,11 @@ namespace ITSR
             dropDownTypeOfOrg.DataBind();
             this.dropDownTypeOfOrg.Items.Insert(0, "Choose");
         }
+
+        /// <summary>
+        /// Binds the grid with references.
+        /// Usees viewstate in order to not have to use any type of datasource.
+        /// </summary>
         protected void BindGrid()
         {
             gridViewReferences.DataSource = (DataTable)ViewState["References"];
@@ -53,6 +61,95 @@ namespace ITSR
             }
         }
 
+        /// <summary>
+        /// This method uses Articles class and methods in said class to
+        /// add an article to the database.
+        /// </summary>
+        /// <returns></returns>
+        private bool AddArticle()
+        {
+            bool ok = false;
+            Articles sourceArticle = new Articles();
+
+            sourceArticle.Title = txtArticleTitle.Text;
+            sourceArticle.Text = txtInfo.Text.Replace("\r\n", "<br />");
+            sourceArticle.AricleURL = txtArticleURL.Text;
+            sourceArticle.TypeOfOrg_id = Convert.ToInt32(dropDownTypeOfOrg.SelectedValue);
+            sourceArticle.lastEdit = DateTime.Now;
+            sourceArticle.Publisher = txtUpHouseMan.Text;
+            sourceArticle.domainOwner = txtDomainOwner.Text;
+            sourceArticle.Financing = txtFinancer.Text;
+            sourceArticle.Reference = CreateXML();
+            sourceArticle.createUser_id = 21; //Has to be changed to whatever user that is logged in.
+            sourceArticle.upVotes = 0; //Standard values for now
+            sourceArticle.downVotes = 0; //Standard values for now
+            sourceArticle.lastEditUser_id = 21; //Has to be changed to whatever user that is logged in.
+
+            if (sourceArticle.CreateArticle())
+            {
+                ok = true;
+            }
+
+            return ok;
+        }
+
+        /// <summary>
+        /// This method creats an XML of the references that a user has added to 
+        /// the gridview.
+        /// </summary>
+        /// <returns></returns>
+        private string CreateXML()
+        {
+            DataTable dt = (DataTable)ViewState["References"];
+            if (dt.Rows.Count == 0)
+            {
+                string empty = string.Empty;
+                return empty;
+            }
+            else
+            {
+                MemoryStream ms = new MemoryStream();
+                dt.WriteXml(ms);
+                ms.Position = 0;
+                string xmlContentx = new StreamReader(ms).ReadToEnd();
+                return xmlContentx;
+            }
+        }
+
+        /// <summary>
+        /// Clears all the textboxes.
+        /// </summary>
+        private void ClearReferenceTxtBoxes()
+        {
+            txtAuthor.Text = string.Empty;
+            txtYear.Text = string.Empty;
+            txtTitle.Text = string.Empty;
+            txtURL.Text = string.Empty;
+        }
+
+        /// <summary>
+        /// Resets the gui and everything to standard values. 
+        /// </summary>
+        private void ResetEverything()
+        {
+            txtArticleTitle.Text = "";
+            txtInfo.Text = "";
+            txtURL.Text = "";
+            txtUpHouseMan.Text = "";
+            txtDomainOwner.Text = "";
+            txtFinancer.Text = "";
+
+            BindDropDown();
+
+            DataTable dt = new DataTable();
+            dt.Columns.AddRange(new DataColumn[5] { new DataColumn("id"), new DataColumn("Author"), new DataColumn("Year"), new DataColumn("Title"), new DataColumn("URL") });
+            ViewState["References"] = dt;
+            this.BindGrid();
+        }
+
+        /// <summary>
+        /// Event for rowcommand.
+        /// </summary>
         protected void gridViewReferences_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if(e.CommandName == "EditRow")
@@ -85,6 +182,10 @@ namespace ITSR
             }
         }
 
+        /// <summary>
+        /// Event for when user clicks add reference button.
+        /// Adds reference to the gridview.
+        /// </summary>
         protected void btnAddRef_Click(object sender, EventArgs e)
         {
             if (btnAddRef.Text == "Update")
@@ -130,6 +231,11 @@ namespace ITSR
             }
         }
 
+        /// <summary>
+        /// Event for when user clicks add article and uses other methods to get it done.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             if(AddArticle())
@@ -143,74 +249,5 @@ namespace ITSR
             }
         }
 
-        private bool AddArticle()
-        {
-            bool ok = false;
-            Articles sourceArticle = new Articles();
-
-            sourceArticle.Title = txtArticleTitle.Text;
-            sourceArticle.Text = txtInfo.Text.Replace("\r\n", "<br />");
-            sourceArticle.AricleURL = txtArticleURL.Text;
-            sourceArticle.TypeOfOrg_id = Convert.ToInt32(dropDownTypeOfOrg.SelectedValue);
-            sourceArticle.lastEdit = DateTime.Now;
-            sourceArticle.Publisher = txtUpHouseMan.Text;
-            sourceArticle.domainOwner = txtDomainOwner.Text;
-            sourceArticle.Financing = txtFinancer.Text;
-            sourceArticle.Reference = CreateXML();
-            sourceArticle.createUser_id = 21; //Has to be changed to whatever user that is logged in.
-            sourceArticle.upVotes = 0; //Standard values for now
-            sourceArticle.downVotes = 0; //Standard values for now
-            sourceArticle.lastEditUser_id = 21; //Has to be changed to whatever user that is logged in.
-
-            if (sourceArticle.CreateArticle())
-            {
-                ok = true;
-            }
-
-            return ok;
-        }
-
-        private string CreateXML()
-        {
-            DataTable dt = (DataTable)ViewState["References"];
-            if(dt.Rows.Count == 0)
-            {
-                string empty = string.Empty;
-                return empty;
-            }
-            else
-            {
-                MemoryStream ms = new MemoryStream();
-                dt.WriteXml(ms);
-                ms.Position = 0;
-                string xmlContentx = new StreamReader(ms).ReadToEnd();
-                return xmlContentx;
-            }
-        }
-
-        private void ClearReferenceTxtBoxes()
-        {
-            txtAuthor.Text = string.Empty;
-            txtYear.Text = string.Empty;
-            txtTitle.Text = string.Empty;
-            txtURL.Text = string.Empty;
-        }
-
-        private void ResetEverything()
-        {
-            txtArticleTitle.Text = "";
-            txtInfo.Text = "";
-            txtURL.Text = "";
-            txtUpHouseMan.Text = "";
-            txtDomainOwner.Text = "";
-            txtFinancer.Text = "";
-
-            BindDropDown();
-
-            DataTable dt = new DataTable();
-            dt.Columns.AddRange(new DataColumn[5] { new DataColumn("id"), new DataColumn("Author"), new DataColumn("Year"), new DataColumn("Title"), new DataColumn("URL") });
-            ViewState["References"] = dt;
-            this.BindGrid();
-        }
     }
 }
