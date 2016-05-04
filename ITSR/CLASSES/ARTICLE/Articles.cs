@@ -218,7 +218,7 @@ namespace ITSR.CLASSES.ARTICLE
         {
             try
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT idarticle, title, text, orgtype_id, lastedit_date, votes_up, votes_down, lastedituser_id, createuser_id, publisher, domainowner,financing, reference_xml, removed, name AS orgtype, username AS edituser FROM article " +
+                MySqlCommand cmd = new MySqlCommand("SELECT idarticle, title, text, url, orgtype_id, lastedit_date, votes_up, votes_down, lastedituser_id, createuser_id, publisher, domainowner,financing, reference_xml, removed, name AS orgtype, username AS edituser FROM article " +
                                                     "INNER JOIN typeoforg ON article.orgtype_id = typeoforg.idtypeoforg " +
                                                     "INNER JOIN user ON article.lastedituser_id = user.iduser " +
                                                     "WHERE idarticle = @id; ", conn);
