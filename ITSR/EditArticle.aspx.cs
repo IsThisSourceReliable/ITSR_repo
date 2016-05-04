@@ -19,18 +19,12 @@ namespace ITSR
         {
             if(!IsPostBack)
             {
-                //CreateFakeDataTable();
                 BindDropDown();
                 LoadArticle();
-            }
-        }
 
-        private void CreateFakeDataTable()
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.AddRange(new DataColumn[5] { new DataColumn("id"), new DataColumn("Author"), new DataColumn("Year"), new DataColumn("Title"), new DataColumn("URL") });
-            ViewState["References"] = dt;
-            this.BindGrid();
+                lblTitleFail.Visible = false;
+                lblURLFail.Visible = false;
+            }
         }
 
         /// <summary>
@@ -48,33 +42,14 @@ namespace ITSR
             this.dropDownTypeOfOrg.Items.Insert(0, "Choose");
         }
 
-        /// <summary>
-        /// Binds the grid with references.
-        /// Usees viewstate in order to not have to use any type of datasource.
-        /// </summary>
-        protected void BindGrid()
-        {
-            gridViewReferences.DataSource = (DataTable)ViewState["References"];
-            gridViewReferences.DataBind();
-
-            if (gridViewReferences.Rows.Count == 0)
-            {
-                lblRef.Text = "Add some references to this source";
-            }
-            else
-            {
-                lblRef.Text = "";
-            }
-        }
-
         private void LoadArticle()
         {
+            string articleID = Session["ArticleID"].ToString();
             Articles article = new Articles();
-            article.ID = 121;
+            article.ID = Convert.ToInt32(articleID);
             DataTable dt = article.GetArticle();
 
-            lblRef.Text = dt.Rows.Count.ToString();
-
+            hiddenArticleID.Value = dt.Rows[0]["idarticle"].ToString();
             txtArticleTitle.Text = dt.Rows[0]["title"].ToString();
             txtInfo.Text = dt.Rows[0]["text"].ToString().Replace("<br />", "\r\n");
             txtArticleURL.Text = dt.Rows[0]["url"].ToString();
@@ -92,7 +67,16 @@ namespace ITSR
         {
             if (xml == string.Empty)
             {
-                lblRef.Text = "This source article doesn't have any references";
+                DataTable dt = new DataTable();
+                dt.Columns.AddRange(new DataColumn[5] { new DataColumn("id"), new DataColumn("Author"), new DataColumn("Year"), new DataColumn("Title"), new DataColumn("URL") });
+                ViewState["References"] = dt;
+                gridViewReferences.DataSource = (DataTable)ViewState["References"];
+                gridViewReferences.DataBind();
+
+                if (gridViewReferences.Rows.Count == 0)
+                {
+                    lblRef.Text = "Add some references to this source";
+                }
             }
             else
             {
@@ -111,6 +95,135 @@ namespace ITSR
             theDataSet.ReadXml(theReader);
 
             return theDataSet.Tables[0];
+        }
+
+        private string RemoveHTTP()
+        {
+            string oldURL = txtArticleURL.Text;
+            string newURL = oldURL.Replace("http://", "");
+            newURL = newURL.Replace("https://", "");
+
+            return newURL;
+        }
+
+        /// <summary>
+        /// This method creats an XML of the references that a user has added to 
+        /// the gridview.
+        /// </summary>
+        /// <returns></returns>
+        private string CreateXML()
+        {
+            DataTable dt = (DataTable)ViewState["References"];
+            if (dt.Rows.Count == 0)
+            {
+                string empty = string.Empty;
+                return empty;
+            }
+            else
+            {
+                MemoryStream ms = new MemoryStream();
+                dt.WriteXml(ms);
+                ms.Position = 0;
+                string xmlContentx = new StreamReader(ms).ReadToEnd();
+                return xmlContentx;
+            }
+        }
+
+        private bool CheckTitle()
+        {
+            Articles titleSearch = new Articles();
+            bool ok = true;
+            string title = txtArticleTitle.Text;
+            DataTable dt = titleSearch.SearchForSpecificArticle(title);
+
+            if (dt.Rows.Count <= 0)
+            {
+                ok = false;
+                lblTitleFail.Visible = false;
+            }
+            else
+            {
+                string idArticle = dt.Rows[0]["idarticle"].ToString();
+                string hiddenID = hiddenArticleID.Value;
+                if(idArticle == hiddenID)
+                {
+                    ok = false;
+                    lblTitleFail.Visible = false;
+                }
+                else
+                {
+                    lblTitleFail.Visible = true;
+                    lblTitleFail.Text = "Obs, it seems like there already is a source article with this name.";
+                }
+            }
+
+            return ok;
+        }
+
+        /// <summary>
+        /// Checks if there already is a source with URL
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckURL()
+        {
+            Articles titleSearch = new Articles();
+            bool ok = true;
+            string url = RemoveHTTP();
+            DataTable dt = titleSearch.SearchForSpecificArticle(url);
+
+            if (dt.Rows.Count <= 0)
+            {
+                ok = false;
+                lblURLFail.Visible = false;
+            }
+            else
+            {
+                string idArticle = dt.Rows[0]["idarticle"].ToString();
+                string hiddenID = hiddenArticleID.Value;
+                if (idArticle == hiddenID)
+                {
+                    ok = false;
+                    lblTitleFail.Visible = false;
+                }
+                else
+                {
+                    lblURLFail.Visible = true;
+                    lblURLFail.Text = "Obs, it seems like there already is a source article with this URL.";
+                }
+            }
+
+            return ok;
+        }
+
+        /// <summary>
+        /// This method uses Articles class and methods in said class to
+        /// add an article to the database.
+        /// </summary>
+        /// <returns></returns>
+        private bool UpdateArticle()
+        {
+            bool ok = false;
+            Articles sourceArticle = new Articles();
+
+            sourceArticle.ID = Convert.ToInt32(hiddenArticleID.Value);
+
+            sourceArticle.Title = txtArticleTitle.Text;
+            sourceArticle.Text = txtInfo.Text.Replace("\r\n", "<br />");
+            sourceArticle.AricleURL = RemoveHTTP();
+            sourceArticle.TypeOfOrg_id = Convert.ToInt32(dropDownTypeOfOrg.SelectedValue);
+            sourceArticle.lastEdit = DateTime.Now;
+            sourceArticle.Publisher = txtUpHouseMan.Text;
+            sourceArticle.domainOwner = txtDomainOwner.Text;
+            sourceArticle.Financing = txtFinancer.Text;
+            sourceArticle.lastEditUser_id = 21; //Has to be changed to whatever user that is logged in.
+            sourceArticle.Reference = CreateXML();
+
+            if (sourceArticle.UpdateArticle())
+            {
+                ok = true;
+            }
+
+            return ok;
         }
 
         /// <summary>
@@ -150,7 +263,6 @@ namespace ITSR
             else
             {
                 DataTable dt = (DataTable)ViewState["References"];
-                //DataTable dt = gridViewReferences.DataSource as DataTable;
 
                 lblRef.Text = dt.Rows.Count.ToString();
                 int rowCount = dt.Rows.Count;
@@ -168,58 +280,10 @@ namespace ITSR
                 }
 
                 dt.Rows.Add(newIndex.ToString(), txtAuthor.Text.Trim(), txtYear.Text.Trim(), txtTitle.Text.Trim(), txtURL.Text.Trim());
-                //ViewState["References"] = dt;
-                //this.BindGrid();
                 ViewState["References"] = dt;
                 gridViewReferences.DataSource = dt;
                 gridViewReferences.DataBind();
                 ClearReferenceTxtBoxes();
-
-                //if(dt.Rows.Count == 0)
-                //{
-                //    CreateFakeDataTable();
-                //    int rowCount = dt.Rows.Count;
-                //    int newIndex = 0;
-
-                //    if (rowCount <= 0)
-                //    {
-                //        newIndex = 0;
-                //    }
-                //    else
-                //    {
-                //        int fakeIndex = rowCount - 1;
-                //        string highestID = gridViewReferences.Rows[fakeIndex].Cells[0].Text;
-                //        newIndex = Convert.ToInt32(highestID) + 1;
-                //    }
-
-                //    dt.Rows.Add(newIndex.ToString(), txtAuthor.Text.Trim(), txtYear.Text.Trim(), txtTitle.Text.Trim(), txtURL.Text.Trim());
-                //    ViewState["References"] = dt;
-                //    this.BindGrid();
-                //    ClearReferenceTxtBoxes();
-                //}
-                //else
-                //{
-                //    int rowCount = dt.Rows.Count;
-                //    int newIndex = 0;
-
-                //    if (rowCount <= 0)
-                //    {
-                //        newIndex = 0;
-                //    }
-                //    else
-                //    {
-                //        int fakeIndex = rowCount - 1;
-                //        string highestID = gridViewReferences.Rows[fakeIndex].Cells[0].Text;
-                //        newIndex = Convert.ToInt32(highestID) + 1;
-                //    }
-
-                //    dt.Rows.Add(newIndex.ToString(), txtAuthor.Text.Trim(), txtYear.Text.Trim(), txtTitle.Text.Trim(), txtURL.Text.Trim());
-                //    ViewState["References"] = dt;
-                //    this.BindGrid();
-                //    ClearReferenceTxtBoxes();
-                //}
-
-
             }
         }
 
@@ -240,16 +304,14 @@ namespace ITSR
             else if (e.CommandName == "DeleteRow")
             {
                 DataTable dt = (DataTable)ViewState["References"];
-                //int rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
                 string id = e.CommandArgument.ToString();
-                //string id = gridViewReferences.Rows[rowIndex].Cells[0].Text;
-                //Label1.Text = rowIndex.ToString();
                 for (int i = dt.Rows.Count - 1; i >= 0; i--)
                 {
                     DataRow dr = dt.Rows[i];
                     if (dr["id"].ToString() == id)
                         dr.Delete();
                 }
+
                 ViewState["References"] = dt;
                 gridViewReferences.DataSource = dt;
                 gridViewReferences.DataBind();
@@ -258,7 +320,23 @@ namespace ITSR
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (CheckTitle() || CheckURL())
+            {
 
+            }
+            else
+            {
+                if (UpdateArticle())
+                {
+                    Session["ArticleID"] = hiddenArticleID.Value.ToString();
+                    Response.Redirect("~/Article.aspx");
+                    //ResetEverything();
+                }
+                else
+                {
+                    lblTitleFail.Text = "OBS, something went wrong during when trying to update, try again!";
+                }
+            }
         }
     }
 }

@@ -312,12 +312,12 @@ namespace ITSR
             {
                 if (AddArticle())
                 {
-                    lblRef.Text = "True";
+                    //Maybe redirect user to newly created article here?
                     ResetEverything();
                 }
                 else
                 {
-                    lblRef.Text = "false";
+                    lblTitleFail.Text = "Obs something went wrong when creating the article, try again!";
                 }
             }
 

@@ -72,7 +72,48 @@ namespace ITSR.CLASSES.ARTICLE
             }
         }
 
-       
+        /// <summary>
+        /// Method updates an arcitle with article id 
+        /// in the database and returns true or false depending if succesful
+        /// or not.
+        /// </summary>
+        /// <returns></returns>
+        public bool UpdateArticle()
+        {
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmdCreateArticle = new MySqlCommand("UPDATE article " +
+                                                                "SET title = @title, text = @text, url = @url, orgtype_id = @typeoforg, lastedit_date = @lasteditdate, lastedituser_id = @lastedituser, publisher = @publisher, domainowner = @domainowner, financing = @financer, reference_xml = @referencexml " +
+                                                                "WHERE idarticle = @id; ", conn);
+
+                cmdCreateArticle.Parameters.AddWithValue("@id", ID);
+                cmdCreateArticle.Parameters.AddWithValue("@title", Title);
+                cmdCreateArticle.Parameters.AddWithValue("@text", Text);
+                cmdCreateArticle.Parameters.AddWithValue("@url", AricleURL);
+                cmdCreateArticle.Parameters.AddWithValue("@typeoforg", TypeOfOrg_id);
+                cmdCreateArticle.Parameters.AddWithValue("@lasteditdate", lastEdit);
+                cmdCreateArticle.Parameters.AddWithValue("@lastedituser", lastEditUser_id);
+                cmdCreateArticle.Parameters.AddWithValue("@publisher", Publisher);
+                cmdCreateArticle.Parameters.AddWithValue("@domainowner", domainOwner);
+                cmdCreateArticle.Parameters.AddWithValue("@financer", Financing);
+                cmdCreateArticle.Parameters.AddWithValue("@referencexml", Reference);
+
+                cmdCreateArticle.ExecuteNonQuery();
+                return true;
+
+            }
+            catch (MySqlException ex)
+            {
+                Console.Write(ex.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
         public DataTable LoadAllArticles()
         {
@@ -192,7 +233,7 @@ namespace ITSR.CLASSES.ARTICLE
             try
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand(sql,conn);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@SS", SearchString);
                 int count = Convert.ToInt16(cmd.ExecuteScalar());
                 return count;
@@ -205,9 +246,9 @@ namespace ITSR.CLASSES.ARTICLE
             {
                 conn.Close();
             }
- 
+
         }
-        
+
 
         /// <summary>
         /// Gets a specific article with a sql question which joins user table and
@@ -259,8 +300,8 @@ namespace ITSR.CLASSES.ARTICLE
         /// <param name="totalVotes"></param>
         /// <returns></returns>
         public double SetUpVotePercent(int totalVotes)
-        {         
-            if(totalVotes == 0)
+        {
+            if (totalVotes == 0)
             {
                 return 0;
             }
@@ -284,7 +325,7 @@ namespace ITSR.CLASSES.ARTICLE
         /// <returns></returns>
         public int SetDownVotesPercent(double upVotePercent)
         {
-            if(upVotePercent == 0)
+            if (upVotePercent == 0)
             {
                 return 0;
             }

@@ -253,7 +253,7 @@
                     ValidationGroup="Required" />
             </div>
         </div>
-
+        <asp:HiddenField ID="hiddenArticleID" runat="server" />
     </div>
 
 </asp:Content>

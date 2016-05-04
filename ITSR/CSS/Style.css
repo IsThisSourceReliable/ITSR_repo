@@ -6,6 +6,12 @@
 	padding: 0em;
 	font-family: 'latolight', Helvetica, sans-serif;	
 }
+html, body { 
+    height: 100%; 
+    width: 100%;
+    padding: 0; 
+    margin: 0; 
+}
 
 .container {
 	width: 100%;
