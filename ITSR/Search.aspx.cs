@@ -32,8 +32,7 @@ namespace ITSR
 
         protected void gvArticles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Response.Redirect("~/Article.aspx");
-            
+            Response.Redirect("~/Article.aspx");           
         }
     }
 }

@@ -41,19 +41,22 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;  
-
+   
 }
 .gridview{
     text-align:left;
+
 }
 .gridview th{
-    padding: 1%;
-    font-size:30px;
-    border-bottom:solid 1px;
+    display:none;
 }
 .gridview td {
-    padding: 1%;
-    font-size:20px;
+    padding: 2%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;  
+    font-size:30px;
+    border-bottom:solid 1px;
 }
 .gridview tr:hover {
     background-color:cadetblue;
