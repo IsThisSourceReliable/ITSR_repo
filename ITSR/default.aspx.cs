@@ -21,6 +21,7 @@ namespace ITSR
             }
         }
 
+        //Events
         protected void linkBtnSearch_Click(object sender, EventArgs e)
         {
             Articles a = new Articles();
@@ -49,7 +50,8 @@ namespace ITSR
             else if (dt.Rows.Count == 1)
             {
                 dt = a.SearchForSpecificArticle(searchString);
-
+                a.ID = Convert.ToInt32(dt.Rows[0]["idarticle"]);
+                Session["articleID"] = a.ID;
                 Response.Redirect("~/Article.aspx");
             }
            else if (dt.Rows.Count > 1)
@@ -59,9 +61,23 @@ namespace ITSR
                 showMessageAndGv();
             }
         }
-
         protected void lbNewARticle_Click(object sender, EventArgs e)
         {
+
+            Response.Redirect("~/CreateArticle.aspx");
+        }
+        protected void gvArticles_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                // Attaching one onclick event for the entire row, so that it will fire SelectedIndexChanged, while we click anywhere on the row.
+                e.Row.Attributes["onclick"] =
+                  ClientScript.GetPostBackClientHyperlink(gvArticles, "Select$" + e.Row.RowIndex);
+            }
+        }
+        protected void gvArticles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["articleID"] = Convert.ToInt32(gvArticles.SelectedValue);          
             Response.Redirect("~/Article.aspx");
         }
 
@@ -130,5 +146,7 @@ namespace ITSR
             messageDiv.Visible = true;
             gvDiv.Visible = true;
         }
+
+
     }
 }

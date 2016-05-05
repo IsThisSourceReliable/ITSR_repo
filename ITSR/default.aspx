@@ -7,11 +7,12 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentHolder" runat="server">
+    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="fullBox center-text">
             <div class="fullBox def-title-box ">
                 <h1 class="def-title">IsThisSourceReliable.com</h1>
-            </div>
+            </div>           
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
                         <asp:Panel ID="Panel1" runat="server" DefaultButton="linkBtnSearch">
@@ -56,11 +57,10 @@
                     <p id="searchMessage2" runat="server">No? Click <asp:LinkButton ID="lbNewARticle2" runat="server" OnClick="lbNewARticle_Click">here</asp:LinkButton> to add it! </p>
                 </div>
                 <div class="Default-gridview-box" id="gvDiv" runat="server">
-                    <asp:GridView ID="gvArticles" runat="server" AutoGenerateColumns="false" CssClass="gridview" GridLines="None" DataKeyNames="idarticle">
+                    <asp:GridView ID="gvArticles" runat="server" AutoGenerateColumns="false" CssClass="gridview" GridLines="None" DataKeyNames="idarticle" OnRowDataBound="gvArticles_RowDataBound" OnSelectedIndexChanged="gvArticles_SelectedIndexChanged">
                         <Columns>
-                            <asp:BoundField DataField="title" HeaderText="Title"/>
-                            <asp:BoundField DataField="publisher" HeaderText="Publisher"/>
-                            <asp:BoundField DataField="domainowner" HeaderText="Downain owner"/>
+                            <asp:BoundField DataField="title"/>
+                            <asp:BoundField DataField="url"/>
                             <asp:CommandField ShowSelectButton="true" ControlStyle-CssClass="OPEN-btn" SelectText="OPEN"/>
                         </Columns>
                     </asp:GridView>

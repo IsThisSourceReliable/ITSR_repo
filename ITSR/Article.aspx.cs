@@ -25,8 +25,9 @@ namespace ITSR
         /// </summary>
         private void LoadArticle()
         {
+            
             Articles getArticle = new Articles();
-            getArticle.ID = 161;
+            getArticle.ID = Convert.ToInt32(Session["articleID"]);
             DataTable dt = getArticle.GetArticle();
 
             string referenceXML = dt.Rows[0]["reference_xml"].ToString();
