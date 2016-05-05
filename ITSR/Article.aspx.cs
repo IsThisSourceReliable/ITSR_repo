@@ -25,9 +25,9 @@ namespace ITSR
         /// </summary>
         private void LoadArticle()
         {
-            
+            string articleID = Session["ArticleID"].ToString();
             Articles getArticle = new Articles();
-            getArticle.ID = Convert.ToInt32(Session["articleID"]);
+            getArticle.ID = Convert.ToInt32(articleID);
             DataTable dt = getArticle.GetArticle();
 
             string referenceXML = dt.Rows[0]["reference_xml"].ToString();
@@ -46,6 +46,7 @@ namespace ITSR
 
         private void SetArticleLables(DataTable dt)
         {
+            hiddenArticleID.Value = dt.Rows[0]["idarticle"].ToString();
             lblArticleName.Text = dt.Rows[0]["title"].ToString();
             lblTypeOfOrg.Text = dt.Rows[0]["orgtype"].ToString();
             lblUpHouseMan.Text = dt.Rows[0]["publisher"].ToString();
@@ -179,5 +180,10 @@ namespace ITSR
             Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
         }
 
+        protected void lBtnEdit_Click(object sender, EventArgs e)
+        {           
+            Session["ArticleID"] = hiddenArticleID.Value.ToString();
+            Response.Redirect("~/EditArticle.aspx");
+        }
     }
 }

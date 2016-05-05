@@ -84,6 +84,7 @@
     <Content Include="CSS\RegisterCSS.css" />
     <Content Include="CSS\SearchCSS.css" />
     <Content Include="default.aspx" />
+    <Content Include="EditArticle.aspx" />
     <Content Include="IMG\books.jpg" />
     <Content Include="JS\default.js" />
     <Content Include="JS\MenuJS.js" />
@@ -163,6 +164,13 @@
     </Compile>
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditArticle.aspx.cs">
+      <DependentUpon>EditArticle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditArticle.aspx.designer.cs">
+      <DependentUpon>EditArticle.aspx</DependentUpon>
     </Compile>
     <Compile Include="MainMaster.Master.cs">
       <DependentUpon>MainMaster.Master</DependentUpon>

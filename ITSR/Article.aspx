@@ -22,7 +22,7 @@
     <div class="fullBox white-box">
         <!-- TITLE ================================================== -->
         <div class="fullBox">
-            <h2 class="article-heading"><strong><asp:Label ID="lblArticleName" runat="server" Text="ArticleName"></asp:Label></strong></h2>
+            <h2 class="article-heading"><strong><asp:Label ID="lblArticleName" runat="server" Text="ArticleName"></asp:Label></strong></h2>           
         </div>
         <!-- ARTICLE ================================================== -->
         <div class="fullBox">
@@ -88,16 +88,27 @@
                     ID="ListViewReferences" runat="server">
                     <ItemTemplate>
                         <p class="ref-text">
-                            <asp:Label ID="lblAuthor" runat="server" Text='<%# Eval("Author") %>'></asp:Label>. 
-                            <asp:Label ID="lblYear" runat="server" Text='<%# Eval("Year") %>'></asp:Label>.
-                            <i><asp:Label ID="lblTitle" runat="server" Text='<%# Eval("Title") %>'></asp:Label></i>.
-                            <a href='<%# Eval("URL") %>' target="_blank"><asp:Label ID="lblURL" runat="server" Text='<%# Eval("URL") %>'></asp:Label></a>
+                            <asp:Label 
+                                ID="lblAuthor" 
+                                runat="server" 
+                                Text='<%# Eval("Author") %>'></asp:Label>. 
+                            <asp:Label 
+                                ID="lblYear" 
+                                runat="server" 
+                                Text='<%# Eval("Year") %>'></asp:Label>.
+                            <i><asp:Label 
+                                ID="lblTitle" 
+                                runat="server" 
+                                Text='<%# Eval("Title") %>'></asp:Label></i>.
+                            <a href='http://<%# Eval("url") %>' target="_blank"><asp:Label ID="lblURL" runat="server" Text='<%# Eval("url") %>'></asp:Label></a>
                         </p>
                     </ItemTemplate>
                 </asp:ListView>
             </div>
             <div class="fullBox">
-                <p class="edit-text">Last edited by <asp:LinkButton ID="linkBtnLastEdit" runat="server">LinkButton</asp:LinkButton> at <asp:Label ID="lblEditDate" runat="server" Text="Label"></asp:Label></p>
+                <br />
+                <p class="edit-text">Last edited by <asp:LinkButton ID="linkBtnLastEdit" runat="server">LinkButton</asp:LinkButton> at <asp:Label ID="lblEditDate" runat="server" Text="Label"></asp:Label></p>                
+                <p class="edit-text">Is the information about this source not correct? <asp:LinkButton ID="lBtnEdit" runat="server" OnClick="lBtnEdit_Click">Edit here</asp:LinkButton></p>
             </div>
         </div>
         <!-- COMMENT SECTION ================================================== -->
@@ -138,7 +149,7 @@
                 </ItemTemplate>
             </asp:ListView>
         </div>
-
+        <asp:HiddenField ID="hiddenArticleID" runat="server" />
     </div>
 
 </asp:Content>

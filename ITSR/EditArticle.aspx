@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainMaster.Master" AutoEventWireup="true" CodeBehind="CreateArticle.aspx.cs" Inherits="ITSR.CreateArticle" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainMaster.Master" AutoEventWireup="true" CodeBehind="EditArticle.aspx.cs" Inherits="ITSR.EditArticle" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="CSS/CreateArticleCSS.css" rel="stylesheet" />
@@ -54,9 +54,10 @@
         .
     </div>
 
+
     <div class="fullBox white-box">
         <div class="fullBox">
-            <h2 class="ca-heading">Create A Source</h2>
+            <h2 class="ca-heading">Edit A Source</h2>
         </div>
         <div class="fullBox">
             <div class="halfBox">
@@ -138,7 +139,8 @@
                                 Text="Label">
                             </asp:Label>
                         </span>
-                        <asp:RequiredFieldValidator ID="ValidatorURL"
+                        <asp:RequiredFieldValidator
+                            ID="ValidatorURL"
                             ControlToValidate="txtArticleURL"
                             ValidationGroup="Required"
                             runat="server"
@@ -243,15 +245,15 @@
             </div>
             <div class="halfBox">
                 <asp:Button
-                    ID="btnAdd"
+                    ID="btnUpdate"
                     runat="server"
                     CssClass="itsr-button ref-btn"
-                    Text="Add Source"
-                    OnClick="btnAdd_Click"
+                    Text="Save Changes"
+                    OnClick="btnUpdate_Click"
                     ValidationGroup="Required" />
             </div>
         </div>
-
+        <asp:HiddenField ID="hiddenArticleID" runat="server" />
     </div>
 
 </asp:Content>

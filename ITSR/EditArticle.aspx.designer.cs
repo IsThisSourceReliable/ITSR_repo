@@ -10,7 +10,7 @@
 namespace ITSR {
     
     
-    public partial class Article {
+    public partial class EditArticle {
         
         /// <summary>
         /// ScriptManager1 control.
@@ -22,175 +22,202 @@ namespace ITSR {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// lblIndexListView control.
+        /// lblID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIndexListView;
+        protected global::System.Web.UI.WebControls.Label lblID;
         
         /// <summary>
-        /// lblIndexDataBase control.
+        /// txtAuthor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIndexDataBase;
+        protected global::System.Web.UI.WebControls.TextBox txtAuthor;
         
         /// <summary>
-        /// lblUserName control.
+        /// txtYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserName;
+        protected global::System.Web.UI.WebControls.TextBox txtYear;
         
         /// <summary>
-        /// lblArticleName control.
+        /// txtTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblArticleName;
+        protected global::System.Web.UI.WebControls.TextBox txtTitle;
         
         /// <summary>
-        /// upvoteBar control.
+        /// txtURL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl upvoteBar;
+        protected global::System.Web.UI.WebControls.TextBox txtURL;
         
         /// <summary>
-        /// downvoteBar control.
+        /// btnAddRef control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl downvoteBar;
+        protected global::System.Web.UI.WebControls.Button btnAddRef;
         
         /// <summary>
-        /// lblTotalVotes control.
+        /// lblTitleFail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalVotes;
+        protected global::System.Web.UI.WebControls.Label lblTitleFail;
         
         /// <summary>
-        /// articleText control.
+        /// ValidatorTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl articleText;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValidatorTitle;
         
         /// <summary>
-        /// lblTypeOfOrg control.
+        /// txtArticleTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTypeOfOrg;
+        protected global::System.Web.UI.WebControls.TextBox txtArticleTitle;
         
         /// <summary>
-        /// lblUpHouseMan control.
+        /// ValidatorInfoText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUpHouseMan;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValidatorInfoText;
         
         /// <summary>
-        /// lblDomainOwner control.
+        /// txtInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDomainOwner;
+        protected global::System.Web.UI.WebControls.TextBox txtInfo;
         
         /// <summary>
-        /// lblFinancer control.
+        /// ValidatorORG control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFinancer;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValidatorORG;
         
         /// <summary>
-        /// lblRefText control.
+        /// dropDownTypeOfOrg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRefText;
+        protected global::System.Web.UI.WebControls.DropDownList dropDownTypeOfOrg;
         
         /// <summary>
-        /// ListViewReferences control.
+        /// lblURLFail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListViewReferences;
+        protected global::System.Web.UI.WebControls.Label lblURLFail;
         
         /// <summary>
-        /// linkBtnLastEdit control.
+        /// ValidatorURL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkBtnLastEdit;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValidatorURL;
         
         /// <summary>
-        /// lblEditDate control.
+        /// txtArticleURL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEditDate;
+        protected global::System.Web.UI.WebControls.TextBox txtArticleURL;
         
         /// <summary>
-        /// lBtnEdit control.
+        /// txtUpHouseMan control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lBtnEdit;
+        protected global::System.Web.UI.WebControls.TextBox txtUpHouseMan;
         
         /// <summary>
-        /// Label3 control.
+        /// txtDomainOwner control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.TextBox txtDomainOwner;
         
         /// <summary>
-        /// ListView1 control.
+        /// txtFinancer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListView1;
+        protected global::System.Web.UI.WebControls.TextBox txtFinancer;
+        
+        /// <summary>
+        /// lblRef control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRef;
+        
+        /// <summary>
+        /// gridViewReferences control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridViewReferences;
+        
+        /// <summary>
+        /// btnUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdate;
         
         /// <summary>
         /// hiddenArticleID control.

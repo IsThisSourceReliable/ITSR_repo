@@ -50,8 +50,9 @@ namespace ITSR
             else if (dt.Rows.Count == 1)
             {
                 dt = a.SearchForSpecificArticle(searchString);
-                a.ID = Convert.ToInt32(dt.Rows[0]["idarticle"]);
-                Session["articleID"] = a.ID;
+
+                Session["ArticleID"] = dt.Rows[0]["idarticle"].ToString();
+
                 Response.Redirect("~/Article.aspx");
             }
            else if (dt.Rows.Count > 1)

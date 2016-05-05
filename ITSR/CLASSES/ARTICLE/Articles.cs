@@ -28,6 +28,12 @@ namespace ITSR.CLASSES.ARTICLE
         public string AricleURL { get; set; }
 
         //Methods
+
+        /// <summary>
+        /// Method inserts an arcitle into the database and returns true or false depending if succesful
+        /// or not.
+        /// </summary>
+        /// <returns></returns>
         public bool CreateArticle()
         {
             try
@@ -66,7 +72,48 @@ namespace ITSR.CLASSES.ARTICLE
             }
         }
 
-       
+        /// <summary>
+        /// Method updates an arcitle with article id 
+        /// in the database and returns true or false depending if succesful
+        /// or not.
+        /// </summary>
+        /// <returns></returns>
+        public bool UpdateArticle()
+        {
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmdCreateArticle = new MySqlCommand("UPDATE article " +
+                                                                "SET title = @title, text = @text, url = @url, orgtype_id = @typeoforg, lastedit_date = @lasteditdate, lastedituser_id = @lastedituser, publisher = @publisher, domainowner = @domainowner, financing = @financer, reference_xml = @referencexml " +
+                                                                "WHERE idarticle = @id; ", conn);
+
+                cmdCreateArticle.Parameters.AddWithValue("@id", ID);
+                cmdCreateArticle.Parameters.AddWithValue("@title", Title);
+                cmdCreateArticle.Parameters.AddWithValue("@text", Text);
+                cmdCreateArticle.Parameters.AddWithValue("@url", AricleURL);
+                cmdCreateArticle.Parameters.AddWithValue("@typeoforg", TypeOfOrg_id);
+                cmdCreateArticle.Parameters.AddWithValue("@lasteditdate", lastEdit);
+                cmdCreateArticle.Parameters.AddWithValue("@lastedituser", lastEditUser_id);
+                cmdCreateArticle.Parameters.AddWithValue("@publisher", Publisher);
+                cmdCreateArticle.Parameters.AddWithValue("@domainowner", domainOwner);
+                cmdCreateArticle.Parameters.AddWithValue("@financer", Financing);
+                cmdCreateArticle.Parameters.AddWithValue("@referencexml", Reference);
+
+                cmdCreateArticle.ExecuteNonQuery();
+                return true;
+
+            }
+            catch (MySqlException ex)
+            {
+                Console.Write(ex.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
         public DataTable LoadAllArticles()
         {
@@ -94,14 +141,15 @@ namespace ITSR.CLASSES.ARTICLE
                 conn.Close();
             }
         }
-        public DataTable LoadArticleComments(Articles a)
+
+        public DataTable LoadArticleComments()
         {
             string sql = "SELECT * FROM comment WHERE article_id = @AID";
 
             try
             {
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@AID", a.ID);
+                cmd.Parameters.AddWithValue("@AID", ID);
                 MySqlDataAdapter da = new MySqlDataAdapter();
 
                 da.SelectCommand = cmd;
@@ -120,6 +168,7 @@ namespace ITSR.CLASSES.ARTICLE
                 conn.Close();
             }
         }
+
         public DataTable SearchForSpecificArticle(string SearchString)
         {
             string sql = "SELECT * FROM article WHERE title = @SS OR url = @SS";
@@ -146,6 +195,8 @@ namespace ITSR.CLASSES.ARTICLE
                 conn.Close();
             }
         }
+
+
         public DataTable SearchForUnspecificArticle(string SearchString)
         {
             string SS = "%" + SearchString + "%";
@@ -174,6 +225,7 @@ namespace ITSR.CLASSES.ARTICLE
                 conn.Close();
             }
         }
+
         public int SearchResultCount(string SearchString)
         {
             string sql = "SELECT COUNT(*) FROM article WHERE title = @SS OR url = @SS2";
@@ -181,7 +233,7 @@ namespace ITSR.CLASSES.ARTICLE
             try
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand(sql,conn);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@SS", SearchString);
                 int count = Convert.ToInt16(cmd.ExecuteScalar());
                 return count;
@@ -194,9 +246,9 @@ namespace ITSR.CLASSES.ARTICLE
             {
                 conn.Close();
             }
- 
+
         }
-        
+
 
         /// <summary>
         /// Gets a specific article with a sql question which joins user table and
@@ -207,7 +259,7 @@ namespace ITSR.CLASSES.ARTICLE
         {
             try
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT idarticle, title, text, orgtype_id, lastedit_date, votes_up, votes_down, lastedituser_id, createuser_id, publisher, domainowner,financing, reference_xml, removed, name AS orgtype, username AS edituser FROM article " +
+                MySqlCommand cmd = new MySqlCommand("SELECT idarticle, title, text, url, orgtype_id, lastedit_date, votes_up, votes_down, lastedituser_id, createuser_id, publisher, domainowner,financing, reference_xml, removed, name AS orgtype, username AS edituser FROM article " +
                                                     "INNER JOIN typeoforg ON article.orgtype_id = typeoforg.idtypeoforg " +
                                                     "INNER JOIN user ON article.lastedituser_id = user.iduser " +
                                                     "WHERE idarticle = @id; ", conn);
@@ -231,15 +283,25 @@ namespace ITSR.CLASSES.ARTICLE
             }
         }
 
+        /// <summary>
+        /// Method calculates the totalvotes on a article.
+        /// </summary>
+        /// <returns></returns>
         public int SetTotalVotes()
         {
             int totalVotes = upVotes + downVotes;
             return totalVotes;
         }
 
+
+        /// <summary>
+        /// Method calculates the percent of upvotes using the amount of totalvotes.
+        /// </summary>
+        /// <param name="totalVotes"></param>
+        /// <returns></returns>
         public double SetUpVotePercent(int totalVotes)
-        {         
-            if(totalVotes == 0)
+        {
+            if (totalVotes == 0)
             {
                 return 0;
             }
@@ -255,9 +317,15 @@ namespace ITSR.CLASSES.ARTICLE
             }
         }
 
+
+        /// <summary>
+        /// Method uses the upvotpercent to calculate the percent for the downvotes.
+        /// </summary>
+        /// <param name="upVotePercent"></param>
+        /// <returns></returns>
         public int SetDownVotesPercent(double upVotePercent)
         {
-            if(upVotePercent == 0)
+            if (upVotePercent == 0)
             {
                 return 0;
             }
@@ -268,6 +336,12 @@ namespace ITSR.CLASSES.ARTICLE
             }
         }
 
+
+        /// <summary>
+        /// Method returns a datatable contain all the different types of organisations
+        /// that can be found in the database.
+        /// </summary>
+        /// <returns></returns>
         public DataTable GetTypeOfOrgs()
         {
             try
@@ -292,66 +366,66 @@ namespace ITSR.CLASSES.ARTICLE
             }
         }
 
-        public int GetUpVotes(Articles a)
-        {
-            string sql = "SELECT votes_up FROM article WHERE idarticle = @AID";
+        //public int GetUpVotes(Articles a)
+        //{
+        //    string sql = "SELECT votes_up FROM article WHERE idarticle = @AID";
 
-            try
-            {
-                conn.Open();
+        //    try
+        //    {
+        //        conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
+        //        MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                cmd.Parameters.AddWithValue("@AID", a.ID);
+        //        cmd.Parameters.AddWithValue("@AID", a.ID);
 
-                int UpVotes = Convert.ToInt32(cmd.ExecuteScalar());
+        //        int UpVotes = Convert.ToInt32(cmd.ExecuteScalar());
 
-                return upVotes;
+        //        return upVotes;
 
-            }
-            catch (MySqlException ex)
-            {
-                return 0;
-            }
-            finally
-            {
-                conn.Close();
-            }
+        //    }
+        //    catch (MySqlException ex)
+        //    {
+        //        return 0;
+        //    }
+        //    finally
+        //    {
+        //        conn.Close();
+        //    }
 
-        }
-        public int GetDownVotes(Articles a)
-        {
-            string sql = "SELECT votes_down FROM article WHERE idarticle = @AID";
+        //}
+        //public int GetDownVotes(Articles a)
+        //{
+        //    string sql = "SELECT votes_down FROM article WHERE idarticle = @AID";
 
-            try
-            {
-                conn.Open();
+        //    try
+        //    {
+        //        conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
+        //        MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                cmd.Parameters.AddWithValue("@AID", a.ID);
+        //        cmd.Parameters.AddWithValue("@AID", a.ID);
 
-                int downVotes = Convert.ToInt32(cmd.ExecuteScalar());
+        //        int downVotes = Convert.ToInt32(cmd.ExecuteScalar());
 
-                return downVotes;
+        //        return downVotes;
 
-            }
-            catch (MySqlException ex)
-            {
-                return 0;
-            }
-            finally
-            {
-                conn.Close();
-            }
+        //    }
+        //    catch (MySqlException ex)
+        //    {
+        //        return 0;
+        //    }
+        //    finally
+        //    {
+        //        conn.Close();
+        //    }
 
-        }
-        public int GetTotalVotes(Articles a)
-        {
-            int downVotes = GetDownVotes(a);
-            int upVotes = GetUpVotes(a);
-            int totalVotes = upVotes + downVotes;
-            return totalVotes;
-        }
+        //}
+        //public int GetTotalVotes(Articles a)
+        //{
+        //    int downVotes = GetDownVotes(a);
+        //    int upVotes = GetUpVotes(a);
+        //    int totalVotes = upVotes + downVotes;
+        //    return totalVotes;
+        //}
     }
 }

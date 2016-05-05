@@ -4,15 +4,15 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="description" content="IS THIS SOURCE RELIABLE, find out if the source you are refering to is reliable"/>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="IS THIS SOURCE RELIABLE, find out if the source you are refering to is reliable" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
     <link rel="icon" href="img/favicon.ico" type="image/x-icon"/>-->
 
-    <meta name="author" content="Drysén, Erik. Gustavsson, Martin"/>
+    <meta name="author" content="Drysén, Erik. Gustavsson, Martin" />
 
     <!-- CSS -->
     <link href="CSS/font.css" rel="stylesheet" />
@@ -21,14 +21,13 @@
 
     <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>  
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <title>IS THIS SOURCE RELIABLE</title>
-    
+
     <script src="JS/MenuJS.js"></script>
     <script src="JS/OverlayJS.js"></script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
-
     </asp:ContentPlaceHolder>
 </head>
 <body>
@@ -39,18 +38,28 @@
         </div>
         <div class="menu-left">
             <div class="sticky fill-any-page">
-            <div class="fullBox left-menu-bottom" onclick="LeftMenuOpenClose();">
-                <h2 class="left-menu-title"><strong>MENU</strong></h2>
-            </div>
+                <div class="fullBox left-menu-bottom" onclick="LeftMenuOpenClose();">
+                    <h2 class="left-menu-title"><strong>MENU</strong></h2>
+                </div>
                 <div>
                     <ul class="side-left-navbar">
-                        <li><p>HOME</p></li>  
-                        <li><p>ABOUT</p></li>                                    
-                        <li><p>LINK</p></li>   
-                        <li><p>LINK</p></li> 
-                        <li><p>LINK</p></li> 
+                        <li>
+                            <p>HOME</p>
+                        </li>
+                        <li>
+                            <p>ABOUT</p>
+                        </li>
+                        <li>
+                            <p>LINK</p>
+                        </li>
+                        <li>
+                            <p>LINK</p>
+                        </li>
+                        <li>
+                            <p>LINK</p>
+                        </li>
                     </ul>
-                </div>  
+                </div>
                 <p class="left-menu-lbl">0</p>
             </div>
         </div>
@@ -62,61 +71,65 @@
                 </div>
                 <div class="fullBox center-text">
                     <div class="fullbox username-box">
-                        <asp:TextBox 
-                            ID="txtUsername" 
-                            CssClass="txt-box" 
+                        <asp:TextBox
+                            ID="txtUsername"
+                            CssClass="txt-box"
                             runat="server"
-                            placeholder="Username" >
-                        </asp:TextBox> 
-                    </div>  
+                            placeholder="Username">
+                        </asp:TextBox>
+                    </div>
                     <div class="fullBox password-box">
-                        <asp:TextBox 
-                            ID="txtPassword" 
-                            CssClass="txt-box" 
+                        <asp:TextBox
+                            ID="txtPassword"
+                            CssClass="txt-box"
                             runat="server"
-                            placeholder="Password" >
-                        </asp:TextBox>   
+                            placeholder="Password">
+                        </asp:TextBox>
                     </div>
                     <div class="fullBox login-btn-box">
-                        <asp:Button 
-                            ID="btnLogin" 
-                            runat="server" 
+                        <asp:Button
+                            ID="btnLogin"
+                            runat="server"
                             CssClass="itsr-button"
-                            Text="LOG IN" />       
+                            Text="LOG IN" />
                     </div>
                     <div class="fullBox">
-                        <p class="join-text">Not a member? <asp:LinkButton ID="linkBtnJoin" runat="server">Click here to join!</asp:LinkButton></p>
+                        <p class="join-text">Not a member?
+                            <asp:LinkButton ID="linkBtnJoin" runat="server">Click here to join!</asp:LinkButton></p>
                     </div>
                 </div>
                 <p class="right-menu-lbl">0</p>
             </div>
         </div>
         <div class="page-wrap">
-                <!-- Main page ================================================== -->
-                <section class="container navbar-section">
-                  <div class="content default-page-width">
-                    <div class="contentRow">        
+            <!-- Main page ================================================== -->
+            <section class="container navbar-section">
+                <div class="content default-page-width">
+                    <div class="contentRow">
                         <ul class="main-navbar">
-                          <li id="LeftMenu" onclick="LeftMenuOpenClose();"><p><span class="glyphicon glyphicon-menu-hamburger" style="vertical-align: text-bottom;" aria-hidden="true"></span> MENU</p></li>                                              
-                        </ul> 
+                            <li id="LeftMenu" onclick="LeftMenuOpenClose();">
+                                <p><span class="glyphicon glyphicon-menu-hamburger" style="vertical-align: text-bottom;" aria-hidden="true"></span> MENU</p>
+                            </li>
+                        </ul>
                         <ul class="main-navbar right">
-                          <li id="RightMenu" onclick="RightMenuOpenClose();"><p><span class="glyphicon glyphicon-lock" style="vertical-align: text-bottom;" aria-hidden="true"></span> LOG IN</p></li>                                              
-                        </ul>                          
+                            <li id="RightMenu" onclick="RightMenuOpenClose();">
+                                <p><span class="glyphicon glyphicon-lock" style="vertical-align: text-bottom;" aria-hidden="true"></span> LOG IN</p>
+                            </li>
+                        </ul>
                     </div>
-                  </div>
-                </section> 
+                </div>
+            </section>
 
-                <!-- Main page ================================================== -->
-                <section class="container ">
-                        <div class="content">
-                            <div class="contentRow main-margin"> 
-                                <asp:ContentPlaceHolder ID="ContentHolder" runat="server">
-        
-                                </asp:ContentPlaceHolder>
-                            </div>
-                        </div>
+            <!-- Main page ================================================== -->
+            <section class="container ">
+                <div class="content">
+                    <div class="contentRow main-margin">
+                        <asp:ContentPlaceHolder ID="ContentHolder" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
 
-                </section>
+            </section>
         </div>
 
 

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainMaster.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ITSR.testdef" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -9,20 +10,21 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentHolder" runat="server">
     <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
         <div class="fullBox center-text">
             <div class="fullBox def-title-box ">
                 <h1 class="def-title">IsThisSourceReliable.com</h1>
-            </div>           
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
+            </div>
+
                         <asp:Panel ID="Panel1" runat="server" DefaultButton="linkBtnSearch">
                             <asp:RequiredFieldValidator 
         	                    ID="RequiredFieldValidator1" 
                     	        ControlToValidate="txtSearchField" 
-                    	        ForeColor ="Red" runat="server" 
+                        ForeColor="Red" runat="server"
                     	        Font-Size="Medium" 
                     	        ErrorMessage="" 
-                    	        display="Dynamic"
+                        Display="Dynamic"
                     	        ValidationGroup="SearchGroup">
                             </asp:RequiredFieldValidator>
                             <div class="fullBox def-search-box">
@@ -53,8 +55,16 @@
              </div>      
              <div class="fullBox white-box center-text big-search-box" id="messageDiv" runat="server">
                 <div class="search-message-box">
-                    <p id="searchMessage" runat="server">We could not find the source you were looking for. Click <asp:LinkButton ID="lbNewARticle" runat="server" OnClick="lbNewARticle_Click">here</asp:LinkButton> to add it! </p>
-                    <p id="searchMessage2" runat="server">No? Click <asp:LinkButton ID="lbNewARticle2" runat="server" OnClick="lbNewARticle_Click">here</asp:LinkButton> to add it! </p>
+                     <p id="searchMessage" runat="server">
+                         We could not find the source you were looking for. Click
+                         <asp:LinkButton ID="lbNewARticle" runat="server" OnClick="lbNewARticle_Click">here</asp:LinkButton>
+                         to add it!
+                     </p>
+                     <p id="searchMessage2" runat="server">
+                         No? Click
+                         <asp:LinkButton ID="lbNewARticle2" runat="server" OnClick="lbNewARticle_Click">here</asp:LinkButton>
+                         to add it!
+                     </p>
                 </div>
                 <div class="Default-gridview-box" id="gvDiv" runat="server">
                     <asp:GridView ID="gvArticles" runat="server" AutoGenerateColumns="false" CssClass="gridview" GridLines="None" DataKeyNames="idarticle" OnRowDataBound="gvArticles_RowDataBound" OnSelectedIndexChanged="gvArticles_SelectedIndexChanged">
