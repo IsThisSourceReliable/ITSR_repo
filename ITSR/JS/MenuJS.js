@@ -36,13 +36,15 @@ function RightMenuOpenClose()
 //Opens left menu
 function OpenLeftMenu() {
         $('.container').animate({
-            left: '+=322px'
+            marginLeft: '+=322px'
         });
+
         $('.menu-left').animate({
-            left: '+=322px'
+            marginLeft: '+=322px'
         });
+
         $('.books-background').animate({
-            left: '+=322px'
+            marginLeft: '+=322px'
         });
         $('.glyphicon-menu-hamburger').addClass('glyphicon-remove');
         $('.glyphicon-menu-hamburger').removeClass('glyphicon-menu-hamburger');
@@ -74,6 +76,7 @@ function OpenRightMenu() {
     $('.menu-right').animate({
         right: '+=322px'
     });
+
     $('.glyphicon-lock').addClass('glyphicon-remove');
     $('.glyphicon-lock').removeClass('glyphicon-lock');
 }

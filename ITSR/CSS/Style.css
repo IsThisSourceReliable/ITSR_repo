@@ -405,7 +405,6 @@ h4 {
 
 .sticky {
 	position: fixed;
-	z-index: 1000;
     width: 322px;
     background: #074e67;
 }
@@ -414,7 +413,6 @@ h4 {
 	list-style: none;
 	display: block;
     float: left; 
-
 }
 
 .main-navbar > li {
@@ -453,7 +451,7 @@ h4 {
 	position: fixed;
 	height: 100%;
     background: #074e67;
-	z-index: 1300;
+	/*z-index: 1300;*/
 
     -webkit-transition: -webkit-transform 0.2s linear;
     -moz-transition: -moz-transform 0.2s linear; 
@@ -470,7 +468,7 @@ h4 {
 	position: fixed;
 	height: 100%;
     background: #074e67;
-	z-index: 1300;
+	/*z-index: 1300;*/
 
     -webkit-transition: -webkit-transform 0.2s linear;
     -moz-transition: -moz-transform 0.2s linear; 
@@ -482,15 +480,15 @@ h4 {
 .side-left-navbar {
 	list-style: none;
 	display: block;
-    margin-top: 64px;
+    /*margin-top: 64px;*/
     float: left; 
     width: 322px;
-    position: fixed;
-    	z-index: 1500;
+    /*position: fixed;*/
+    	/*z-index: 1500;*/
 }
 
 .side-left-navbar > li {
-	display: block;
+	/*display: block;*/
 	float: left;
 	width: 100%;
 

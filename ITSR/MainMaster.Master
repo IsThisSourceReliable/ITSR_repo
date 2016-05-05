@@ -37,11 +37,11 @@
             </div>
         </div>
         <div class="menu-left">
-            <div class="sticky fill-any-page">
+            <div class="fill-any-page">
                 <div class="fullBox left-menu-bottom" onclick="LeftMenuOpenClose();">
                     <h2 class="left-menu-title"><strong>MENU</strong></h2>
                 </div>
-                <div>
+                <div class="side-left-menu-holder">
                     <ul class="side-left-navbar">
                         <li>
                             <p>HOME</p>
@@ -65,7 +65,7 @@
         </div>
 
         <div class="menu-right">
-            <div class="sticky fill-any-page">
+            <div class="fill-any-page">
                 <div class="fullBox left-menu-bottom" onclick="RightMenuOpenClose();">
                     <h2 class="right-menu-title"><strong>LOG IN</strong></h2>
                 </div>
