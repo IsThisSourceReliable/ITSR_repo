@@ -17,30 +17,30 @@
             <h3><asp:Label ID="lblAboutme" runat="server" Text="Aboutme"></asp:Label></h3>
         </div>
         <div class="thirdBox thirdBox-floatright">
-            <div class="fullBox">        
-            <h3 class="underline"><asp:Label ID="lblAdded" runat="server" Text="Added"></asp:Label></h3>
+            <div class="fullBox GvDiv">        
+           <div class="GvHeader"><h3 class="underline"><asp:Label ID="lblAdded" runat="server" Text="Added"></asp:Label></h3></div>
             <asp:GridView ID="gvMyArticles" runat="server" AutoGenerateColumns="false" CssClass="gridview" GridLines="None" DataKeyNames="idarticle" OnRowDataBound="gvMyArticles_RowDataBound" OnSelectedIndexChanged="gvMyArticles_SelectedIndexChanged">
                 <Columns>
                     <asp:BoundField DataField="title"/>
-                    <asp:CommandField ShowSelectButton="true" ControlStyle-CssClass="OPEN-btn" SelectText="OPEN"/>
+                    <asp:CommandField ShowSelectButton="true" ControlStyle-CssClass="OPEN-btn" SelectText=""/>
                 </Columns>
             </asp:GridView>
             </div>
-            <div class="fullBox">  
-            <h3 class="underline"><asp:Label ID="lblVotes" runat="server" Text="Votes"></asp:Label></h3>          
+            <div class="fullBox GvDiv">  
+            <div class="GvHeader"><h3 class="underline"><asp:Label ID="lblVotes" runat="server" Text="Votes"></asp:Label></h3></div>         
             <asp:GridView ID="gvMyVotes" runat="server" AutoGenerateColumns="false" CssClass="gridview" GridLines="None" DataKeyNames="idarticle" OnRowDataBound="gvMyVotes_RowDataBound" OnSelectedIndexChanged="gvMyVotes_SelectedIndexChanged">
                 <Columns>
                     <asp:BoundField DataField="title"/>
-                    <asp:CommandField ShowSelectButton="true" ControlStyle-CssClass="OPEN-btn" SelectText="OPEN"/>
+                    <asp:CommandField ShowSelectButton="true" ControlStyle-CssClass="OPEN-btn" SelectText=""/>
                 </Columns>
             </asp:GridView>
             </div>
-            <div class="fullBox"> 
-            <h3 class="underline"><asp:Label ID="lblComments" runat="server" Text="Comments"></asp:Label></h3>           
+            <div class="fullBox GvDiv"> 
+            <div class="GvHeader"><h3 class="underline"><asp:Label ID="lblComments" runat="server" Text="Comments"></asp:Label></h3></div>         
             <asp:GridView ID="gvMyComments" runat="server" AutoGenerateColumns="false" CssClass="gridview" GridLines="None" DataKeyNames="idarticle" OnRowDataBound="gvMyComments_RowDataBound" OnSelectedIndexChanged="gvMyComments_SelectedIndexChanged">
                 <Columns>
                     <asp:BoundField DataField="title"/>
-                    <asp:CommandField ShowSelectButton="true" ControlStyle-CssClass="OPEN-btn" SelectText="OPEN"/>
+                    <asp:CommandField ShowSelectButton="true" ControlStyle-CssClass="OPEN-btn" SelectText=""/>
                 </Columns>
             </asp:GridView>
             </div>
