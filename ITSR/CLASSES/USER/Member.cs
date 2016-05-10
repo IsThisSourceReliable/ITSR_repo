@@ -245,7 +245,30 @@ namespace ITSR.CLASSES.USER
         }
         public DataTable GetLastCommentsBy(User u)
         {
-            return null;
+            string sql = "SELECT * FROM comment INNER JOIN article on (comment.article_id = article.idarticle) WHERE comment.user_id = @uID";
+
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@uID", u.ID);
+
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                return dt;
+            }
+            catch (MySqlException ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
         public DataTable GetLastVotesBy(User u)
         {

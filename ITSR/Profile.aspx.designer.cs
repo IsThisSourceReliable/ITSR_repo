@@ -67,6 +67,15 @@ namespace ITSR {
         protected global::System.Web.UI.WebControls.Label lblAboutme;
         
         /// <summary>
+        /// lblAdded control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAdded;
+        
+        /// <summary>
         /// gvMyArticles control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace ITSR {
         protected global::System.Web.UI.WebControls.GridView gvMyArticles;
         
         /// <summary>
+        /// lblVotes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVotes;
+        
+        /// <summary>
         /// gvMyVotes control.
         /// </summary>
         /// <remarks>
@@ -83,5 +101,23 @@ namespace ITSR {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvMyVotes;
+        
+        /// <summary>
+        /// lblComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblComments;
+        
+        /// <summary>
+        /// gvMyComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvMyComments;
     }
 }

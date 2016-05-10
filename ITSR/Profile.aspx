@@ -17,22 +17,33 @@
             <h3><asp:Label ID="lblAboutme" runat="server" Text="Aboutme"></asp:Label></h3>
         </div>
         <div class="thirdBox thirdBox-floatright">
-            <h3>Added</h3>
+            <div class="fullBox">        
+            <h3 class="underline"><asp:Label ID="lblAdded" runat="server" Text="Added"></asp:Label></h3>
             <asp:GridView ID="gvMyArticles" runat="server" AutoGenerateColumns="false" CssClass="gridview" GridLines="None" DataKeyNames="idarticle" OnRowDataBound="gvMyArticles_RowDataBound" OnSelectedIndexChanged="gvMyArticles_SelectedIndexChanged">
                 <Columns>
                     <asp:BoundField DataField="title"/>
-                    <asp:BoundField DataField="url"/>
                     <asp:CommandField ShowSelectButton="true" ControlStyle-CssClass="OPEN-btn" SelectText="OPEN"/>
                 </Columns>
             </asp:GridView>
-            <h3>Last voted on</h3>
+            </div>
+            <div class="fullBox">  
+            <h3 class="underline"><asp:Label ID="lblVotes" runat="server" Text="Votes"></asp:Label></h3>          
             <asp:GridView ID="gvMyVotes" runat="server" AutoGenerateColumns="false" CssClass="gridview" GridLines="None" DataKeyNames="idarticle" OnRowDataBound="gvMyVotes_RowDataBound" OnSelectedIndexChanged="gvMyVotes_SelectedIndexChanged">
                 <Columns>
                     <asp:BoundField DataField="title"/>
-                    <asp:BoundField DataField="url"/>
                     <asp:CommandField ShowSelectButton="true" ControlStyle-CssClass="OPEN-btn" SelectText="OPEN"/>
                 </Columns>
             </asp:GridView>
-        </div>
+            </div>
+            <div class="fullBox"> 
+            <h3 class="underline"><asp:Label ID="lblComments" runat="server" Text="Comments"></asp:Label></h3>           
+            <asp:GridView ID="gvMyComments" runat="server" AutoGenerateColumns="false" CssClass="gridview" GridLines="None" DataKeyNames="idarticle" OnRowDataBound="gvMyComments_RowDataBound" OnSelectedIndexChanged="gvMyComments_SelectedIndexChanged">
+                <Columns>
+                    <asp:BoundField DataField="title"/>
+                    <asp:CommandField ShowSelectButton="true" ControlStyle-CssClass="OPEN-btn" SelectText="OPEN"/>
+                </Columns>
+            </asp:GridView>
+            </div>
+         </div>      
     </div>
 </asp:Content>
