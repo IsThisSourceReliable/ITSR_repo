@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 
 namespace ITSR.CLASSES.USER
 {
@@ -16,6 +17,14 @@ namespace ITSR.CLASSES.USER
         public string Email { get; set; }
         public int role_id { get; set; }
         public bool certifedUser { get; set; }
+
+        public string firstname { get; set; }
+        public string lastName { get; set; }
+        public string country { get; set; }
+        public string location { get; set; }
+        public string occupation { get; set; }
+        public int profilepic_id { get; set; }
+        public string aboutme { get; set; }
 
         //Methods
         public void CreateUser(User user)
@@ -150,6 +159,65 @@ namespace ITSR.CLASSES.USER
             catch (MySqlException ex)
             {
                 return true;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public void LoadUser(User user)
+        {
+            string sql = "SELECT * FROM user WHERE iduser = @id";
+
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", user.ID);
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    user.userName = Convert.ToString(dr["username"]);
+                    user.Email = Convert.ToString(dr["email"]);
+                    user.role_id = Convert.ToInt16(dr["role_id"]);
+                    user.certifedUser = Convert.ToBoolean(dr["certified_user"]);
+                }
+            }
+            catch (MySqlException ex)
+            {
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+        } 
+        public void LoadUserProfile(User user)
+        {
+            string sql = "SELECT * FROM user_profile WHERE user_id = @id";
+
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", user.ID);
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    user.firstname = Convert.ToString(dr["name"]);
+                    user.lastName = Convert.ToString(dr["lastname"]);
+                    user.country = Convert.ToString(dr["country"]);
+                    user.location = Convert.ToString(dr["location"]);
+                    user.occupation = Convert.ToString(dr["occupation"]);
+                    user.profilepic_id = Convert.ToInt16(dr["profilepic_id"]);
+                    user.aboutme = Convert.ToString(dr["aboutme"]);
+                }
+            }
+            catch (MySqlException ex)
+            {
+
             }
             finally
             {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using ITSR.CLASSES.ARTICLE;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace ITSR.CLASSES.USER
 {
@@ -208,6 +209,65 @@ namespace ITSR.CLASSES.USER
             catch (MySqlException ex)
             {
 
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public DataTable GetArticlesCreatedBy(User u)
+        {
+            string sql = "SELECT * FROM article WHERE createuser_id = @userID";
+
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@userID", u.ID);
+
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                return dt;
+            }
+            catch (MySqlException ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            
+        }
+        public DataTable GetLastCommentsBy(User u)
+        {
+            return null;
+        }
+        public DataTable GetLastVotesBy(User u)
+        {
+            string sql = "SELECT * FROM vote INNER JOIN article on (vote.article_id = article.idarticle) WHERE vote.user_id = @uID";
+
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@uID", u.ID);
+
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                return dt;
+            }
+            catch (MySqlException ex)
+            {
+                return null;
             }
             finally
             {

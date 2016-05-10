@@ -1,0 +1,39 @@
+﻿.profilepic {
+    width: 100%;
+}
+.white-box-profile {
+    padding: 2%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; 
+}
+.thirdBox {
+    padding: 2%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; 
+    margin: 10px;
+
+}
+
+/****************
+    GridView
+ ****************/
+.gridview th{
+    display:none;
+}
+.gridview td {
+    padding: 0 2% 0 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;   
+
+    
+}
+.gridview tr:hover {
+    background-color:cadetblue;
+    cursor:pointer;
+}
+.OPEN-btn {
+    display:none;
+}

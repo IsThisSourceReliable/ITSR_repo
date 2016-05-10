@@ -88,8 +88,6 @@ namespace ITSR
             downvoteBar.Style.Add("width", "" + downVotes + "%");
         }
 
-
-
         /// <summary>
         /// Just for testpurpose
         /// </summary>
@@ -120,8 +118,6 @@ namespace ITSR
                 conn.Close();
             }
         }
-
-
 
         protected void ListView1_SelectedIndexChanged(object sender, EventArgs e)
         {
