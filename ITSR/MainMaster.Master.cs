@@ -126,5 +126,10 @@ namespace ITSR
             Session.Abandon();
             Response.Redirect("~/default.aspx");
         }
+
+        protected void LBHome_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

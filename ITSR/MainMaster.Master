@@ -83,7 +83,8 @@
                                     <asp:Label
                                         ID="lblUserPassWrong"
                                         runat="server"
-                                        Text="">
+                                        Text=""
+                                        ForeColor="red">
                                     </asp:Label>
                                 </p>
                                 <asp:RequiredFieldValidator
@@ -91,7 +92,7 @@
                                     runat="server"
                                     ErrorMessage="Username can't be empty."
                                     ControlToValidate="txtUsername"
-                                    ForeColor="#b44e4c"
+                                    ForeColor="red"
                                     ValidationGroup="login">
                                 </asp:RequiredFieldValidator>
                                 <asp:TextBox
@@ -108,7 +109,7 @@
                                     runat="server"
                                     ErrorMessage="Password can't be empty."
                                     ControlToValidate="txtPassword"
-                                    ForeColor="#b44e4c"
+                                    ForeColor="red"
                                     ValidationGroup="login">
                                 </asp:RequiredFieldValidator>
                                 <asp:TextBox
