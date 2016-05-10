@@ -51,8 +51,9 @@
     
 }
 .gridview tr:hover {
-    background-color:cadetblue;
     cursor:pointer;
+    font-size:125%;
+    font-weight:bold;
 }
 .OPEN-btn {
     display:none;
