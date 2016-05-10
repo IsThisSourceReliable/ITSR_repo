@@ -4,7 +4,6 @@
     <link href="CSS/ArticleCSS.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentHolder" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     
     <div class="page-overlay">
         <div class="overlay-message">

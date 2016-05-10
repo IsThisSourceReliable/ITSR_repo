@@ -3,7 +3,6 @@
     <link href="CSS/SearchCSS.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentHolder" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="fullBox center-text">
         <div class="fullBox Search-search-box">
             <asp:TextBox 

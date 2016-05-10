@@ -32,74 +32,113 @@
 </head>
 <body>
     <form id="MainMaster" runat="server">
+        <asp:ScriptManager ID="MasterScriptManager" runat="server"></asp:ScriptManager>
+
         <div class="books-background">
             <div class="blue-overlay">
             </div>
         </div>
         <div class="menu-left">
-            <div class="fill-any-page">
-                <div class="fullBox left-menu-bottom" onclick="LeftMenuOpenClose();">
-                    <h2 class="left-menu-title"><strong>MENU</strong></h2>
-                </div>
-                <div class="side-left-menu-holder">
-                    <ul class="side-left-navbar">
-                        <li>
-                            <p>HOME</p>
-                        </li>
-                        <li>
-                            <p>ABOUT</p>
-                        </li>
-                        <li>
-                            <p>LINK</p>
-                        </li>
-                        <li>
-                            <p>LINK</p>
-                        </li>
-                        <li>
-                            <p>LINK</p>
-                        </li>
-                    </ul>
-                </div>
-                <p class="left-menu-lbl">0</p>
-            </div>
+            <asp:UpdatePanel ID="UpdatePanelMenuLeft" runat="server">
+                <ContentTemplate>
+                    <div class="fill-any-page">
+                        <div class="fullBox left-menu-bottom" onclick="LeftMenuOpenClose();">
+                            <h2 class="left-menu-title"><strong>MENU</strong></h2>
+                        </div>
+                        <div class="side-left-menu-holder">
+                            <ul class="side-left-navbar">
+                                <li>
+                                    <p>HOME</p>
+                                </li>
+                                <li>
+                                    <p>ABOUT</p>
+                                </li>
+                                <li runat="server" id="link1">
+                                    <p>LINK 1</p>
+                                </li>
+                                <li runat="server" id="link2">
+                                    <p>LINK 2</p>
+                                </li>
+                                <li runat="server" id="link3">
+                                    <p>LINK 3</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <p class="left-menu-lbl">0</p>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
 
         <div class="menu-right">
-            <div class="fill-any-page">
-                <div class="fullBox left-menu-bottom" onclick="RightMenuOpenClose();">
-                    <h2 class="right-menu-title"><strong>LOG IN</strong></h2>
-                </div>
-                <div class="fullBox center-text">
-                    <div class="fullbox username-box">
-                        <asp:TextBox
-                            ID="txtUsername"
-                            CssClass="txt-box"
-                            runat="server"
-                            placeholder="Username">
-                        </asp:TextBox>
+            <asp:UpdatePanel ID="UpdatePanelLogin" runat="server">
+                <ContentTemplate>
+                    <div class="fill-any-page">
+                        <div class="fullBox left-menu-bottom" onclick="RightMenuOpenClose();">
+                            <h2 class="right-menu-title"><strong>LOG IN</strong></h2>
+                        </div>
+                        <div class="fullBox center-text">
+                            <div class="fullbox username-box">
+                                <p class="fail-text">
+                                    <asp:Label
+                                        ID="lblUserPassWrong"
+                                        runat="server"
+                                        Text="">
+                                    </asp:Label>
+                                </p>
+                                <asp:RequiredFieldValidator
+                                    ID="ValidatorUsername"
+                                    runat="server"
+                                    ErrorMessage="Username can't be empty."
+                                    ControlToValidate="txtUsername"
+                                    ForeColor="#b44e4c"
+                                    ValidationGroup="login">
+                                </asp:RequiredFieldValidator>
+                                <asp:TextBox
+                                    ID="txtUsername"
+                                    CssClass="txt-box"
+                                    runat="server"
+                                    placeholder="Username"
+                                    type="text">
+                                </asp:TextBox>
+                            </div>
+                            <div class="fullBox password-box">
+                                <asp:RequiredFieldValidator
+                                    ID="ValidatorPassword"
+                                    runat="server"
+                                    ErrorMessage="Password can't be empty."
+                                    ControlToValidate="txtPassword"
+                                    ForeColor="#b44e4c"
+                                    ValidationGroup="login">
+                                </asp:RequiredFieldValidator>
+                                <asp:TextBox
+                                    ID="txtPassword"
+                                    CssClass="txt-box"
+                                    runat="server"
+                                    placeholder="Password"
+                                    type="password">
+                                </asp:TextBox>
+                            </div>
+                            <div class="fullBox login-btn-box">
+                                <asp:Button
+                                    ID="btnLogin"
+                                    runat="server"
+                                    CssClass="itsr-button"
+                                    Text="LOG IN"
+                                    OnClick="btnLogin_Click"
+                                    ValidationGroup="login" />
+                            </div>
+                            <div class="fullBox">
+                                <p class="join-text">
+                                    Not a member?
+                            <asp:LinkButton ID="linkBtnJoin" runat="server">Click here to join!</asp:LinkButton>
+                                </p>
+                            </div>
+                        </div>
+                        <p runat="server" id="RightMenuLbl" class="right-menu-lbl">0</p>
                     </div>
-                    <div class="fullBox password-box">
-                        <asp:TextBox
-                            ID="txtPassword"
-                            CssClass="txt-box"
-                            runat="server"
-                            placeholder="Password">
-                        </asp:TextBox>
-                    </div>
-                    <div class="fullBox login-btn-box">
-                        <asp:Button
-                            ID="btnLogin"
-                            runat="server"
-                            CssClass="itsr-button"
-                            Text="LOG IN" />
-                    </div>
-                    <div class="fullBox">
-                        <p class="join-text">Not a member?
-                            <asp:LinkButton ID="linkBtnJoin" runat="server">Click here to join!</asp:LinkButton></p>
-                    </div>
-                </div>
-                <p class="right-menu-lbl">0</p>
-            </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
         <div class="page-wrap">
             <!-- Main page ================================================== -->
@@ -108,14 +147,33 @@
                     <div class="contentRow">
                         <ul class="main-navbar">
                             <li id="LeftMenu" onclick="LeftMenuOpenClose();">
-                                <p><span class="glyphicon glyphicon-menu-hamburger" style="vertical-align: text-bottom;" aria-hidden="true"></span> MENU</p>
+                                <p><span class="glyphicon glyphicon-menu-hamburger" style="vertical-align: text-bottom;" aria-hidden="true"></span>MENU</p>
                             </li>
                         </ul>
-                        <ul class="main-navbar right">
-                            <li id="RightMenu" onclick="RightMenuOpenClose();">
-                                <p><span class="glyphicon glyphicon-lock" style="vertical-align: text-bottom;" aria-hidden="true"></span> LOG IN</p>
-                            </li>
-                        </ul>
+                        <asp:UpdatePanel ID="UpdatePanelRightMenu" runat="server">
+                            <ContentTemplate>
+                                <ul class="main-navbar right">
+                                    <li id="RightMenu" runat="server" onclick="RightMenuOpenClose();">
+                                        <p><span class="glyphicon glyphicon-lock" style="vertical-align: text-bottom;" aria-hidden="true"></span>LOG IN</p>
+                                    </li>
+                                    <li id="RightMenuLogOut" runat="server">
+                                        <p>
+                                            <asp:LinkButton
+                                                ID="lBtnLogOut"
+                                                runat="server"
+                                                CssClass="white-link" 
+                                                OnClick="lBtnLogOut_Click">
+                                                <span 
+                                                    class="glyphicon glyphicon-lock" 
+                                                    style="vertical-align: text-bottom;" 
+                                                    aria-hidden="true">
+                                                </span>LOG OUT
+                                            </asp:LinkButton>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </div>
                 </div>
             </section>
