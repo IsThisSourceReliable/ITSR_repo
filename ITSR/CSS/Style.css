@@ -188,6 +188,11 @@ p {
 	font-size: 1.2em;
 }
 
+.fail-text {
+    color: #b44e4c;
+    font-weight: bold;
+}
+
 a {
 	text-decoration: none;
     color: #4cb2b4;
@@ -200,6 +205,10 @@ a:hover {
 .links{
 	color: #97c98c;
 	font-weight: 900; 
+}
+
+.white-link {
+    color:#edf7f7;
 }
 
 .links:hover {

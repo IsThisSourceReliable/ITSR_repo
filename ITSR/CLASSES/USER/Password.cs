@@ -5,6 +5,7 @@ using System.Web;
 using System.Security.Cryptography;
 using System.Data;
 using System.Text;
+using MySql.Data.MySqlClient;
 
 namespace ITSR.CLASSES.USER
 {
@@ -13,7 +14,8 @@ namespace ITSR.CLASSES.USER
         public int user_id { get; set; }
         public string PasswordInput { get; set; }
         public string PasswordFromDB { get; set; }
-        
+
+        MySqlConnection conn = new MySqlConnection("Database=itsrdb; Data Source=eu-cdbr-azure-north-e.cloudapp.net; User Id=b268b5fbbce560; Password=d722d6d4");
 
         //Methods
 
@@ -50,7 +52,7 @@ namespace ITSR.CLASSES.USER
         /// passordinput.
         /// </summary>
         /// <returns></returns>
-        public byte[] CreateSalt()
+        private byte[] CreateSalt()
         {
             byte[] saltBytes;
             int minSaltSize = 4;
@@ -71,7 +73,7 @@ namespace ITSR.CLASSES.USER
         /// Method salts and hashes password input.
         /// </summary>
         /// <returns></returns>
-        public string SaltAndHashPassword()
+        private string SaltAndHashPassword()
         {
             //SALT
             byte[] saltBytes = CreateSalt();
@@ -105,8 +107,9 @@ namespace ITSR.CLASSES.USER
         /// <summary>
         /// Method separets salt from hash thats been stored in the db.
         /// </summary>
-        public void SplitSaltFromHash(out string saltOrg, out string hashOrg)
+        private void SplitSaltFromHash(out string saltOrg, out string hashOrg)
         {
+            PasswordFromDB = GetPasswordFromDb();
             string[] splitSalt = PasswordFromDB.Split(':');
 
             saltOrg = Convert.ToString(splitSalt[0]);
@@ -114,7 +117,7 @@ namespace ITSR.CLASSES.USER
         }
 
 
-        public bool CompareSaltHash()
+        private bool CompareSaltHash()
         {
             string saltOrg;
             string hashOrg;
@@ -153,9 +156,29 @@ namespace ITSR.CLASSES.USER
             //return saltOrg + " " + hashOrg + " \n" + salted + " " + newHash; //Test purpose.
         }
 
-        public void GetPasswordFromDb()
+        private string GetPasswordFromDb()
         {
+            string password = "";
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT password FROM user WHERE iduser = @userid;", conn);
 
+                cmd.Parameters.AddWithValue("@userid", user_id);
+
+                password = cmd.ExecuteScalar().ToString();
+
+                return password;
+
+            }
+            catch (MySqlException ex)
+            {
+                return password;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }
