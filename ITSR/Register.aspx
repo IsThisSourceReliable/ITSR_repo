@@ -19,7 +19,7 @@
                     Font-Size="Medium" 
                     ErrorMessage="You forgot this!" 
                     display="Dynamic"
-                    ValidationGroup="RegisterGroup">
+                    ValidationGroup="RegisterGroup" >
                 </asp:RequiredFieldValidator>
                 <asp:CustomValidator
                     ID="CustomValidator1"
@@ -73,7 +73,8 @@
                     ID="tbPassword" 
                     CssClass="txt-box txt-box-register" 
                     placeholder="Password" 
-                    runat="server">
+                    runat="server" 
+                    TextMode="Password">
                 </asp:TextBox>
                 <asp:RequiredFieldValidator 
                     ID="RequiredFieldValidator4" 
@@ -99,7 +100,8 @@
                     ID="tbConfirmPassword" 
                     CssClass="txt-box txt-box-register" 
                     placeholder="Confirm password" 
-                    runat="server">
+                    runat="server" 
+                    TextMode="Password">
                 </asp:TextBox>
  
                 <asp:Button 
