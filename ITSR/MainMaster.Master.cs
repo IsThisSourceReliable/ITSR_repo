@@ -12,7 +12,7 @@ namespace ITSR
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["UserID"] == null)
+            if (Session["UserID"] == null)
             {
                 HideLeftMenuButtons();
                 RightMenuLogOut.Visible = false;

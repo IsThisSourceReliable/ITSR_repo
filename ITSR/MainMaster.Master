@@ -148,14 +148,14 @@
                     <div class="contentRow">
                         <ul class="main-navbar">
                             <li id="LeftMenu" onclick="LeftMenuOpenClose();">
-                                <p><span class="glyphicon glyphicon-menu-hamburger" style="vertical-align: text-bottom;" aria-hidden="true"></span>MENU</p>
+                                <p><span class="glyphicon glyphicon-menu-hamburger" style="vertical-align: text-bottom; margin-right: 0.2em;" aria-hidden="true"></span>MENU</p>
                             </li>
                         </ul>
                         <asp:UpdatePanel ID="UpdatePanelRightMenu" runat="server">
                             <ContentTemplate>
                                 <ul class="main-navbar right">
                                     <li id="RightMenu" runat="server" onclick="RightMenuOpenClose();">
-                                        <p><span class="glyphicon glyphicon-lock" style="vertical-align: text-bottom;" aria-hidden="true"></span>LOG IN</p>
+                                        <p><span class="glyphicon glyphicon-lock" style="vertical-align: text-bottom; margin-right: 0.2em;" aria-hidden="true"></span>LOG IN</p>
                                     </li>
                                     <li id="RightMenuLogOut" runat="server">
                                         <p>

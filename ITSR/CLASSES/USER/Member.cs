@@ -79,32 +79,32 @@ namespace ITSR.CLASSES.USER
                 conn.Close();
             }
         }
-        public void CommentOnArticle(Comment c)
-        {
-            string sql = "INSERT INTO comment (comment_text, user_id, article_id, removed) VALUES(@CT, @UID, @AID, @R)";
+        //public void CommentOnArticle(Comment c)
+        //{
+        //    string sql = "INSERT INTO comment (comment_text, user_id, article_id, removed) VALUES(@CT, @UID, @AID, @R)";
 
-            try
-            {
-                conn.Open();
+        //    try
+        //    {
+        //        conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
+        //        MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                cmd.Parameters.AddWithValue("@CT", c.text);
-                cmd.Parameters.AddWithValue("@UID", c.user_id);
-                cmd.Parameters.AddWithValue("@AID", c.article_id);
-                cmd.Parameters.AddWithValue("@R", c.removed);
+        //        cmd.Parameters.AddWithValue("@CT", c.text);
+        //        cmd.Parameters.AddWithValue("@UID", c.user_id);
+        //        cmd.Parameters.AddWithValue("@AID", c.article_id);
+        //        cmd.Parameters.AddWithValue("@R", c.removed);
 
-                cmd.ExecuteNonQuery();
-            }
-            catch (MySqlException ex)
-            {
+        //        cmd.ExecuteNonQuery();
+        //    }
+        //    catch (MySqlException ex)
+        //    {
 
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
+        //    }
+        //    finally
+        //    {
+        //        conn.Close();
+        //    }
+        //}
         public void UpVoteArticle(Vote v)
         {
             string sql = "INSERT INTO vote (user_id, article_id, vote) VALUES(@UID, @AID, @V)";

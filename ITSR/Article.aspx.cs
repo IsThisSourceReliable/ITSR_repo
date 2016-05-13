@@ -13,11 +13,23 @@ namespace ITSR
 {
     public partial class Article : System.Web.UI.Page
     {
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadArticle();
-            ListView1.DataSource = GetStuff();
-            ListView1.DataBind();
+            if (Session["UserID"] == null)
+            {
+
+            }
+
+            if (!IsPostBack)
+            {
+                LoadArticle();
+                LoadComments();
+                //ListView1.DataSource = GetStuff();
+                //ListView1.DataBind();
+                lblCommenLogin.Visible = false;
+            }
         }
 
         /// <summary>
@@ -44,6 +56,11 @@ namespace ITSR
             SetVotes(totalVotes, upVotePercent, downVotePercent);
         }
 
+        /// <summary>
+        /// Method sets all the labels in the article uses datatable which is
+        /// retrived from Loadarticle method.
+        /// </summary>
+        /// <param name="dt"></param>
         private void SetArticleLables(DataTable dt)
         {
             hiddenArticleID.Value = dt.Rows[0]["idarticle"].ToString();
@@ -57,6 +74,10 @@ namespace ITSR
             articleText.InnerHtml = dt.Rows[0]["text"].ToString();
         }
 
+        /// <summary>
+        /// This method binds the listview and referenses tougheter. 
+        /// </summary>
+        /// <param name="xml"></param>
         private void BindReferences(string xml)
         {
             if (xml == string.Empty)
@@ -66,13 +87,19 @@ namespace ITSR
             else
             {
                 lblRefText.Text = "";
-                DataTable dt = DaStuff(xml);
+                DataTable dt = ReadXMLReferences(xml);
                 ListViewReferences.DataSource = dt;
                 ListViewReferences.DataBind();
             }
         }
 
-        private DataTable DaStuff(string xml)
+        /// <summary>
+        /// This method reads the xml reference file and returns it as a datatable
+        /// to be able to bind it with a listview.
+        /// </summary>
+        /// <param name="xml"></param>
+        /// <returns></returns>
+        private DataTable ReadXMLReferences(string xml)
         {
             StringReader theReader = new StringReader(xml);
             DataSet theDataSet = new DataSet();
@@ -81,11 +108,42 @@ namespace ITSR
             return theDataSet.Tables[0];
         }
 
+        /// <summary>
+        /// Method sets the upvotes for an article and sets the width of
+        /// the vote bar.
+        /// </summary>
+        /// <param name="totalVotes"></param>
+        /// <param name="upVotes"></param>
+        /// <param name="downVotes"></param>
         private void SetVotes(int totalVotes, double upVotes, double downVotes)
         {
             lblTotalVotes.Text = totalVotes.ToString();
             upvoteBar.Style.Add("width", "" + upVotes + "%");
             downvoteBar.Style.Add("width", "" + downVotes + "%");
+        }
+
+
+        /// <summary>
+        /// Method loads all the comments to an article.
+        /// </summary>
+        private void LoadComments()
+        {
+            Comment GetArticleComments = new Comment();
+            DataTable dt = new DataTable();
+            GetArticleComments.Article_id = int.Parse(Session["ArticleID"].ToString());
+            dt = GetArticleComments.GetComments();
+            if (dt.Rows.Count == 0)
+            {
+                lblNoComments.Visible = true;
+                lblNoComments.Text = "There is no comments on this article, be the first one to comment!";            
+            }
+            else
+            {
+                lblNoComments.Visible = false;
+
+                listViewComments.DataSource = dt;
+                listViewComments.DataBind();
+            }
         }
 
         /// <summary>
@@ -139,8 +197,11 @@ namespace ITSR
             //}
             string value = e.CommandName.ToString();
             string listViewIndex = e.Item.DataItemIndex.ToString();
-            string dataBaseIndex = e.CommandArgument.ToString();
+            //string dataBaseIndex = e.CommandArgument.ToString();
             Label lbltext = (Label)e.Item.FindControl("Label2");
+            HiddenField daHiddenField = (HiddenField)e.Item.FindControl("HiddenCommentID");
+            string dataBaseIndex = daHiddenField.Value.ToString();
+
             switch (value)
             {
                 case "ReportComment":
@@ -152,7 +213,7 @@ namespace ITSR
                     break;
 
                 default:
-                    Label3.Text = "Default";
+                    //Label3.Text = "Default";
                     break;
             }
 
@@ -160,7 +221,7 @@ namespace ITSR
 
         private void ReportComment(string listViewIndex, string dataBaseIndex, Label lbltext)
         {
-            Label3.Text = "Report!";
+            //Label3.Text = "Report!";
             lblIndexListView.Text = listViewIndex;
             lblIndexDataBase.Text = dataBaseIndex;
             lblUserName.Text = lbltext.Text;
@@ -169,7 +230,7 @@ namespace ITSR
 
         private void DeleteComment(string listViewIndex, string dataBaseIndex, Label lbltext)
         {
-            Label3.Text = "Delete!";
+            //Label3.Text = "Delete!";
             lblIndexListView.Text = listViewIndex;
             lblIndexDataBase.Text = dataBaseIndex;
             lblUserName.Text = lbltext.Text;
@@ -180,6 +241,59 @@ namespace ITSR
         {           
             Session["ArticleID"] = hiddenArticleID.Value.ToString();
             Response.Redirect("~/EditArticle.aspx");
+        }
+
+        protected void btnPostComment_Click(object sender, EventArgs e)
+        {
+            if(Session["UserID"] == null)
+            {
+                lblCommenLogin.Text = "You have to login to post a comment.";
+                lblCommenLogin.Visible = true;
+            }
+            else
+            {
+                Comment newComment = new Comment();
+
+                newComment.CommentText = txtComment.Text;
+                newComment.User_id = int.Parse(Session["UserID"].ToString());
+                newComment.Article_id = int.Parse(hiddenArticleID.Value.ToString());
+                newComment.Removed = false;
+                newComment.Date = DateTime.Now;
+
+                newComment.InsertComment();
+                txtComment.Text = string.Empty;
+                lblCommenLogin.Visible = false;
+
+                LoadComments();
+            }
+
+        }
+
+        protected void listViewComments_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            string value = e.CommandName.ToString();
+            string listViewIndex = e.Item.DataItemIndex.ToString();
+            //string dataBaseIndex = e.CommandArgument.ToString();
+            //Label lbltext = (Label)e.Item.FindControl("Label2");
+            HiddenField commentID = (HiddenField)e.Item.FindControl("HiddenCommentID");
+            HiddenField commentUserID = (HiddenField)e.Item.FindControl("HiddenUserID");
+            Label userNameLbl = (Label)e.Item.FindControl("lblCommentUserName");
+            Label  txtCommentLbl = (Label)e.Item.FindControl("lblCommentText");
+
+            //switch (value)
+            //{
+            //    case "ReportComment":
+            //        ReportComment(listViewIndex, dataBaseIndex, lbltext);
+            //        break;
+
+            //    case "DeleteComment":
+            //        DeleteComment(listViewIndex, dataBaseIndex, lbltext);
+            //        break;
+
+            //    default:
+            //        //Label3.Text = "Default";
+            //        break;
+            //}
         }
     }
 }
