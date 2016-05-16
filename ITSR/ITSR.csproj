@@ -81,12 +81,14 @@
     <Content Include="CSS\CreateArticleCSS.css" />
     <Content Include="CSS\ArticleCSS.css" />
     <Content Include="CSS\DefaultCSS.css" />
+    <Content Include="CSS\EditProfileCSS.css" />
     <Content Include="CSS\Glyphicons.css" />
     <Content Include="CSS\ProfileCSS.css" />
     <Content Include="CSS\RegisterCSS.css" />
     <Content Include="CSS\SearchCSS.css" />
     <Content Include="default.aspx" />
     <Content Include="EditArticle.aspx" />
+    <Content Include="EditProfile.aspx" />
     <Content Include="IMG\profilepic.jpg" />
     <Content Include="IMG\books.jpg" />
     <Content Include="JS\default.js" />
@@ -175,6 +177,13 @@
     </Compile>
     <Compile Include="EditArticle.aspx.designer.cs">
       <DependentUpon>EditArticle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditProfile.aspx.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditProfile.aspx.designer.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="MainMaster.Master.cs">
       <DependentUpon>MainMaster.Master</DependentUpon>
