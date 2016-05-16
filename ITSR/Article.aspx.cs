@@ -13,7 +13,18 @@ namespace ITSR
 {
     public partial class Article : System.Web.UI.Page
     {
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            var master = (MainMaster)Page.Master;
+            master.UpdateArticlePage += MasterSelected;
+            //master.OnSomethingSelected += MasterSelected;
+        }
 
+        private void MasterSelected()
+        {
+            
+            LoadComments(hiddenArticleID.Value.ToString());
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,7 +36,6 @@ namespace ITSR
             if (!IsPostBack)
             {
                 LoadArticle();
-                LoadComments();
                 //ListView1.DataSource = GetStuff();
                 //ListView1.DataBind();
                 lblCommenLogin.Visible = false;
@@ -37,12 +47,12 @@ namespace ITSR
         /// </summary>
         private void LoadArticle()
         {
-            string articleID = Session["ArticleID"].ToString();
+            string articleID = "121"; /*Session["ArticleID"].ToString();*/
             Articles getArticle = new Articles();
             getArticle.ID = Convert.ToInt32(articleID);
             DataTable dt = getArticle.GetArticle();
 
-            string referenceXML = dt.Rows[0]["reference_xml"].ToString();
+            //string referenceXML = dt.Rows[0]["reference_xml"].ToString();
 
             getArticle.upVotes = int.Parse(dt.Rows[0]["votes_up"].ToString());
             getArticle.downVotes = int.Parse(dt.Rows[0]["votes_down"].ToString());
@@ -52,8 +62,9 @@ namespace ITSR
             double downVotePercent = getArticle.SetDownVotesPercent(upVotePercent);
 
             SetArticleLables(dt);
-            BindReferences(referenceXML);
+            //BindReferences(referenceXML);
             SetVotes(totalVotes, upVotePercent, downVotePercent);
+            LoadComments(articleID);
         }
 
         /// <summary>
@@ -72,6 +83,9 @@ namespace ITSR
             lblEditDate.Text = dt.Rows[0]["lastedit_date"].ToString();
             linkBtnLastEdit.Text = dt.Rows[0]["edituser"].ToString();
             articleText.InnerHtml = dt.Rows[0]["text"].ToString();
+
+            string referenceXML = dt.Rows[0]["reference_xml"].ToString();
+            BindReferences(referenceXML);
         }
 
         /// <summary>
@@ -126,11 +140,11 @@ namespace ITSR
         /// <summary>
         /// Method loads all the comments to an article.
         /// </summary>
-        private void LoadComments()
+        private void LoadComments(string articleID)
         {
             Comment GetArticleComments = new Comment();
             DataTable dt = new DataTable();
-            GetArticleComments.Article_id = int.Parse(Session["ArticleID"].ToString());
+            GetArticleComments.Article_id = int.Parse(articleID);
             dt = GetArticleComments.GetComments();
             if (dt.Rows.Count == 0)
             {
@@ -190,50 +204,51 @@ namespace ITSR
 
         protected void ListView1_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
-            //Label3.Text = "Index: " + e.Item.DataItemIndex.ToString() + " , Arg: " + e.CommandArgument;
-            //if(e.CommandName == "ReportComment")
+            ////Label3.Text = "Index: " + e.Item.DataItemIndex.ToString() + " , Arg: " + e.CommandArgument;
+            ////if(e.CommandName == "ReportComment")
+            ////{
+            ////    Label3.Text = "Report!";
+            ////}
+            //string value = e.CommandName.ToString();
+            //string listViewIndex = e.Item.DataItemIndex.ToString();
+            ////string dataBaseIndex = e.CommandArgument.ToString();
+            //Label lbltext = (Label)e.Item.FindControl("Label2");
+            //HiddenField daHiddenField = (HiddenField)e.Item.FindControl("HiddenCommentID");
+            //string dataBaseIndex = daHiddenField.Value.ToString();
+
+            //switch (value)
             //{
-            //    Label3.Text = "Report!";
+            //    case "ReportComment":
+            //        ReportComment(listViewIndex, dataBaseIndex, lbltext);
+            //        break;
+
+            //    case "DeleteComment":
+            //        DeleteComment(listViewIndex, dataBaseIndex, lbltext);
+            //        break;
+
+            //    default:
+            //        //Label3.Text = "Default";
+            //        break;
             //}
-            string value = e.CommandName.ToString();
-            string listViewIndex = e.Item.DataItemIndex.ToString();
-            //string dataBaseIndex = e.CommandArgument.ToString();
-            Label lbltext = (Label)e.Item.FindControl("Label2");
-            HiddenField daHiddenField = (HiddenField)e.Item.FindControl("HiddenCommentID");
-            string dataBaseIndex = daHiddenField.Value.ToString();
-
-            switch (value)
-            {
-                case "ReportComment":
-                    ReportComment(listViewIndex, dataBaseIndex, lbltext);
-                    break;
-
-                case "DeleteComment":
-                    DeleteComment(listViewIndex, dataBaseIndex, lbltext);
-                    break;
-
-                default:
-                    //Label3.Text = "Default";
-                    break;
-            }
 
         }
 
-        private void ReportComment(string listViewIndex, string dataBaseIndex, Label lbltext)
+        private void SetOverlayLabels(string commentID, string commentText, string username)
         {
-            //Label3.Text = "Report!";
-            lblIndexListView.Text = listViewIndex;
-            lblIndexDataBase.Text = dataBaseIndex;
-            lblUserName.Text = lbltext.Text;
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
+            CommentIDOverlay.Value = commentID;
+            lblCommentTextOverlay.Text = commentText;
+            lblUserNameComment.Text = username;
+
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "OpenOverlay", "OpenOverlay();", true);
         }
 
         private void DeleteComment(string listViewIndex, string dataBaseIndex, Label lbltext)
         {
             //Label3.Text = "Delete!";
-            lblIndexListView.Text = listViewIndex;
-            lblIndexDataBase.Text = dataBaseIndex;
-            lblUserName.Text = lbltext.Text;
+            //lblIndexListView.Text = listViewIndex;
+            //lblIndexDataBase.Text = dataBaseIndex;
+            //lblUserName.Text = lbltext.Text;
             Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
         }
 
@@ -253,10 +268,10 @@ namespace ITSR
             else
             {
                 Comment newComment = new Comment();
-
+                string articleID = hiddenArticleID.Value.ToString();
                 newComment.CommentText = txtComment.Text;
                 newComment.User_id = int.Parse(Session["UserID"].ToString());
-                newComment.Article_id = int.Parse(hiddenArticleID.Value.ToString());
+                newComment.Article_id = int.Parse(articleID);
                 newComment.Removed = false;
                 newComment.Date = DateTime.Now;
 
@@ -264,7 +279,7 @@ namespace ITSR
                 txtComment.Text = string.Empty;
                 lblCommenLogin.Visible = false;
 
-                LoadComments();
+                LoadComments(articleID);
             }
 
         }
@@ -276,24 +291,66 @@ namespace ITSR
             //string dataBaseIndex = e.CommandArgument.ToString();
             //Label lbltext = (Label)e.Item.FindControl("Label2");
             HiddenField commentID = (HiddenField)e.Item.FindControl("HiddenCommentID");
-            HiddenField commentUserID = (HiddenField)e.Item.FindControl("HiddenUserID");
+            //HiddenField commentUserID = (HiddenField)e.Item.FindControl("HiddenUserID");
             Label userNameLbl = (Label)e.Item.FindControl("lblCommentUserName");
-            Label  txtCommentLbl = (Label)e.Item.FindControl("lblCommentText");
+            Label txtCommentLbl = (Label)e.Item.FindControl("lblCommentText");
+            Label label3 = (Label)e.Item.FindControl("Label3");
+            Label label4 = (Label)e.Item.FindControl("Label4");
+            Label label5 = (Label)e.Item.FindControl("Label5");
 
-            //switch (value)
-            //{
-            //    case "ReportComment":
-            //        ReportComment(listViewIndex, dataBaseIndex, lbltext);
-            //        break;
+            string sCommentID = commentID.Value.ToString();
+            string sUserName = userNameLbl.Text;
+            string sTxtComment = txtCommentLbl.Text;
+            
+            switch (value)
+            {
+                case "ReportComment":
+                    SetOverlayLabels(sCommentID, sTxtComment, sUserName);
+                    label3.Text = sCommentID;
+                    label4.Text = sTxtComment;
+                    label5.Text = sUserName;
 
-            //    case "DeleteComment":
-            //        DeleteComment(listViewIndex, dataBaseIndex, lbltext);
-            //        break;
+                    //ReportComment(listViewIndex, dataBaseIndex, lbltext);
+                    break;
 
-            //    default:
-            //        //Label3.Text = "Default";
-            //        break;
-            //}
+                case "DeleteComment":
+                    //DeleteComment(listViewIndex, dataBaseIndex, lbltext);
+                    break;
+
+                default:
+                    //Label3.Text = "Default";
+                    break;
+            }
+        }
+
+        protected void listViewComments_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                var linkButtonReport = (LinkButton)e.Item.FindControl("lBtnReport");
+                var linkButtonDelete = (LinkButton)e.Item.FindControl("lBtnDelete");
+
+                if (Session["UserID"] == null) 
+                {
+                    linkButtonReport.Visible = false;
+                    linkButtonDelete.Visible = false;
+                }
+                else
+                {
+                    linkButtonReport.Visible = true;
+                    linkButtonDelete.Visible = false;
+                }
+                //else if(UserIsAMember)
+                //{
+                //    linkButtonReport.Visible = true;
+                //    linkButtonDelete.Visible = false;
+                //}
+                //else //Is a user is an admin show everything.
+                //{
+                //    linkButtonReport.Visible = true;
+                //    linkButtonDelete.Visible = true;
+                //}
+            }
         }
     }
 }

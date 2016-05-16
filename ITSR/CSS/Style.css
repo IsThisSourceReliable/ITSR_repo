@@ -1,32 +1,31 @@
- /*****************************************************
+/*****************************************************
 	GENERAL
 *****************************************************/
 * {
-	margin: 0em;
-	padding: 0em;
-	font-family: 'latolight', Helvetica, sans-serif;	
+    margin: 0em;
+    padding: 0em;
+    font-family: 'latolight', Helvetica, sans-serif;
 }
 
 .container {
-	min-width: 100%;
-	overflow: visible;
-	position: relative;
-
+    min-width: 100%;
+    overflow: visible;
+    position: relative;
     -webkit-transition: -webkit-transform 0.2s linear;
-    -moz-transition: -moz-transform 0.2s linear; 
-    -ms-transition: -ms-transform 0.2s linear;  
-    -o-transition: -o-transform 0.2s linear;  
-    transition: transform 0.2s linear; 
+    -moz-transition: -moz-transform 0.2s linear;
+    -ms-transition: -ms-transform 0.2s linear;
+    -o-transition: -o-transform 0.2s linear;
+    transition: transform 0.2s linear;
 }
 
 .content {
-	/*text-align: center;*/
-	margin: 0em auto;
-	width: 1200px;
+    /*text-align: center;*/
+    margin: 0em auto;
+    width: 1200px;
 }
 
 .contentRow {
-    width:100%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -47,15 +46,14 @@
     height: 100%;
     background-image: url('../IMG/books.jpg');
     overflow: visible;
-    background-size: 100% 100%;    
-	overflow: hidden;
+    background-size: 100% 100%;
+    overflow: hidden;
     z-index: -500;
-
     -webkit-transition: -webkit-transform 0.2s linear;
-    -moz-transition: -moz-transform 0.2s linear; 
-    -ms-transition: -ms-transform 0.2s linear;  
-    -o-transition: -o-transform 0.2s linear;  
-    transition: transform 0.2s linear; 
+    -moz-transition: -moz-transform 0.2s linear;
+    -ms-transition: -ms-transform 0.2s linear;
+    -o-transition: -o-transform 0.2s linear;
+    transition: transform 0.2s linear;
 }
 
 /*.page-wrap {
@@ -91,45 +89,47 @@
     margin-top: 76px;
 }
 
-.white-box {    
+.white-box {
     background: #FFFFFF;
     border-radius: 20px;
-    overflow:auto;
+    overflow: auto;
     padding-bottom: 1em;
 }
 
 .fullBox {
-	width: 100%;
-	float: left;
+    width: 100%;
+    float: left;
 }
 
 .sevenFiveBox {
-	float: left;
-	width: 74.5%;
+    float: left;
+    width: 74.5%;
 }
 
 .halfBox {
-	width: 49%;
-	float: left;
+    width: 49%;
+    float: left;
 }
+
 .quarterBox {
-	width: 23%;
-	float: left;
+    width: 23%;
+    float: left;
 }
 
 .twothirdBox {
     width: 66.5%;
-	float: left;
+    float: left;
 }
+
 .thirdBox {
-	width: 31.5%;
-	float: left;
+    width: 31.5%;
+    float: left;
 }
 
 /*****************************************************
 	PAGE OVERLAY
 *****************************************************/
-.page-overlay{
+.page-overlay {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -141,51 +141,51 @@
 }
 
 .overlay-message {
-	margin: 0em auto;
-	margin-top: 10%;
-	padding-bottom: 1em;
+    margin: 0em auto;
+    margin-top: 10%;
+    padding-bottom: 1em;
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 1em;
-	background: white;
-	width: 900px;
-    overflow:auto;
+    background: white;
+    width: 900px;
+    overflow: auto;
 }
 
 .close-glyph {
     cursor: pointer;
 }
 
-@media (max-width: 950px) {	
-	.overlay-message  {
-        width: 94%;        
+@media (max-width: 950px) {
+    .overlay-message {
+        width: 94%;
         margin: 0em auto;
         margin-top: 10%;
         margin-left: 1%;
         margin-right: 1%;
-  }
-} 
+    }
+}
 
-@media (max-width: 768px) {	
-	.overlay-message  {
+@media (max-width: 768px) {
+    .overlay-message {
         margin-top: 15%;
-  }
-} 
+    }
+}
 
-@media (max-width: 480px) {	
-	.overlay-message  {
+@media (max-width: 480px) {
+    .overlay-message {
         margin: 0em auto;
         margin-top: 20%;
-  }
-} 
+    }
+}
 
 
- /*****************************************************
+/*****************************************************
 	TEXT and HEADINS
 *****************************************************/
 
 p {
-	font-size: 1.2em;
+    font-size: 1.2em;
 }
 
 .fail-text {
@@ -194,44 +194,44 @@ p {
 }
 
 a {
-	text-decoration: none;
+    text-decoration: none;
     color: #4cb2b4;
 }
 
-a:hover {
-    color:#81c9ca;
-}
+    a:hover {
+        color: #81c9ca;
+    }
 
-.links{
-	color: #97c98c;
-	font-weight: 900; 
+.links {
+    color: #97c98c;
+    font-weight: 900;
 }
 
 .white-link {
-    color:#edf7f7;
+    color: #edf7f7;
 }
 
 .links:hover {
-	color: #b880c4;
+    color: #b880c4;
 }
 
 h1 {
-	margin-top: 0.1em;
-	font-size: 6em;
-	font-weight: 100;
+    margin-top: 0.1em;
+    font-size: 6em;
+    font-weight: 100;
     color: #002f2f;
 }
 
 h2 {
-	margin-top: 0.1em;
-	font-size: 3em;
-	font-weight: 100;
+    margin-top: 0.1em;
+    font-size: 3em;
+    font-weight: 100;
 }
 
 h3 {
-	margin-top: 0.1em;
-	font-size: 1.8em;
-	font-weight: 100;
+    margin-top: 0.1em;
+    font-size: 1.8em;
+    font-weight: 100;
 }
 
 h4 {
@@ -247,46 +247,48 @@ h4 {
 }
 
 .h2-center {
-	text-align: center;
+    text-align: center;
 }
 
 .p-center-text {
-	text-align: center;
-	padding-left: 3em;
-	padding-right: 3em;
+    text-align: center;
+    padding-left: 3em;
+    padding-right: 3em;
 }
+
 .big-glyph {
-	text-align: center;
-	font-size: 5em;
+    text-align: center;
+    font-size: 5em;
 }
 
 .glyph-align-master {
     padding-top: 1em;
     display: inline-block;
 }
+
 .center-text {
-    text-align:center;
+    text-align: center;
 }
 
-.DropDown{
+.DropDown {
     font-size: 1.4em;
     margin: 0em auto;
     padding: 5px 5px 5px 5px;
     width: 98%;
     cursor: pointer;
     border-radius: 12px;
-    border-style: solid; 
+    border-style: solid;
     border-width: 1px;
     margin: 0em auto;
 }
 
-.DropDown:focus {
-  border-radius: 12px;
-  border-style: solid; 
-  border-width: 1px;
-  border-color: #4cb2b4;
-  	outline: 0;
-}
+    .DropDown:focus {
+        border-radius: 12px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #4cb2b4;
+        outline: 0;
+    }
 
 /*****************************************************
 	BUTTONS
@@ -296,31 +298,32 @@ h4 {
 }
 
 .itsr-button {
-	text-align: center;
-	display: inline-block;
-	width: 100%;
-	padding-top:10px;
-	padding-bottom:10px;
-	color: #FFFFFF;
-	background-color: #4cb2b4; 
-	margin-left: 0.2em;
-	margin-right: 0.2em;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFFFFF;
+    background-color: #4cb2b4;
+    margin-left: 0.2em;
+    margin-right: 0.2em;
     border-radius: 12px;
-    border-style: solid; 
+    border-style: solid;
     border-width: 1px;
     border-color: #4cb2b4;
     outline: none;
     font-size: 1.4em;
-    cursor: pointer;   
+    cursor: pointer;
 }
-.itsr-button:hover {
-	color: #edf7f7;
-	background: #81c9ca;
-    border-radius: 12px;
-    border-style: solid; 
-    border-width: 1px;
-    border-color: #81c9ca;
-}
+
+    .itsr-button:hover {
+        color: #edf7f7;
+        background: #81c9ca;
+        border-radius: 12px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #81c9ca;
+    }
 
 
 
@@ -334,72 +337,70 @@ h4 {
 }*/
 
 .logoContainer {
-	float: left;
-	overflow-x: hidden;
+    float: left;
+    overflow-x: hidden;
 }
+
 .header-logo {
-	width: 100%;
-	height: auto; 
-	overflow-x:hidden;
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
 }
 
 /*****************************************************
 	Gmap
 *****************************************************/
 .gMap {
-	margin-left: 0.5em;
-	margin-right: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
 }
 
 #gMapIframe {
-	width:100%;
+    width: 100%;
 }
 
 @media (max-width: 1200px) {
-	.gMap {
-	margin-left: 1em;
-	margin-right: 1em;
-
-	}
+    .gMap {
+        margin-left: 1em;
+        margin-right: 1em;
+    }
 }
 
 /*****************************************************
 	FACEBOOK
 *****************************************************/
 .facebookBox {
-	margin-left: 2em;
-	margin-top: 1em;
+    margin-left: 2em;
+    margin-top: 1em;
 }
 
 .facebookBoxFoot {
-	margin-top: 2em;
-	margin-bottom: 2em;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 /* This element holds injected scripts inside iframes that in some cases may stretch layouts. So, we're just hiding it. */
 #fb-root {
-  display: none;
+    display: none;
 }
- 
+
 /* To fill the container and nothing else */
 .fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe[style] {
-  width: 100% !important;
+    width: 100% !important;
 }
 
-@media (max-width: 768px) {	
-	.facebookBox,
-	.facebookBoxFoot {
-		margin-right: 1em;
-		margin-left: 1em;
-
-	}
+@media (max-width: 768px) {
+    .facebookBox,
+    .facebookBoxFoot {
+        margin-right: 1em;
+        margin-left: 1em;
+    }
 }
 
-@media (max-width: 992px) {	
-	.facebookBoxFoot {
-		margin-right: 1em;
-		margin-left: 1em;
-
-	}
+@media (max-width: 992px) {
+    .facebookBoxFoot {
+        margin-right: 1em;
+        margin-left: 1em;
+    }
 }
 
 /*****************************************************
@@ -407,42 +408,42 @@ h4 {
 *****************************************************/
 .navbar-section {
     background-color: rgba(7, 78, 103, 0.3); /*#074e67*/
-	position: fixed;
-	z-index: 1000;
-    border-bottom: 0.1em solid #81c9ca/*#edf7f7*/;
+    position: fixed;
+    z-index: 1000;
+    border-bottom: 0.1em solid #81c9ca /*#edf7f7*/;
 }
 
 .sticky {
-	position: fixed;
+    position: fixed;
     width: 322px;
     background: #074e67;
 }
 
 .main-navbar {
-	list-style: none;
-	display: block;
-    float: left; 
+    list-style: none;
+    display: block;
+    float: left;
 }
 
-.main-navbar > li {
-	display: inline;
-	float: left;
-}
+    .main-navbar > li {
+        display: inline;
+        float: left;
+    }
 
-.main-navbar > li > p {
-	display: inline-block;
-	padding:20px 30px 20px 30px;
-	color: #edf7f7; 
-    cursor: pointer;
-    font-weight: bold;
-}
+        .main-navbar > li > p {
+            display: inline-block;
+            padding: 20px 30px 20px 30px;
+            color: #edf7f7;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
-.main-navbar > li > p:hover {
-	display: inline-block;
-	padding:20px 30px 20px 30px;
-	color: #81c9ca;
-	/*background: #FFFFFF;*/
-}
+            .main-navbar > li > p:hover {
+                display: inline-block;
+                padding: 20px 30px 20px 30px;
+                color: #81c9ca;
+                /*background: #FFFFFF;*/
+            }
 
 .active {
     background: #6c6c6c;
@@ -453,74 +454,71 @@ h4 {
 }
 
 .menu-left {
-	display: inline-block;
-	float: left;
+    display: inline-block;
+    float: left;
     width: 322px;
-	left: -322px;
-	position: fixed;
-	height: 100%;
+    left: -322px;
+    position: fixed;
+    height: 100%;
     background: #074e67;
-	/*z-index: 1300;*/
-
+    /*z-index: 1300;*/
     -webkit-transition: -webkit-transform 0.2s linear;
-    -moz-transition: -moz-transform 0.2s linear; 
-    -ms-transition: -ms-transform 0.2s linear;  
-    -o-transition: -o-transform 0.2s linear;  
-    transition: transform 0.2s linear; 
+    -moz-transition: -moz-transform 0.2s linear;
+    -ms-transition: -ms-transform 0.2s linear;
+    -o-transition: -o-transform 0.2s linear;
+    transition: transform 0.2s linear;
 }
 
 .menu-right {
-	display: inline-block;
-	float: right;
+    display: inline-block;
+    float: right;
     width: 322px;
-	right: -322px;
-	position: fixed;
-	height: 100%;
+    right: -322px;
+    position: fixed;
+    height: 100%;
     background: #074e67;
-	/*z-index: 1300;*/
-
+    /*z-index: 1300;*/
     -webkit-transition: -webkit-transform 0.2s linear;
-    -moz-transition: -moz-transform 0.2s linear; 
-    -ms-transition: -ms-transform 0.2s linear;  
-    -o-transition: -o-transform 0.2s linear;  
-    transition: transform 0.2s linear; 
+    -moz-transition: -moz-transform 0.2s linear;
+    -ms-transition: -ms-transform 0.2s linear;
+    -o-transition: -o-transform 0.2s linear;
+    transition: transform 0.2s linear;
 }
 
 .side-left-navbar {
-	list-style: none;
-	display: block;
+    list-style: none;
+    display: block;
     /*margin-top: 64px;*/
-    float: left; 
+    float: left;
     width: 322px;
     /*position: fixed;*/
-    	/*z-index: 1500;*/
+    /*z-index: 1500;*/
 }
 
-.side-left-navbar > li {
-	/*display: block;*/
-	float: left;
-	width: 100%;
+    .side-left-navbar > li {
+        /*display: block;*/
+        float: left;
+        width: 100%;
+    }
 
-}
+        .side-left-navbar > li > p {
+            display: block;
+            padding: 20px 30px 20px 30px;
+            color: #edf7f7;
+            /*background-color: #FFFFFF;*/
+            font-weight: bold;
+            cursor: pointer;
+            border-bottom: 1px solid #81c9ca;
+        }
 
-.side-left-navbar > li > p {
-	display: block;
-	padding:20px 30px 20px 30px;
-	color: #edf7f7; 
-	/*background-color: #FFFFFF;*/
-    font-weight: bold;
-    cursor: pointer;
-    border-bottom: 1px solid #81c9ca;
-}
-
-.side-left-navbar > li > p:hover {
-	display: block;		   
-    background: #81c9ca;
-	padding:20px 30px 20px 30px;
-	color: #edf7f7;
-    border-bottom: 1px solid #edf7f7;
-	/*background: #999999;*/
-}
+            .side-left-navbar > li > p:hover {
+                display: block;
+                background: #81c9ca;
+                padding: 20px 30px 20px 30px;
+                color: #edf7f7;
+                border-bottom: 1px solid #edf7f7;
+                /*background: #999999;*/
+            }
 
 .left-menu-bottom {
     border-bottom: 1px solid #81c9ca;
@@ -528,7 +526,7 @@ h4 {
 
 .left-menu-title {
     margin: 0.11em 0.2em 0.10em 0.5em;
-	color: #edf7f7; 
+    color: #edf7f7;
     font-size: 3em;
 }
 
@@ -542,86 +540,86 @@ h4 {
 
 .right-menu-title {
     margin: 0.11em 0.2em 0.10em 0.5em;
-	color: #edf7f7; 
+    color: #edf7f7;
     font-size: 3em;
 }
 
 .username-box {
-    width:90%;
+    width: 90%;
     margin-top: 1em;
     margin-bottom: 1em;
     margin-left: 0.4em;
 }
 
 .password-box {
-    width:90%;
+    width: 90%;
     margin-bottom: 1em;
     margin-left: 0.4em;
 }
 
 .login-btn-box {
-    width:90%;
+    width: 90%;
     margin-left: 0.7em;
 }
 
 /*****************************************************
 	Responsive-Navbar
-*****************************************************/ 
+*****************************************************/
 .open-menu-link {
-	display: none;
-	padding:20px 30px 20px 30px;
-	color: white;
-	float: right;
-	overflow: visible;
+    display: none;
+    padding: 20px 30px 20px 30px;
+    color: white;
+    float: right;
+    overflow: visible;
 }
 
-.open-menu-link:hover {
-	background: #FFFFFF;
-	color: black;
-}
+    .open-menu-link:hover {
+        background: #FFFFFF;
+        color: black;
+    }
 
 .responsive-navbar-holder {
-	display: block;
-	float: right;
-	right: -20em;
-	position: fixed;
-	height: 100%;
-	width: 0em;
+    display: block;
+    float: right;
+    right: -20em;
+    position: fixed;
+    height: 100%;
+    width: 0em;
     background: #2d2d2d;
-	z-index: 1035;
-	-webkit-transition: width 1s; 
+    z-index: 1035;
+    -webkit-transition: width 1s;
     transition: width 1s;
 }
 
 .responsive-navbar {
-	text-align: left;
-	display: block;
-	list-style: none;
-	position: relative;
-	float: left; 
-	width: 100%;
+    text-align: left;
+    display: block;
+    list-style: none;
+    position: relative;
+    float: left;
+    width: 100%;
 }
 
-.responsive-navbar > li {
-	/*display: block;*/
-	color: white;
-}
+    .responsive-navbar > li {
+        /*display: block;*/
+        color: white;
+    }
 
-.responsive-navbar > li > a {
-	display: block;
-	padding:20px 30px 20px 30px;
-	color: white;
-}
+        .responsive-navbar > li > a {
+            display: block;
+            padding: 20px 30px 20px 30px;
+            color: white;
+        }
 
-.responsive-navbar > li > a:hover {
-	display: block;
-	padding:20px 30px 20px 30px;
-	color: black;
-	background: #FFFFFF;
-}
+            .responsive-navbar > li > a:hover {
+                display: block;
+                padding: 20px 30px 20px 30px;
+                color: black;
+                background: #FFFFFF;
+            }
 
 #open-menu:target {
-	width: 40em;
+    width: 40em;
 }
 
 
@@ -630,49 +628,11 @@ h4 {
 	TextBox
 *****************************************************/
 
-.txt-box{
-  display: block;
-  width: 100%;
-  border-radius: 11px;
-  border-style: solid; 
-  border-width: 1px;
-  border-color: #989898;
-  font-size: 1.4em;
-  margin: 0em auto;
-  padding: 10px 10px 10px 10px;
-  font-family: 'latolight', helvetica, arial, sans-serif;	
-}
-
-.txt-box:focus {
-  border-radius: 12px;
-  border-style: solid; 
-  border-width: 1px;
-  border-color: #edf7f7;
-  	outline: 0;	
-  /*-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(50, 50, 255, .6);
-          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(50, 178, 255, .6);*/  
-}
-
-.my-list-box{
-  text-align: left;
-  display: block;
-  width: 98%;
-  border-radius: 5px;
-  border-style: solid; 
-  border-width: 1px;
-  border-color: #989898;
-  font-size: 1.4em;
-  margin-right: 1em;
-  padding: 2px 2px 2px 6px;
-  font-family: 'latolight', helvetica, arial, sans-serif;	
-}
-
-.multiline-txt-box {
+.txt-box {
     display: block;
     width: 100%;
-    height: 100%;
     border-radius: 11px;
-    border-style: solid; 
+    border-style: solid;
     border-width: 1px;
     border-color: #989898;
     font-size: 1.4em;
@@ -681,43 +641,81 @@ h4 {
     font-family: 'latolight', helvetica, arial, sans-serif;
 }
 
-.multiline-txt-box:focus {
-  border-radius: 12px;
-  border-style: solid; 
-  border-width: 1px;
-  border-color: #4cb2b4;
-  	outline: 0;	
-  /*-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(50, 50, 255, .6);
-          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(50, 178, 255, .6);*/  
+    .txt-box:focus {
+        border-radius: 12px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #edf7f7;
+        outline: 0;
+        /*-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(50, 50, 255, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(50, 178, 255, .6);*/
+    }
+
+.my-list-box {
+    text-align: left;
+    display: block;
+    width: 98%;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #989898;
+    font-size: 1.4em;
+    margin-right: 1em;
+    padding: 2px 2px 2px 6px;
+    font-family: 'latolight', helvetica, arial, sans-serif;
 }
+
+.multiline-txt-box {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 11px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #989898;
+    font-size: 1.4em;
+    margin: 0em auto;
+    padding: 10px 10px 10px 10px;
+    font-family: 'latolight', helvetica, arial, sans-serif;
+}
+
+    .multiline-txt-box:focus {
+        border-radius: 12px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #4cb2b4;
+        outline: 0;
+        /*-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(50, 50, 255, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(50, 178, 255, .6);*/
+    }
 
 .Grid {
     /*background-color: #fff; 
     margin: 5px 0 10px 0; 
     border: solid 1px #525252; 
     border-collapse:collapse; */
-    font-family:'latolight'; 
+    font-family: 'latolight';
     color: black;
     width: 98%;
     margin: 0em auto;
 }
 
-.Grid td {      
-      padding-top: 0.5em;
-      padding-bottom: 0.5em;
-      text-align: center;
-      font-size: 1.2em;
-/*      border: solid 1px #c1c1c1; */
-}
-.Grid th  {
-      padding-top: 0.5em;
-      padding-bottom: 0.5em;
-      color: black;
-      /*background: #AF3C3C;
-      border-left: solid 1px #525252;*/
-      font-size: 1.3em; 
+    .Grid td {
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        text-align: center;
+        font-size: 1.2em;
+        /*      border: solid 1px #c1c1c1; */
+    }
 
-}
+    .Grid th {
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        color: black;
+        /*background: #AF3C3C;
+      border-left: solid 1px #525252;*/
+        font-size: 1.3em;
+    }
 
 .hiddenCol {
     display: none;
@@ -726,21 +724,20 @@ h4 {
 	Glyphstorlek
 *****************************************************/
 .glyph-100 {
-	font-size: 6em;
-	text-align: center;
-	margin-top: 10%;
-	color: #595959;
+    font-size: 6em;
+    text-align: center;
+    margin-top: 10%;
+    color: #595959;
 }
 
 .my-glyph-close {
     cursor: pointer;
 }
 
-@media (max-width: 768px) {	
-	#glyphBox 
- {
-    width: 50%;   
-  }
+@media (max-width: 768px) {
+    #glyphBox {
+        width: 50%;
+    }
 }
 
 /*****************************************************
@@ -748,102 +745,94 @@ h4 {
 *****************************************************/
 
 @media (max-width: 480px) {
-	h1
-	 {
-		font-size: 5em;
-	}
-}
-@media (max-width: 480px) {
-	h2
-	 {
-		font-size: 2em;
-	}
-}
-@media (max-width: 480px) {
-	h3
-	 {
-		font-size: 1.5em;
-	}
+    h1 {
+        font-size: 5em;
+    }
 }
 
 @media (max-width: 480px) {
-	.header-logo {
-	width: 992px;
-	height: 280px; 
-	margin-left: -100px;
-	}
+    h2 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 480px) {
+    h3 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-logo {
+        width: 992px;
+        height: 280px;
+        margin-left: -100px;
+    }
 }
 
 /*****************************************************
 	BOXAR MOBIL
 *****************************************************/
 
-@media (max-width: 320px) {	
-	.halfBox,
-	.longBox,		
-	.content,
-	.boxContainer,
-	.navbarContainer,
+@media (max-width: 320px) {
+    .halfBox,
+    .longBox,
+    .content,
+    .boxContainer,
+    .navbarContainer,
     .sevenFiveBox,
     .quarterBox,
-    .twothirdBox
- {
-    width: 100%;   
-  }
+    .twothirdBox {
+        width: 100%;
+    }
 }
 
 @media (max-width: 480px) {
-	.halfBox,	
-	.longBox,		
-	.content,
-	.boxContainer,	
-	.navbarContainer,
+    .halfBox,
+    .longBox,
+    .content,
+    .boxContainer,
+    .navbarContainer,
     .sevenFiveBox,
     .quarterBox,
-    .twothirdBox
-{
-    width: 100%;        
-  }
+    .twothirdBox {
+        width: 100%;
+    }
 }
 
 @media (max-width: 768px) {
-	.halfBox,	
-	.longBox,			
-	.content,
-	.boxContainer,	
-	.navbarContainer,
+    .halfBox,
+    .longBox,
+    .content,
+    .boxContainer,
+    .navbarContainer,
     .sevenFiveBox,
     .quarterBox,
-    .twothirdBox
- {
-    width: 100%;        
-  }
+    .twothirdBox {
+        width: 100%;
+    }
 }
 
-@media (max-width: 992px) {	
-	.content,
-	.boxContainer	
-	
- {
-    width: 100%;      
-  }
+@media (max-width: 992px) {
+    .content,
+    .boxContainer {
+        width: 100%;
+    }
 }
 
 @media (max-width: 1200px) {
-	.content,	
-	.boxContainer,	
-	.navbarContainer
- {
-    width: 100%;          
-  }
+    .content,
+    .boxContainer,
+    .navbarContainer {
+        width: 100%;
+    }
 }
 
 @media (max-width: 1200px) {
-	.white-box
- {
-    width: 99%;   
-    margin-left: 0.5%;   
-  }
+    .white-box {
+        width: 99%;
+        margin-left: 0.5%;
+    }
 }
 
 
@@ -851,26 +840,24 @@ h4 {
 	quarterBox - MEDIA STYLE
 *****************************************************/
 
-@media (max-width: 768px) {	
-	.quarterBox
-	 {
-	width: 100%;
-	height: 100%; 
-	}
+@media (max-width: 768px) {
+    .quarterBox {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 /*****************************************************
 	thirdBox - MEDIA STYLE
 *****************************************************/
 
-@media (max-width: 992px) {	
-	.thirdBox,
-    .twothirdBox
-	 {
-	width: 100%;
-	height: 100%;
-	/*border-bottom: 1px solid #A8A8A8;*/
-	}
+@media (max-width: 992px) {
+    .thirdBox,
+    .twothirdBox {
+        width: 100%;
+        height: 100%;
+        /*border-bottom: 1px solid #A8A8A8;*/
+    }
 }
 
 
@@ -887,32 +874,32 @@ h4 {
 	menu-link - MEDIA STYLE
 *****************************************************/
 
-@media (max-width: 768px) {	
-	.open-menu-link  {
-    display: inline-block;   
-  }
-} 
+@media (max-width: 768px) {
+    .open-menu-link {
+        display: inline-block;
+    }
+}
 
-@media (max-width: 1200px) {	
-	.books-background  {
-    background-size: 120% 120%;  
-  }
-} 
+@media (max-width: 1200px) {
+    .books-background {
+        background-size: 120% 120%;
+    }
+}
 
-@media (max-width: 992px) {	
-	.books-background  {
-    background-size: 150% 150%;  
-  }
-} 
+@media (max-width: 992px) {
+    .books-background {
+        background-size: 150% 150%;
+    }
+}
 
-@media (max-width: 768px) {	
-	.books-background  {
-    background-size: 170% 170%;  
-  }
-} 
+@media (max-width: 768px) {
+    .books-background {
+        background-size: 170% 170%;
+    }
+}
 
-@media (max-width: 480px) {	
-	.books-background  {
-    background-size: 240% 240%;  
-  }
-} 
+@media (max-width: 480px) {
+    .books-background {
+        background-size: 240% 240%;
+    }
+}

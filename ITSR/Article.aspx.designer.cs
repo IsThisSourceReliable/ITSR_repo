@@ -13,31 +13,67 @@ namespace ITSR {
     public partial class Article {
         
         /// <summary>
-        /// lblIndexListView control.
+        /// UpdatePanelOverlay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIndexListView;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelOverlay;
         
         /// <summary>
-        /// lblIndexDataBase control.
+        /// CommentIDOverlay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIndexDataBase;
+        protected global::System.Web.UI.WebControls.HiddenField CommentIDOverlay;
         
         /// <summary>
-        /// lblUserName control.
+        /// lblCommentTextOverlay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserName;
+        protected global::System.Web.UI.WebControls.Label lblCommentTextOverlay;
+        
+        /// <summary>
+        /// lblUserNameComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUserNameComment;
+        
+        /// <summary>
+        /// ValidatorReason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValidatorReason;
+        
+        /// <summary>
+        /// txtReason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtReason;
+        
+        /// <summary>
+        /// btnReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReport;
         
         /// <summary>
         /// lblArticleName control.

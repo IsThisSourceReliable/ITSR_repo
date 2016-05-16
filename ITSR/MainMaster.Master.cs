@@ -31,6 +31,12 @@ namespace ITSR
         }
 
         /// <summary>
+        /// Both methods below are events to be applied in articlepage to update contentpage.
+        /// </summary>
+        public delegate void SomeThingHappened();
+        public event SomeThingHappened UpdateArticlePage;
+
+        /// <summary>
         /// Methods hides menu items in left menu.
         /// </summary>
         private void HideLeftMenuButtons()
@@ -104,6 +110,7 @@ namespace ITSR
                     SetLoginGUI();
                     ShowLeftMenuButtons();
                     CloseLoginMenu();
+                    UpdateArticlePage();
                 }
                 else
                 {

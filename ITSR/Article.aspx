@@ -7,20 +7,54 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentHolder" runat="server">
 
     <div class="page-overlay">
-        <div class="overlay-message">
+        <div class="overlay-message overlay-message-report">
             <p class="my-glyph-close"><span class="glyphicon glyphicon-remove right " onclick="CloseOverlay();"></span></p>
-            <p>
-                Hej hej hej
-                <br />
-                LabelIndexListview =
-                <asp:Label ID="lblIndexListView" runat="server" Text="Label"></asp:Label>
-            </p>
-            <br />
-            LabelIndexDatabas =
-            <asp:Label ID="lblIndexDataBase" runat="server" Text="Label"></asp:Label>
-            <br />
-            Label"UserName" =
-            <asp:Label ID="lblUserName" runat="server" Text="Label"></asp:Label>
+            <div class="fullBox center-text">
+                <h3>Report comment</h3>
+            </div>
+
+            <div class="fullBox">
+                <asp:UpdatePanel ID="UpdatePanelOverlay" runat="server">
+                    <ContentTemplate>
+                        <p>
+                            <asp:HiddenField ID="CommentIDOverlay" runat="server" />
+                            <br />
+                            <strong>You want to report the following comment: </strong>
+                    <br />
+                            <br />
+                            <i>"<asp:Label ID="lblCommentTextOverlay" runat="server" Text="Label"></asp:Label></i>"
+                    <br />
+                            <br />
+                            <strong>Posted by:</strong>
+                <asp:Label ID="lblUserNameComment" runat="server" Text="Label"></asp:Label>
+                        </p>
+
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+                <asp:RequiredFieldValidator
+                    ID="ValidatorReason"
+                    runat="server"
+                    ErrorMessage="Please state a reason"
+                    ControlToValidate="txtReason"
+                    ValidationGroup="Report"
+                    CssClass="fail-text">
+                </asp:RequiredFieldValidator>
+                <div class="fullBox center-text">
+                    <asp:TextBox
+                        ID="txtReason"
+                        CssClass="txt-box txt-box-report-comment"
+                        runat="server"
+                        placeholder="Reason..."></asp:TextBox>
+                </div>
+            </div>
+        <div class="fullBox center-text">
+            <asp:Button
+                ID="btnReport"
+                CssClass="itsr-button report-btn"
+                runat="server"
+                ValidationGroup="Report"
+                Text="REPORT" />
+        </div>
         </div>
     </div>
 
@@ -142,9 +176,10 @@
             <div class="fullBox">
                 <asp:UpdatePanel ID="UpdatePanelCommentPart" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                     <ContentTemplate>
-                       <div class="fullBox" style="margin-bottom: 0.5em;">
+                        <div class="fullBox" style="margin-bottom: 0.5em;">
                             <p class="comment-text">
-                                <asp:Label ID="lblNoComments" runat="server" Text="Label"></asp:Label></p>
+                                <asp:Label ID="lblNoComments" runat="server" Text="Label"></asp:Label>
+                            </p>
                         </div>
                         <asp:RequiredFieldValidator
                             ID="ValidtorComment"
@@ -177,14 +212,14 @@
             </div>
 
             <div class="fullBox">
-                <asp:UpdatePanel ID="UpdatePanelComment" runat="server">
+                <asp:UpdatePanel ID="UpdatePanelComment" UpdateMode="Always" runat="server">
                     <ContentTemplate>
- 
+
                         <asp:ListView
                             ID="listViewComments"
                             runat="server"
                             DataKeyNames="idcomment"
-                            OnItemCommand="listViewComments_ItemCommand">
+                            OnItemCommand="listViewComments_ItemCommand" OnItemDataBound="listViewComments_ItemDataBound">
                             <ItemTemplate>
                                 <div class="fullBox comment">
                                     <asp:HiddenField ID="HiddenCommentID" runat="server" Value='<%# Eval("idcomment") %>' />
@@ -193,6 +228,7 @@
                                         <asp:Label ID="lblCommentText" runat="server" Text='<%# Eval("comment_text") %>'></asp:Label>
                                     </p>
                                     <br />
+                                    <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label><asp:Label ID="Label4" runat="server" Text="Label"></asp:Label><asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
                                     <p class="small-comment-text">
                                         Posted by 
                                 <asp:LinkButton ID="lBtnUsernameComment" runat="server">

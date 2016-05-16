@@ -46,8 +46,9 @@ function OpenLeftMenu() {
         $('.books-background').animate({
             marginLeft: '+=322px'
         });
-        $('.glyphicon-menu-hamburger').addClass('glyphicon-remove');
-        $('.glyphicon-menu-hamburger').removeClass('glyphicon-menu-hamburger');
+
+        $('#glyph-left-menu').addClass('glyphicon-remove');
+        $('#glyph-left-menu').removeClass('glyphicon-menu-hamburger');
 }
 
 //Closes left menu
@@ -61,8 +62,8 @@ function CloseLeftMenu() {
     $('.books-background').animate({
         left: '-=322px'
     });
-    $('.glyphicon-remove').addClass('glyphicon-menu-hamburger');
-    $('.glyphicon-remove').removeClass('glyphicon-remove');
+    $('#glyph-left-menu').addClass('glyphicon-menu-hamburger');
+    $('#glyph-left-menu').removeClass('glyphicon-remove');
 }
 
 //Opens right menu
@@ -77,8 +78,10 @@ function OpenRightMenu() {
         right: '+=322px'
     });
 
-    $('.glyphicon-lock').addClass('glyphicon-remove');
-    $('.glyphicon-lock').removeClass('glyphicon-lock');
+    $('#glyph-right-menu').addClass('glyphicon-remove');
+    $('#glyph-right-menu').removeClass('glyphicon-lock');
+    //$('.glyphicon-lock').addClass('glyphicon-remove');
+    //$('.glyphicon-lock').removeClass('glyphicon-lock');
 }
 
 //Closes right menu
@@ -92,6 +95,10 @@ function CloseRightMenu() {
     $('.menu-right').animate({
         right: '-=322px'
     });
-    $('.glyphicon-remove').addClass('glyphicon-lock');
-    $('.glyphicon-remove').removeClass('glyphicon-remove');
+
+    $('#glyph-right-menu').addClass('glyphicon-lock');
+    $('#glyph-right-menu').removeClass('glyphicon-remove');
+
+    //$('.glyphicon-remove').addClass('glyphicon-lock');
+    //$('.glyphicon-remove').removeClass('glyphicon-remove');
 }
