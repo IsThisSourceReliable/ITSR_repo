@@ -12,7 +12,7 @@ namespace ITSR
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["UserID"] == null)
+            if (Session["UserID"] == null)
             {
                 HideLeftMenuButtons();
                 RightMenuLogOut.Visible = false;
@@ -29,6 +29,12 @@ namespace ITSR
 
             }
         }
+
+        /// <summary>
+        /// Both methods below are events to be applied in articlepage to update contentpage.
+        /// </summary>
+        public delegate void SomeThingHappened();
+        public event SomeThingHappened UpdateArticlePage;
 
         /// <summary>
         /// Methods hides menu items in left menu.
@@ -104,6 +110,7 @@ namespace ITSR
                     SetLoginGUI();
                     ShowLeftMenuButtons();
                     CloseLoginMenu();
+                    UpdateArticlePage();
                 }
                 else
                 {

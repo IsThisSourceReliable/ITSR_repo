@@ -7,6 +7,58 @@
     margin-top: 0em;
 }
 
+.commentBox {
+    width: 50%;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.comment {
+    border-bottom: 1px solid #4cb2b4;
+    margin-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.comment-h3 {
+}
+
+.txt-box-comment {
+    height: 100px;
+    width: 95%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.txt-box-report-comment {
+    float: left;
+    width: 95%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+    .txt-box-report-comment:focus {
+        border-radius: 12px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #4cb2b4;
+        outline: 0;
+    }
+
+
+.overlay-message-report {
+    width: 500px;
+}
+.comment-btn {
+    width: 50%;
+    float: right;
+}
+
+.report-btn {
+    width: 50%;
+}
+
 .like-box {
     margin: 2em;
     margin-top: 0em;
@@ -22,12 +74,12 @@
     background-color: #074e67;
 }
 
-.vote-btn:hover {
-    background-color: #81c9ca;
-}
+    .vote-btn:hover {
+        background-color: #81c9ca;
+    }
 
 .vote-btn-pressed {
-    background-color: #93d0d2
+    background-color: #93d0d2;
 }
 
 .vote-glyph {
@@ -43,8 +95,8 @@
 }
 
 .vote-bar {
-    height:4px;
-    display:inline-block;
+    height: 4px;
+    display: inline-block;
 }
 
 .upvote-bar {
@@ -74,7 +126,6 @@
 }*/
 
 .like-box-station {
-
 }
 
 .info-lbls {
@@ -91,17 +142,23 @@
 .info-box {
     margin-top: 2.5em;
 }
-@media (max-width: 768px) {
-    .like-box
-    {
-        margin-left: 2em;    
-    }
-}
+
+
 
 .edit-text {
     font-size: 0.9em;
     margin-left: 1em;
     margin-bottom: 1em;
+}
+
+.small-comment-text {
+    font-size: 0.9em;
+    margin-left: 0.5em;
+}
+
+.comment-text {
+    margin-top: 0.8em;
+    margin-left: 0.5em;
 }
 
 .ref-text {
@@ -115,3 +172,42 @@
     display: none;       
   }
 }*/
+
+
+@media (max-width: 768px) {
+    .like-box {
+        margin-left: 2em;
+    }
+}
+
+@media (max-width: 768px) {
+    .commentBox {
+        width: 97%;
+    }
+}
+
+@media (max-width: 768px) {
+    .comment-btn {
+        width: 97%;
+        float: none;
+    }
+}
+
+
+
+
+
+@media (max-width: 950px) {
+    .overlay-message-report {
+        width: 500px;
+        margin: 0em auto;
+        margin-top: 10%;
+    }
+}
+
+@media (max-width: 550px) {
+    .overlay-message-report,
+    .report-btn {
+        width: 94%;
+    }
+}
