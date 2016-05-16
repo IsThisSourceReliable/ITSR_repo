@@ -160,7 +160,6 @@ namespace ITSR.CLASSES.USER
             }
             return 0;
         }
-
         public bool CheckEmail(User user)
         {
             string sql = "select exists(select 1 from user WHERE email = @EM)";
@@ -190,7 +189,6 @@ namespace ITSR.CLASSES.USER
                 conn.Close();
             }
         }
-
         public void CreateUser(User user)
         {
             string sql = "INSERT INTO user (username, password, email, role_id, certified_user) VALUES(@UN, @PW, @EM, @R, @CU)";
@@ -235,6 +233,7 @@ namespace ITSR.CLASSES.USER
                     user.Email = Convert.ToString(dr["email"]);
                     user.role_id = Convert.ToInt16(dr["role_id"]);
                     user.certifedUser = Convert.ToBoolean(dr["certified_user"]);
+                    user.Password = Convert.ToString(dr["password"]);
                 }
             }
             catch (MySqlException ex)
@@ -277,29 +276,29 @@ namespace ITSR.CLASSES.USER
                 conn.Close();
             }
         }
-        //public void UpdateInfo(User user)
-        //{
-        //    string sql = "Update user SET username = @UM, password = @PW, email = @EM WHERE iduser = @ID";
+        public void UpdateInfo(User user)
+        {
+            string sql = "Update user SET username = @UM, password = @PW, email = @EM WHERE iduser = @ID";
 
-        //    try
-        //    {
-        //        conn.Open();
-        //        MySqlCommand cmd = new MySqlCommand(sql, conn);
-        //        cmd.Parameters.AddWithValue("@UN", user.userName);
-        //        cmd.Parameters.AddWithValue("@PW", user.Password);
-        //        cmd.Parameters.AddWithValue("@EM", user.Email);
-        //        cmd.Parameters.AddWithValue("@ID", user.ID);
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@UN", user.userName);
+                cmd.Parameters.AddWithValue("@PW", user.Password);
+                cmd.Parameters.AddWithValue("@EM", user.Email);
+                cmd.Parameters.AddWithValue("@ID", user.ID);
 
-        //        cmd.ExecuteNonQuery();
-        //    }
-        //    catch (MySqlException ex)
-        //    {
+                cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
 
-        //    }
-        //    finally
-        //    {
-        //        conn.Close();
-        //    }
-        //}
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }    
 }
