@@ -219,7 +219,7 @@
             <div class="fullBox">
                 <asp:UpdatePanel ID="UpdatePanelComment" UpdateMode="Always" runat="server">
                     <ContentTemplate>
-                        <div class="fullBox">
+                        <div class="fullBox" style="margin-top: 10px;">
                             <p class="small-comment-text">
                                 <asp:Label ID="lblTotalComments" runat="server" Text="Label"></asp:Label>
                                 comments sorted by
@@ -243,6 +243,7 @@
                                     <div class="fullBox comment">
                                         <asp:HiddenField ID="HiddenCommentID" runat="server" Value='<%# Eval("idcomment") %>' />
                                         <asp:HiddenField ID="HiddenUserID" runat="server" Value='<%# Eval("iduser") %>' />
+                                        <asp:HiddenField ID="HiddenRemoved" runat="server" Value='<%# Eval("removed") %>' />
                                         <p class="comment-text">
                                             <asp:Label ID="lblCommentText" runat="server" Text='<%# Eval("comment_text") %>'></asp:Label>
                                         </p>

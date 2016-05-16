@@ -266,30 +266,34 @@ namespace ITSR
             //string dataBaseIndex = e.CommandArgument.ToString();
             //Label lbltext = (Label)e.Item.FindControl("Label2");
             HiddenField commentID = (HiddenField)e.Item.FindControl("HiddenCommentID");
-            HiddenField userID = (HiddenField)e.Item.FindControl("HiddenUserID");           
-            //HiddenField commentUserID = (HiddenField)e.Item.FindControl("HiddenUserID");
+            HiddenField userID = (HiddenField)e.Item.FindControl("HiddenUserID");
+            HiddenField hiddenRemoved = (HiddenField)e.Item.FindControl("HiddenRemoved");
             Label userNameLbl = (Label)e.Item.FindControl("lblCommentUserName");
             Label txtCommentLbl = (Label)e.Item.FindControl("lblCommentText");
 
+            int removed = int.Parse(hiddenRemoved.Value.ToString());
             string sCommentID = commentID.Value.ToString();
             string sUserID = userID.Value.ToString();
             string sUserName = userNameLbl.Text;
             string sTxtComment = txtCommentLbl.Text;
             
-            switch (value)
+            if(removed != 1)
             {
-                case "ReportComment":
-                    SetOverlayLabels(sCommentID, sUserID, sTxtComment, sUserName);
-                    //ReportComment(listViewIndex, dataBaseIndex, lbltext);
-                    break;
+                switch (value)
+                {
+                    case "ReportComment":
+                        SetOverlayLabels(sCommentID, sUserID, sTxtComment, sUserName);
+                        //ReportComment(listViewIndex, dataBaseIndex, lbltext);
+                        break;
 
-                case "DeleteComment":
-                    //DeleteComment(listViewIndex, dataBaseIndex, lbltext);
-                    break;
+                    case "DeleteComment":
+                        //DeleteComment(listViewIndex, dataBaseIndex, lbltext);
+                        break;
 
-                default:
-                    //Label3.Text = "Default";
-                    break;
+                    default:
+                        //Label3.Text = "Default";
+                        break;
+                }
             }
         }
 
@@ -305,6 +309,10 @@ namespace ITSR
             {
                 var linkButtonReport = (LinkButton)e.Item.FindControl("lBtnReport");
                 var linkButtonDelete = (LinkButton)e.Item.FindControl("lBtnDelete");
+                HiddenField hiddenRemoved = (HiddenField)e.Item.FindControl("HiddenRemoved");
+                Label txtCommentLbl = (Label)e.Item.FindControl("lblCommentText");
+
+                int removed = int.Parse(hiddenRemoved.Value.ToString());
 
                 if (Session["UserID"] == null) 
                 {
@@ -326,6 +334,14 @@ namespace ITSR
                 //    linkButtonReport.Visible = true;
                 //    linkButtonDelete.Visible = true;
                 //}
+
+                if (removed == 1)
+                {
+                    txtCommentLbl.Text = "This comment has been removed by a moderator.";
+                    txtCommentLbl.CssClass = "fail-text";
+                    linkButtonReport.Visible = false;
+                    linkButtonDelete.Visible = false;
+                }
             }
         }
 
