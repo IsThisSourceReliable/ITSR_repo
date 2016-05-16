@@ -110,7 +110,12 @@ namespace ITSR
                     SetLoginGUI();
                     ShowLeftMenuButtons();
                     CloseLoginMenu();
-                    UpdateArticlePage();
+                    string path = CheckPagePath();
+                    if (path == "/Article.aspx")
+                    {
+                        UpdateArticlePage();
+                    }
+
                 }
                 else
                 {
@@ -121,6 +126,13 @@ namespace ITSR
             {
                 SetErrorMessage();
             }
+        }
+
+        private string CheckPagePath()
+        {
+            string path = HttpContext.Current.Request.Url.AbsolutePath;
+
+            return path;
         }
 
         /// <summary>
