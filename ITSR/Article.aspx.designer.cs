@@ -31,6 +31,15 @@ namespace ITSR {
         protected global::System.Web.UI.WebControls.HiddenField CommentIDOverlay;
         
         /// <summary>
+        /// CommenUserIDOverlay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField CommenUserIDOverlay;
+        
+        /// <summary>
         /// lblCommentTextOverlay control.
         /// </summary>
         /// <remarks>
@@ -265,6 +274,33 @@ namespace ITSR {
         protected global::System.Web.UI.UpdatePanel UpdatePanelComment;
         
         /// <summary>
+        /// lblTotalComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalComments;
+        
+        /// <summary>
+        /// dropDownSortComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dropDownSortComments;
+        
+        /// <summary>
+        /// DropDownLimitComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownLimitComment;
+        
+        /// <summary>
         /// listViewComments control.
         /// </summary>
         /// <remarks>
@@ -272,15 +308,6 @@ namespace ITSR {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView listViewComments;
-        
-        /// <summary>
-        /// ListView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListView1;
         
         /// <summary>
         /// hiddenArticleID control.

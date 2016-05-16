@@ -20,11 +20,6 @@ namespace ITSR
             //master.OnSomethingSelected += MasterSelected;
         }
 
-        private void MasterSelected()
-        {
-            
-            LoadComments(hiddenArticleID.Value.ToString());
-        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,10 +31,18 @@ namespace ITSR
             if (!IsPostBack)
             {
                 LoadArticle();
-                //ListView1.DataSource = GetStuff();
-                //ListView1.DataBind();
                 lblCommenLogin.Visible = false;
             }
+        }
+
+        /// <summary>
+        /// Method currently only updats the comments section.
+        /// Can be used to update more things on the conent page
+        /// on login from master page.
+        /// </summary>
+        private void MasterSelected()
+        {
+            LoadComments(hiddenArticleID.Value.ToString());
         }
 
         /// <summary>
@@ -47,12 +50,10 @@ namespace ITSR
         /// </summary>
         private void LoadArticle()
         {
-            string articleID = "121"; /*Session["ArticleID"].ToString();*/
+            string articleID = Session["ArticleID"].ToString();
             Articles getArticle = new Articles();
             getArticle.ID = Convert.ToInt32(articleID);
             DataTable dt = getArticle.GetArticle();
-
-            //string referenceXML = dt.Rows[0]["reference_xml"].ToString();
 
             getArticle.upVotes = int.Parse(dt.Rows[0]["votes_up"].ToString());
             getArticle.downVotes = int.Parse(dt.Rows[0]["votes_down"].ToString());
@@ -62,7 +63,6 @@ namespace ITSR
             double downVotePercent = getArticle.SetDownVotesPercent(upVotePercent);
 
             SetArticleLables(dt);
-            //BindReferences(referenceXML);
             SetVotes(totalVotes, upVotePercent, downVotePercent);
             LoadComments(articleID);
         }
@@ -142,10 +142,19 @@ namespace ITSR
         /// </summary>
         private void LoadComments(string articleID)
         {
+            string order = dropDownSortComments.SelectedValue;
+            int limit = int.Parse(DropDownLimitComment.SelectedValue);
+
             Comment GetArticleComments = new Comment();
             DataTable dt = new DataTable();
+            DataTable dtCount = new DataTable(); //Try to figure out how to include a count in GetComments insted. 
+
             GetArticleComments.Article_id = int.Parse(articleID);
+            GetArticleComments.Order = order;
+            GetArticleComments.Limit = limit;
+
             dt = GetArticleComments.GetComments();
+
             if (dt.Rows.Count == 0)
             {
                 lblNoComments.Visible = true;
@@ -157,7 +166,221 @@ namespace ITSR
 
                 listViewComments.DataSource = dt;
                 listViewComments.DataBind();
+
+                dtCount = GetArticleComments.CountComments();
+                lblTotalComments.Text = dtCount.Rows[0]["totalcomments"].ToString();
             }
+        }
+
+        /// <summary>
+        /// This method sets the labels in the overlay to correct values and
+        /// also the hiddenfields to correct values so a user can report a comment.
+        /// </summary>
+        /// <param name="commentID"></param>
+        /// <param name="userID"></param>
+        /// <param name="commentText"></param>
+        /// <param name="username"></param>
+        private void SetOverlayLabels(string commentID, string userID, string commentText, string username)
+        {
+            CommentIDOverlay.Value = commentID;
+            CommenUserIDOverlay.Value = userID;
+            lblCommentTextOverlay.Text = commentText;
+            lblUserNameComment.Text = username;
+
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "OpenOverlay", "OpenOverlay();", true);
+        }
+
+        /// <summary>
+        /// TO BE IMPLEMENTED
+        /// </summary>
+        /// <param name="listViewIndex"></param>
+        /// <param name="dataBaseIndex"></param>
+        /// <param name="lbltext"></param>
+        private void DeleteComment(string listViewIndex, string dataBaseIndex, Label lbltext)
+        {
+            //Label3.Text = "Delete!";
+            //lblIndexListView.Text = listViewIndex;
+            //lblIndexDataBase.Text = dataBaseIndex;
+            //lblUserName.Text = lbltext.Text;
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
+        }
+
+        /// <summary>
+        /// Event for when edit button is clicked. 
+        /// Redirecs user to edit page.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void lBtnEdit_Click(object sender, EventArgs e)
+        {           
+            Session["ArticleID"] = hiddenArticleID.Value.ToString();
+            Response.Redirect("~/EditArticle.aspx");
+        }
+
+
+        /// <summary>
+        /// Event for when user click post comment. Sets values in 
+        /// comment class and inserts comment and updates the listview 
+        /// with latest comment.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnPostComment_Click(object sender, EventArgs e)
+        {
+            if(Session["UserID"] == null)
+            {
+                lblCommenLogin.Text = "You have to login to post a comment.";
+                lblCommenLogin.Visible = true;
+            }
+            else
+            {
+                Comment newComment = new Comment();
+                string articleID = hiddenArticleID.Value.ToString();
+                newComment.CommentText = txtComment.Text;
+                newComment.User_id = int.Parse(Session["UserID"].ToString());
+                newComment.Article_id = int.Parse(articleID);
+                newComment.Removed = false;
+                newComment.Date = DateTime.Now;
+
+                newComment.InsertComment();
+                txtComment.Text = string.Empty;
+                lblCommenLogin.Visible = false;
+
+                LoadComments(articleID);
+            }
+
+        }
+
+        /// <summary>
+        /// Event for listview event command. Currently takes two commands
+        /// Reportcomment and Deletecomment. TO DO implement so when a user clicks username
+        /// user is redirected to that users profile page.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void listViewComments_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            string value = e.CommandName.ToString();
+            string listViewIndex = e.Item.DataItemIndex.ToString();
+            //string dataBaseIndex = e.CommandArgument.ToString();
+            //Label lbltext = (Label)e.Item.FindControl("Label2");
+            HiddenField commentID = (HiddenField)e.Item.FindControl("HiddenCommentID");
+            HiddenField userID = (HiddenField)e.Item.FindControl("HiddenUserID");           
+            //HiddenField commentUserID = (HiddenField)e.Item.FindControl("HiddenUserID");
+            Label userNameLbl = (Label)e.Item.FindControl("lblCommentUserName");
+            Label txtCommentLbl = (Label)e.Item.FindControl("lblCommentText");
+
+            string sCommentID = commentID.Value.ToString();
+            string sUserID = userID.Value.ToString();
+            string sUserName = userNameLbl.Text;
+            string sTxtComment = txtCommentLbl.Text;
+            
+            switch (value)
+            {
+                case "ReportComment":
+                    SetOverlayLabels(sCommentID, sUserID, sTxtComment, sUserName);
+                    //ReportComment(listViewIndex, dataBaseIndex, lbltext);
+                    break;
+
+                case "DeleteComment":
+                    //DeleteComment(listViewIndex, dataBaseIndex, lbltext);
+                    break;
+
+                default:
+                    //Label3.Text = "Default";
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Event for when items are databound in the listview. Hides and shows 
+        /// linkbuttons depending on users memberlevel.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void listViewComments_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                var linkButtonReport = (LinkButton)e.Item.FindControl("lBtnReport");
+                var linkButtonDelete = (LinkButton)e.Item.FindControl("lBtnDelete");
+
+                if (Session["UserID"] == null) 
+                {
+                    linkButtonReport.Visible = false;
+                    linkButtonDelete.Visible = false;
+                }
+                else
+                {
+                    linkButtonReport.Visible = true;
+                    linkButtonDelete.Visible = false;
+                }
+                //else if(UserIsAMember)
+                //{
+                //    linkButtonReport.Visible = true;
+                //    linkButtonDelete.Visible = false;
+                //}
+                //else //Is a user is an admin show everything.
+                //{
+                //    linkButtonReport.Visible = true;
+                //    linkButtonDelete.Visible = true;
+                //}
+            }
+        }
+
+        /// <summary>
+        /// Click event for when user clicks report comments. Sets relevant values
+        /// and calls js script to close overlay.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnReport_Click(object sender, EventArgs e)
+        {
+            Comment Report = new Comment();
+
+            Report.ID = int.Parse(CommentIDOverlay.Value.ToString());
+            Report.User_id = int.Parse(CommenUserIDOverlay.Value.ToString());
+            Report.ReportReason = txtReason.Text;
+
+            Report.ReportComment();
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "CloseOverlay", "CloseOverlay();", true);
+        }
+
+        /// <summary>
+        /// Event for when user changes value in dropdown to sort comments from first and latest
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void dropDownSortComments_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(dropDownSortComments.SelectedIndex > -1)
+            {
+                string articleID = hiddenArticleID.Value.ToString();
+                LoadComments(articleID);
+            }
+        }
+
+        /// <summary>
+        /// Event for when user chooses how many comments to be seen on screen. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void DropDownLimitComment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(DropDownLimitComment.SelectedIndex > -1)
+            {
+                string articleID = hiddenArticleID.Value.ToString();
+                LoadComments(articleID);
+            }
+        }
+
+        /************************************ CODE BELOW JUST FOR TEST PURPOSE ****************************************************/
+
+        //Test purpose.
+        protected void ListView1_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+
         }
 
         /// <summary>
@@ -202,155 +425,6 @@ namespace ITSR
             //Session["id"] = 
         }
 
-        protected void ListView1_ItemCommand(object sender, ListViewCommandEventArgs e)
-        {
-            ////Label3.Text = "Index: " + e.Item.DataItemIndex.ToString() + " , Arg: " + e.CommandArgument;
-            ////if(e.CommandName == "ReportComment")
-            ////{
-            ////    Label3.Text = "Report!";
-            ////}
-            //string value = e.CommandName.ToString();
-            //string listViewIndex = e.Item.DataItemIndex.ToString();
-            ////string dataBaseIndex = e.CommandArgument.ToString();
-            //Label lbltext = (Label)e.Item.FindControl("Label2");
-            //HiddenField daHiddenField = (HiddenField)e.Item.FindControl("HiddenCommentID");
-            //string dataBaseIndex = daHiddenField.Value.ToString();
 
-            //switch (value)
-            //{
-            //    case "ReportComment":
-            //        ReportComment(listViewIndex, dataBaseIndex, lbltext);
-            //        break;
-
-            //    case "DeleteComment":
-            //        DeleteComment(listViewIndex, dataBaseIndex, lbltext);
-            //        break;
-
-            //    default:
-            //        //Label3.Text = "Default";
-            //        break;
-            //}
-
-        }
-
-        private void SetOverlayLabels(string commentID, string commentText, string username)
-        {
-            CommentIDOverlay.Value = commentID;
-            lblCommentTextOverlay.Text = commentText;
-            lblUserNameComment.Text = username;
-
-            //Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
-            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "OpenOverlay", "OpenOverlay();", true);
-        }
-
-        private void DeleteComment(string listViewIndex, string dataBaseIndex, Label lbltext)
-        {
-            //Label3.Text = "Delete!";
-            //lblIndexListView.Text = listViewIndex;
-            //lblIndexDataBase.Text = dataBaseIndex;
-            //lblUserName.Text = lbltext.Text;
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
-        }
-
-        protected void lBtnEdit_Click(object sender, EventArgs e)
-        {           
-            Session["ArticleID"] = hiddenArticleID.Value.ToString();
-            Response.Redirect("~/EditArticle.aspx");
-        }
-
-        protected void btnPostComment_Click(object sender, EventArgs e)
-        {
-            if(Session["UserID"] == null)
-            {
-                lblCommenLogin.Text = "You have to login to post a comment.";
-                lblCommenLogin.Visible = true;
-            }
-            else
-            {
-                Comment newComment = new Comment();
-                string articleID = hiddenArticleID.Value.ToString();
-                newComment.CommentText = txtComment.Text;
-                newComment.User_id = int.Parse(Session["UserID"].ToString());
-                newComment.Article_id = int.Parse(articleID);
-                newComment.Removed = false;
-                newComment.Date = DateTime.Now;
-
-                newComment.InsertComment();
-                txtComment.Text = string.Empty;
-                lblCommenLogin.Visible = false;
-
-                LoadComments(articleID);
-            }
-
-        }
-
-        protected void listViewComments_ItemCommand(object sender, ListViewCommandEventArgs e)
-        {
-            string value = e.CommandName.ToString();
-            string listViewIndex = e.Item.DataItemIndex.ToString();
-            //string dataBaseIndex = e.CommandArgument.ToString();
-            //Label lbltext = (Label)e.Item.FindControl("Label2");
-            HiddenField commentID = (HiddenField)e.Item.FindControl("HiddenCommentID");
-            //HiddenField commentUserID = (HiddenField)e.Item.FindControl("HiddenUserID");
-            Label userNameLbl = (Label)e.Item.FindControl("lblCommentUserName");
-            Label txtCommentLbl = (Label)e.Item.FindControl("lblCommentText");
-            Label label3 = (Label)e.Item.FindControl("Label3");
-            Label label4 = (Label)e.Item.FindControl("Label4");
-            Label label5 = (Label)e.Item.FindControl("Label5");
-
-            string sCommentID = commentID.Value.ToString();
-            string sUserName = userNameLbl.Text;
-            string sTxtComment = txtCommentLbl.Text;
-            
-            switch (value)
-            {
-                case "ReportComment":
-                    SetOverlayLabels(sCommentID, sTxtComment, sUserName);
-                    label3.Text = sCommentID;
-                    label4.Text = sTxtComment;
-                    label5.Text = sUserName;
-
-                    //ReportComment(listViewIndex, dataBaseIndex, lbltext);
-                    break;
-
-                case "DeleteComment":
-                    //DeleteComment(listViewIndex, dataBaseIndex, lbltext);
-                    break;
-
-                default:
-                    //Label3.Text = "Default";
-                    break;
-            }
-        }
-
-        protected void listViewComments_ItemDataBound(object sender, ListViewItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListViewItemType.DataItem)
-            {
-                var linkButtonReport = (LinkButton)e.Item.FindControl("lBtnReport");
-                var linkButtonDelete = (LinkButton)e.Item.FindControl("lBtnDelete");
-
-                if (Session["UserID"] == null) 
-                {
-                    linkButtonReport.Visible = false;
-                    linkButtonDelete.Visible = false;
-                }
-                else
-                {
-                    linkButtonReport.Visible = true;
-                    linkButtonDelete.Visible = false;
-                }
-                //else if(UserIsAMember)
-                //{
-                //    linkButtonReport.Visible = true;
-                //    linkButtonDelete.Visible = false;
-                //}
-                //else //Is a user is an admin show everything.
-                //{
-                //    linkButtonReport.Visible = true;
-                //    linkButtonDelete.Visible = true;
-                //}
-            }
-        }
     }
 }

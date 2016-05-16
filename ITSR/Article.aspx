@@ -12,49 +12,54 @@
             <div class="fullBox center-text">
                 <h3>Report comment</h3>
             </div>
-
-            <div class="fullBox">
+            <div>
                 <asp:UpdatePanel ID="UpdatePanelOverlay" runat="server">
                     <ContentTemplate>
-                        <p>
-                            <asp:HiddenField ID="CommentIDOverlay" runat="server" />
-                            <br />
-                            <strong>You want to report the following comment: </strong>
-                    <br />
-                            <br />
-                            <i>"<asp:Label ID="lblCommentTextOverlay" runat="server" Text="Label"></asp:Label></i>"
-                    <br />
-                            <br />
-                            <strong>Posted by:</strong>
-                <asp:Label ID="lblUserNameComment" runat="server" Text="Label"></asp:Label>
-                        </p>
+                        <div class="fullBox">
 
+                            <p>
+                                <asp:HiddenField ID="CommentIDOverlay" runat="server" />
+                                <asp:HiddenField ID="CommenUserIDOverlay" runat="server" />
+                                <br />
+                                <strong>You want to report the following comment: </strong>
+                                <br />
+                                <br />
+                                <i>"<asp:Label ID="lblCommentTextOverlay" runat="server" Text="Label"></asp:Label></i>"
+                            <br />
+                                <br />
+                                <strong>Posted by:</strong>
+                                <asp:Label ID="lblUserNameComment" runat="server" Text="Label"></asp:Label>
+                            </p>
+
+
+                            <asp:RequiredFieldValidator
+                                ID="ValidatorReason"
+                                runat="server"
+                                ErrorMessage="Please state a reason"
+                                ControlToValidate="txtReason"
+                                ValidationGroup="Report"
+                                CssClass="fail-text">
+                            </asp:RequiredFieldValidator>
+                            <div class="fullBox center-text">
+                                <asp:TextBox
+                                    ID="txtReason"
+                                    CssClass="txt-box txt-box-report-comment"
+                                    runat="server"
+                                    placeholder="Reason..."></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="fullBox center-text">
+                            <asp:Button
+                                ID="btnReport"
+                                CssClass="itsr-button report-btn"
+                                runat="server"
+                                ValidationGroup="Report"
+                                Text="REPORT"
+                                OnClick="btnReport_Click" />
+                        </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-                <asp:RequiredFieldValidator
-                    ID="ValidatorReason"
-                    runat="server"
-                    ErrorMessage="Please state a reason"
-                    ControlToValidate="txtReason"
-                    ValidationGroup="Report"
-                    CssClass="fail-text">
-                </asp:RequiredFieldValidator>
-                <div class="fullBox center-text">
-                    <asp:TextBox
-                        ID="txtReason"
-                        CssClass="txt-box txt-box-report-comment"
-                        runat="server"
-                        placeholder="Reason..."></asp:TextBox>
-                </div>
             </div>
-        <div class="fullBox center-text">
-            <asp:Button
-                ID="btnReport"
-                CssClass="itsr-button report-btn"
-                runat="server"
-                ValidationGroup="Report"
-                Text="REPORT" />
-        </div>
         </div>
     </div>
 
@@ -214,89 +219,63 @@
             <div class="fullBox">
                 <asp:UpdatePanel ID="UpdatePanelComment" UpdateMode="Always" runat="server">
                     <ContentTemplate>
-
-                        <asp:ListView
-                            ID="listViewComments"
-                            runat="server"
-                            DataKeyNames="idcomment"
-                            OnItemCommand="listViewComments_ItemCommand" OnItemDataBound="listViewComments_ItemDataBound">
-                            <ItemTemplate>
-                                <div class="fullBox comment">
-                                    <asp:HiddenField ID="HiddenCommentID" runat="server" Value='<%# Eval("idcomment") %>' />
-                                    <asp:HiddenField ID="HiddenUserID" runat="server" Value='<%# Eval("iduser") %>' />
-                                    <p class="comment-text">
-                                        <asp:Label ID="lblCommentText" runat="server" Text='<%# Eval("comment_text") %>'></asp:Label>
-                                    </p>
-                                    <br />
-                                    <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label><asp:Label ID="Label4" runat="server" Text="Label"></asp:Label><asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
-                                    <p class="small-comment-text">
-                                        Posted by 
+                        <div class="fullBox">
+                            <p class="small-comment-text">
+                                <asp:Label ID="lblTotalComments" runat="server" Text="Label"></asp:Label>
+                                comments sorted by
+                                <asp:DropDownList ID="dropDownSortComments" CssClass="DropDown DropDown-Comments" runat="server" AutoPostBack="true" OnSelectedIndexChanged="dropDownSortComments_SelectedIndexChanged">
+                                    <asp:ListItem Selected="True" Value="Latest">Latest</asp:ListItem>
+                                    <asp:ListItem>First</asp:ListItem>
+                                </asp:DropDownList>
+                                <span class="right">Show <asp:DropDownList ID="DropDownLimitComment" CssClass="DropDown DropDown-Comments" AutoPostBack="true" runat="server" OnSelectedIndexChanged="DropDownLimitComment_SelectedIndexChanged">
+                                    <asp:ListItem Selected="True">10</asp:ListItem>
+                                    <asp:ListItem>20</asp:ListItem>
+                                    <asp:ListItem>30</asp:ListItem>
+                                    <asp:ListItem Value="1000">All</asp:ListItem>
+                                </asp:DropDownList></span>
+                            </p>
+                            <asp:ListView
+                                ID="listViewComments"
+                                runat="server"
+                                DataKeyNames="idcomment"
+                                OnItemCommand="listViewComments_ItemCommand" OnItemDataBound="listViewComments_ItemDataBound">
+                                <ItemTemplate>
+                                    <div class="fullBox comment">
+                                        <asp:HiddenField ID="HiddenCommentID" runat="server" Value='<%# Eval("idcomment") %>' />
+                                        <asp:HiddenField ID="HiddenUserID" runat="server" Value='<%# Eval("iduser") %>' />
+                                        <p class="comment-text">
+                                            <asp:Label ID="lblCommentText" runat="server" Text='<%# Eval("comment_text") %>'></asp:Label>
+                                        </p>
+                                        <br />
+                                        <p class="small-comment-text">
+                                            Posted by 
                                 <asp:LinkButton ID="lBtnUsernameComment" runat="server">
                                     <asp:Label ID="lblCommentUserName" runat="server" Text='<%# Eval("username") %>'></asp:Label>
                                 </asp:LinkButton>
-                                        at
+                                            at
                                         <asp:Label ID="lblDate" runat="server" Text='<%# Eval("date") %>'></asp:Label>
-                                        <span class="right">
-                                            <asp:LinkButton
-                                                ID="lBtnReport"
-                                                runat="server"
-                                                CommandName="ReportComment"
-                                                CommandArgument='<%# Eval("idcomment") %>'>Report</asp:LinkButton>
-                                            <asp:LinkButton
-                                                ID="lBtnDelete"
-                                                runat="server"
-                                                CommandName="DeleteComment"
-                                                CommandArgument='<%# Eval("idcomment") %>'>Delete</asp:LinkButton>
-                                        </span>
-                                    </p>
+                                            <span class="right">
+                                                <asp:LinkButton
+                                                    ID="lBtnReport"
+                                                    runat="server"
+                                                    CommandName="ReportComment"
+                                                    CommandArgument='<%# Eval("idcomment") %>'>Report</asp:LinkButton>
+                                                <asp:LinkButton
+                                                    ID="lBtnDelete"
+                                                    runat="server"
+                                                    CommandName="DeleteComment"
+                                                    CommandArgument='<%# Eval("idcomment") %>'>Delete</asp:LinkButton>
+                                            </span>
+                                        </p>
+                                    </div>
 
-                                </div>
-                            </ItemTemplate>
+                                </ItemTemplate>
 
-                        </asp:ListView>
+                            </asp:ListView>
+
+                        </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-
-                <asp:ListView
-                    ID="ListView1"
-                    DataKeyNames="iderik_table"
-                    runat="server"
-                    OnItemCommand="ListView1_ItemCommand"
-                    OnSelectedIndexChanged="ListView1_SelectedIndexChanged">
-                    <ItemTemplate>
-                        <div class="fullBox comment">
-                            <p>
-                                <asp:HiddenField ID="HiddenCommentID" runat="server" Value='<%# Eval("iderik_table") %>' />
-                                <asp:Label
-                                    ID="Label1"
-                                    runat="server"
-                                    Text='<%# Eval("iderik_table") %>'></asp:Label>
-                            </p>
-
-                            <br />
-                            <p>
-                                <asp:Label
-                                    ID="Label2"
-                                    runat="server"
-                                    Text='<%# Eval("erik_text") %>'></asp:Label>
-                            </p>
-
-                            <br />
-                            <div class="right">
-                                <asp:LinkButton
-                                    ID="LinkButton1"
-                                    runat="server"
-                                    CommandName="ReportComment"
-                                    CommandArgument='<%# Eval("iderik_table") %>'>Report</asp:LinkButton>
-                                <asp:LinkButton
-                                    ID="LinkButton2"
-                                    runat="server"
-                                    CommandName="DeleteComment"
-                                    CommandArgument='<%# Eval("iderik_table") %>'>Delete</asp:LinkButton>
-                            </div>
-                        </div>
-                    </ItemTemplate>
-                </asp:ListView>
             </div>
 
         </div>
