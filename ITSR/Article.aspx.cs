@@ -154,9 +154,7 @@ namespace ITSR
                     }
                 }
             }
-
         }
-
 
         /// <summary>
         /// Method sets properties for upvote and downvote button depending if user has
