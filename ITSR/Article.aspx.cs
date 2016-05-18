@@ -449,7 +449,7 @@ namespace ITSR
             Comment Report = new Comment();
 
             Report.ID = int.Parse(CommentIDOverlay.Value.ToString());
-            Report.User_id = int.Parse(CommenUserIDOverlay.Value.ToString());
+            Report.User_id = int.Parse(Session["UserID"].ToString());
             Report.ReportReason = txtReason.Text;
 
             Report.ReportComment();
