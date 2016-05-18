@@ -40,31 +40,76 @@ namespace ITSR {
         protected global::System.Web.UI.UpdatePanel UpdatePanelMenuLeft;
         
         /// <summary>
-        /// link1 control.
+        /// HomeLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl link1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HomeLink;
         
         /// <summary>
-        /// link2 control.
+        /// lBtnHomeLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl link2;
+        protected global::System.Web.UI.WebControls.LinkButton lBtnHomeLink;
         
         /// <summary>
-        /// link3 control.
+        /// AboutLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl link3;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AboutLink;
+        
+        /// <summary>
+        /// lBtnAboutLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lBtnAboutLink;
+        
+        /// <summary>
+        /// MyProfileLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MyProfileLink;
+        
+        /// <summary>
+        /// lBtnMyProfileLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lBtnMyProfileLink;
+        
+        /// <summary>
+        /// EditProfileLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl EditProfileLink;
+        
+        /// <summary>
+        /// lBtnEditProfileLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lBtnEditProfileLink;
         
         /// <summary>
         /// UpdatePanelLogin control.

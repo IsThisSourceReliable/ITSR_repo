@@ -24,7 +24,7 @@ namespace ITSR
         {
             if (Session["UserID"] == null)
             {
-
+                HideFromNotLoggedIn();
             }
 
             if (!IsPostBack)
@@ -40,15 +40,18 @@ namespace ITSR
         /// Can be used to update more things on the conent page
         /// on login from master page.
         /// </summary>
+        /// 
         private void MasterSelected()
         {
             LoadComments(hiddenArticleID.Value.ToString());
             SetVoteButton();
+            ShowToLoggedIn();
         }
 
         /// <summary>
         /// Method loads article and sets lables and relevant values. 
         /// </summary>
+        /// 
         private void LoadArticle()
         {
             string articleID = Session["ArticleID"].ToString();
@@ -77,6 +80,7 @@ namespace ITSR
         private void SetArticleLables(DataTable dt)
         {
             hiddenArticleID.Value = dt.Rows[0]["idarticle"].ToString();
+            HiddenLastEditByID.Value = dt.Rows[0]["lastedituser_id"].ToString();
             lblArticleName.Text = dt.Rows[0]["title"].ToString();
             lblTypeOfOrg.Text = dt.Rows[0]["orgtype"].ToString();
             lblUpHouseMan.Text = dt.Rows[0]["publisher"].ToString();
@@ -85,6 +89,9 @@ namespace ITSR
             lblEditDate.Text = dt.Rows[0]["lastedit_date"].ToString();
             linkBtnLastEdit.Text = dt.Rows[0]["edituser"].ToString();
             articleText.InnerHtml = dt.Rows[0]["text"].ToString();
+
+            lblArticle.Text = lblArticleName.Text;
+            CreatorIDOverlay.Value = dt.Rows[0]["createuser_id"].ToString();
 
             string referenceXML = dt.Rows[0]["reference_xml"].ToString();
             BindReferences(referenceXML);
@@ -157,7 +164,6 @@ namespace ITSR
 
         }
 
-
         /// <summary>
         /// Method sets properties for upvote and downvote button depending if user has
         /// upvoted or downvoted.
@@ -204,7 +210,6 @@ namespace ITSR
             upvoteBar.Style.Add("width", "" + upVotes + "%");
             downvoteBar.Style.Add("width", "" + downVotes + "%");
         }
-
 
         /// <summary>
         /// Method loads all the comments to an article.
@@ -284,6 +289,15 @@ namespace ITSR
         }
 
         /// <summary>
+        /// This method sets the labels in the overlay to correct values and
+        /// also the hiddenfields to correct values so a user can report a comment.
+        /// </summary>
+        /// <param name="commentID"></param>
+        /// <param name="userID"></param>
+        /// <param name="commentText"></param>
+        /// <param name="username"></param>
+
+        /// <summary>
         /// TO BE IMPLEMENTED ***********************************************************************************
         /// *****************************************************************************************************
         /// </summary>
@@ -310,7 +324,6 @@ namespace ITSR
             Session["ArticleID"] = hiddenArticleID.Value.ToString();
             Response.Redirect("~/EditArticle.aspx");
         }
-
 
         /// <summary>
         /// Event for when user click post comment. Sets values in 
@@ -382,12 +395,19 @@ namespace ITSR
                     case "DeleteComment":
                         //DeleteComment(listViewIndex, dataBaseIndex, lbltext);
                         break;
-
+                    case "VisitProfile":
+                        VisitProfile(sUserID);
+                        break;
                     default:
                         //Label3.Text = "Default";
                         break;
                 }
             }
+        }
+        public void VisitProfile(string profileid)
+        {
+            Session["profileID"] = profileid;
+            Response.Redirect("~/Profile.aspx");
         }
 
         /// <summary>
@@ -525,7 +545,6 @@ namespace ITSR
             }
         }
 
-
         /// <summary>
         /// Event for when user clicks tp downvotw. 
         /// Uses method in vote class in order to set correct vote status.
@@ -566,54 +585,43 @@ namespace ITSR
             }
         }
 
-        /************************************ CODE BELOW JUST FOR TEST PURPOSE ****************************************************/
-
-        //Test purpose.
-        protected void ListView1_ItemCommand(object sender, ListViewCommandEventArgs e)
+        protected void BtnReportArticle2_Click(object sender, EventArgs e)
         {
+            Articles a = new Articles();
+            Report r = new Report();
 
+            r.articleORcomment_id = Convert.ToInt32(hiddenArticleID.Value);
+            r.text = tbReportReason.Text;
+            r.user_id = Convert.ToInt32(Session["userID"]);
+
+            a.ReportArticle(r);
+
+            tbReportReason.Text = "";
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "CloseOverlay2", "CloseOverlay2();", true);
         }
 
-        /// <summary>
-        /// Just for testpurpose
-        /// </summary>
-        /// <returns></returns>
-        private DataTable GetStuff()
+        protected void HideFromNotLoggedIn()
         {
-            MySqlConnection conn = new MySqlConnection("Database=itsrdb; Data Source=eu-cdbr-azure-north-e.cloudapp.net; User Id=b268b5fbbce560; Password=d722d6d4");
-            conn.Open();
-            try
-            {
-                MySqlCommand cmd = new MySqlCommand("SELECT iderik_table, erik_text FROM erik_table; ", conn);
-
-                MySqlDataAdapter da = new MySqlDataAdapter();
-
-                da.SelectCommand = cmd;
-
-                DataTable dt = new DataTable();
-
-                da.Fill(dt);
-                return dt;
-            }
-            catch (MySqlException ex)
-            {
-                return null;
-            }
-            finally
-            {
-                conn.Close();
-            }
+            reportText.Visible = false;
+            editText.Visible = false;
         }
 
-        protected void ListView1_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ShowToLoggedIn()
         {
-
+            reportText.Visible = true;
+            editText.Visible = true;
         }
 
         protected void btnLinkTest_Click(object sender, EventArgs e)
         {
             //Response.Redirect("~/DaTest.aspx");
             //Session["id"] = 
+        }
+
+        protected void linkBtnLastEdit_Click(object sender, EventArgs e)
+        {
+            Session["profileID"] = HiddenLastEditByID.Value;
+            Response.Redirect("~/Profile.aspx");
         }
     }
 }

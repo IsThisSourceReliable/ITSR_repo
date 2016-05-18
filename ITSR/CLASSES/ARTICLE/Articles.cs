@@ -40,8 +40,7 @@ namespace ITSR.CLASSES.ARTICLE
             {
                 conn.Open();
 
-                MySqlCommand cmdCreateArticle = new MySqlCommand("INSERT INTO article (title, text, url, orgtype_id, lastedit_date, votes_up, votes_down, lastedituser_id, createuser_id, publisher, domainowner, financing, reference_xml) " +
-                                                                               "VALUES(@title, @text, @url, @typeoforg, @lasteditdate, @upvotes, @downvotes, @lastedituser, @createuserid, @publisher, @domainowner, @financer, @referencexml);", conn);
+                MySqlCommand cmdCreateArticle = new MySqlCommand("INSERT INTO article (title, text, url, orgtype_id, lastedit_date, votes_up, votes_down, lastedituser_id, createuser_id, publisher, domainowner, financing, reference_xml) VALUES(@title, @text, @url, @typeoforg, @lasteditdate, @upvotes, @downvotes, @lastedituser, @createuserid, @publisher, @domainowner, @financer, @referencexml);", conn);
 
                 cmdCreateArticle.Parameters.AddWithValue("@title", Title);
                 cmdCreateArticle.Parameters.AddWithValue("@text", Text);
@@ -162,6 +161,31 @@ namespace ITSR.CLASSES.ARTICLE
             catch (MySqlException ex)
             {
                 return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void ReportArticle(Report r)
+        {
+            string sql = "INSERT INTO report_article (article_id, text, user_id) VALUES(@AID, @T, @UID)";
+
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@AID", r.articleORcomment_id);
+                cmd.Parameters.AddWithValue("@T", r.text);
+                cmd.Parameters.AddWithValue("@UID", r.user_id);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            catch (MySqlException ex)
+            {
+
             }
             finally
             {

@@ -13,7 +13,15 @@ namespace ITSR
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadProfilePage(111);
+            if (Session["profileID"] == null)
+            {
+                Response.Redirect("~/default.aspx");
+            }
+            else
+            {
+                LoadProfilePage(Convert.ToInt32(Session["profileID"]));
+            }
+            
         }
 
         public void LoadProfilePage(int iduser)

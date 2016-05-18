@@ -47,20 +47,18 @@
                         </div>
                         <div class="side-left-menu-holder">
                             <ul class="side-left-navbar">
-                                <li>
-                                    <p>HOME</p>
+                                <li runat="server" id="HomeLink">
+                                    <p><asp:LinkButton ID="lBtnHomeLink" runat="server" OnClick="lBtnHomeLink_Click">HOME</asp:LinkButton></p>
+                                    
                                 </li>
-                                <li>
-                                    <p>ABOUT</p>
+                                <li runat="server" id="AboutLink">
+                                    <p><asp:LinkButton ID="lBtnAboutLink" runat="server" OnClick="lBtnAboutLink_Click">ABOUT</asp:LinkButton></p>
                                 </li>
-                                <li runat="server" id="link1" >
-                                    <p><a href="EditProfile.aspx">Edit Profile</a></p>
+                                <li runat="server" id="MyProfileLink">
+                                    <p><asp:LinkButton ID="lBtnMyProfileLink" runat="server" OnClick="lBtnMyProfileLink_Click">MY PROFILE</asp:LinkButton></p>
                                 </li>
-                                <li runat="server" id="link2">
-                                    <p>LINK 2</p>
-                                </li>
-                                <li runat="server" id="link3">
-                                    <p>LINK 3</p>
+                                <li runat="server" id="EditProfileLink" >
+                                    <p><asp:LinkButton ID="lBtnEditProfileLink" runat="server" OnClick="lBtnEditProfileLink_Click">EDIT PROFILE</asp:LinkButton></p>
                                 </li>
                             </ul>
                         </div>
@@ -132,7 +130,7 @@
                             <div class="fullBox">
                                 <p class="join-text">
                                     Not a member?
-                            <asp:LinkButton ID="linkBtnJoin" runat="server">Click here to join!</asp:LinkButton>
+                            <asp:LinkButton ID="linkBtnJoin" runat="server" OnClick="linkBtnJoin_Click">Click here to join!</asp:LinkButton>
                                 </p>
                             </div>
                         </div>

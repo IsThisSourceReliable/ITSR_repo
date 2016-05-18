@@ -63,6 +63,62 @@
         </div>
     </div>
 
+    <div class="page-overlay2">
+        <div class="overlay-message overlay-message-report">
+            <p class="my-glyph-close"><span class="glyphicon glyphicon-remove right " onclick="CloseOverlay2();"></span></p>
+            <div class="fullBox center-text">
+                <h3>Report Article</h3>
+            </div>
+            <div>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>                  
+                        <div class="fullBox">
+
+                            <p>
+                                <asp:HiddenField ID="CreatorIDOverlay" runat="server" />
+                                <br />
+                                <strong>You want to report the following Article: </strong>
+                                <br />
+                                <br />
+                                <i>"<asp:Label ID="lblArticle" runat="server" Text=""></asp:Label></i>"
+                            <br />
+                                <br />
+                                <strong>Created by:</strong>
+                                <asp:Label ID="lblCreator" runat="server" Text=""></asp:Label>
+                            </p>
+
+
+                            <asp:RequiredFieldValidator
+                                ID="RequiredFieldValidator1"
+                                runat="server"
+                                ErrorMessage="Please state a reason"
+                                ControlToValidate="tbReportReason"
+                                ValidationGroup="ReportArticle"
+                                CssClass="fail-text">
+                            </asp:RequiredFieldValidator>
+                            <div class="fullBox center-text">
+                                <asp:TextBox
+                                    ID="tbReportReason"
+                                    CssClass="txt-box txt-box-report-comment"
+                                    runat="server"
+                                    placeholder="Reason..."></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="fullBox center-text">
+                            <asp:Button
+                                ID="BtnReportArticle2"
+                                CssClass="itsr-button report-btn"
+                                runat="server"
+                                ValidationGroup="ReportArticle"
+                                Text="REPORT"
+                                OnClick="BtnReportArticle2_Click" />
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </div>
+    </div>
+
     <div class="fullBox white-box">
         <!-- TITLE ================================================== -->
         <div class="fullBox">
@@ -167,14 +223,22 @@
                 <br />
                 <p class="edit-text">
                     Last edited by
-                    <asp:LinkButton ID="linkBtnLastEdit" runat="server">LinkButton</asp:LinkButton>
+                    <asp:LinkButton ID="linkBtnLastEdit" runat="server" OnClick="linkBtnLastEdit_Click">LinkButton</asp:LinkButton>
                     at
                     <asp:Label ID="lblEditDate" runat="server" Text="Label"></asp:Label>
+                    <asp:HiddenField ID="HiddenLastEditByID" runat="server" />
                 </p>
-                <p class="edit-text">
+                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                <ContentTemplate>
+                <p runat="server" id="editText" class="edit-text">
                     Is the information about this source not correct?
                     <asp:LinkButton ID="lBtnEdit" runat="server" OnClick="lBtnEdit_Click">Edit here</asp:LinkButton>
                 </p>
+                <p runat="server" id="reportText" class="edit-text">
+                    Is it something in this article you would like to <a class="hover" onclick="OpenOverlay2()">Report?</a>                
+                </p>
+                </ContentTemplate>
+                </asp:UpdatePanel>
             </div>
         </div>
         <!-- COMMENT SECTION ================================================== -->
@@ -256,9 +320,9 @@
                                         <br />
                                         <p class="small-comment-text">
                                             Posted by 
-                                <asp:LinkButton ID="lBtnUsernameComment" runat="server">
+                                <asp:LinkButton ID="lBtnUsernameComment" runat="server" CommandName="VisitProfile" CommandArgument='<%# Eval("iduser") %>'>
                                     <asp:Label ID="lblCommentUserName" runat="server" Text='<%# Eval("username") %>'></asp:Label>
-                                </asp:LinkButton>
+                                </asp:LinkButton>                                           
                                             at
                                         <asp:Label ID="lblDate" runat="server" Text='<%# Eval("date") %>'></asp:Label>
                                             <span class="right">

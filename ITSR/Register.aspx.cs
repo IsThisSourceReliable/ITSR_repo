@@ -44,7 +44,8 @@ namespace ITSR
                 m.Password = p.CreateSecurePassword();
                 m.CreateUser(m);
                 
-                Cleartbs();                
+                Cleartbs();
+                Response.Redirect("~/default.aspx");
             }
         }
 

@@ -41,9 +41,8 @@ namespace ITSR
         /// </summary>
         private void HideLeftMenuButtons()
         {
-            link1.Visible = false;
-            link2.Visible = false;
-            link3.Visible = false;
+            EditProfileLink.Visible = false;
+            MyProfileLink.Visible = false;
         }
 
         /// <summary>
@@ -51,9 +50,8 @@ namespace ITSR
         /// </summary>
         private void ShowLeftMenuButtons()
         {
-            link1.Visible = true;
-            link2.Visible = true;
-            link3.Visible = true;
+            EditProfileLink.Visible = true;
+            MyProfileLink.Visible = true;
         }
 
         /// <summary>
@@ -146,9 +144,29 @@ namespace ITSR
             Response.Redirect("~/default.aspx");
         }
 
-        protected void LBHome_Click(object sender, EventArgs e)
+        protected void linkBtnJoin_Click(object sender, EventArgs e)
         {
+            Response.Redirect("~/Register.aspx");
+        }
 
+        protected void lBtnHomeLink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/default.aspx");
+        }
+
+        protected void lBtnAboutLink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/About.aspx");
+        }
+
+        protected void lBtnMyProfileLink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Profile.aspx");
+        }
+
+        protected void lBtnEditProfileLink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/EditProfile.aspx");
         }
     }
 }

@@ -313,13 +313,12 @@ namespace ITSR.CLASSES.USER
         }
         public void UpdateUser(User user)
         {
-            string sql = "Update user SET username = @UN, email = @EM WHERE iduser = @ID";
+            string sql = "Update user SET email = @EM WHERE iduser = @ID";
 
             try
             {
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@UN", user.userName);
                 cmd.Parameters.AddWithValue("@EM", user.Email);
                 cmd.Parameters.AddWithValue("@ID", user.ID);
 
@@ -352,6 +351,27 @@ namespace ITSR.CLASSES.USER
                 cmd.Parameters.AddWithValue("@PPID", user.profilepic_id);
                 cmd.Parameters.AddWithValue("@A", user.aboutme);
 
+                cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public void UpdatePassWord(User user)
+        {
+            string sql = "Update user SET password = @P WHERE iduser = @ID";
+
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@P", user.Password);
+                cmd.Parameters.AddWithValue("@ID", user.ID);
                 cmd.ExecuteNonQuery();
             }
             catch (MySqlException ex)
