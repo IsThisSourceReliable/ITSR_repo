@@ -7,9 +7,13 @@
 }
 .itsr-button-editprofile{
     max-width: 94%; 
-    margin-left: 2%;  
+    margin:2%;
 }
 .PasswordDiv {
   display:none;
 }
+.val {
+    margin-left: 2%;
+}
+
 

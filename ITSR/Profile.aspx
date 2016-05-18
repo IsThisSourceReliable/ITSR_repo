@@ -13,7 +13,7 @@
             <h3><asp:Label ID="lblFullNAme" runat="server" Text="FullName"></asp:Label></h3>
             <h3><asp:Label ID="lblCountry" runat="server" Text="Country"></asp:Label></h3>
             <h3><asp:Label ID="lblLocation" runat="server" Text="Location"></asp:Label></h3>
-            <h3><asp:Label ID="lblOccupation" runat="server" Text="Occupation"></asp:Label></h3>
+            <h3><asp:Label ID="lblOccupation" runat="server" Text="Occupation"></asp:Label>
             <h3><asp:Label ID="lblAboutme" runat="server" Text="Aboutme"></asp:Label></h3>
         </div>
         <div class="thirdBox thirdBox-floatright">

@@ -10,6 +10,8 @@ namespace ITSR
 {
     public partial class EditProfile : System.Web.UI.Page
     {
+
+        //Events
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,12 +26,19 @@ namespace ITSR
                 }
             }
         }
-
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             UpdateUser();
         }
+        protected void BtnNewPassword_Click(object sender, EventArgs e)
+        {
 
+            UpdatePassWord();
+            
+        }
+
+
+        //Methods
         public void LoadUser(int userid)
         {
             Member m = new Member();
@@ -42,7 +51,6 @@ namespace ITSR
         }
         public void FillTxtBoxes(Member m)
         {                     
-            tbUserName.Text = m.userName;
             tbEmail.Text = m.Email;
 
             tbFirstName.Text = m.firstname;
@@ -57,7 +65,6 @@ namespace ITSR
             Member m = new Member();
 
             m.ID = Convert.ToInt32(Session["userID"]);
-            m.userName = tbUserName.Text;
             m.Email = tbEmail.Text;
 
             m.firstname = tbFirstName.Text;
@@ -69,12 +76,53 @@ namespace ITSR
 
             m.UpdateUser(m);
             m.UpdateUserProfile(m);
-           
-        }
 
-        protected void BtnNewPassword_Click(object sender, EventArgs e)
-        {
-            
+            LoadUser(Convert.ToInt32(Session["userID"]));
+
         }
+        public void UpdatePassWord()
+        {
+            Member m = new Member();
+            Password p = new Password();
+            m.ID = Convert.ToInt32(Session["userID"]);
+
+            p.PasswordInput = tbOldPassword.Text;
+            p.user_id = m.ID;
+            if (p.TryPassword())
+            {
+                m.Password = tbPassword.Text;
+                p.PasswordInput = m.Password;
+                m.Password = p.CreateSecurePassword();
+
+                m.UpdatePassWord(m);
+                EmptyPasswordTextBoxes();
+
+                ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "hideDiv", "hideDiv();", true);
+            }
+            else
+            {
+                WrongPassWordValidator.IsValid = false;
+            }
+            
+
+        }
+        public void EmptyPasswordTextBoxes()
+        {
+            tbOldPassword.Text = "";
+            tbPassword.Text = "";
+            tbConfirmPassword.Text = "";
+        }
+        public void EmptyTextBoxes()
+        {
+            tbEmail.Text = "";
+            tbFirstName.Text = "";
+            tbLastName.Text = "";
+            tbCountry.Text = "";
+            tbLocation.Text = "";
+            tbOccupation.Text = "";
+            tbAboutMe.Text = "";
+            EmptyPasswordTextBoxes();
+        }
+        
     }
 }
