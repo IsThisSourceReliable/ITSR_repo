@@ -512,7 +512,7 @@ h4 {
         width: 100%;
     }
 
-        .side-left-navbar > li > p {
+        .side-left-navbar > li > p > a {
             display: block;
             padding: 20px 30px 20px 30px;
             color: #edf7f7;
@@ -522,7 +522,7 @@ h4 {
             border-bottom: 1px solid #81c9ca;
         }
 
-            .side-left-navbar > li > p:hover {
+            .side-left-navbar > li > p > a:hover {
                 display: block;
                 background: #81c9ca;
                 padding: 20px 30px 20px 30px;

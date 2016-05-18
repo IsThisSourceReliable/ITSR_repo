@@ -43,6 +43,7 @@ namespace ITSR
         {
             EditProfileLink.Visible = false;
             MyProfileLink.Visible = false;
+            CreateSourceLink.Visible = false;
         }
 
         /// <summary>
@@ -52,6 +53,7 @@ namespace ITSR
         {
             EditProfileLink.Visible = true;
             MyProfileLink.Visible = true;
+            CreateSourceLink.Visible = true;
         }
 
         /// <summary>
@@ -167,6 +169,11 @@ namespace ITSR
         protected void lBtnEditProfileLink_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/EditProfile.aspx");
+        }
+
+        protected void lBtnCreateArticle_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/CreateArticle.aspx");
         }
     }
 }
