@@ -92,6 +92,7 @@
     <Content Include="IMG\profilepic.jpg" />
     <Content Include="IMG\books.jpg" />
     <Content Include="JS\default.js" />
+    <Content Include="JS\EditProfileJS.js" />
     <Content Include="JS\MenuJS.js" />
     <Content Include="JS\OverlayJS.js" />
     <Content Include="martinstest.aspx" />

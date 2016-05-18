@@ -53,8 +53,8 @@
                                 <li>
                                     <p>ABOUT</p>
                                 </li>
-                                <li runat="server" id="link1">
-                                    <p>LINK 1</p>
+                                <li runat="server" id="link1" >
+                                    <p><a href="EditProfile.aspx">Edit Profile</a></p>
                                 </li>
                                 <li runat="server" id="link2">
                                     <p>LINK 2</p>

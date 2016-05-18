@@ -43,6 +43,7 @@ namespace ITSR
                 p.PasswordInput = m.Password;
                 m.Password = p.CreateSecurePassword();
                 m.CreateUser(m);
+                
                 Cleartbs();                
             }
         }

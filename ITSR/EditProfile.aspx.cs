@@ -12,7 +12,22 @@ namespace ITSR
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadUser(21);
+            if (!IsPostBack)
+            {
+                if (Session["userID"] == null)
+                {
+                    Response.Redirect("~/default.aspx");
+                }
+                else
+                {
+                    LoadUser(Convert.ToInt32(Session["userID"]));
+                }
+            }
+        }
+
+        protected void BtnSave_Click(object sender, EventArgs e)
+        {
+            UpdateUser();
         }
 
         public void LoadUser(int userid)
@@ -25,20 +40,41 @@ namespace ITSR
             m.LoadUserProfile(m);
             FillTxtBoxes(m);
         }
+        public void FillTxtBoxes(Member m)
+        {                     
+            tbUserName.Text = m.userName;
+            tbEmail.Text = m.Email;
 
-        public void FillTxtBoxes(User u)
+            tbFirstName.Text = m.firstname;
+            tbLastName.Text = m.lastName;
+            tbCountry.Text = m.country;
+            tbLocation.Text = m.location;
+            tbOccupation.Text = m.occupation;
+            tbAboutMe.Text = m.aboutme;
+        }
+        public void UpdateUser()
         {
-            tbUserName.Text = u.userName;
-            tbEmail.Text = u.Email;
-            tbPassword.Text = u.Password;
-            tbConfirmPassword.Text = u.Password;
+            Member m = new Member();
 
-            tbFirstName.Text = u.firstname;
-            tbLastName.Text = u.lastName;
-            tbCountry.Text = u.country;
-            tbLocation.Text = u.location;
-            tbOccupation.Text = u.occupation;
-            tbAboutMe.Text = u.aboutme;
+            m.ID = Convert.ToInt32(Session["userID"]);
+            m.userName = tbUserName.Text;
+            m.Email = tbEmail.Text;
+
+            m.firstname = tbFirstName.Text;
+            m.lastName = tbLastName.Text;
+            m.country = tbCountry.Text;
+            m.location = tbLocation.Text;
+            m.occupation = tbOccupation.Text;
+            m.aboutme = tbAboutMe.Text;
+
+            m.UpdateUser(m);
+            m.UpdateUserProfile(m);
+           
+        }
+
+        protected void BtnNewPassword_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

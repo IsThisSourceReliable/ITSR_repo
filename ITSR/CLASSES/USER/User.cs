@@ -192,17 +192,53 @@ namespace ITSR.CLASSES.USER
         public void CreateUser(User user)
         {
             string sql = "INSERT INTO user (username, password, email, role_id, certified_user) VALUES(@UN, @PW, @EM, @R, @CU)";
+            string sql2 = "SELECT LAST_INSERT_ID() FROM user";
             try
             {
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlCommand cmd2 = new MySqlCommand(sql2, conn);
 
                 cmd.Parameters.AddWithValue("@UN", user.userName);
                 cmd.Parameters.AddWithValue("@PW", user.Password);
                 cmd.Parameters.AddWithValue("@EM", user.Email);
                 cmd.Parameters.AddWithValue("@R", user.role_id);
                 cmd.Parameters.AddWithValue("@CU", user.certifedUser);
+
+                cmd.ExecuteNonQuery();
+                int iduser = Convert.ToInt32(cmd2.ExecuteScalar());
+                user.ID = iduser;
+                conn.Close();
+                CreateUserProfile(user);
+            }
+            catch (MySqlException ex)
+            {
+                string hej = ex.ToString();
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+        public void CreateUserProfile(User user)
+        {
+            string sql = "INSERT INTO user_profile (user_id, name, lastname, country, location, occupation, profilepic_id, aboutme) VALUES(@UID, @N, @LN, @C, @L, @O, @PPID, @A)";
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@UID", user.ID);
+                cmd.Parameters.AddWithValue("@N", user.firstname);
+                cmd.Parameters.AddWithValue("@LN", user.lastName);
+                cmd.Parameters.AddWithValue("@C", user.country);
+                cmd.Parameters.AddWithValue("@L", user.location);
+                cmd.Parameters.AddWithValue("@O", user.occupation);
+                cmd.Parameters.AddWithValue("@PPID", user.profilepic_id);
+                cmd.Parameters.AddWithValue("@A", user.aboutme);
 
                 cmd.ExecuteNonQuery();
             }
@@ -214,7 +250,6 @@ namespace ITSR.CLASSES.USER
             {
                 conn.Close();
             }
-
         }
         public void LoadUser(User user)
         {
@@ -276,18 +311,46 @@ namespace ITSR.CLASSES.USER
                 conn.Close();
             }
         }
-        public void UpdateInfo(User user)
+        public void UpdateUser(User user)
         {
-            string sql = "Update user SET username = @UM, password = @PW, email = @EM WHERE iduser = @ID";
+            string sql = "Update user SET username = @UN, email = @EM WHERE iduser = @ID";
 
             try
             {
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@UN", user.userName);
-                cmd.Parameters.AddWithValue("@PW", user.Password);
                 cmd.Parameters.AddWithValue("@EM", user.Email);
                 cmd.Parameters.AddWithValue("@ID", user.ID);
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public void UpdateUserProfile(User user)
+        {
+            string sql = "Update user_profile SET name = @N, lastname = @LN, country = @C, location = @L, occupation = @O, profilepic_id = @PPID, aboutme = @A  WHERE user_id = @UID";
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@UID", user.ID);
+                cmd.Parameters.AddWithValue("@N", user.firstname);
+                cmd.Parameters.AddWithValue("@LN", user.lastName);
+                cmd.Parameters.AddWithValue("@C", user.country);
+                cmd.Parameters.AddWithValue("@L", user.location);
+                cmd.Parameters.AddWithValue("@O", user.occupation);
+                cmd.Parameters.AddWithValue("@PPID", user.profilepic_id);
+                cmd.Parameters.AddWithValue("@A", user.aboutme);
 
                 cmd.ExecuteNonQuery();
             }

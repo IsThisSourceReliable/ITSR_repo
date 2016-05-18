@@ -6,6 +6,10 @@
     margin:2%;
 }
 .itsr-button-editprofile{
-    max-width: 97%;   
+    max-width: 94%; 
+    margin-left: 2%;  
+}
+.PasswordDiv {
+  display:none;
 }
 
