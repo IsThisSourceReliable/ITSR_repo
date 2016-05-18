@@ -18,11 +18,12 @@
                         <div class="fullBox">
 
                             <p>
+                                <asp:Label ID="lblOwnComment" CssClass="fail-text" runat="server" Text="Label"></asp:Label>
                                 <asp:HiddenField ID="CommentIDOverlay" runat="server" />
                                 <asp:HiddenField ID="CommenUserIDOverlay" runat="server" />
                                 <br />
                                 <strong>You want to report the following comment: </strong>
-                                <br />
+                                <br />    
                                 <br />
                                 <i>"<asp:Label ID="lblCommentTextOverlay" runat="server" Text="Label"></asp:Label></i>"
                             <br />

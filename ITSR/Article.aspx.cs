@@ -32,6 +32,7 @@ namespace ITSR
                 LoadArticle();
                 lblCommenLogin.Visible = false;
                 lblVoteLogin.Visible = false;
+                lblOwnComment.Visible = false;
             }
         }
 
@@ -282,7 +283,7 @@ namespace ITSR
             CommenUserIDOverlay.Value = userID;
             lblCommentTextOverlay.Text = commentText;
             lblUserNameComment.Text = username;
-
+            lblOwnComment.Visible = false;
             //Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
             ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "OpenOverlay", "OpenOverlay();", true);
         }
@@ -465,14 +466,22 @@ namespace ITSR
         /// <param name="e"></param>
         protected void btnReport_Click(object sender, EventArgs e)
         {
-            Comment Report = new Comment();
+            if(CommenUserIDOverlay.Value == Session["UserID"].ToString())
+            {
+                lblOwnComment.Text = "You can not report your own comment.";
+                lblOwnComment.Visible = true;
+            }
+            else
+            {
+                Comment Report = new Comment();
 
-            Report.ID = int.Parse(CommentIDOverlay.Value.ToString());
-            Report.User_id = int.Parse(Session["UserID"].ToString());
-            Report.ReportReason = txtReason.Text;
+                Report.ID = int.Parse(CommentIDOverlay.Value.ToString());
+                Report.User_id = int.Parse(Session["UserID"].ToString());
+                Report.ReportReason = txtReason.Text;
 
-            Report.ReportComment();
-            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "CloseOverlay", "CloseOverlay();", true);
+                Report.ReportComment();
+                ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "CloseOverlay", "CloseOverlay();", true);
+            }
         }
 
         /// <summary>
