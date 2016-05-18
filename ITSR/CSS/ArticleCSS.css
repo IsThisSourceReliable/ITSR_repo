@@ -50,6 +50,7 @@
 .overlay-message-report {
     width: 500px;
 }
+
 .comment-btn {
     width: 50%;
     float: right;
@@ -79,7 +80,11 @@
     }
 
 .vote-btn-pressed {
-    background-color: #93d0d2;
+    background-color: #074e67;
+    cursor: default;
+    display: inline-block;
+    padding: 7px 8px 7px 7px;
+    border-radius: 10px;
 }
 
 .vote-glyph {
@@ -97,6 +102,8 @@
 .vote-bar {
     height: 4px;
     display: inline-block;
+    margin: 0em;
+    padding: 0em;
 }
 
 .upvote-bar {
@@ -106,24 +113,6 @@
 .downvote-bar {
     background-color: #B44E4C;
 }
-/*.upvote-btn {
-    background-color: #4CB482;
-}
-
-.vote-glyph:hover {
-    background-color: #4CB482;
-}
-
-.downvote-btn {
-    background-color: #B44E4C;
-}
-
-.downvote-btn:hover {
-    background-color: #B44E4C;*/
-}
-/*.like-box-mobile {
-    display: none;   
-}*/
 
 .like-box-station {
 }
@@ -166,13 +155,12 @@
     margin-left: 1em;
     margin-bottom: 1em;
 }
-/*@media (max-width: 768px) {
-    .like-box-station
- {
-    display: none;       
-  }
-}*/
 
+.DropDown-Comments {
+    width: 100px;
+    padding: 1px 1px 1px 1px;
+    font-size: 0.9em;
+}
 
 @media (max-width: 768px) {
     .like-box {
@@ -192,10 +180,6 @@
         float: none;
     }
 }
-
-
-
-
 
 @media (max-width: 950px) {
     .overlay-message-report {

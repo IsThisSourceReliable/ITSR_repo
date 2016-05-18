@@ -105,66 +105,7 @@ namespace ITSR.CLASSES.USER
         //        conn.Close();
         //    }
         //}
-        public void UpVoteArticle(Vote v)
-        {
-            string sql = "INSERT INTO vote (user_id, article_id, vote) VALUES(@UID, @AID, @V)";
-            string sql2 = "UPDATE article SET votes_up = votes_up + 1 WHERE idarticle = @AID";
-            try
-            {
-                conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                MySqlCommand cmd2 = new MySqlCommand(sql2, conn);
-
-                cmd.Parameters.AddWithValue("@UID", v.user_id);
-                cmd.Parameters.AddWithValue("@AID", v.article_id);
-                cmd.Parameters.AddWithValue("@V", true);
-
-                cmd2.Parameters.AddWithValue("@AID", v.article_id);
-
-                cmd.ExecuteNonQuery();
-                cmd2.ExecuteNonQuery();
-
-                
-            }
-            catch (MySqlException ex)
-            {
-
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-        public void DownVoteArticle(Vote v)
-        {
-            string sql = "INSERT INTO vote (user_id, article_id, vote) VALUES(@UID, @AID, @V)";
-            string sql2 = "UPDATE article SET votes_down = votes_down + 1 WHERE idarticle = @AID";
-            try
-            {
-                conn.Open();
-
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                MySqlCommand cmd2 = new MySqlCommand(sql2, conn);
-
-                cmd.Parameters.AddWithValue("@UID", v.user_id);
-                cmd.Parameters.AddWithValue("@AID", v.article_id);
-                cmd.Parameters.AddWithValue("@V", false);
-
-                cmd2.Parameters.AddWithValue("@AID", v.article_id);
-
-                cmd.ExecuteNonQuery();
-                cmd2.ExecuteNonQuery();
-            }
-            catch (MySqlException ex)
-            {
-
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
         public void ReportArticle(Report r)
         {
             string sql = "INSERT INTO report_article (article_id, text, user_id) VALUES(@AID, @T, @UID)";
