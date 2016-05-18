@@ -74,27 +74,32 @@
             <div class="halfBox ">
                 <div class="fullBox ">
                     <div class="like-box">
-                        <div class="fullBox">
-                            <div class="vote-bar upvote-bar" id="upvoteBar" runat="server"></div>
-                            <div class="vote-bar downvote-bar" id="downvoteBar" runat="server"></div>
-                        </div>
-                        <div class="fullBox">
-                            <div class="right">
-                                <div style="display: inline-block;">
+                        <asp:UpdatePanel ID="UpdatePanelLikeBox" runat="server">
+                            <ContentTemplate>
+                                <div class="fullBox">
                                     <p>
-                                        <asp:Label ID="lblTotalVotes" runat="server" Text="TotalVotes"></asp:Label>
-                                        votes
+                                        <div class="vote-bar upvote-bar" id="upvoteBar" runat="server"></div><div class="vote-bar downvote-bar" id="downvoteBar" runat="server"></div>
+
                                     </p>
                                 </div>
-                                <div class="vote-btn upvote-btn">
-                                    <span class="vote-glyph glyphicon glyphicon-arrow-up " onclick=""></span>
-                                </div>
-                                <div class="vote-btn downvote-btn">
-                                    <span class="vote-glyph glyphicon glyphicon-arrow-down " onclick="();"></span>
-                                </div>
-                            </div>
+                                <div class="fullBox">
+                                    <div class="right">
+                                        <div style="display: inline-block;">
+                                            <p>
+                                                <asp:Label ID="lblTotalVotes" runat="server" Text="TotalVotes"></asp:Label>
+                                                votes
+                                            </p>
+                                        </div>
+                                        <asp:LinkButton ID="lBtnUpvote" CssClass="vote-btn upvote-btn" runat="server" OnClick="lBtnUpvote_Click"><span id="upvoteGlyph" runat="server" class="vote-glyph glyphicon glyphicon-arrow-up "></span></asp:LinkButton>
+                                        <asp:LinkButton ID="lBtnDownVote" CssClass="vote-btn downvote-btn" runat="server" OnClick="lBtnDownVote_Click"><span id="downvoteGlyph" runat="server"  class="vote-glyph glyphicon glyphicon-arrow-down " ></span></asp:LinkButton>
 
-                        </div>
+                                    </div>
+                                </div>
+                                <div class="fullBox">
+                                    <asp:Label ID="lblVoteLogin" CssClass="fail-text right" runat="server" Text="Label"></asp:Label>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </div>
                 </div>
                 <div class="fullBox">
@@ -227,12 +232,13 @@
                                     <asp:ListItem Selected="True" Value="Latest">Latest</asp:ListItem>
                                     <asp:ListItem>First</asp:ListItem>
                                 </asp:DropDownList>
-                                <span class="right">Show <asp:DropDownList ID="DropDownLimitComment" CssClass="DropDown DropDown-Comments" AutoPostBack="true" runat="server" OnSelectedIndexChanged="DropDownLimitComment_SelectedIndexChanged">
-                                    <asp:ListItem Selected="True">10</asp:ListItem>
-                                    <asp:ListItem>20</asp:ListItem>
-                                    <asp:ListItem>30</asp:ListItem>
-                                    <asp:ListItem Value="1000">All</asp:ListItem>
-                                </asp:DropDownList></span>
+                                <span class="right">Show
+                                    <asp:DropDownList ID="DropDownLimitComment" CssClass="DropDown DropDown-Comments" AutoPostBack="true" runat="server" OnSelectedIndexChanged="DropDownLimitComment_SelectedIndexChanged">
+                                        <asp:ListItem Selected="True">10</asp:ListItem>
+                                        <asp:ListItem>20</asp:ListItem>
+                                        <asp:ListItem>30</asp:ListItem>
+                                        <asp:ListItem Value="1000">All</asp:ListItem>
+                                    </asp:DropDownList></span>
                             </p>
                             <asp:ListView
                                 ID="listViewComments"

@@ -142,33 +142,6 @@ namespace ITSR.CLASSES.ARTICLE
             }
         }
 
-        public DataTable LoadArticleComments()
-        {
-            string sql = "SELECT * FROM comment WHERE article_id = @AID";
-
-            try
-            {
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@AID", ID);
-                MySqlDataAdapter da = new MySqlDataAdapter();
-
-                da.SelectCommand = cmd;
-
-                DataTable dt = new DataTable();
-
-                da.Fill(dt);
-                return dt;
-            }
-            catch (MySqlException ex)
-            {
-                return null;
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
         public DataTable SearchForSpecificArticle(string SearchString)
         {
             string sql = "SELECT * FROM article WHERE title = @SS OR url = @SS";
@@ -259,6 +232,7 @@ namespace ITSR.CLASSES.ARTICLE
         {
             try
             {
+                conn.Open();
                 MySqlCommand cmd = new MySqlCommand("SELECT idarticle, title, text, url, orgtype_id, lastedit_date, votes_up, votes_down, lastedituser_id, createuser_id, publisher, domainowner,financing, reference_xml, removed, name AS orgtype, username AS edituser FROM article " +
                                                     "INNER JOIN typeoforg ON article.orgtype_id = typeoforg.idtypeoforg " +
                                                     "INNER JOIN user ON article.lastedituser_id = user.iduser " +
@@ -327,7 +301,8 @@ namespace ITSR.CLASSES.ARTICLE
         {
             if (upVotePercent == 0)
             {
-                return 0;
+                int downVotePercent = 100 - Convert.ToInt32(upVotePercent);
+                return downVotePercent;
             }
             else
             {
@@ -336,6 +311,31 @@ namespace ITSR.CLASSES.ARTICLE
             }
         }
 
+        public DataTable GetArticleVotes()
+        {
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT votes_up, votes_down FROM article WHERE idarticle = @articleid;", conn);
+                cmd.Parameters.AddWithValue("@articleid", ID);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+
+                da.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+                return dt;
+            }
+            catch (MySqlException ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
         /// <summary>
         /// Method returns a datatable contain all the different types of organisations
@@ -426,6 +426,34 @@ namespace ITSR.CLASSES.ARTICLE
         //    int upVotes = GetUpVotes(a);
         //    int totalVotes = upVotes + downVotes;
         //    return totalVotes;
+        //}
+
+
+        //public DataTable LoadArticleComments()
+        //{
+        //    string sql = "SELECT * FROM comment WHERE article_id = @AID";
+
+        //    try
+        //    {
+        //        MySqlCommand cmd = new MySqlCommand(sql, conn);
+        //        cmd.Parameters.AddWithValue("@AID", ID);
+        //        MySqlDataAdapter da = new MySqlDataAdapter();
+
+        //        da.SelectCommand = cmd;
+
+        //        DataTable dt = new DataTable();
+
+        //        da.Fill(dt);
+        //        return dt;
+        //    }
+        //    catch (MySqlException ex)
+        //    {
+        //        return null;
+        //    }
+        //    finally
+        //    {
+        //        conn.Close();
+        //    }
         //}
     }
 }

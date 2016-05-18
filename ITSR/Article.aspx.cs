@@ -20,7 +20,6 @@ namespace ITSR
             //master.OnSomethingSelected += MasterSelected;
         }
 
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["UserID"] == null)
@@ -32,6 +31,7 @@ namespace ITSR
             {
                 LoadArticle();
                 lblCommenLogin.Visible = false;
+                lblVoteLogin.Visible = false;
             }
         }
 
@@ -43,6 +43,7 @@ namespace ITSR
         private void MasterSelected()
         {
             LoadComments(hiddenArticleID.Value.ToString());
+            SetVoteButton();
         }
 
         /// <summary>
@@ -65,6 +66,7 @@ namespace ITSR
             SetArticleLables(dt);
             SetVotes(totalVotes, upVotePercent, downVotePercent);
             LoadComments(articleID);
+            SetVoteButton();
         }
 
         /// <summary>
@@ -123,6 +125,73 @@ namespace ITSR
         }
 
         /// <summary>
+        /// Method evaluates if user has voted on an article or not. 
+        /// If user has voted it calls SetVoteButtonProperties
+        /// method to set relevant properties for button.
+        /// </summary>
+        private void SetVoteButton()
+        {
+            if(Session["UserID"] != null)
+            {
+                DataTable dt = new DataTable();
+                Vote CheckVote = new Vote();
+                bool voteType = false;
+                CheckVote.User_id = int.Parse(Session["UserID"].ToString());
+                CheckVote.Article_id = int.Parse(hiddenArticleID.Value);
+
+                dt = CheckVote.GetUserVote();
+                if (dt.Rows.Count > 0)
+                {
+                    int intVote = Convert.ToInt32(dt.Rows[0]["vote"].ToString());
+                    if (intVote == 0)
+                    {
+                        SetVoteButtonProperties(voteType);
+                    }
+                    else
+                    {
+                        voteType = true;
+                        SetVoteButtonProperties(voteType);
+                    }
+                }
+            }
+
+        }
+
+
+        /// <summary>
+        /// Method sets properties for upvote and downvote button depending if user has
+        /// upvoted or downvoted.
+        /// </summary>
+        /// <param name="voteType"></param>
+        private void SetVoteButtonProperties(bool voteType)
+        {
+            if(voteType)
+            {
+                lBtnUpvote.Enabled = false;
+                lBtnUpvote.CssClass = "vote-btn-pressed";
+                upvoteGlyph.Attributes["class"] = "upvote-glyph glyphicon glyphicon-arrow-up ";
+                lBtnUpvote.ToolTip = "You have already upvoted this source";
+
+                lBtnDownVote.ToolTip = "Click here to downvote";
+                lBtnDownVote.CssClass = "vote-btn";
+                downvoteGlyph.Attributes["class"] = "vote-glyph glyphicon glyphicon-arrow-down ";
+                lBtnDownVote.Enabled = true;
+            }
+            else
+            {
+                lBtnDownVote.Enabled = false;
+                lBtnDownVote.CssClass = "vote-btn-pressed";
+                downvoteGlyph.Attributes["class"] = "downvote-glyph glyphicon glyphicon-arrow-down ";
+                lBtnDownVote.ToolTip = "You have already downvoted this source";
+
+                lBtnUpvote.ToolTip = "Click here to upvote";
+                lBtnUpvote.CssClass = "vote-btn";
+                upvoteGlyph.Attributes["class"] = "vote-glyph glyphicon glyphicon-arrow-up ";
+                lBtnUpvote.Enabled = true;
+            }
+        }
+
+        /// <summary>
         /// Method sets the upvotes for an article and sets the width of
         /// the vote bar.
         /// </summary>
@@ -173,6 +242,29 @@ namespace ITSR
         }
 
         /// <summary>
+        /// Method updates the info inside the votebox when a user 
+        /// votes on a source. 
+        /// </summary>
+        private void UpdateVoteBox()
+        {
+            Articles UpdateVote = new Articles();
+            DataTable dt = new DataTable();
+
+            UpdateVote.ID = int.Parse(hiddenArticleID.Value.ToString());
+
+            dt = UpdateVote.GetArticleVotes();
+
+            UpdateVote.upVotes = int.Parse(dt.Rows[0]["votes_up"].ToString());
+            UpdateVote.downVotes = int.Parse(dt.Rows[0]["votes_down"].ToString());
+
+            int totalVotes = UpdateVote.SetTotalVotes();
+            double upVotePercent = UpdateVote.SetUpVotePercent(totalVotes);
+            double downVotePercent = UpdateVote.SetDownVotesPercent(upVotePercent);
+
+            SetVotes(totalVotes, upVotePercent, downVotePercent);
+        }
+
+        /// <summary>
         /// This method sets the labels in the overlay to correct values and
         /// also the hiddenfields to correct values so a user can report a comment.
         /// </summary>
@@ -192,7 +284,8 @@ namespace ITSR
         }
 
         /// <summary>
-        /// TO BE IMPLEMENTED
+        /// TO BE IMPLEMENTED ***********************************************************************************
+        /// *****************************************************************************************************
         /// </summary>
         /// <param name="listViewIndex"></param>
         /// <param name="dataBaseIndex"></param>
@@ -391,6 +484,88 @@ namespace ITSR
             }
         }
 
+        /// <summary>
+        /// Event for when user clicks tp upvote. 
+        /// Uses method in vote class in order to set correct vote status.
+        /// Calls methoed SetVoteButtonProperties to update votebutton
+        /// and UpdateVoteBox to update info in votebox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void lBtnUpvote_Click(object sender, EventArgs e)
+        {
+            if (Session["UserID"] == null)
+            {
+                lblVoteLogin.Text = "You have to log in to vote";
+                lblVoteLogin.Visible = true;
+            }
+            else
+            {
+                bool voteType = true;
+
+                Vote UpVote = new Vote();
+                UpVote.User_id = int.Parse(Session["UserID"].ToString());
+                UpVote.Article_id = int.Parse(hiddenArticleID.Value);
+                UpVote.VoteType = voteType;
+
+                if (UpVote.SetVote())
+                {
+                    //lblVoteLogin.Text = "You upvoted! YEY"; // Test purpose
+                    //lblVoteLogin.Visible = true;              //TEst
+                    UpdateVoteBox();
+                    SetVoteButtonProperties(voteType);
+                }
+                else
+                {
+                    //lblVoteLogin.Text = "Already upveted upvoted! YEY"; //test
+                    //lblVoteLogin.Visible = true; //Test
+                }
+
+                //lblVoteLogin.Visible = false;
+            }
+        }
+
+
+        /// <summary>
+        /// Event for when user clicks tp downvotw. 
+        /// Uses method in vote class in order to set correct vote status.
+        /// Calls methoed SetVoteButtonProperties to update votebutton
+        /// and UpdateVoteBox to update info in votebox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void lBtnDownVote_Click(object sender, EventArgs e)
+        {
+            if (Session["UserID"] == null)
+            {
+                lblVoteLogin.Text = "You have to log in to vote";
+                lblVoteLogin.Visible = true;
+            }
+            else
+            {
+                bool voteType = false;
+
+                Vote DownVote = new Vote();
+                DownVote.User_id = int.Parse(Session["UserID"].ToString());
+                DownVote.Article_id = int.Parse(hiddenArticleID.Value);
+                DownVote.VoteType = voteType;
+
+                if (DownVote.SetVote())
+                {
+                    //lblVoteLogin.Text = "You Downvoted! YEY"; //Test
+                    //lblVoteLogin.Visible = true; //Test
+                    UpdateVoteBox();
+                    SetVoteButtonProperties(voteType);
+                }
+                else
+                {
+                    //lblVoteLogin.Text = "Already downvoted downvoted! YEY"; //Test
+                    //lblVoteLogin.Visible = true; //Test
+                }
+                //lblVoteLogin.Visible = false;
+            }
+        }
+
         /************************************ CODE BELOW JUST FOR TEST PURPOSE ****************************************************/
 
         //Test purpose.
@@ -440,7 +615,5 @@ namespace ITSR
             //Response.Redirect("~/DaTest.aspx");
             //Session["id"] = 
         }
-
-
     }
 }

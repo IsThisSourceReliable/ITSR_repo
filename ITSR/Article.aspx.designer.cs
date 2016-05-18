@@ -94,6 +94,15 @@ namespace ITSR {
         protected global::System.Web.UI.WebControls.Label lblArticleName;
         
         /// <summary>
+        /// UpdatePanelLikeBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelLikeBox;
+        
+        /// <summary>
         /// upvoteBar control.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,51 @@ namespace ITSR {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotalVotes;
+        
+        /// <summary>
+        /// lBtnUpvote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lBtnUpvote;
+        
+        /// <summary>
+        /// upvoteGlyph control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl upvoteGlyph;
+        
+        /// <summary>
+        /// lBtnDownVote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lBtnDownVote;
+        
+        /// <summary>
+        /// downvoteGlyph control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl downvoteGlyph;
+        
+        /// <summary>
+        /// lblVoteLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVoteLogin;
         
         /// <summary>
         /// articleText control.
