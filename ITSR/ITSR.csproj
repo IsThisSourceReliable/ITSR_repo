@@ -127,6 +127,7 @@
     <Content Include="FONTS\lato-lig-demo.html" />
     <Content Include="FONTS\lato-lig-webfont.svg" />
     <Content Include="FONTS\stylesheet.css" />
+    <Content Include="CSS\PanelStyle.css" />
     <Content Include="Profile.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Search.aspx" />

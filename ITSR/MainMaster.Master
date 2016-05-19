@@ -63,6 +63,9 @@
                                 <li runat="server" id="EditProfileLink" >
                                     <p><asp:LinkButton ID="lBtnEditProfileLink" runat="server" OnClick="lBtnEditProfileLink_Click">EDIT PROFILE</asp:LinkButton></p>
                                 </li>
+                                <li runat="server" id="ModPanelLink">
+                                    <p><asp:LinkButton ID="lBtnMoedPanelLink" runat="server" OnClick="lBtnMoedPanelLink_Click">MODERATOR PANEL</asp:LinkButton></p>
+                                </li>
                             </ul>
                         </div>
                         <p class="left-menu-lbl">0</p>

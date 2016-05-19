@@ -21,6 +21,10 @@ namespace ITSR
             {
                 ShowLeftMenuButtons();
                 SetLoginGUI();
+                if(Session["RoleID"].ToString() == "2")
+                {
+                    ShowModeratorBtn();
+                }
             }
 
             if(!IsPostBack)
@@ -44,6 +48,7 @@ namespace ITSR
             EditProfileLink.Visible = false;
             MyProfileLink.Visible = false;
             CreateSourceLink.Visible = false;
+            ModPanelLink.Visible = false;
         }
 
         /// <summary>
@@ -54,6 +59,11 @@ namespace ITSR
             EditProfileLink.Visible = true;
             MyProfileLink.Visible = true;
             CreateSourceLink.Visible = true;
+        }
+
+        private void ShowModeratorBtn()
+        {
+            ModPanelLink.Visible = true;
         }
 
         /// <summary>
@@ -106,16 +116,16 @@ namespace ITSR
                 if(MemberLogin.TryLogin())
                 {
                     Session["UserID"] = MemberLogin.ID.ToString();
+                    Session["RoleID"] = MemberLogin.role_id.ToString();
 
                     SetLoginGUI();
                     ShowLeftMenuButtons();
-                    CloseLoginMenu();
-                    string path = CheckPagePath();
-                    if (path == "/Article.aspx")
+                    if (Session["RoleID"].ToString() == "2")
                     {
-                        UpdateArticlePage();
+                        ShowModeratorBtn();
                     }
-
+                    CloseLoginMenu();
+                    CheckPagePath();
                 }
                 else
                 {
@@ -128,11 +138,13 @@ namespace ITSR
             }
         }
 
-        private string CheckPagePath()
+        private void CheckPagePath()
         {
             string path = HttpContext.Current.Request.Url.AbsolutePath;
-
-            return path;
+            if (path == "/Article.aspx")
+            {
+                UpdateArticlePage();
+            }            
         }
 
         /// <summary>
@@ -174,6 +186,11 @@ namespace ITSR
         protected void lBtnCreateArticle_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/CreateArticle.aspx");
+        }
+
+        protected void lBtnMoedPanelLink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/ModPanel.aspx");
         }
     }
 }

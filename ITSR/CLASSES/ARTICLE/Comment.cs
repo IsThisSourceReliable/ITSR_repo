@@ -184,7 +184,7 @@ namespace ITSR.CLASSES.ARTICLE
             }
             catch (MySqlException ex)
             {
-                Console.Write(ex.Message);
+                Console.Write(ex.Message.ToString());
             }
             finally
             {
