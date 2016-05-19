@@ -160,18 +160,32 @@ namespace ITSR.CLASSES.USER
             }
             return 0;
         }
-        public bool CheckEmail(User user)
+        public bool CheckEmail(User user, bool AlreadyMember)
         {
             string sql = "select exists(select 1 from user WHERE email = @EM)";
-
+            string sql2 = "SELECT email FROM user WHERE iduser = @UID";
             try
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);                
                 cmd.Parameters.AddWithValue("@EM", user.Email);
-                bool exists = Convert.ToBoolean(cmd.ExecuteScalar());
 
-                if (exists)
+                bool exists = Convert.ToBoolean(cmd.ExecuteScalar());
+                conn.Close();
+                if (AlreadyMember)
+                {
+                    conn.Open();
+                    MySqlCommand cmd2 = new MySqlCommand(sql2, conn);
+                    cmd2.Parameters.AddWithValue("@UID", user.ID);
+                    MySqlDataReader dr = cmd2.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        string Email = Convert.ToString(dr["email"]);
+                    }
+                    conn.Close();
+                }                
+                
+                if (exists && user.Email != Email)
                 {
                     return true;
                 }

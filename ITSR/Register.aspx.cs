@@ -24,7 +24,7 @@ namespace ITSR
             m.role_id = 1;
             m.certifedUser = false;      
 
-            bool emailExists = m.CheckEmail(m);
+            bool emailExists = m.CheckEmail(m, false);
             bool userNameExists = m.CheckUserNameExists(m);
 
             if (userNameExists == true)

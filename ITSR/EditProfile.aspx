@@ -18,6 +18,25 @@
 	                    ValidationGroup="SaveProfile"
                         CssClass="val">
                     </asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator 
+	                    ID="regExValidatorEmail" 
+	                    ForeColor="Red" 
+                	    Font-Size="Medium" 
+                	    ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+                	    ControlToValidate="tbEmail" 
+                	    runat="server" 
+                	    ErrorMessage="Hey! Thats not an Email!"
+                	    display="Dynamic"
+                	    ValidationGroup="SaveProfile"> 
+                    </asp:RegularExpressionValidator>
+                    <asp:CustomValidator
+                         ID="CustomValidator2"
+                         ForeColor="Red"
+                         runat="server"
+                         Font-Size="Medium"
+                         display="Dynamic"
+                         ErrorMessage="Email is already registered!">
+                     </asp:CustomValidator>
                     <asp:TextBox ID="tbEmail" placeholder="Email" runat="server" CssClass="txt-box txt-box-editprofile"></asp:TextBox><br />
                     <div class="PasswordDiv">
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
