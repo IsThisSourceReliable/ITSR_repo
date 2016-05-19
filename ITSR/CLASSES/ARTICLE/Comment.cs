@@ -172,7 +172,7 @@ namespace ITSR.CLASSES.ARTICLE
             {
                 conn.Open();
 
-                MySqlCommand cmdReportComment = new MySqlCommand("INSERT INTO report_comment (comment_id, reason, user_id) " +
+                MySqlCommand cmdReportComment = new MySqlCommand("INSERT INTO report_comment (comment_id, reason, report_user_id) " +
                                                                 "VALUES(@commentid, @reason, @userid);", conn);
 
                 cmdReportComment.Parameters.AddWithValue("@commentid", ID);
@@ -184,7 +184,7 @@ namespace ITSR.CLASSES.ARTICLE
             }
             catch (MySqlException ex)
             {
-                Console.Write(ex.Message);
+                Console.Write(ex.Message.ToString());
             }
             finally
             {

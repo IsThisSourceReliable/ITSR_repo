@@ -42,7 +42,7 @@ namespace ITSR.CLASSES.USER
                 if (exists)
                 {
                     return true;
-            }
+                }
                 else
                 {
                     return false;
@@ -90,12 +90,18 @@ namespace ITSR.CLASSES.USER
             finally
             {
                 conn.Close();
-            }          
+            }
         }
+
+        /// <summary>
+        /// Method tries password from user 
+        /// </summary>
+        /// <returns></returns>
         public bool TryLogin()
         {
             Password TryPass = new Password();
             ID = GetUserID();
+            role_id = GetUserLvl(ID);
             TryPass.user_id = ID;
             TryPass.PasswordInput = Password;
             bool ok = false;
@@ -103,9 +109,9 @@ namespace ITSR.CLASSES.USER
             {
                 ok = true;
                 return ok;
-        }
+            }
             else
-        {
+            {
                 return ok;
             }
         }
@@ -134,6 +140,33 @@ namespace ITSR.CLASSES.USER
                 conn.Close();
             }
         }
+
+        public int GetUserLvl(int userID)
+        {
+            string sql = "SELECT role_id FROM user WHERE iduser = @ID";
+            int userLvl = -1;
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@ID", userID);
+
+                userLvl = Convert.ToInt32(cmd.ExecuteScalar());
+
+                return userLvl;
+
+            }
+            catch (MySqlException ex)
+            {
+                return userLvl;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
 
         public int CheckUserLvl(User user)
         {
@@ -293,7 +326,7 @@ namespace ITSR.CLASSES.USER
             {
                 conn.Close();
             }
-        } 
+        }
         public void LoadUserProfile(User user)
         {
             string sql = "SELECT * FROM user_profile WHERE user_id = @id";
@@ -397,5 +430,5 @@ namespace ITSR.CLASSES.USER
                 conn.Close();
             }
         }
-    }    
+    }
 }

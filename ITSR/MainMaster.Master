@@ -54,11 +54,17 @@
                                 <li runat="server" id="AboutLink">
                                     <p><asp:LinkButton ID="lBtnAboutLink" runat="server" OnClick="lBtnAboutLink_Click">ABOUT</asp:LinkButton></p>
                                 </li>
+                                <li runat="server" id="CreateSourceLink">
+                                    <p><asp:LinkButton ID="lBtnCreateArticle" runat="server" OnClick="lBtnCreateArticle_Click">CREATE SOURCE</asp:LinkButton></p>
+                                </li>
                                 <li runat="server" id="MyProfileLink">
                                     <p><asp:LinkButton ID="lBtnMyProfileLink" runat="server" OnClick="lBtnMyProfileLink_Click">MY PROFILE</asp:LinkButton></p>
                                 </li>
                                 <li runat="server" id="EditProfileLink" >
                                     <p><asp:LinkButton ID="lBtnEditProfileLink" runat="server" OnClick="lBtnEditProfileLink_Click">EDIT PROFILE</asp:LinkButton></p>
+                                </li>
+                                <li runat="server" id="ModPanelLink">
+                                    <p><asp:LinkButton ID="lBtnMoedPanelLink" runat="server" OnClick="lBtnMoedPanelLink_Click">MODERATOR PANEL</asp:LinkButton></p>
                                 </li>
                             </ul>
                         </div>

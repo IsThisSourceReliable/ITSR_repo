@@ -76,6 +76,24 @@ namespace ITSR {
         protected global::System.Web.UI.WebControls.LinkButton lBtnAboutLink;
         
         /// <summary>
+        /// CreateSourceLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CreateSourceLink;
+        
+        /// <summary>
+        /// lBtnCreateArticle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lBtnCreateArticle;
+        
+        /// <summary>
         /// MyProfileLink control.
         /// </summary>
         /// <remarks>
@@ -110,6 +128,24 @@ namespace ITSR {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lBtnEditProfileLink;
+        
+        /// <summary>
+        /// ModPanelLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ModPanelLink;
+        
+        /// <summary>
+        /// lBtnMoedPanelLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lBtnMoedPanelLink;
         
         /// <summary>
         /// UpdatePanelLogin control.

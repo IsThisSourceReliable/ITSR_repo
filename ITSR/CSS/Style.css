@@ -512,7 +512,7 @@ h4 {
         width: 100%;
     }
 
-        .side-left-navbar > li > p {
+        .side-left-navbar > li > p > a {
             display: block;
             padding: 20px 30px 20px 30px;
             color: #edf7f7;
@@ -522,7 +522,7 @@ h4 {
             border-bottom: 1px solid #81c9ca;
         }
 
-            .side-left-navbar > li > p:hover {
+            .side-left-navbar > li > p > a:hover {
                 display: block;
                 background: #81c9ca;
                 padding: 20px 30px 20px 30px;
@@ -572,6 +572,44 @@ h4 {
     width: 90%;
     margin-left: 0.7em;
 }
+
+.panel-navbar {
+    list-style: none;
+    display: block;
+    /*margin-top: 64px;*/
+    margin-left: 1em;
+    float: left;
+    /*width: 322px;*/
+    /*position: fixed;*/
+    /*z-index: 1500;*/
+}
+
+    .panel-navbar > li {
+        /*display: block;*/
+        float: left;
+
+    }
+
+        .panel-navbar > li > p > a {
+            display: inline-block;
+            padding: 20px 30px 20px 30px;
+            width: 200px;
+            color: #edf7f7;
+            background: #074e67;
+            /*background-color: #FFFFFF;*/
+            font-weight: bold;
+            cursor: pointer;
+            border: 1px solid #81c9ca;
+        }
+
+            .panel-navbar > li > p > a:hover {
+                display: inline-block;
+                background: #81c9ca;
+                padding: 20px 30px 20px 30px;
+                color: #edf7f7;
+                border: 1px solid #edf7f7;
+                /*background: #999999;*/
+            }
 
 /*****************************************************
 	Responsive-Navbar

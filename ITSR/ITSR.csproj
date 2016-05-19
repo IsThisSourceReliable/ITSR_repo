@@ -96,6 +96,7 @@
     <Content Include="JS\MenuJS.js" />
     <Content Include="JS\OverlayJS.js" />
     <Content Include="martinstest.aspx" />
+    <Content Include="ModPanel.aspx" />
     <Content Include="MYSQL_REF\MySql.Data.dll" />
     <Content Include="MYSQL_REF\MySql.Data.Entity.EF5.dll" />
     <Content Include="MYSQL_REF\MySql.Data.Entity.EF6.dll" />
@@ -126,6 +127,7 @@
     <Content Include="FONTS\lato-lig-demo.html" />
     <Content Include="FONTS\lato-lig-webfont.svg" />
     <Content Include="FONTS\stylesheet.css" />
+    <Content Include="CSS\PanelStyle.css" />
     <Content Include="Profile.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Search.aspx" />
@@ -199,6 +201,13 @@
     </Compile>
     <Compile Include="martinstest.aspx.designer.cs">
       <DependentUpon>martinstest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModPanel.aspx.cs">
+      <DependentUpon>ModPanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModPanel.aspx.designer.cs">
+      <DependentUpon>ModPanel.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
