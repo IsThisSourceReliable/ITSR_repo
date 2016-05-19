@@ -74,10 +74,19 @@ namespace ITSR
             m.occupation = tbOccupation.Text;
             m.aboutme = tbAboutMe.Text;
 
-            m.UpdateUser(m);
-            m.UpdateUserProfile(m);
+            if (!m.CheckEmail(m, true))
+            {
+                m.UpdateUser(m);
+                m.UpdateUserProfile(m);
+                LoadUser(Convert.ToInt32(Session["userID"]));
+            }
+            else
+            {
+                CustomValidator2.IsValid = false;
+            }
 
-            LoadUser(Convert.ToInt32(Session["userID"]));
+
+            
 
         }
         public void UpdatePassWord()

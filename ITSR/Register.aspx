@@ -52,6 +52,17 @@
                     display="Dynamic"
                     ErrorMessage="Email is already registered!">
                     </asp:CustomValidator>
+                <asp:RegularExpressionValidator 
+	                ID="regExValidatorEmail" 
+	                ForeColor="Red" 
+                	Font-Size="Medium" 
+                	ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+                	ControlToValidate="tbEmail" 
+                	runat="server" 
+                	ErrorMessage="Hey! Thats not an Email!"
+                	display="Dynamic"
+                	ValidationGroup="RegisterGroup"> 
+                </asp:RegularExpressionValidator>
                 <asp:TextBox 
                     ID="tbEmail" 
                     CssClass="txt-box txt-box-register" 
