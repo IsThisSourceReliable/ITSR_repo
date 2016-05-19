@@ -22,13 +22,22 @@ namespace ITSR {
         protected global::System.Web.UI.UpdatePanel UpdatePanelOverlay;
         
         /// <summary>
-        /// lblOwnComment control.
+        /// lblOverlayHeading control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOwnComment;
+        protected global::System.Web.UI.WebControls.Label lblOverlayHeading;
+        
+        /// <summary>
+        /// lblOverlayFail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOverlayFail;
         
         /// <summary>
         /// CommentIDOverlay control.
@@ -47,6 +56,15 @@ namespace ITSR {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField CommenUserIDOverlay;
+        
+        /// <summary>
+        /// lblOverlayAction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOverlayAction;
         
         /// <summary>
         /// lblCommentTextOverlay control.
@@ -92,6 +110,15 @@ namespace ITSR {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnReport;
+        
+        /// <summary>
+        /// btnDeleteComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDeleteComment;
         
         /// <summary>
         /// UpdatePanel1 control.

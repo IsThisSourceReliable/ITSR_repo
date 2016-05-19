@@ -9,21 +9,21 @@
     <div class="page-overlay">
         <div class="overlay-message overlay-message-report">
             <p class="my-glyph-close"><span class="glyphicon glyphicon-remove right " onclick="CloseOverlay();"></span></p>
-            <div class="fullBox center-text">
-                <h3>Report comment</h3>
-            </div>
             <div>
                 <asp:UpdatePanel ID="UpdatePanelOverlay" runat="server">
                     <ContentTemplate>
                         <div class="fullBox">
-
+                            <div class="fullBox center-text">
+                                <h3><asp:Label ID="lblOverlayHeading" runat="server" Text="Label"></asp:Label></h3>
+                            </div>
+                            <br />
                             <p>
-                                <asp:Label ID="lblOwnComment" CssClass="fail-text" runat="server" Text="Label"></asp:Label>
+                                <asp:Label ID="lblOverlayFail" CssClass="fail-text" runat="server" Text="Label"></asp:Label>
                                 <asp:HiddenField ID="CommentIDOverlay" runat="server" />
                                 <asp:HiddenField ID="CommenUserIDOverlay" runat="server" />
                                 <br />
-                                <strong>You want to report the following comment: </strong>
-                                <br />    
+                                <strong>You want to <asp:Label ID="lblOverlayAction" runat="server" Text="Label"></asp:Label> the following comment: </strong>
+                                <br />
                                 <br />
                                 <i>"<asp:Label ID="lblCommentTextOverlay" runat="server" Text="Label"></asp:Label></i>"
                             <br />
@@ -31,8 +31,6 @@
                                 <strong>Posted by:</strong>
                                 <asp:Label ID="lblUserNameComment" runat="server" Text="Label"></asp:Label>
                             </p>
-
-
                             <asp:RequiredFieldValidator
                                 ID="ValidatorReason"
                                 runat="server"
@@ -57,6 +55,13 @@
                                 ValidationGroup="Report"
                                 Text="REPORT"
                                 OnClick="btnReport_Click" />
+                            <asp:Button 
+                                ID="btnDeleteComment" 
+                                CssClass="itsr-button report-btn"
+                                runat="server" 
+                                ValidationGroup="Nogroup"
+                                Text="DELETE"  
+                                OnClick="btnDeleteComment_Click"/>
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
@@ -72,7 +77,7 @@
             </div>
             <div>
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>                  
+                    <ContentTemplate>
                         <div class="fullBox">
 
                             <p>
@@ -148,7 +153,7 @@
                                             </p>
                                         </div>
                                         <asp:LinkButton ID="lBtnUpvote" CssClass="vote-btn upvote-btn" runat="server" OnClick="lBtnUpvote_Click"><span id="upvoteGlyph" runat="server" class="vote-glyph glyphicon glyphicon-arrow-up "></span></asp:LinkButton>
-                                        <asp:LinkButton ID="lBtnDownVote" CssClass="vote-btn downvote-btn" runat="server" OnClick="lBtnDownVote_Click"><span id="downvoteGlyph" runat="server"  class="vote-glyph glyphicon glyphicon-arrow-down " ></span></asp:LinkButton>
+                                        <asp:LinkButton ID="lBtnDownVote" CssClass="vote-btn downvote-btn" runat="server" OnClick="lBtnDownVote_Click"><span id="downvoteGlyph" runat="server" class="vote-glyph glyphicon glyphicon-arrow-down "></span></asp:LinkButton>
 
                                     </div>
                                 </div>
@@ -230,15 +235,15 @@
                     <asp:HiddenField ID="HiddenLastEditByID" runat="server" />
                 </p>
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                <ContentTemplate>
-                <p runat="server" id="editText" class="edit-text">
-                    Is the information about this source not correct?
+                    <ContentTemplate>
+                        <p runat="server" id="editText" class="edit-text">
+                            Is the information about this source not correct?
                     <asp:LinkButton ID="lBtnEdit" runat="server" OnClick="lBtnEdit_Click">Edit here</asp:LinkButton>
-                </p>
-                <p runat="server" id="reportText" class="edit-text">
-                    Is it something in this article you would like to <a class="hover" onclick="OpenOverlay2()">Report?</a>                
-                </p>
-                </ContentTemplate>
+                        </p>
+                        <p runat="server" id="reportText" class="edit-text">
+                            Is it something in this article you would like to <a class="hover" onclick="OpenOverlay2()">Report?</a>
+                        </p>
+                    </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
         </div>
@@ -323,7 +328,7 @@
                                             Posted by 
                                 <asp:LinkButton ID="lBtnUsernameComment" runat="server" CommandName="VisitProfile" CommandArgument='<%# Eval("iduser") %>'>
                                     <asp:Label ID="lblCommentUserName" runat="server" Text='<%# Eval("username") %>'></asp:Label>
-                                </asp:LinkButton>                                           
+                                </asp:LinkButton>
                                             at
                                         <asp:Label ID="lblDate" runat="server" Text='<%# Eval("date") %>'></asp:Label>
                                             <span class="right">

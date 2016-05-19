@@ -19,6 +19,7 @@ namespace ITSR.CLASSES.ARTICLE
         public string ReportReason { get; set; }
         public string Order { get; set; }
         public int Limit { get; set; }
+        public int ModeratorUserID { get; set; }
 
         MySqlConnection conn = new MySqlConnection("Database=itsrdb; Data Source=eu-cdbr-azure-north-e.cloudapp.net; User Id=b268b5fbbce560; Password=d722d6d4");
 
@@ -181,6 +182,35 @@ namespace ITSR.CLASSES.ARTICLE
 
                 cmdReportComment.ExecuteNonQuery();
 
+            }
+            catch (MySqlException ex)
+            {
+                Console.Write(ex.Message.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        /// <summary>
+        /// Method removes comment, sets the removed value on table and sets the moderator id.
+        /// </summary>
+        public void RemoveComment()
+        {
+            string sqlUpdateCommentRemoved = "UPDATE comment SET removed = @removed, removed_by_mod_id = @moderatorid WHERE idcomment = @idcomment";
+            bool removed = true;
+
+            try
+            {
+                conn.Open();
+                MySqlCommand cmdUpdateCommentRemoved = new MySqlCommand(sqlUpdateCommentRemoved, conn);
+
+                cmdUpdateCommentRemoved.Parameters.AddWithValue("@removed", removed);
+                cmdUpdateCommentRemoved.Parameters.AddWithValue("@moderatorid", ModeratorUserID);
+                cmdUpdateCommentRemoved.Parameters.AddWithValue("@idcomment", ID);
+
+                cmdUpdateCommentRemoved.ExecuteNonQuery();
             }
             catch (MySqlException ex)
             {

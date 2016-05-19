@@ -21,7 +21,7 @@ namespace ITSR
             {
                 ShowLeftMenuButtons();
                 SetLoginGUI();
-                if(Session["RoleID"].ToString() == "2")
+                if(int.Parse(Session["RoleID"].ToString()) >= 2)
                 {
                     ShowModeratorBtn();
                 }
@@ -120,7 +120,7 @@ namespace ITSR
 
                     SetLoginGUI();
                     ShowLeftMenuButtons();
-                    if (Session["RoleID"].ToString() == "2")
+                    if (int.Parse(Session["RoleID"].ToString()) >= 2)
                     {
                         ShowModeratorBtn();
                     }

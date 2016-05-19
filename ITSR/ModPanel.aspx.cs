@@ -52,7 +52,7 @@ namespace ITSR
             Report Delete = new Report();
             Delete.articleORcomment_id = commentID;
             Delete.ModeratorUserID = int.Parse(Session["UserID"].ToString());
-            Delete.RemoveComment();
+            Delete.RemoveReportedComment();
             LoadReportComments();
             LoadAndSetTotalReports();
         }
@@ -62,7 +62,7 @@ namespace ITSR
             Report Resolve = new Report();
             Resolve.articleORcomment_id = commentID;
             Resolve.ModeratorUserID = int.Parse(Session["UserID"].ToString());
-            Resolve.ResolveComment();
+            Resolve.ResolveReportedComment();
             LoadReportComments();
             LoadAndSetTotalReports();
         }

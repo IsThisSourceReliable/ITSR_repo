@@ -32,7 +32,7 @@ namespace ITSR
                 LoadArticle();
                 lblCommenLogin.Visible = false;
                 lblVoteLogin.Visible = false;
-                lblOwnComment.Visible = false;
+                lblOverlayFail.Visible = false;
             }
         }
 
@@ -52,7 +52,6 @@ namespace ITSR
         /// <summary>
         /// Method loads article and sets lables and relevant values. 
         /// </summary>
-        /// 
         private void LoadArticle()
         {
             string articleID = Session["ArticleID"].ToString();
@@ -77,7 +76,6 @@ namespace ITSR
         /// Method sets all the labels in the article uses datatable which is
         /// retrived from Loadarticle method.
         /// </summary>
-        /// <param name="dt"></param>
         private void SetArticleLables(DataTable dt)
         {
             hiddenArticleID.Value = dt.Rows[0]["idarticle"].ToString();
@@ -101,7 +99,6 @@ namespace ITSR
         /// <summary>
         /// This method binds the listview and referenses tougheter. 
         /// </summary>
-        /// <param name="xml"></param>
         private void BindReferences(string xml)
         {
             if (xml == string.Empty)
@@ -121,8 +118,6 @@ namespace ITSR
         /// This method reads the xml reference file and returns it as a datatable
         /// to be able to bind it with a listview.
         /// </summary>
-        /// <param name="xml"></param>
-        /// <returns></returns>
         private DataTable ReadXMLReferences(string xml)
         {
             StringReader theReader = new StringReader(xml);
@@ -139,7 +134,7 @@ namespace ITSR
         /// </summary>
         private void SetVoteButton()
         {
-            if(Session["UserID"] != null)
+            if (Session["UserID"] != null)
             {
                 DataTable dt = new DataTable();
                 Vote CheckVote = new Vote();
@@ -168,10 +163,9 @@ namespace ITSR
         /// Method sets properties for upvote and downvote button depending if user has
         /// upvoted or downvoted.
         /// </summary>
-        /// <param name="voteType"></param>
         private void SetVoteButtonProperties(bool voteType)
         {
-            if(voteType)
+            if (voteType)
             {
                 lBtnUpvote.Enabled = false;
                 lBtnUpvote.CssClass = "vote-btn-pressed";
@@ -201,9 +195,6 @@ namespace ITSR
         /// Method sets the upvotes for an article and sets the width of
         /// the vote bar.
         /// </summary>
-        /// <param name="totalVotes"></param>
-        /// <param name="upVotes"></param>
-        /// <param name="downVotes"></param>
         private void SetVotes(int totalVotes, double upVotes, double downVotes)
         {
             lblTotalVotes.Text = totalVotes.ToString();
@@ -232,7 +223,7 @@ namespace ITSR
             if (dt.Rows.Count == 0)
             {
                 lblNoComments.Visible = true;
-                lblNoComments.Text = "There is no comments on this article, be the first one to comment!";            
+                lblNoComments.Text = "There is no comments on this article, be the first one to comment!";
             }
             else
             {
@@ -273,44 +264,45 @@ namespace ITSR
         /// This method sets the labels in the overlay to correct values and
         /// also the hiddenfields to correct values so a user can report a comment.
         /// </summary>
-        /// <param name="commentID"></param>
-        /// <param name="userID"></param>
-        /// <param name="commentText"></param>
-        /// <param name="username"></param>
-        private void SetOverlayLabels(string commentID, string userID, string commentText, string username)
+        private void SetOverlayReport(string commentID, string userID, string commentText, string username)
         {
+            lblOverlayHeading.Text = "Report comment";
+            lblOverlayAction.Text = "report";
+
             CommentIDOverlay.Value = commentID;
             CommenUserIDOverlay.Value = userID;
+
             lblCommentTextOverlay.Text = commentText;
             lblUserNameComment.Text = username;
-            lblOwnComment.Visible = false;
-            //Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
+
+            txtReason.Visible = true;
+            lblOverlayFail.Visible = false;
+            btnReport.Visible = true;
+            btnDeleteComment.Visible = false;
+
             ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "OpenOverlay", "OpenOverlay();", true);
         }
 
         /// <summary>
-        /// This method sets the labels in the overlay to correct values and
-        /// also the hiddenfields to correct values so a user can report a comment.
+        /// Method sets the overlay with values for when a moderator wants to delete a comment. 
         /// </summary>
-        /// <param name="commentID"></param>
-        /// <param name="userID"></param>
-        /// <param name="commentText"></param>
-        /// <param name="username"></param>
-
-        /// <summary>
-        /// TO BE IMPLEMENTED ***********************************************************************************
-        /// *****************************************************************************************************
-        /// </summary>
-        /// <param name="listViewIndex"></param>
-        /// <param name="dataBaseIndex"></param>
-        /// <param name="lbltext"></param>
-        private void DeleteComment(string listViewIndex, string dataBaseIndex, Label lbltext)
+        private void SetOverlayDelete(string commentID, string userID, string commentText, string username)
         {
-            //Label3.Text = "Delete!";
-            //lblIndexListView.Text = listViewIndex;
-            //lblIndexDataBase.Text = dataBaseIndex;
-            //lblUserName.Text = lbltext.Text;
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenOverlay", "OpenOverlay()", true);
+            lblOverlayHeading.Text = "Delete comment";
+            lblOverlayAction.Text = "DELETE";
+
+            CommentIDOverlay.Value = commentID;
+            CommenUserIDOverlay.Value = userID;
+
+            lblCommentTextOverlay.Text = commentText;
+            lblUserNameComment.Text = username;
+
+            txtReason.Visible = false;
+            lblOverlayFail.Visible = false;
+            btnReport.Visible = false;
+            btnDeleteComment.Visible = true;
+
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "OpenOverlay", "OpenOverlay();", true);
         }
 
         /// <summary>
@@ -320,7 +312,7 @@ namespace ITSR
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void lBtnEdit_Click(object sender, EventArgs e)
-        {           
+        {
             Session["ArticleID"] = hiddenArticleID.Value.ToString();
             Response.Redirect("~/EditArticle.aspx");
         }
@@ -334,7 +326,7 @@ namespace ITSR
         /// <param name="e"></param>
         protected void btnPostComment_Click(object sender, EventArgs e)
         {
-            if(Session["UserID"] == null)
+            if (Session["UserID"] == null)
             {
                 lblCommenLogin.Text = "You have to login to post a comment.";
                 lblCommenLogin.Visible = true;
@@ -363,8 +355,6 @@ namespace ITSR
         /// Reportcomment and Deletecomment. TO DO implement so when a user clicks username
         /// user is redirected to that users profile page.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected void listViewComments_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             string value = e.CommandName.ToString();
@@ -382,18 +372,17 @@ namespace ITSR
             string sUserID = userID.Value.ToString();
             string sUserName = userNameLbl.Text;
             string sTxtComment = txtCommentLbl.Text;
-            
-            if(removed != 1)
+
+            if (removed != 1)
             {
                 switch (value)
                 {
                     case "ReportComment":
-                        SetOverlayLabels(sCommentID, sUserID, sTxtComment, sUserName);
-                        //ReportComment(listViewIndex, dataBaseIndex, lbltext);
+                        SetOverlayReport(sCommentID, sUserID, sTxtComment, sUserName);
                         break;
 
                     case "DeleteComment":
-                        //DeleteComment(listViewIndex, dataBaseIndex, lbltext);
+                        SetOverlayDelete(sCommentID, sUserID, sTxtComment, sUserName);
                         break;
                     case "VisitProfile":
                         VisitProfile(sUserID);
@@ -414,8 +403,6 @@ namespace ITSR
         /// Event for when items are databound in the listview. Hides and shows 
         /// linkbuttons depending on users memberlevel.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected void listViewComments_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             if (e.Item.ItemType == ListViewItemType.DataItem)
@@ -427,26 +414,21 @@ namespace ITSR
 
                 int removed = int.Parse(hiddenRemoved.Value.ToString());
 
-                if (Session["UserID"] == null) 
+                if (Session["UserID"] == null)
                 {
                     linkButtonReport.Visible = false;
                     linkButtonDelete.Visible = false;
                 }
-                else
+                else if (Session["UserID"] != null && int.Parse(Session["RoleID"].ToString()) == 1)
                 {
                     linkButtonReport.Visible = true;
                     linkButtonDelete.Visible = false;
                 }
-                //else if(UserIsAMember)
-                //{
-                //    linkButtonReport.Visible = true;
-                //    linkButtonDelete.Visible = false;
-                //}
-                //else //Is a user is an admin show everything.
-                //{
-                //    linkButtonReport.Visible = true;
-                //    linkButtonDelete.Visible = true;
-                //}
+                else if (Session["UserID"] != null && int.Parse(Session["RoleID"].ToString()) >= 2)
+                {
+                    linkButtonReport.Visible = true;
+                    linkButtonDelete.Visible = true;
+                }
 
                 if (removed == 1)
                 {
@@ -462,17 +444,16 @@ namespace ITSR
         /// Click event for when user clicks report comments. Sets relevant values
         /// and calls js script to close overlay.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected void btnReport_Click(object sender, EventArgs e)
         {
-            if(CommenUserIDOverlay.Value == Session["UserID"].ToString())
+            if (CommenUserIDOverlay.Value == Session["UserID"].ToString())
             {
-                lblOwnComment.Text = "You can not report your own comment.";
-                lblOwnComment.Visible = true;
+                lblOverlayFail.Text = "You can not report your own comment.";
+                lblOverlayFail.Visible = true;
             }
             else
             {
+                lblOverlayFail.Visible = false;
                 Comment Report = new Comment();
 
                 Report.ID = int.Parse(CommentIDOverlay.Value.ToString());
@@ -485,13 +466,44 @@ namespace ITSR
         }
 
         /// <summary>
+        /// Event for when a moderator clicks delete btn.
+        /// Method evaluates that a user is a moderator then checks
+        /// if there is a report on a comment. IF there is a report on a comment it updates 
+        /// both report_comment and comment with resolved and removed values.
+        /// Else it just udate comment table with removed value.
+        /// In both cases moderator id is stored.
+        /// </summary>
+        protected void btnDeleteComment_Click(object sender, EventArgs e)
+        {
+            if (Session["UserID"] != null && int.Parse(Session["RoleID"].ToString()) >= 2)
+            {
+                string articleID = Session["ArticleID"].ToString();
+                Report CommentsReport = new Report();
+                CommentsReport.articleORcomment_id = int.Parse(CommentIDOverlay.Value.ToString());
+                if (CommentsReport.CheckReportExists())
+                {
+                    CommentsReport.ModeratorUserID = int.Parse(Session["UserID"].ToString());
+                    CommentsReport.RemoveReportedComment();
+                    LoadComments(articleID);
+                }
+                else
+                {
+                    Comment CommentRemove = new Comment();
+                    CommentRemove.ID = int.Parse(CommentIDOverlay.Value.ToString());
+                    CommentRemove.ModeratorUserID = int.Parse(Session["UserID"].ToString());
+                    CommentRemove.RemoveComment();
+                    LoadComments(articleID);
+                }
+                ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "CloseOverlay", "CloseOverlay();", true);
+            }
+        }
+
+        /// <summary>
         /// Event for when user changes value in dropdown to sort comments from first and latest
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected void dropDownSortComments_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(dropDownSortComments.SelectedIndex > -1)
+            if (dropDownSortComments.SelectedIndex > -1)
             {
                 string articleID = hiddenArticleID.Value.ToString();
                 LoadComments(articleID);
@@ -501,11 +513,9 @@ namespace ITSR
         /// <summary>
         /// Event for when user chooses how many comments to be seen on screen. 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected void DropDownLimitComment_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(DropDownLimitComment.SelectedIndex > -1)
+            if (DropDownLimitComment.SelectedIndex > -1)
             {
                 string articleID = hiddenArticleID.Value.ToString();
                 LoadComments(articleID);
@@ -518,8 +528,6 @@ namespace ITSR
         /// Calls methoed SetVoteButtonProperties to update votebutton
         /// and UpdateVoteBox to update info in votebox.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected void lBtnUpvote_Click(object sender, EventArgs e)
         {
             if (Session["UserID"] == null)
@@ -559,8 +567,6 @@ namespace ITSR
         /// Calls methoed SetVoteButtonProperties to update votebutton
         /// and UpdateVoteBox to update info in votebox.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected void lBtnDownVote_Click(object sender, EventArgs e)
         {
             if (Session["UserID"] == null)
@@ -630,6 +636,11 @@ namespace ITSR
         {
             Session["profileID"] = HiddenLastEditByID.Value;
             Response.Redirect("~/Profile.aspx");
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
