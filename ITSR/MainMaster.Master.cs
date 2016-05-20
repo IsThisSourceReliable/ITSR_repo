@@ -176,6 +176,7 @@ namespace ITSR
 
         protected void lBtnMyProfileLink_Click(object sender, EventArgs e)
         {
+            Session["profileID"] = Session["userID"];
             Response.Redirect("~/Profile.aspx");
         }
 
