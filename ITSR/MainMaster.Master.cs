@@ -15,13 +15,16 @@ namespace ITSR
             if (Session["UserID"] == null)
             {
                 HideLeftMenuButtons();
+                HideModBtn();
                 RightMenuLogOut.Visible = false;
             }
-            else
+            else if(Session["UserID"] != null)
             {
                 ShowLeftMenuButtons();
                 SetLoginGUI();
-                if(int.Parse(Session["RoleID"].ToString()) >= 2)
+                HideModBtn();
+
+                if (int.Parse(Session["RoleID"].ToString()) >= 2)
                 {
                     ShowModeratorBtn();
                 }
@@ -48,6 +51,13 @@ namespace ITSR
             EditProfileLink.Visible = false;
             MyProfileLink.Visible = false;
             CreateSourceLink.Visible = false;
+        }
+
+        /// <summary>
+        /// Method hides the moderatorbtn.
+        /// </summary>
+        private void HideModBtn()
+        {
             ModPanelLink.Visible = false;
         }
 
