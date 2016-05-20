@@ -17,10 +17,11 @@ namespace ITSR
                 HideLeftMenuButtons();
                 RightMenuLogOut.Visible = false;
             }
-            else
+            else if(Session["UserID"] != null)
             {
                 ShowLeftMenuButtons();
                 SetLoginGUI();
+
                 if(int.Parse(Session["RoleID"].ToString()) >= 2)
                 {
                     ShowModeratorBtn();
