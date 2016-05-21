@@ -79,6 +79,7 @@
     <Content Include="Article.aspx" />
     <Content Include="CreateArticle.aspx" />
     <Content Include="CSS\AboutCSS.css" />
+    <Content Include="CSS\AdminPanelCSS.css" />
     <Content Include="CSS\CreateArticleCSS.css" />
     <Content Include="CSS\ArticleCSS.css" />
     <Content Include="CSS\DefaultCSS.css" />

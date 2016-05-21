@@ -1,0 +1,12 @@
+﻿.padding-fullBox {
+    padding:2%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; 
+}
+.panel-h2{
+    margin:2%;
+}
+.panel-txt{
+    margin:1%;
+}
