@@ -204,5 +204,10 @@ namespace ITSR
         {
             Response.Redirect("~/ModPanel.aspx");
         }
+
+        protected void lBAdminPanelLink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/AdminPanel.aspx");
+        }
     }
 }

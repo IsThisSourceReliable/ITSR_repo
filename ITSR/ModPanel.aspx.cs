@@ -47,9 +47,10 @@ namespace ITSR
             lblTotalReports.Text = total.ToString();
         }
 
-        private void DeleteComment(int commentID)
+        private void DeleteComment(int reportcommentID, int commentID)
         {
             Report Delete = new Report();
+            Delete.ID = reportcommentID;
             Delete.articleORcomment_id = commentID;
             Delete.ModeratorUserID = int.Parse(Session["UserID"].ToString());
             Delete.RemoveReportedComment();
@@ -57,9 +58,10 @@ namespace ITSR
             LoadAndSetTotalReports();
         }
 
-        private void ResolveComment(int commentID)
+        private void ResolveComment(int reportcommentID, int commentID)
         {
             Report Resolve = new Report();
+            Resolve.ID = reportcommentID;
             Resolve.articleORcomment_id = commentID;
             Resolve.ModeratorUserID = int.Parse(Session["UserID"].ToString());
             Resolve.ResolveReportedComment();
@@ -75,18 +77,21 @@ namespace ITSR
         protected void listViewReports_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             string CommandNamevalue = e.CommandName.ToString();
+            HiddenField HiddenReportCommentID = (HiddenField)e.Item.FindControl("HiddenReportCommentID");
             HiddenField HiddenCommentID = (HiddenField)e.Item.FindControl("HiddenCommentID");
+            int reportcommentID = int.Parse(HiddenReportCommentID.Value.ToString());
             int commentID = int.Parse(HiddenCommentID.Value.ToString());
-
             switch (CommandNamevalue)
             {
                 case "DeleteComment":
-                    DeleteComment(commentID);
+                    DeleteComment(reportcommentID, commentID);
                     break;
                 case "NoAction":
-                    ResolveComment(commentID);
+                    ResolveComment(reportcommentID, commentID);
                     break;
             }
         }
+
+
     }
 }

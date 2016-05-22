@@ -1,12 +1,66 @@
-﻿.padding-fullBox {
+﻿.padding-box {
     padding:2%;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box; 
+}
+
+.margin-box {
+    margin-bottom:10px;
+}
+
+.history-box {
+    display:none;
+}
+.roles-box {
+    display: none;
 }
 .panel-h2{
     margin:2%;
 }
 .panel-txt{
     margin:1%;
+}
+.action-fullBox {
+    border-bottom: 1px solid #4cb2b4;
+}
+.btn-adminpanel {
+    width: 130px;
+    margin: 0.2em;
+    background: #074e67;
+    font-weight: bold;
+    font-size: 0.95em;
+    float:right;
+}
+.lbl-adminpanel {
+    margin: 0.5em;
+    margin-top: 0.2em;
+    margin-bottom: 0.5em;
+}
+.reportContainer{
+    float:left;   
+    width:25%;    
+}
+.moderatorContainer{
+    float: left;
+    margin: 0 0 0 2%;
+}
+.moderatorContainer-Btns{
+    float:right;
+}
+.btndiv-adminpanel {
+    float:right;
+}
+.commenttext-box{
+    overflow:auto;
+}
+
+
+
+@media (max-width: 556px) {
+    .reportContainer,
+    .btndiv-adminpanel,
+    .btn-adminpanel {
+        width: 97%;
+    }
 }

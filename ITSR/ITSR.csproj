@@ -93,6 +93,7 @@
     <Content Include="EditProfile.aspx" />
     <Content Include="IMG\profilepic.jpg" />
     <Content Include="IMG\books.jpg" />
+    <Content Include="JS\AdminPanelJS.js" />
     <Content Include="JS\default.js" />
     <Content Include="JS\EditProfileJS.js" />
     <Content Include="JS\MenuJS.js" />

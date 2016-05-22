@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -94,6 +95,32 @@ namespace ITSR.CLASSES.USER
             catch (MySqlException ex)
             {
 
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public DataTable GetAllModerators()
+        {
+            string sql = "SELECT * FROM user WHERE role_id > 1";
+
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+
+                da.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+                return dt;
+            }
+            catch (MySqlException ex)
+            {
+                return null;
             }
             finally
             {
