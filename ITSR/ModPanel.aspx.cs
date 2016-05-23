@@ -71,7 +71,9 @@ namespace ITSR
 
         protected void lBtnShowComments_Click(object sender, EventArgs e)
         {
-
+            listViewReports.DataSource = null;
+            listViewReports.DataBind();
+            listViewReports.Visible = false;
         }
 
         protected void listViewReports_ItemCommand(object sender, ListViewCommandEventArgs e)

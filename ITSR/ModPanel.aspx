@@ -98,7 +98,11 @@
                     </ItemTemplate>
                 </asp:ListView>
 
+                <asp:ListView 
+                    ID="ListViewReportArticles" 
+                    runat="server">
 
+                </asp:ListView>
 
             </ContentTemplate>
         </asp:UpdatePanel>

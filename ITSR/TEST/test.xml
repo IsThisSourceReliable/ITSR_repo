@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Table1>
+    <id>0</id>
+    <Author>a</Author>
+    <Year>a</Year>
+    <Title>a</Title>
+    <URL>a</URL>
+  </Table1>
+  <Table1>
+    <id>1</id>
+    <Author>b</Author>
+    <Year>b</Year>
+    <Title>b</Title>
+    <URL>b</URL>
+  </Table1>
+  <Table1>
+    <id>2</id>
+    <Author>c</Author>
+    <Year>c</Year>
+    <Title>c</Title>
+    <URL>c</URL>
+  </Table1>
+</NewDataSet>
