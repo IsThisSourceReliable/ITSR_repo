@@ -42,6 +42,10 @@ namespace ITSR
             this.dropDownTypeOfOrg.Items.Insert(0, "Choose");
         }
 
+        /// <summary>
+        /// This method load an article that a user has serached for. Calls other classes
+        /// and method in said classes and methods in code behind to perfom.
+        /// </summary>
         private void LoadArticle()
         {
             string articleID = Session["ArticleID"].ToString();
@@ -63,6 +67,12 @@ namespace ITSR
             BindGridDataSource(xmlReferences);
         }
 
+        /// <summary>
+        /// This method binds the gridview with values from the database. Recives 
+        /// string xml from database and evaluates said string. Uses viewstate later on 
+        /// to be able to use gridview without having to update database.
+        /// </summary>
+        /// <param name="xml"></param>
         private void BindGridDataSource(string xml)
         {
             if (xml == string.Empty)
@@ -88,6 +98,12 @@ namespace ITSR
             }
         }
 
+        /// <summary>
+        /// This method gets the xml as a string and returns it as a 
+        /// datatable to be able to bind xml/datatable with bridview
+        /// </summary>
+        /// <param name="xml"></param>
+        /// <returns></returns>
         private DataTable DaStuff(string xml)
         {
             StringReader theReader = new StringReader(xml);
@@ -97,6 +113,10 @@ namespace ITSR
             return theDataSet.Tables[0];
         }
 
+        /// <summary>
+        /// This method removs the http/https to be able to store in database.
+        /// </summary>
+        /// <returns></returns>
         private string RemoveHTTP()
         {
             string oldURL = txtArticleURL.Text;
@@ -129,6 +149,10 @@ namespace ITSR
             }
         }
 
+        /// <summary>
+        /// This method checks the database if there is an article with the same title.
+        /// </summary>
+        /// <returns></returns>
         private bool CheckTitle()
         {
             Articles titleSearch = new Articles();
@@ -215,12 +239,15 @@ namespace ITSR
             sourceArticle.Publisher = txtUpHouseMan.Text;
             sourceArticle.domainOwner = txtDomainOwner.Text;
             sourceArticle.Financing = txtFinancer.Text;
-            sourceArticle.lastEditUser_id = 21; //Has to be changed to whatever user that is logged in.
+            sourceArticle.lastEditUser_id = int.Parse(Session["UserID"].ToString());
             sourceArticle.Reference = CreateXML();
 
-            if (sourceArticle.UpdateArticle())
+            if(sourceArticle.SaveOldArticle())
             {
-                ok = true;
+                if (sourceArticle.UpdateArticle())
+                {
+                    ok = true;
+                }
             }
 
             return ok;
@@ -237,6 +264,11 @@ namespace ITSR
             txtURL.Text = string.Empty;
         }
 
+        /// <summary>
+        /// Event for when user wants to add/update references. Checks wheter or not 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnAddRef_Click(object sender, EventArgs e)
         {
 
@@ -287,6 +319,11 @@ namespace ITSR
             }
         }
 
+        /// <summary>
+        /// Event for when a user clicks a linkbutton in the gridview. Calls other methods to perfrom.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gridViewReferences_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "EditRow")
@@ -318,6 +355,11 @@ namespace ITSR
             }
         }
 
+        /// <summary>
+        /// Event for when user clicks the save button to be able to save the newly edited data.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             if (CheckTitle() || CheckURL())

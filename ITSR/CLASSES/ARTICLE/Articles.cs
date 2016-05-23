@@ -36,6 +36,7 @@ namespace ITSR.CLASSES.ARTICLE
         /// <returns></returns>
         public bool CreateArticle()
         {
+            bool ok = false;
             try
             {
                 conn.Open();
@@ -57,13 +58,14 @@ namespace ITSR.CLASSES.ARTICLE
                 cmdCreateArticle.Parameters.AddWithValue("@referencexml", Reference);
 
                 cmdCreateArticle.ExecuteNonQuery();
-                return true;
+                ok = true;
+                return ok;
 
             }
             catch (MySqlException ex)
             {
                 Console.Write(ex.Message);
-                return false;
+                return ok;
             }
             finally
             {
@@ -79,6 +81,7 @@ namespace ITSR.CLASSES.ARTICLE
         /// <returns></returns>
         public bool UpdateArticle()
         {
+            bool ok = false;
             try
             {
                 conn.Open();
@@ -100,13 +103,73 @@ namespace ITSR.CLASSES.ARTICLE
                 cmdCreateArticle.Parameters.AddWithValue("@referencexml", Reference);
 
                 cmdCreateArticle.ExecuteNonQuery();
-                return true;
+                ok = true;
+                return ok;
 
             }
             catch (MySqlException ex)
             {
                 Console.Write(ex.Message);
-                return false;
+                return ok;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+
+        /// <summary>
+        /// This method retrieves the last saved article in database and stores a copy in articlecopy table.
+        /// </summary>
+        /// <returns></returns>
+        public bool SaveOldArticle()
+        {
+            DataTable dt = GetArticle();
+            int copyArticleID = int.Parse(dt.Rows[0]["idarticle"].ToString());
+            string copyTitle = dt.Rows[0]["title"].ToString();
+            string copyText = dt.Rows[0]["text"].ToString();
+            string copyUrl = dt.Rows[0]["url"].ToString();
+            int copyOrgID = int.Parse(dt.Rows[0]["orgtype_id"].ToString());
+            DateTime copyEditDate = DateTime.Parse(dt.Rows[0]["lastedit_date"].ToString());
+            int copyLastEditUser = int.Parse(dt.Rows[0]["lastedituser_id"].ToString());
+            int copyCreateUser = int.Parse(dt.Rows[0]["createuser_id"].ToString());
+            string copyPublisher = dt.Rows[0]["publisher"].ToString();
+            string copyDomainOwner = dt.Rows[0]["domainowner"].ToString();
+            string copyFinancer = dt.Rows[0]["financing"].ToString();
+            string copyRefXml = dt.Rows[0]["reference_xml"].ToString();
+            DateTime copyDate = DateTime.Now;
+
+            bool ok = false;
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmdCopyArticle = new MySqlCommand("INSERT INTO articlecopy (article_id, title, text, url, orgtype_id, lastedit_date, lastedituser_id, createuser_id, publisher, domainowner, financing, reference_xml, copy_date) VALUES(@ID, @title, @text, @url, @typeoforg, @lasteditdate, @lastedituser, @createuserid, @publisher, @domainowner, @financer, @referencexml, @copydate);", conn);
+
+                cmdCopyArticle.Parameters.AddWithValue("@ID", copyArticleID);
+                cmdCopyArticle.Parameters.AddWithValue("@title", copyTitle);
+                cmdCopyArticle.Parameters.AddWithValue("@text", copyText);
+                cmdCopyArticle.Parameters.AddWithValue("@url", copyUrl);
+                cmdCopyArticle.Parameters.AddWithValue("@typeoforg", copyOrgID);
+                cmdCopyArticle.Parameters.AddWithValue("@lasteditdate", copyEditDate);
+                cmdCopyArticle.Parameters.AddWithValue("@lastedituser", copyLastEditUser);
+                cmdCopyArticle.Parameters.AddWithValue("@createuserid", copyCreateUser);
+                cmdCopyArticle.Parameters.AddWithValue("@publisher", copyPublisher);
+                cmdCopyArticle.Parameters.AddWithValue("@domainowner", copyDomainOwner);
+                cmdCopyArticle.Parameters.AddWithValue("@financer", copyFinancer);
+                cmdCopyArticle.Parameters.AddWithValue("@referencexml", copyRefXml);
+                cmdCopyArticle.Parameters.AddWithValue("@copydate", copyDate);
+
+                cmdCopyArticle.ExecuteNonQuery();
+                ok = true;
+                return ok;
+
+            }
+            catch (MySqlException ex)
+            {
+                Console.Write(ex.Message);
+                return ok;
             }
             finally
             {
@@ -389,6 +452,8 @@ namespace ITSR.CLASSES.ARTICLE
                 conn.Close();
             }
         }
+
+
 
         //public int GetUpVotes(Articles a)
         //{
