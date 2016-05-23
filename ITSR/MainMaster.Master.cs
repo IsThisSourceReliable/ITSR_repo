@@ -107,6 +107,7 @@ namespace ITSR
             //Master.Page.ClientScript.RegisterStartupScript(this.GetType(), "RightMenuOpenClose", "RightMenuOpenClose()", true);
             ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "RightMenuOpenClose", "RightMenuOpenClose();", true);
         }
+
         /// <summary>
         /// CLick event for btnLogin, event evaluates that a user first exists then 
         /// check the password is corret. Uses classes USER and PASSWORD to perfom.
@@ -202,6 +203,11 @@ namespace ITSR
         protected void lBtnMoedPanelLink_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/ModPanel.aspx");
+        }
+
+        protected void lBAdminPanelLink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/AdminPanel.aspx");
         }
     }
 }

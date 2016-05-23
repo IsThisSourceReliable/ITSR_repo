@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainMaster.master.cs" Inherits="ITSR.MainMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainMaster.master.cs" Inherits="ITSR.MainMaster"  %>
 
 <!DOCTYPE html>
 
@@ -48,8 +48,7 @@
                         <div class="side-left-menu-holder">
                             <ul class="side-left-navbar">
                                 <li runat="server" id="HomeLink">
-                                    <p><asp:LinkButton ID="lBtnHomeLink" runat="server" OnClick="lBtnHomeLink_Click">HOME</asp:LinkButton></p>
-                                    
+                                    <p><asp:LinkButton ID="lBtnHomeLink" runat="server" OnClick="lBtnHomeLink_Click">HOME</asp:LinkButton></p>                                   
                                 </li>
                                 <li runat="server" id="AboutLink">
                                     <p><asp:LinkButton ID="lBtnAboutLink" runat="server" OnClick="lBtnAboutLink_Click">ABOUT</asp:LinkButton></p>
@@ -65,6 +64,9 @@
                                 </li>
                                 <li runat="server" id="ModPanelLink">
                                     <p><asp:LinkButton ID="lBtnMoedPanelLink" runat="server" OnClick="lBtnMoedPanelLink_Click">MODERATOR PANEL</asp:LinkButton></p>
+                                </li>
+                                <li runat="server" id="AdminPanelLink">
+                                    <p><asp:LinkButton ID="lBAdminPanelLink" runat="server" OnClick="lBAdminPanelLink_Click">MODERATOR PANEL</asp:LinkButton></p>
                                 </li>
                             </ul>
                         </div>

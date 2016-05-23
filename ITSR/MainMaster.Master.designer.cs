@@ -148,6 +148,24 @@ namespace ITSR {
         protected global::System.Web.UI.WebControls.LinkButton lBtnMoedPanelLink;
         
         /// <summary>
+        /// AdminPanelLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AdminPanelLink;
+        
+        /// <summary>
+        /// lBAdminPanelLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lBAdminPanelLink;
+        
+        /// <summary>
         /// UpdatePanelLogin control.
         /// </summary>
         /// <remarks>

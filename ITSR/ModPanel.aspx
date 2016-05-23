@@ -76,6 +76,7 @@
                                     <p class="lbl-style">
                                         <asp:Label ID="lblCommentText" runat="server" Text='<%# Eval("comment_text") %>'></asp:Label>
                                         <asp:HiddenField ID="HiddenCommentID" runat="server" Value='<%# Eval("idcomment") %>' />
+                                        <asp:HiddenField ID="HiddenReportCommentID" runat="server" Value='<%# Eval("idreport_comment") %>' />
                                     </p>
                                 </div>
                                 <div class="report-box">

@@ -75,9 +75,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AdminPanel.aspx" />
     <Content Include="Article.aspx" />
     <Content Include="CreateArticle.aspx" />
     <Content Include="CSS\AboutCSS.css" />
+    <Content Include="CSS\AdminPanelCSS.css" />
     <Content Include="CSS\CreateArticleCSS.css" />
     <Content Include="CSS\ArticleCSS.css" />
     <Content Include="CSS\DefaultCSS.css" />
@@ -91,6 +93,7 @@
     <Content Include="EditProfile.aspx" />
     <Content Include="IMG\profilepic.jpg" />
     <Content Include="IMG\books.jpg" />
+    <Content Include="JS\AdminPanelJS.js" />
     <Content Include="JS\default.js" />
     <Content Include="JS\EditProfileJS.js" />
     <Content Include="JS\MenuJS.js" />
@@ -141,6 +144,13 @@
     </Compile>
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanel.aspx.cs">
+      <DependentUpon>AdminPanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPanel.aspx.designer.cs">
+      <DependentUpon>AdminPanel.aspx</DependentUpon>
     </Compile>
     <Compile Include="Article.aspx.cs">
       <DependentUpon>Article.aspx</DependentUpon>
