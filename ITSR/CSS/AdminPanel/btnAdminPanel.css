@@ -1,0 +1,49 @@
+.Mainbtn {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFFFFF;
+    background-color: #4cb2b4;
+    border: 1px solid #81c9ca;
+    border-radius: 12px;
+    outline: none;
+    font-size: 1.4em;
+    cursor: pointer;
+}
+
+    .Mainbtn:hover {
+        color: #edf7f7;
+        background: #81c9ca;
+        border: 1px solid #81c9ca;
+        border-radius: 12px;
+    }
+
+.Secondarybtn {
+    text-align: center;
+    display: inline-block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFFFFF;
+    width: 130px;
+    margin: 0.2em;
+    background: #074e67;
+    font-weight: bold;
+    font-size: 0.95em;
+    border: 1px solid #81c9ca;
+    border-radius: 12px;
+    outline: none;
+    cursor: pointer;
+    float:right;
+}
+    .Secondarybtn:hover {
+        color: #edf7f7;
+        background: #81c9ca;
+        border: 1px solid #81c9ca;
+        border-radius: 12px;
+    }
+
+.btndiv-floatright {
+    float:right;
+}

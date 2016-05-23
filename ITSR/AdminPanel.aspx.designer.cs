@@ -85,6 +85,15 @@ namespace ITSR {
         protected global::System.Web.UI.WebControls.TextBox tbSearch;
         
         /// <summary>
+        /// btnSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearch;
+        
+        /// <summary>
         /// lvModerators control.
         /// </summary>
         /// <remarks>

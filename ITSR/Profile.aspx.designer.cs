@@ -67,57 +67,30 @@ namespace ITSR {
         protected global::System.Web.UI.WebControls.Label lblAboutme;
         
         /// <summary>
-        /// lblAdded control.
+        /// lvCreatedArticles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAdded;
+        protected global::System.Web.UI.WebControls.ListView lvCreatedArticles;
         
         /// <summary>
-        /// gvMyArticles control.
+        /// lvLastCommented control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMyArticles;
+        protected global::System.Web.UI.WebControls.ListView lvLastCommented;
         
         /// <summary>
-        /// lblVotes control.
+        /// lvLastVoted control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVotes;
-        
-        /// <summary>
-        /// gvMyVotes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMyVotes;
-        
-        /// <summary>
-        /// lblComments control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblComments;
-        
-        /// <summary>
-        /// gvMyComments control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMyComments;
+        protected global::System.Web.UI.WebControls.ListView lvLastVoted;
     }
 }

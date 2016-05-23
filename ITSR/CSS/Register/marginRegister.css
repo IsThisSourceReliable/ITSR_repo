@@ -1,0 +1,16 @@
+.margin {
+    margin: 2%;
+}
+.marginTop {
+    margin-top: 2%;
+}
+.marginLeft {
+    margin-left: 2%;
+}
+.marginBot {
+    margin-bottom: 2%;
+}
+.marginTopBot {
+    margin-bottom: 2%;
+    margin-top: 2%;
+}

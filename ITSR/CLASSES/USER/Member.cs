@@ -158,7 +158,7 @@ namespace ITSR.CLASSES.USER
         }
         public DataTable GetArticlesCreatedBy(User u)
         {
-            string sql = "SELECT * FROM article WHERE createuser_id = @userID";
+            string sql = "SELECT * FROM article WHERE createuser_id = @userID ORDER BY votes_up desc LIMIT 5";
 
             try
             {
@@ -186,7 +186,7 @@ namespace ITSR.CLASSES.USER
         }
         public DataTable GetLastCommentsBy(User u)
         {
-            string sql = "SELECT * FROM comment INNER JOIN article on (comment.article_id = article.idarticle) WHERE comment.user_id = @uID";
+            string sql = "SELECT * FROM comment INNER JOIN article on (comment.article_id = article.idarticle) WHERE comment.user_id = @uID ORDER BY date DESC LIMIT 5";
 
             try
             {
@@ -213,7 +213,7 @@ namespace ITSR.CLASSES.USER
         }
         public DataTable GetLastVotesBy(User u)
         {
-            string sql = "SELECT * FROM vote INNER JOIN article on (vote.article_id = article.idarticle) WHERE vote.user_id = @uID";
+            string sql = "SELECT * FROM vote INNER JOIN article on (vote.article_id = article.idarticle) WHERE vote.user_id = @uID ORDER BY idvote DESC LIMIT 5";
 
             try
             {

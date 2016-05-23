@@ -1,15 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainMaster.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="ITSR.Register" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="CSS/RegisterCSS.css" rel="stylesheet" />
+    <link href="CSS/Register/btnRegister.css" rel="stylesheet" />
+    <link href="CSS/Register/marginRegister.css" rel="stylesheet" />
+    <link href="CSS/Register/paddingRegister.css" rel="stylesheet" />
+    <link href="CSS/Register/tbRegister.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentHolder" runat="server">
     <div class="fullBox white-box">
         <!-------- REGISTER AREA ------>
         <div class="fullBox">
-            <div class="fullBox-register"><h2>Register</h2></div>
+            <div class="padding paddingFix"><h2>Register</h2></div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate> 
-            <div class="halfBox halfBox-register">
+            <div class="halfBox padding paddingFix">
                 <asp:RequiredFieldValidator 
                     ID="RequiredFieldValidator1" 
                     ControlToValidate="tbUserName" 
@@ -30,7 +33,7 @@
                     </asp:CustomValidator>
                 <asp:TextBox 
                     ID="tbUserName" 
-                    CssClass="txt-box txt-box-register" 
+                    CssClass="tb paddingFix marginBot" 
                     placeholder="Username" 
                     runat="server">
                 </asp:TextBox>
@@ -65,7 +68,7 @@
                 </asp:RegularExpressionValidator>
                 <asp:TextBox 
                     ID="tbEmail" 
-                    CssClass="txt-box txt-box-register" 
+                    CssClass="tb paddingFix marginBot" 
                     placeholder="Email" 
                     runat="server">
                 </asp:TextBox>
@@ -81,7 +84,7 @@
                 </asp:RequiredFieldValidator>
                 <asp:TextBox 
                     ID="tbPassword" 
-                    CssClass="txt-box txt-box-register" 
+                    CssClass="tb paddingFix marginBot" 
                     placeholder="Password" 
                     runat="server" 
                     TextMode="Password">
@@ -108,7 +111,7 @@
                 </asp:CompareValidator>
                 <asp:TextBox 
                     ID="tbConfirmPassword" 
-                    CssClass="txt-box txt-box-register" 
+                    CssClass="tb paddingFix marginBot" 
                     placeholder="Confirm password" 
                     runat="server" 
                     TextMode="Password">
@@ -116,7 +119,7 @@
  
                 <asp:Button 
                     ID="btnRegister" 
-                    CssClass="itsr-button itsr-button-register" 
+                    CssClass="Mainbtn" 
                     runat="server" 
                     Text="Register"
                     ValidationGroup="RegisterGroup"
@@ -125,7 +128,7 @@
             </ContentTemplate>     
             </asp:UpdatePanel>
             <!---- Welcome text or whatever ---->
-            <div class="halfBox halfBox-register">
+            <div class="halfBox padding paddingFix">
                 <h3>Welcome</h3><br />
                 <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
             </div>
