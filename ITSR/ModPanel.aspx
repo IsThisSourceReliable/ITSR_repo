@@ -3,9 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <link href="CSS/PanelStyle.css" rel="stylesheet" />
-
+    <link href="CSS/ArticleCSS.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentHolder" runat="server">
+
     <div class="fullBox white-box">
         <div class="fullBox">
             <h2 class="panel-h2">MODERATOR PANEL</h2>
@@ -16,7 +17,7 @@
             </p>
         </div>
 
-        <asp:UpdatePanel ID="UpdatePanelComments" runat="server">
+        <asp:UpdatePanel ID="UpdatePanelReports" runat="server">
             <ContentTemplate>
 
                 <div class="fullBox">
@@ -28,7 +29,7 @@
                         </li>
                         <li>
                             <p>
-                                <asp:LinkButton ID="lBtnShowArticles" runat="server">ARTICLES</asp:LinkButton>
+                                <asp:LinkButton ID="lBtnShowArticles" runat="server" OnClick="lBtnShowArticles_Click">ARTICLES</asp:LinkButton>
                             </p>
                         </li>
                     </ul>
@@ -98,11 +99,146 @@
                     </ItemTemplate>
                 </asp:ListView>
 
-                <asp:ListView 
-                    ID="ListViewReportArticles" 
-                    runat="server">
+                <asp:ListView
+                    ID="ListViewReportArticles"
+                    runat="server"
+                    OnItemCommand="ListViewReportArticles_ItemCommand">
+                    <ItemTemplate>
+                        <div class="fullBox">
+                            <div class="report-holder">
+                                <div class="report-box">
+                                    <p>
+                                        <asp:HiddenField ID="HiddenArticleID" runat="server" Value='<%# Eval("idarticle") %>' />
+                                        <asp:HiddenField ID="HiddenArticleReportIDListView" runat="server" Value='<%# Eval("idreport_article") %>' />
+                                        <strong>
+                                            <asp:Label ID="lblArticleName" runat="server" Text='<%# Eval("title") %>'></asp:Label></strong>
+                                    </p>
+                                </div>
+                                <div class="report-box">
+                                    <p>
+                                        <strong>Reason </strong>
+                                        <asp:Label ID="lblArticleReason" runat="server" Text='<%# Eval("reason") %>'></asp:Label>
+                                    </p>
+                                </div>
+                                <div class="report-box">
+                                    <p>
+                                        <strong>Reported by </strong>
+                                        <asp:Label ID="lblArticleReportUser" runat="server" Text='<%# Eval("username") %>'></asp:Label>
+                                    </p>
 
+                                </div>
+                                <div>
+                                    <asp:LinkButton
+                                        ID="lBtnDetails"
+                                        runat="server"
+                                        CssClass="itsr-button btn-panel"
+                                        CommandName="ShowDetails"
+                                        CommandArgument="">SHOW DETAILS</asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
+
+                    </ItemTemplate>
                 </asp:ListView>
+
+                <div id="ArticleBox" class="fullBox" runat="server">
+                    <asp:HiddenField ID="HiddenArticleIDBox" runat="server" />
+                    <asp:HiddenField ID="HiddenReportArticleID" runat="server" />
+                    <div class="fullBox">
+                        <div class=" fullBox comment" style="width: 97%; margin-left: 1%;">
+                            <div class="halfBox">
+                                <h2 class="article-heading">Review article details</h2>
+                                <p class="fail-text">
+                                    <asp:Label ID="lblFail" runat="server" Text=""></asp:Label></p>
+                            </div>
+
+                            <div class="halfBox" id="dropDownDiv" runat="server">
+                                <div class="fullBox">
+                                    <p style="padding-top: 1.8em; padding-bottom: 0.5em;"><strong>Choose an older version to preview revert</strong></p>
+                                    <asp:DropDownList ID="dropDownOldVersion" CssClass="DropDown dropdown-panel" Style="margin-bottom: 0.5em;" AutoPostBack="true" OnSelectedIndexChanged="dropDownOldVersion_SelectedIndexChanged" runat="server"></asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fullBox">
+                        <h2 class="article-heading"><strong>
+                            <asp:Label ID="lblArticleName" runat="server" Text="ArticleName"></asp:Label></strong></h2>
+                    </div>
+                    <div class="fullBox">
+                        <div class="halfBox">
+                            <div class="fullBox">
+                                <p class="article-text" id="articleText" runat="server"></p>
+                            </div>
+                        </div>
+                        <div class="halfBox">
+                            <div class="fullbox">
+                                <h4 class="info-titles">Type of Organisation: </h4>
+                                <p class="info-lbls">
+                                    <asp:Label ID="lblTypeOfOrg" runat="server" Text="TypeOfOrg"></asp:Label>
+                                </p>
+                            </div>
+                            <div class="fullbox">
+                                <h4 class="info-titles">Up house man: </h4>
+                                <p class="info-lbls">
+                                    <asp:Label ID="lblUpHouseMan" runat="server" Text="UpHouseMan"></asp:Label>
+                                </p>
+                            </div>
+                            <div class="fullbox">
+                                <h4 class="info-titles">Domain owner: </h4>
+                                <p class="info-lbls">
+                                    <asp:Label ID="lblDomainOwner" runat="server" Text="DomainOwner"></asp:Label>
+                                </p>
+                            </div>
+                            <div class="fullbox">
+                                <h4 class="info-titles">Financer:  </h4>
+                                <p class="info-lbls">
+                                    <asp:Label ID="lblFinancer" runat="server" Text="Finnacer"></asp:Label>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="fullBox">
+                        <h4 class="info-titles">References</h4>
+                        <p class="ref-text">
+                            <asp:Label ID="lblRefText" runat="server" Text="Label"></asp:Label>
+                        </p>
+                        <asp:ListView
+                            ID="ListViewReferences" runat="server">
+                            <ItemTemplate>
+                                <p class="ref-text">
+                                    <asp:Label
+                                        ID="lblAuthor"
+                                        runat="server"
+                                        Text='<%# Eval("Author") %>'></asp:Label>. 
+                            <asp:Label
+                                ID="lblYear"
+                                runat="server"
+                                Text='<%# Eval("Year") %>'></asp:Label>.
+                            <i>
+                                <asp:Label
+                                    ID="lblTitle"
+                                    runat="server"
+                                    Text='<%# Eval("Title") %>'></asp:Label></i>.
+                            <a href='http://<%# Eval("url") %>' target="_blank">
+                                <asp:Label ID="lblURL" runat="server" Text='<%# Eval("url") %>'></asp:Label></a>
+                                </p>
+                            </ItemTemplate>
+                        </asp:ListView>
+                    </div>
+                    <div class="fullBox">
+                        <div style="margin-left: 1em;">
+                            <asp:LinkButton ID="lBtnRevertArticle" CssClass="itsr-button btn-panel" runat="server" OnClick="lBtnRevertArticle_Click">REVERT</asp:LinkButton>
+                            <asp:LinkButton ID="lBtnEditArticle" CssClass="itsr-button btn-panel" runat="server" OnClick="lBtnEditArticle_Click">EDIT</asp:LinkButton>
+                            <asp:LinkButton ID="lBtnNoActionArticle" CssClass="itsr-button btn-panel" runat="server" OnClick="lBtnNoActionArticle_Click">NO ACTION</asp:LinkButton>
+                            <div class="right" style="padding-right: 1em;">
+                                <asp:LinkButton ID="lBtnCancelRevert" CssClass="itsr-button btn-panel" runat="server" OnClick="lBtnCancelRevert_Click">CANCEL</asp:LinkButton>
+                                <asp:LinkButton ID="lBtnConfirmRevert" CssClass="itsr-button btn-panel" runat="server" OnClick="lBtnConfirmRevert_Click">CONFIRM</asp:LinkButton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </ContentTemplate>
         </asp:UpdatePanel>

@@ -22,6 +22,11 @@ namespace ITSR
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Session["ArticleID"] == null)
+            {
+                Response.Redirect("~/default.aspx");
+            }
+
             if (Session["UserID"] == null)
             {
                 HideFromNotLoggedIn();
@@ -29,10 +34,12 @@ namespace ITSR
 
             if (!IsPostBack)
             {
-                LoadArticle();
+                lockDiv.Visible = false;
                 lblCommenLogin.Visible = false;
                 lblVoteLogin.Visible = false;
                 lblOverlayFail.Visible = false;
+
+                LoadArticle();
             }
         }
 
@@ -46,7 +53,12 @@ namespace ITSR
         {
             LoadComments(hiddenArticleID.Value.ToString());
             SetVoteButton();
-            ShowToLoggedIn();
+
+            int locked = int.Parse(HiddenLocked.Value);
+            if(locked != 1)
+            {
+                ShowToLoggedIn();
+            }
         }
 
         /// <summary>
@@ -91,6 +103,15 @@ namespace ITSR
 
             lblArticle.Text = lblArticleName.Text;
             CreatorIDOverlay.Value = dt.Rows[0]["createuser_id"].ToString();
+
+
+            int locked = int.Parse(dt.Rows[0]["locked"].ToString());
+            HiddenLocked.Value = locked.ToString();
+            if(locked == 1)
+            {
+                lockDiv.Visible = true;
+                HideFromNotLoggedIn();
+            }
 
             string referenceXML = dt.Rows[0]["reference_xml"].ToString();
             BindReferences(referenceXML);

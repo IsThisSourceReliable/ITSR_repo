@@ -253,6 +253,7 @@
             </div>
         </div>
         <asp:HiddenField ID="hiddenArticleID" runat="server" />
+        <asp:HiddenField ID="HiddenLocked" runat="server" />
     </div>
 
 </asp:Content>

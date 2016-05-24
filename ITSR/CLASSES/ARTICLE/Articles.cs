@@ -26,6 +26,7 @@ namespace ITSR.CLASSES.ARTICLE
         public string Financing { get; set; }
         public string Reference { get; set; }
         public string AricleURL { get; set; }
+        public bool Locked { get; set; }
 
         //Methods
 
@@ -86,23 +87,25 @@ namespace ITSR.CLASSES.ARTICLE
             {
                 conn.Open();
 
-                MySqlCommand cmdCreateArticle = new MySqlCommand("UPDATE article " +
-                                                                "SET title = @title, text = @text, url = @url, orgtype_id = @typeoforg, lastedit_date = @lasteditdate, lastedituser_id = @lastedituser, publisher = @publisher, domainowner = @domainowner, financing = @financer, reference_xml = @referencexml " +
+                MySqlCommand cmdUpdateArticle = new MySqlCommand("UPDATE article " +
+                                                                "SET title = @title, text = @text, url = @url, orgtype_id = @typeoforg, lastedit_date = @lasteditdate, lastedituser_id = @lastedituser, publisher = @publisher, domainowner = @domainowner, financing = @financer, reference_xml = @referencexml, locked = @locked " +
                                                                 "WHERE idarticle = @id; ", conn);
 
-                cmdCreateArticle.Parameters.AddWithValue("@id", ID);
-                cmdCreateArticle.Parameters.AddWithValue("@title", Title);
-                cmdCreateArticle.Parameters.AddWithValue("@text", Text);
-                cmdCreateArticle.Parameters.AddWithValue("@url", AricleURL);
-                cmdCreateArticle.Parameters.AddWithValue("@typeoforg", TypeOfOrg_id);
-                cmdCreateArticle.Parameters.AddWithValue("@lasteditdate", lastEdit);
-                cmdCreateArticle.Parameters.AddWithValue("@lastedituser", lastEditUser_id);
-                cmdCreateArticle.Parameters.AddWithValue("@publisher", Publisher);
-                cmdCreateArticle.Parameters.AddWithValue("@domainowner", domainOwner);
-                cmdCreateArticle.Parameters.AddWithValue("@financer", Financing);
-                cmdCreateArticle.Parameters.AddWithValue("@referencexml", Reference);
+                cmdUpdateArticle.Parameters.AddWithValue("@id", ID);
+                cmdUpdateArticle.Parameters.AddWithValue("@title", Title);
+                cmdUpdateArticle.Parameters.AddWithValue("@text", Text);
+                cmdUpdateArticle.Parameters.AddWithValue("@url", AricleURL);
+                cmdUpdateArticle.Parameters.AddWithValue("@typeoforg", TypeOfOrg_id);
+                cmdUpdateArticle.Parameters.AddWithValue("@lasteditdate", lastEdit);
+                cmdUpdateArticle.Parameters.AddWithValue("@lastedituser", lastEditUser_id);
+                cmdUpdateArticle.Parameters.AddWithValue("@publisher", Publisher);
+                cmdUpdateArticle.Parameters.AddWithValue("@domainowner", domainOwner);
+                cmdUpdateArticle.Parameters.AddWithValue("@financer", Financing);
+                cmdUpdateArticle.Parameters.AddWithValue("@referencexml", Reference);
+                cmdUpdateArticle.Parameters.AddWithValue("@locked", Locked);
 
-                cmdCreateArticle.ExecuteNonQuery();
+                cmdUpdateArticle.ExecuteNonQuery();
+
                 ok = true;
                 return ok;
 
@@ -118,6 +121,34 @@ namespace ITSR.CLASSES.ARTICLE
             }
         }
 
+        /// <summary>
+        /// Method updates locked status in database.
+        /// </summary>
+        public void UnlockArticle()
+        {
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmdUpdateArticle = new MySqlCommand("UPDATE article " +
+                                                                "SET locked = @locked " +
+                                                                "WHERE idarticle = @id; ", conn);
+
+                cmdUpdateArticle.Parameters.AddWithValue("@id", ID);
+                cmdUpdateArticle.Parameters.AddWithValue("@locked", Locked);
+
+                cmdUpdateArticle.ExecuteNonQuery();
+
+            }
+            catch (MySqlException ex)
+            {
+                Console.Write(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
         /// <summary>
         /// This method retrieves the last saved article in database and stores a copy in articlecopy table.
@@ -126,6 +157,7 @@ namespace ITSR.CLASSES.ARTICLE
         public bool SaveOldArticle()
         {
             DataTable dt = GetArticle();
+
             int copyArticleID = int.Parse(dt.Rows[0]["idarticle"].ToString());
             string copyTitle = dt.Rows[0]["title"].ToString();
             string copyText = dt.Rows[0]["text"].ToString();
@@ -233,22 +265,31 @@ namespace ITSR.CLASSES.ARTICLE
 
         public void ReportArticle(Report r)
         {
-            string sql = "INSERT INTO report_article (article_id, text, user_id) VALUES(@AID, @T, @UID)";
+            string sql = "INSERT INTO report_article (article_id, reason, user_id) VALUES(@AID, @T, @UID)";
+            string sqlLockArticle = "UPDATE article SET locked = @locked WHERE idarticle = @idarticle; ";
+
+            bool lockArticle = true;
 
             try
             {
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlCommand cmdLockArticle = new MySqlCommand(sqlLockArticle, conn);
+
                 cmd.Parameters.AddWithValue("@AID", r.articleORcomment_id);
                 cmd.Parameters.AddWithValue("@T", r.text);
                 cmd.Parameters.AddWithValue("@UID", r.user_id);
 
+                cmdLockArticle.Parameters.AddWithValue("@locked", lockArticle);
+                cmdLockArticle.Parameters.AddWithValue("@idarticle", r.articleORcomment_id);
+
                 cmd.ExecuteNonQuery();
+                cmdLockArticle.ExecuteNonQuery();
             }
 
             catch (MySqlException ex)
             {
-
+                Console.Write(ex.Message.ToString());
             }
             finally
             {
@@ -320,7 +361,7 @@ namespace ITSR.CLASSES.ARTICLE
             try
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT idarticle, title, text, url, orgtype_id, lastedit_date, votes_up, votes_down, lastedituser_id, createuser_id, publisher, domainowner,financing, reference_xml, removed, name AS orgtype, username AS edituser FROM article " +
+                MySqlCommand cmd = new MySqlCommand("SELECT idarticle, title, text, url, orgtype_id, lastedit_date, votes_up, votes_down, lastedituser_id, createuser_id, publisher, domainowner,financing, reference_xml, removed, locked, name AS orgtype, username AS edituser FROM article " +
                                                     "INNER JOIN typeoforg ON article.orgtype_id = typeoforg.idtypeoforg " +
                                                     "INNER JOIN user ON article.lastedituser_id = user.iduser " +
                                                     "WHERE idarticle = @id; ", conn);
@@ -331,6 +372,71 @@ namespace ITSR.CLASSES.ARTICLE
 
                 DataTable dt = new DataTable();
 
+                da.Fill(dt);
+                return dt;
+            }
+            catch (MySqlException ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        /// <summary>
+        /// Method retrives a specific article from the article copy table for a moderator to 
+        /// be able to preview said article before reverting.
+        /// </summary>
+        /// <param name="articleCopyID"></param>
+        /// <returns></returns>
+        public DataTable GetArticleCopy(int articleCopyID)
+        {
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT idarticlecopy, article_id, title, text, url, orgtype_id, lastedit_date, lastedituser_id, createuser_id, publisher, domainowner,financing, reference_xml, name AS orgtype " +
+                                                     "FROM articlecopy " +
+                                                     "INNER JOIN typeoforg ON articlecopy.orgtype_id = typeoforg.idtypeoforg " +
+                                                     "WHERE idarticlecopy = @id; ", conn);
+                cmd.Parameters.AddWithValue("@id", articleCopyID);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+
+                da.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+                return dt;
+            }
+            catch (MySqlException ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        /// <summary>
+        /// Method retrives the dates from copied articles so that a
+        /// moderator can choose which on to choose.
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetArticleCopyDates()
+        {
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT idarticlecopy, lastedit_date FROM articlecopy WHERE article_id = @id; ", conn);
+
+                cmd.Parameters.AddWithValue("@id", ID);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
                 da.Fill(dt);
                 return dt;
             }

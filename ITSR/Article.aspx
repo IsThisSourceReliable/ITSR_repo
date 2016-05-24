@@ -14,7 +14,8 @@
                     <ContentTemplate>
                         <div class="fullBox">
                             <div class="fullBox center-text">
-                                <h3><asp:Label ID="lblOverlayHeading" runat="server" Text="Label"></asp:Label></h3>
+                                <h3>
+                                    <asp:Label ID="lblOverlayHeading" runat="server" Text="Label"></asp:Label></h3>
                             </div>
                             <br />
                             <p>
@@ -22,7 +23,9 @@
                                 <asp:HiddenField ID="CommentIDOverlay" runat="server" />
                                 <asp:HiddenField ID="CommenUserIDOverlay" runat="server" />
                                 <br />
-                                <strong>You want to <asp:Label ID="lblOverlayAction" runat="server" Text="Label"></asp:Label> the following comment: </strong>
+                                <strong>You want to
+                                    <asp:Label ID="lblOverlayAction" runat="server" Text="Label"></asp:Label>
+                                    the following comment: </strong>
                                 <br />
                                 <br />
                                 <i>"<asp:Label ID="lblCommentTextOverlay" runat="server" Text="Label"></asp:Label></i>"
@@ -55,13 +58,13 @@
                                 ValidationGroup="Report"
                                 Text="REPORT"
                                 OnClick="btnReport_Click" />
-                            <asp:Button 
-                                ID="btnDeleteComment" 
+                            <asp:Button
+                                ID="btnDeleteComment"
                                 CssClass="itsr-button report-btn"
-                                runat="server" 
+                                runat="server"
                                 ValidationGroup="Nogroup"
-                                Text="DELETE"  
-                                OnClick="btnDeleteComment_Click"/>
+                                Text="DELETE"
+                                OnClick="btnDeleteComment_Click" />
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
@@ -131,6 +134,14 @@
             <h2 class="article-heading"><strong>
                 <asp:Label ID="lblArticleName" runat="server" Text="ArticleName"></asp:Label></strong></h2>
         </div>
+
+        <div id="lockDiv" runat="server" class="fullBox center-text">
+            <div style="width: 95%; background-color: #ff7575; padding: 1em; margin: 0em auto;">
+                <p style="font-size: 0.99em;">Please note that a member has reported the content of this article! A moderator has been notified and will be reviewing the report shortly. 
+                    <br />Editing the article has been disabled until a moderator has reviewed the report.</p>
+                <asp:HiddenField ID="HiddenLocked" runat="server" />
+            </div>
+        </div>
         <!-- ARTICLE ================================================== -->
         <div class="fullBox">
             <div class="halfBox ">
@@ -140,7 +151,8 @@
                             <ContentTemplate>
                                 <div class="fullBox">
                                     <p>
-                                        <div class="vote-bar upvote-bar" id="upvoteBar" runat="server"></div><div class="vote-bar downvote-bar" id="downvoteBar" runat="server"></div>
+                                        <div class="vote-bar upvote-bar" id="upvoteBar" runat="server"></div><!--
+                                        --><div class="vote-bar downvote-bar" id="downvoteBar" runat="server"></div>
 
                                     </p>
                                 </div>
@@ -165,7 +177,7 @@
                     </div>
                 </div>
                 <div class="fullBox">
-                    <p class="article-text" id="articleText" runat="server">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                    <p class="article-text" id="articleText" runat="server"></p>
                 </div>
             </div>
             <div class="halfBox">

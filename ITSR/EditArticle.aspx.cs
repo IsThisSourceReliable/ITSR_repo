@@ -17,6 +17,11 @@ namespace ITSR
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Session["UserID"] == null)
+            {
+                Response.Redirect("~/default.aspx");
+            }
+
             if(!IsPostBack)
             {
                 BindDropDown();
@@ -61,6 +66,7 @@ namespace ITSR
             txtUpHouseMan.Text = dt.Rows[0]["publisher"].ToString();
             txtDomainOwner.Text = dt.Rows[0]["domainowner"].ToString();
             txtFinancer.Text = dt.Rows[0]["financing"].ToString();
+            HiddenLocked.Value = dt.Rows[0]["locked"].ToString();
 
             string xmlReferences = dt.Rows[0]["reference_xml"].ToString();
 
@@ -241,6 +247,7 @@ namespace ITSR
             sourceArticle.Financing = txtFinancer.Text;
             sourceArticle.lastEditUser_id = int.Parse(Session["UserID"].ToString());
             sourceArticle.Reference = CreateXML();
+            sourceArticle.Locked = false;
 
             if(sourceArticle.SaveOldArticle())
             {
@@ -264,6 +271,33 @@ namespace ITSR
             txtURL.Text = string.Empty;
         }
 
+        /// <summary>
+        /// Method evaluates if the article is locked for updates or not. 
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckIfLocked()
+        {
+            int locked = int.Parse(HiddenLocked.Value);
+            bool ok = false;
+
+            if (locked == 1)
+            {
+                ok = true;
+            }
+
+            return ok;
+        }
+
+        private bool CheckRoleID()
+        {
+            int roleID = int.Parse(Session["RoleID"].ToString());
+            bool ok = false;
+            if (roleID >= 2)
+            {
+                ok = true;
+            }
+            return ok;
+        }
         /// <summary>
         /// Event for when user wants to add/update references. Checks wheter or not 
         /// </summary>
@@ -368,15 +402,38 @@ namespace ITSR
             }
             else
             {
-                if (UpdateArticle())
+                if(CheckIfLocked())
                 {
-                    Session["ArticleID"] = hiddenArticleID.Value.ToString();
-                    Response.Redirect("~/Article.aspx");
-                    //ResetEverything();
+                    if(CheckRoleID()) //If a mod or admin still can update. 
+                    {
+                        if (UpdateArticle())
+                        {
+                            Session["ArticleID"] = hiddenArticleID.Value.ToString();
+                            Response.Redirect("~/Article.aspx");
+                            //ResetEverything();
+                        }
+                        else
+                        {
+                            lblTitleFail.Text = "OBS, something went wrong when trying to update, try again!";
+                        }
+                    }
+                    else
+                    {
+                        lblTitleFail.Text = "This article has been locked for editing for the moment.";
+                    }
                 }
                 else
                 {
-                    lblTitleFail.Text = "OBS, something went wrong during when trying to update, try again!";
+                    if (UpdateArticle())
+                    {
+                        Session["ArticleID"] = hiddenArticleID.Value.ToString();
+                        Response.Redirect("~/Article.aspx");
+                        //ResetEverything();
+                    }
+                    else
+                    {
+                        lblTitleFail.Text = "OBS, something went wrong when trying to update, try again!";
+                    }
                 }
             }
         }

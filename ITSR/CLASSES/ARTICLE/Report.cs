@@ -56,6 +56,40 @@ namespace ITSR.CLASSES.ARTICLE
         }
 
         /// <summary>
+        /// Method gets all reported articles that are not solved.
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetReportedArticles()
+        {
+            string sql = "SELECT * FROM report_article " +
+                        "INNER JOIN article ON article_id = idarticle " +
+                        "INNER JOIN user ON user_id = iduser " +
+                        "WHERE resolved = 0; ";
+
+            try
+            {
+                conn.Open();
+                MySqlCommand cmdGetReportedArticles = new MySqlCommand(sql, conn);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+
+                da.SelectCommand = cmdGetReportedArticles;
+
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+                return dt;
+            }
+            catch (MySqlException ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        /// <summary>
         /// This method checks if there is a report on a ceratin comment, returns true 
         /// or false depending on if there is a report or not.
         /// </summary>
@@ -306,6 +340,36 @@ namespace ITSR.CLASSES.ARTICLE
             catch (MySqlException ex)
             {
 
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        /// <summary>
+        /// This method updates the report_article table and sets that a reported article
+        /// has been resolved and which moderator who did solve it as well.
+        /// </summary>
+        public void ResolveReportedArticle()
+        {
+            string sqlUpdateReportArticle = "UPDATE report_article SET resolved = @resolved, moderator_user_id = @moderatorid WHERE idreport_article = @idreport_article";          
+
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmdResolveArticleReport = new MySqlCommand(sqlUpdateReportArticle, conn);
+
+                cmdResolveArticleReport.Parameters.AddWithValue("@resolved", true);
+                cmdResolveArticleReport.Parameters.AddWithValue("@moderatorid", ModeratorUserID);
+                cmdResolveArticleReport.Parameters.AddWithValue("@idreport_article", ID);
+
+                cmdResolveArticleReport.ExecuteNonQuery();    
+            }
+            catch (MySqlException ex)
+            {
+                Console.Write(ex.Message.ToString());
             }
             finally
             {
