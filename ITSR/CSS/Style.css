@@ -575,40 +575,49 @@ h4 {
 }
 
 .panel-navbar {
-    list-style: none;
+    width: 95%;
+    margin: 0em auto;
+    background-color: #074e67;
+    /*height: 38px;*/
+    border-radius: 20px;
+    padding-left: 20px;
+    margin-bottom: 1em; 
+    margin-top: 1em;
     display: block;
+    list-style: none;
     /*margin-top: 64px;*/
     margin-left: 1em;
     float: left;
     /*width: 322px;*/
-    /*position: fixed;*/
-    /*z-index: 1500;*/
+    position: relative;
 }
 
     .panel-navbar > li {
-        /*display: block;*/
+        display: inline;
         float: left;
 
     }
 
         .panel-navbar > li > p > a {
+            text-align: center;
+            font-size: 0.85em;
             display: inline-block;
-            padding: 20px 30px 20px 30px;
+            padding: 10px 20px 10px 20px;
             width: 200px;
             color: #edf7f7;
             background: #074e67;
             /*background-color: #FFFFFF;*/
             font-weight: bold;
             cursor: pointer;
-            border: 1px solid #81c9ca;
+            /*border: 1px solid #81c9ca;*/
         }
 
             .panel-navbar > li > p > a:hover {
                 display: inline-block;
                 background: #81c9ca;
-                padding: 20px 30px 20px 30px;
+                padding: 10px 20px 10px 20px;
                 color: #edf7f7;
-                border: 1px solid #edf7f7;
+                /*border: 1px solid #edf7f7;*/
                 /*background: #999999;*/
             }
 

@@ -18,8 +18,8 @@ namespace ITSR
             {
                 if (!IsPostBack)
                 {
-                    LoadReportComments();
                     LoadAndSetTotalReports();
+
                     ArticleBox.Visible = false;
                     dropDownDiv.Visible = false;
                     lBtnConfirmRevert.Visible = false;
@@ -165,9 +165,10 @@ namespace ITSR
         /// </summary>
         private void LoadAndSetTotalReports()
         {
-            Report TotalComments = new Report();
-            int total = TotalComments.GetTotalCommentsReports();
-            lblTotalReports.Text = total.ToString();
+            Report TotalReports = new Report();
+            int totalCommentsReport = TotalReports.GetTotalCommentsReports();
+            int totalArticleReports = TotalReports.GetTotalArticleReports();
+            lblTotalReports.Text = totalCommentsReport.ToString() + " comments reports </br>" + totalArticleReports.ToString() + " article reports. ";
         }
 
         /// <summary>
@@ -287,6 +288,7 @@ namespace ITSR
         /// <param name="e"></param>
         protected void lBtnShowComments_Click(object sender, EventArgs e)
         {
+            lblSection.Text = "Reported Comments";
             ArticleBox.Visible = false;
             HideArticlesReports();
             LoadReportComments();
@@ -322,6 +324,7 @@ namespace ITSR
         /// <param name="e"></param>
         protected void lBtnShowArticles_Click(object sender, EventArgs e)
         {
+            lblSection.Text = "Reported Articles";
             HideCommentsReports();
             ArticleBox.Visible = false;
             LoadReportedArticles();
@@ -417,6 +420,14 @@ namespace ITSR
             HideCommentsReports();
             ArticleBox.Visible = false;
             dropDownDiv.Visible = false;
+
+            lBtnEditArticle.Visible = true;
+            lBtnNoActionArticle.Visible = true;
+            lBtnRevertArticle.Visible = true;
+
+            lBtnConfirmRevert.Visible = false;
+            lBtnCancelRevert.Visible = false;
+
             LoadReportedArticles();
         }
 

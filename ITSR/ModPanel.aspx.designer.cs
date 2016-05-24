@@ -13,15 +13,6 @@ namespace ITSR {
     public partial class ModPanel {
         
         /// <summary>
-        /// UpdatePanelReports control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelReports;
-        
-        /// <summary>
         /// lBtnShowComments control.
         /// </summary>
         /// <remarks>
@@ -47,6 +38,24 @@ namespace ITSR {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotalReports;
+        
+        /// <summary>
+        /// UpdatePanelReports control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelReports;
+        
+        /// <summary>
+        /// lblSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSection;
         
         /// <summary>
         /// listViewReports control.

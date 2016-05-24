@@ -156,6 +156,35 @@ namespace ITSR.CLASSES.ARTICLE
         }
 
         /// <summary>
+        /// Method counts all comment reports where they haven't
+        /// been resolved yet.
+        /// </summary>
+        /// <returns></returns>
+        public int GetTotalArticleReports()
+        {
+            string sql = "SELECT count(*) FROM report_article WHERE resolved = 0;";
+            int total = 0;
+
+            try
+            {
+                conn.Open();
+                MySqlCommand cmdCountReportsComment = new MySqlCommand(sql, conn);
+
+                total = Convert.ToInt32(cmdCountReportsComment.ExecuteScalar());
+                return total;
+
+            }
+            catch (MySqlException ex)
+            {
+                return total;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        /// <summary>
         /// Method removes a reported comment.
         /// Updates report_comment table with resolved value and moderator id
         /// Updates comment table with removed value and moderator id

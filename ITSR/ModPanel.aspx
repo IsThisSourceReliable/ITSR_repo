@@ -10,36 +10,47 @@
     <div class="fullBox white-box">
         <div class="fullBox">
             <h2 class="panel-h2">MODERATOR PANEL</h2>
-            <p class="panel-txt"><strong>Welcome to the moderator panel!</strong></p>
-            <p class="panel-txt">
-                As a moderator this is where you can see comments that has been reported and decide wheter or not to remove them. 
+            <div class="fullBox">
+                <ul class="panel-navbar">
+                    <li>
+                        <p>
+                            <asp:LinkButton ID="lBtnShowComments" runat="server" OnClick="lBtnShowComments_Click">COMMENTS</asp:LinkButton>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <asp:LinkButton ID="lBtnShowArticles" runat="server" OnClick="lBtnShowArticles_Click">ARTICLES</asp:LinkButton>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <div class="halfBox">
+                <p class="panel-txt"><strong>Welcome to the moderator panel!</strong></p>
+                <p class="panel-txt">
+                    As a moderator this is where you can see comments and articles that has been reported and decide wheter or not to remove them. 
+                    <br />
+                     <br />
+                And when it comes to articles you can choose to revert to an older version, edit or decide that the report was unecessary.
+                    <br />
+                     <br />
                 A comment should always be removed if it violates the community standards or breaks any laws.
-            </p>
+                </p>
+            </div>
+            <div class="halfBox">
+                <p class="panel-txt">
+                    <strong>Current status: </strong>
+                    <br />
+                    <asp:Label ID="lblTotalReports" runat="server" Text="Label"></asp:Label>
+                </p>
+            </div>
         </div>
 
         <asp:UpdatePanel ID="UpdatePanelReports" runat="server">
             <ContentTemplate>
 
-                <div class="fullBox">
-                    <ul class="panel-navbar">
-                        <li>
-                            <p>
-                                <asp:LinkButton ID="lBtnShowComments" runat="server" OnClick="lBtnShowComments_Click">COMMENTS</asp:LinkButton>
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                <asp:LinkButton ID="lBtnShowArticles" runat="server" OnClick="lBtnShowArticles_Click">ARTICLES</asp:LinkButton>
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="fullBox">
-                    <p class="panel-txt">
-                        There is currently 
-                <asp:Label ID="lblTotalReports" runat="server" Text="Label"></asp:Label>
-                        reports made by users.
-                    </p>
+                <div class=" fullBox comment" style="width: 97%; margin-left: 1%;">
+                    <h2>
+                        <asp:Label ID="lblSection" runat="server" Text=""></asp:Label></h2>
                 </div>
 
                 <asp:ListView
@@ -147,9 +158,10 @@
                     <div class="fullBox">
                         <div class=" fullBox comment" style="width: 97%; margin-left: 1%;">
                             <div class="halfBox">
-                                <h2 class="article-heading">Review article details</h2>
+                                <h2>Review article details</h2>
                                 <p class="fail-text">
-                                    <asp:Label ID="lblFail" runat="server" Text=""></asp:Label></p>
+                                    <asp:Label ID="lblFail" runat="server" Text=""></asp:Label>
+                                </p>
                             </div>
 
                             <div class="halfBox" id="dropDownDiv" runat="server">
