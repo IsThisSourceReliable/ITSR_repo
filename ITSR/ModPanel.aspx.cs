@@ -441,12 +441,29 @@ namespace ITSR
             if(dropDownOldVersion.SelectedIndex > 0)
             {
                 int articleCopyID = int.Parse(dropDownOldVersion.SelectedValue);
-                ResolveArticleReport();
+
                 //UnlockArticle();
                 if(!RevertArticle(articleCopyID))
                 {
                     lblFail.Text = "Something went wrong when trying to revert. Try again.";
                     lblFail.Visible = true;
+                }
+                else
+                {
+                    ResolveArticleReport();
+
+                    ArticleBox.Visible = false;
+                    dropDownDiv.Visible = false;
+
+                    lBtnEditArticle.Visible = true;
+                    lBtnNoActionArticle.Visible = true;
+                    lBtnRevertArticle.Visible = true;
+
+                    lBtnConfirmRevert.Visible = false;
+                    lBtnCancelRevert.Visible = false;
+
+                    LoadReportedArticles();
+                    LoadAndSetTotalReports();
                 }
             }
         }
