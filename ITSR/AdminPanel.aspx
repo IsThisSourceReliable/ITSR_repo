@@ -1,19 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainMaster.Master" AutoEventWireup="true" CodeBehind="AdminPanel.aspx.cs" Inherits="ITSR.AdminPanel" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="CSS/AdminPanel/AdminPanelCSS.css" rel="stylesheet" />
-
-    <link href="CSS/AdminPanel/btnAdminPanel.css" rel="stylesheet" />
-    <link href="CSS/AdminPanel/displaynoneAdminPanel.css" rel="stylesheet" />
-    <link href="CSS/AdminPanel/lblAdminPanel.css" rel="stylesheet" />
-    <link href="CSS/AdminPanel/paddingAdminPanel.css" rel="stylesheet" />
-    <link href="CSS/AdminPanel/tbAdminPanel.css" rel="stylesheet" />
-    <link href="CSS/AdminPanel/marginAdminPanel.css" rel="stylesheet" />
-    <link href="CSS/AdminPanel/bordersAdminPanel.css" rel="stylesheet" />
-    <link href="CSS/AdminPanel/divAdminPanel.css" rel="stylesheet" />
-
+    <link href="CSS/AdminPanelCSS.css" rel="stylesheet" />
     <script src="JS/AdminPanelJS.js"></script>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentHolder" runat="server">
 
@@ -52,6 +41,7 @@
             <ContentTemplate>
                 <asp:ListView ID="lvSolvedCommentReports" runat="server" OnItemDataBound="lvSolvedCommentReports_ItemDataBound" OnItemCommand="lvSolvedCommentReports_ItemCommand">
                     <ItemTemplate>
+ 
                         <asp:HiddenField ID="HiddenCommentID" runat="server" Value='<%# Eval("idcomment") %>' />
                         <asp:HiddenField ID="HiddenReportCommentID" runat="server" Value='<%# Eval("idreport_comment") %>' />
                         <div class="fullBox border-bottom">
@@ -113,21 +103,65 @@
     <div class="roles-box white-box fullBox padding paddingFix margin-bottom-box">
         <asp:UpdatePanel ID="UpdatePanel3" runat="server">
             <ContentTemplate>
-                <div class="fullBox padding paddingFix border-bottom">
+                <div class="fullBox padding paddingFix">
                     <div class="fullBox marginTop marginLeft">
                         <p>
                             <strong>Search on username</strong>
+                            <asp:RequiredFieldValidator
+                                ID="RequiredFieldValidator1"
+                                ControlToValidate="tbSearch"
+                                ForeColor="Red" runat="server"
+                                Font-Size="Medium"
+                                ErrorMessage="Did you forget something?"
+                                Display="Dynamic"
+                                ValidationGroup="SearchGroup">
+                            </asp:RequiredFieldValidator>
                         </p>
                     </div>
                     <div class="twothirdBox paddingLeft paddingRight paddingFix">
-                        <asp:TextBox ID="tbSearch" runat="server" CssClass="tb paddingFix marginBot"></asp:TextBox>
+                        <asp:TextBox ID="tbSearch" runat="server" CssClass="tbSearch tb paddingFix marginBot"></asp:TextBox>
                     </div>
                     <div class="thirdBox">
-                        <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="Mainbtn marginLeft" />
+                        <div class="fullBox MakeHalfBox">
+                            <asp:Button ID="btnSearch" runat="server" ValidationGroup="SearchGroup" Text="Search" CssClass="Mainbtn marginLeft" OnClick="btnSearch_Click" />
+                        </div>
+                        <div class="CustomDiv25 marginLeft">
+                            <input id="btnClearSearch" type="button" class="HiddenBtn Mainbtn marginLeft" value="X" onclick="MakeBtnBigger();" />
+                        </div>
                     </div>
                 </div>
-                <asp:ListView ID="lvModerators" runat="server">
+                <div class="listView">
+                    <asp:ListView ID="lvSearchMember" OnItemDataBound="lvSearchMember_ItemDataBound" OnItemCommand="lvSearchMember_ItemCommand" runat="server">
+                        <ItemTemplate>
+                         <asp:HiddenField ID="HiddenField1" runat="server" value="0"/>
+                            <asp:HiddenField ID="HiddenUserID" Value='<%# Eval("iduser") %>' runat="server" />
+                            <div class="fullBox marginTop border-bottom padding paddingFix">
+                                <div class="div25">
+                                    <p>
+                                        <strong>Username</strong>
+                                    </p>
+                                    <p class="lbl">
+                                        <asp:Label ID="lblUsername" runat="server" Text='<%# Eval("username") %>'></asp:Label>
+                                    </p>
+                                </div>
+                                <div class="div25">
+                                    <p>
+                                        <strong>Email</strong>
+                                    </p>
+                                    <p class="lbl">
+                                        <asp:Label ID="lblEmail" runat="server" Text='<%# Eval("email") %>'></asp:Label>
+                                    </p>
+                                </div>
+                                <div class="btndiv-floatright marginLeft">
+                                    <asp:Button ID="BtnMakeModerator" CssClass="Secondarybtn" runat="server" CommandName="MakeModerator" Text="Make Moderator" />
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:ListView>
+                </div>
+                <asp:ListView ID="lvModerators" runat="server" OnItemCommand="lvModerators_ItemCommand" OnItemDataBound="lvModerators_ItemDataBound">
                     <ItemTemplate>
+                        <asp:HiddenField ID="HiddenUserID" Value='<%# Eval("iduser") %>' runat="server" />
                         <div class="fullBox border-bottom padding paddingFix">
                             <div class="div25">
                                 <p>
@@ -145,11 +179,14 @@
                                     <asp:Label ID="lblEmail" runat="server" Text='<%# Eval("email") %>'></asp:Label>
                                 </p>
                             </div>
+                            <div class="btndiv-floatright marginLeft">
+                                <asp:Button ID="BtnSaveRole" CssClass="Secondarybtn" runat="server" CommandName="SaveNewRole" Text="Save" />
+                            </div>
                             <div class="btndiv-floatright">
-                                <asp:Button ID="Button2" CssClass="Secondarybtn" runat="server" Text="Promote" />
-                                <asp:Button ID="Button3" CssClass="Secondarybtn" runat="server" Text="Demote" />
+                                <asp:DropDownList ID="ddlRoles" CssClass="DropDown DropDown-AdminPanel" runat="server"></asp:DropDownList>
                             </div>
                         </div>
+
                     </ItemTemplate>
                 </asp:ListView>
             </ContentTemplate>

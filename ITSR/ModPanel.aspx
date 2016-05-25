@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainMaster.Master" AutoEventWireup="true" CodeBehind="ModPanel.aspx.cs" Inherits="ITSR.ModPanel" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
     <link href="CSS/PanelStyle.css" rel="stylesheet" />
     <link href="CSS/ArticleCSS.css" rel="stylesheet" />
 </asp:Content>

@@ -1,11 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainMaster.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="ITSR.Profile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="CSS/Profile/marginProfile.css" rel="stylesheet" />
-    <link href="CSS/Profile/paddingProfile.css" rel="stylesheet" />
-    <link href="CSS/Profile/floatProfile.css" rel="stylesheet" />
-    <link href="CSS/Profile/btnProfile.css" rel="stylesheet" />
-    <link href="CSS/Profile/bordersProfile.css" rel="stylesheet" />
+    <link href="CSS/ProfileCSS.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentHolder" runat="server">
 
@@ -39,10 +35,20 @@
                 <div class="fullBox center-text border-bottom marginBot">
                     <h3>Created</h3>
                 </div>
+                <div>
+                    <asp:CustomValidator
+                        ID="NoCreatedArticles"
+                        ForeColor="Black"
+                        runat="server"
+                        Font-Size="Medium"
+                        Display="Dynamic"
+                        ErrorMessage="This user has not yet created any articles">
+                    </asp:CustomValidator>
+                </div>
                 <asp:ListView ID="lvCreatedArticles" OnItemDataBound="lvCreatedArticles_ItemDataBound" OnItemCommand="lvCreatedArticles_ItemCommand" runat="server">
                     <ItemTemplate>
-                        <div class="fullBox marginBot">
-                            <asp:Button ID="btnCreatedArticle" runat="server" CommandArgument='<%# Eval("idarticle") %>' CommandName="GoToArticle" CssClass="Mainbtn" Text='<%# Eval("title") %>' />
+                        <div class="fullBox marginBot center-text">
+                            <asp:LinkButton ID="btnCreatedArticle" CommandArgument='<%# Eval("idarticle") %>' text='<%# Eval("title") %>'  CommandName="GoToArticle" runat="server"></asp:LinkButton>                           
                         </div>
                     </ItemTemplate>
                 </asp:ListView>
@@ -51,9 +57,19 @@
                 <div class="fullBox center-text border-bottom marginBot">
                     <h3>Commented</h3>
                 </div>
+                <div>
+                    <asp:CustomValidator
+                        ID="NoComments"
+                        ForeColor="Black"
+                        runat="server"
+                        Font-Size="Medium"
+                        Display="Dynamic"
+                        ErrorMessage="This user has not yet commented on any articles">
+                    </asp:CustomValidator>
+                </div>
                 <asp:ListView ID="lvLastCommented" OnItemDataBound="lvLastCommented_ItemDataBound" OnItemCommand="lvLastCommented_ItemCommand" runat="server">
                     <ItemTemplate>
-                        <div class="fullBox marginBot">
+                        <div class="fullBox marginBot center-text">
                             <asp:Button ID="btnLastVoted" runat="server" CommandArgument='<%# Eval("idarticle") %>' CommandName="GoToArticle" CssClass="Mainbtn" Text='<%# Eval("title") %>' />
                         </div>
                     </ItemTemplate>
@@ -63,10 +79,20 @@
                 <div class="fullBox center-text border-bottom marginBot">
                     <h3>Voted</h3>
                 </div>
+                <div>
+                    <asp:CustomValidator
+                        ID="NoVotes"
+                        ForeColor="Black"
+                        runat="server"
+                        Font-Size="Medium"
+                        Display="Dynamic"
+                        ErrorMessage="This user has not yet voted on any articles">
+                    </asp:CustomValidator>
+                </div>
                 <asp:ListView ID="lvLastVoted" OnItemDataBound="lvLastVoted_ItemDataBound" OnItemCommand="lvLastVoted_ItemCommand" runat="server">
                     <ItemTemplate>
-                        <div class="fullBox marginBot">
-                            <asp:Button ID="btnLastVoted" runat="server" CommandArgument='<%# Eval("idarticle") %>' CommandName="GoToArticle" CssClass="Mainbtn" Text='<%# Eval("title") %>' />
+                        <div class="fullBox marginBot center-text">
+                            <asp:LinkButton ID="btnLastVoted" CommandArgument='<%# Eval("idarticle") %>' text='<%# Eval("title") %>'  CommandName="GoToArticle" runat="server"></asp:LinkButton> 
                         </div>
                     </ItemTemplate>
                 </asp:ListView>

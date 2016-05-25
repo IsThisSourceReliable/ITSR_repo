@@ -49,18 +49,57 @@ namespace ITSR
             lblOccupation.Text = m.occupation;
             lblAboutme.Text = m.aboutme;
 
-            lvCreatedArticles.DataSource = m.GetArticlesCreatedBy(m);
+            DataTable dtCreated = m.GetArticlesCreatedBy(m);
+            DataTable dtVoted = m.GetLastVotesBy(m);
+            DataTable dtComment = m.GetLastCommentsBy(m);
+
+            CountRows(dtCreated, dtVoted, dtComment);
+
+            lvCreatedArticles.DataSource = dtCreated;
             lvCreatedArticles.DataBind();
 
-            lvLastVoted.DataSource = m.GetLastVotesBy(m);
+            lvLastVoted.DataSource = dtVoted;
             lvLastVoted.DataBind();
 
-            lvLastCommented.DataSource = m.GetLastCommentsBy(m);
+            lvLastCommented.DataSource = dtComment;
             lvLastCommented.DataBind();
+
+            
+        }
+
+        public void CountRows (DataTable dtCreated, DataTable dtVoted, DataTable dtCommented)
+        {
+            int created, comments, votes = 0;
+
+            created = dtCreated.Rows.Count;
+            comments = dtCommented.Rows.Count;
+            votes = dtVoted.Rows.Count;
+
+            if (created == 0)
+            {
+                NoCreatedArticles.IsValid = false;
+            }
+            if (comments == 0)
+            {
+                NoComments.IsValid = false;
+            }
+            if (votes == 0)
+            {
+                NoVotes.IsValid = false;
+            }
+
+            
         }
 
         protected void lvCreatedArticles_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
+            Member m = new Member();
+            m.ID = Convert.ToInt32(Session["profileID"]);
+            DataTable dtCreated = m.GetArticlesCreatedBy(m);
+            DataTable dtVoted = m.GetLastVotesBy(m);
+            DataTable dtComment = m.GetLastCommentsBy(m);
+
+            CountRows(dtCreated, dtVoted, dtComment);
 
         }
 
@@ -86,7 +125,17 @@ namespace ITSR
 
         protected void lvLastCommented_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
+            string CommandNamevalue = e.CommandName.ToString();
+            string CommandArgument = e.CommandArgument.ToString();
 
+            switch (CommandNamevalue)
+            {
+                case "GoToArticle":
+                    Session["ArticleID"] = CommandArgument;
+                    Response.Redirect("~/Article.aspx");
+                    break;
+
+            }
         }
 
         protected void lvLastVoted_ItemDataBound(object sender, ListViewItemEventArgs e)
@@ -96,7 +145,17 @@ namespace ITSR
 
         protected void lvLastVoted_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
+            string CommandNamevalue = e.CommandName.ToString();
+            string CommandArgument = e.CommandArgument.ToString();
 
+            switch (CommandNamevalue)
+            {
+                case "GoToArticle":
+                    Session["ArticleID"] = CommandArgument;
+                    Response.Redirect("~/Article.aspx");
+                    break;
+
+            }
         }
     }
 }

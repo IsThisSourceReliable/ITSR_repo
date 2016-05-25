@@ -67,6 +67,15 @@ namespace ITSR {
         protected global::System.Web.UI.WebControls.Label lblAboutme;
         
         /// <summary>
+        /// NoCreatedArticles control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator NoCreatedArticles;
+        
+        /// <summary>
         /// lvCreatedArticles control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace ITSR {
         protected global::System.Web.UI.WebControls.ListView lvCreatedArticles;
         
         /// <summary>
+        /// NoComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator NoComments;
+        
+        /// <summary>
         /// lvLastCommented control.
         /// </summary>
         /// <remarks>
@@ -83,6 +101,15 @@ namespace ITSR {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lvLastCommented;
+        
+        /// <summary>
+        /// NoVotes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator NoVotes;
         
         /// <summary>
         /// lvLastVoted control.

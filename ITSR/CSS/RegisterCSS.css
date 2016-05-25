@@ -1,0 +1,95 @@
+﻿/***********************************************************************************************
+                                            GENERALL
+************************************************************************************************/
+
+/****************************************************************** 
+                                PADDING
+*******************************************************************/
+
+.padding {
+    padding: 2%;
+}
+.paddingTop {
+    padding-top: 2%;
+}
+.padding-right {
+    padding-right: 2%;
+}
+.padding-left {
+    padding-left: 2%;
+}
+.padding-bot {
+    padding-bottom: 2%;
+}
+.paddingFix {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/****************************************************************** 
+                                MARGIN
+*******************************************************************/
+
+.margin {
+    margin: 2%;
+}
+.marginTop {
+    margin-top: 2%;
+}
+.marginLeft {
+    margin-left: 2%;
+}
+.marginBot {
+    margin-bottom: 2%;
+}
+.marginRight {
+    margin-right: 2%;
+}
+
+/****************************************************************** 
+                                BUTTON
+*******************************************************************/
+
+.Mainbtn {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFFFFF;
+    background-color: #4cb2b4;
+    border: 1px solid #81c9ca;
+    border-radius: 12px;
+    outline: none;
+    font-size: 1.4em;
+    cursor: pointer;
+}
+
+    .Mainbtn:hover {
+        color: #edf7f7;
+        background: #81c9ca;
+        border: 1px solid #81c9ca;
+        border-radius: 12px;
+    }
+
+/****************************************************************** 
+                                TEXTBOXES
+*******************************************************************/
+
+.tb {
+    display: block;
+    width: 100%;
+    border-radius: 11px;
+    border: 1px solid #989898;
+    font-size: 1.4em;
+    padding: 10px 10px 10px 10px;
+    font-family: 'latolight', helvetica, arial, sans-serif;
+}
+
+    .tb:focus {
+        border: 1px solid #edf7f7;
+        border-radius: 12px;
+        outline: 0;
+    }
+

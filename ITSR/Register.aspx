@@ -1,9 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainMaster.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="ITSR.Register" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="CSS/Register/btnRegister.css" rel="stylesheet" />
-    <link href="CSS/Register/marginRegister.css" rel="stylesheet" />
-    <link href="CSS/Register/paddingRegister.css" rel="stylesheet" />
-    <link href="CSS/Register/tbRegister.css" rel="stylesheet" />
+    <link href="CSS/RegisterCSS.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentHolder" runat="server">
     <div class="fullBox white-box">

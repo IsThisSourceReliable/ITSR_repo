@@ -1,11 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainMaster.Master" AutoEventWireup="true" CodeBehind="EditProfile.aspx.cs" Inherits="ITSR.EditProfile" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="CSS/EditProfile/btnEditProfile.css" rel="stylesheet" />
-    <link href="CSS/EditProfile/displaynoneEditProfile.css" rel="stylesheet" />
-    <link href="CSS/EditProfile/marginEditProfile.css" rel="stylesheet" />
-    <link href="CSS/EditProfile/tbEditProfile.css" rel="stylesheet" />
-    <link href="CSS/EditProfile/paddingEditProfile.css" rel="stylesheet" />
-
+    <link href="CSS/EditProfileCSS.css" rel="stylesheet" />
     <script src="JS/EditProfileJS.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentHolder" runat="server">

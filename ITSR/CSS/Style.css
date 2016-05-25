@@ -284,14 +284,13 @@ h4 {
 
 .DropDown {
     font-size: 1.4em;
-    margin: 0em auto;
+    margin: 0 auto;
     padding: 5px 5px 5px 5px;
     width: 98%;
     cursor: pointer;
     border-radius: 12px;
     border-style: solid;
     border-width: 1px;
-    margin: 0em auto;
 }
 
     .DropDown:focus {

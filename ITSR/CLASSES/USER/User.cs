@@ -144,22 +144,21 @@ namespace ITSR.CLASSES.USER
         public int GetUserLvl(int userID)
         {
             string sql = "SELECT role_id FROM user WHERE iduser = @ID";
-            int userLvl = -1;
+            
             try
             {
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-
                 cmd.Parameters.AddWithValue("@ID", userID);
 
-                userLvl = Convert.ToInt32(cmd.ExecuteScalar());
+                int userLvl = Convert.ToInt32(cmd.ExecuteScalar());
 
                 return userLvl;
 
             }
             catch (MySqlException ex)
             {
-                return userLvl;
+                return -1;
             }
             finally
             {
@@ -167,7 +166,33 @@ namespace ITSR.CLASSES.USER
             }
         }
 
+        public DataTable SearchUser(string SearchString)
+        {
+            string sql = "SELECT * FROM user WHERE username = @SS AND role_id < 2";
 
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@SS", SearchString);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+
+                da.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+                return dt;
+            }
+            catch (MySqlException ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return null;
+        }
         public int CheckUserLvl(User user)
         {
             string sql = "SELECT role_id FROM user WHERE iduser = @ID";

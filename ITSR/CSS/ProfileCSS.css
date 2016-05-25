@@ -1,0 +1,109 @@
+﻿/***********************************************************************************************
+                                            GENERALL
+************************************************************************************************/
+
+/****************************************************************** 
+                                PADDING
+*******************************************************************/
+
+.padding {
+    padding: 2%;
+}
+.paddingTop {
+    padding-top: 2%;
+}
+.padding-right {
+    padding-right: 2%;
+}
+.padding-left {
+    padding-left: 2%;
+}
+.padding-bot {
+    padding-bottom: 2%;
+}
+.paddingFix {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/****************************************************************** 
+                                MARGIN
+*******************************************************************/
+
+.margin {
+    margin: 2%;
+}
+.marginTop {
+    margin-top: 2%;
+}
+.marginLeft {
+    margin-left: 2%;
+}
+.marginBot {
+    margin-bottom: 2%;
+}
+.marginRight {
+    margin-right: 2%;
+}
+.marginAuto {
+    margin: 0 auto;
+}
+
+/****************************************************************** 
+                                BUTTON
+*******************************************************************/
+
+.Mainbtn {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFFFFF;
+    background-color: #4cb2b4;
+    border: 1px solid #81c9ca;
+    border-radius: 12px;
+    outline: none;
+    font-size: 1.4em;
+    cursor: pointer;
+}
+
+    .Mainbtn:hover {
+        color: #edf7f7;
+        background: #81c9ca;
+        border: 1px solid #81c9ca;
+        border-radius: 12px;
+    }
+
+/****************************************************************** 
+                                BORDERS
+*******************************************************************/
+
+.border-bottom {
+    border-bottom: 1px solid #4cb2b4;
+}
+
+
+/****************************************************************** 
+                                FLOAT
+*******************************************************************/
+
+.floatLeft {
+    float: left;
+}
+.floatRight {
+    float: right;
+}
+/***********************************************************************************************
+                                            SPECIFIC
+************************************************************************************************/
+.history-box {
+    display:none;
+}
+.roles-box {
+    display: none;
+}
+.btndiv-floatright {
+    float:right;
+}
