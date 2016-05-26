@@ -1,11 +1,65 @@
-﻿/*****************************************************
-	                Default
-*****************************************************/
+﻿
+/****************************************************************** 
+                                PADDING
+*******************************************************************/
 
+.padding {
+    padding: 2%;
+}
 
-/****************
-    SearchArea
- ****************/
+.paddingTop {
+    padding-top: 2%;
+}
+
+.padding-right {
+    padding-right: 2%;
+}
+
+.padding-left {
+    padding-left: 2%;
+}
+
+.padding-bot {
+    padding-bottom: 2%;
+}
+
+.paddingFix {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/****************************************************************** 
+                                MARGIN
+*******************************************************************/
+
+.margin {
+    margin: 2%;
+}
+
+.marginTop {
+    margin-top: 2%;
+}
+
+.marginLeft {
+    margin-left: 2%;
+}
+
+.marginBot {
+    margin-bottom: 2%;
+}
+
+.marginRight {
+    margin-right: 2%;
+}
+
+.marginAuto {
+    margin: 0 auto !important;
+
+}
+/*****************************************
+                SearchArea
+ ****************************************/
 .def-title-box {
     margin-top: 10%; /*It was 12em but wasn't working so well on smaller screens. Lets see haow this works on a big screen.*/
     margin-bottom: 1em;
@@ -32,48 +86,7 @@
     width: 35%;
     margin: 0em auto 5%;
 }
-/****************
-    GridView
- ****************/
-.Default-gridview-box{
-    padding: 2%;
-    margin: 0 auto;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;  
-   
-}
-.gridview{
-    text-align:left;
 
-}
-.gridview th{
-    display:none;
-}
-.gridview td {
-    padding: 2%;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;  
-    font-size:30px;
-    border-bottom:solid 1px;
-}
-.gridview tr:hover {
-    cursor:pointer;
-    font-size:125%;
-    font-weight:bold;
-
-}
-.OPEN-btn {
-    display:none;
-}
-/****************
-  SearchMessage
- ****************/
-.search-message-box{
-    padding: 2%;
-
-}
 /****************
   AutoComplete
  ****************/
@@ -93,6 +106,35 @@
 .itemHighlighted {
     background-color: #ADD6FF;       
 }
+.search-message-box{
+    padding: 2%;
+
+}
+
+/*****************************************
+                SearchArea
+ ****************************************/
+
+.SearchResult {
+    color:black;
+    font-size: 30px;
+    cursor:pointer;
+    
+}
+.SearchResult:hover {
+    font-weight:bolder;
+    color:black;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #4cb2b4;
+    
+}
+
+
+
+
+
 
 /****************
    Responsivitet

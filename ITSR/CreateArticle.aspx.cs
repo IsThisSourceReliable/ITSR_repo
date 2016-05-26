@@ -97,10 +97,10 @@ namespace ITSR
             sourceArticle.domainOwner = txtDomainOwner.Text;
             sourceArticle.Financing = txtFinancer.Text;
             sourceArticle.Reference = CreateXML();
-            sourceArticle.createUser_id = 21; //Has to be changed to whatever user that is logged in.
+            sourceArticle.createUser_id = Convert.ToInt32(Session["UserID"]);
             sourceArticle.upVotes = 0; //Standard values for now
             sourceArticle.downVotes = 0; //Standard values for now
-            sourceArticle.lastEditUser_id = 21; //Has to be changed to whatever user that is logged in.
+            sourceArticle.lastEditUser_id = Convert.ToInt32(Session["UserID"]);
 
             if (sourceArticle.CreateArticle())
             {

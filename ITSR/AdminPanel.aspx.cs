@@ -14,9 +14,17 @@ namespace ITSR
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (Session["UserID"] != null && int.Parse(Session["RoleID"].ToString()) >= 3)
             {
-                LoadRemovedResolvedCommentReports();
+                if (!IsPostBack)
+                {
+                    LoadRemovedResolvedCommentReports();
+                    ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "showHistoryBox", "showHistoryBox();", true);
+                }
+            }
+            else
+            {
+                Response.Redirect("~/default.aspx");
             }
         }
 

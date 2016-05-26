@@ -81,7 +81,7 @@ namespace ITSR.CLASSES.USER
         }
         public DataTable GetAllModerators()
         {
-            string sql = "SELECT * FROM user WHERE role_id > 1";
+            string sql = "SELECT * FROM user WHERE role_id > 1 order by role_id DESC";
 
             try
             {

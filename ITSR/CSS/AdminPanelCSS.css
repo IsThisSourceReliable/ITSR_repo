@@ -217,6 +217,7 @@
 .HiddenBtn {
     display: none;
     font-weight:Bolder;
+    height:48px
 }
 
 .listView {
