@@ -126,7 +126,7 @@
                             <asp:Button ID="btnSearch" runat="server" ValidationGroup="SearchGroup" Text="Search" CssClass="Mainbtn marginLeft" OnClick="btnSearch_Click" />
                         </div>
                         <div class="CustomDiv25 marginLeft">
-                            <input id="btnClearSearch" type="button" class="HiddenBtn Mainbtn marginLeft" value="X" onclick="MakeBtnBigger();" />
+                            <div id="btnClearSearch" class="HiddenBtn Mainbtn marginLeft paddingFix test" onclick="MakeBtnBigger();"><span class="glyphicon glyphicon-remove"></span></div>
                         </div>
                     </div>
                 </div>

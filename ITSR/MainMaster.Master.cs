@@ -16,6 +16,7 @@ namespace ITSR
             {
                 HideLeftMenuButtons();
                 HideModBtn();
+                HideAdminBtn();
                 RightMenuLogOut.Visible = false;
             }
             else if(Session["UserID"] != null)
@@ -23,17 +24,24 @@ namespace ITSR
                 ShowLeftMenuButtons();
                 SetLoginGUI();
                 HideModBtn();
+                HideAdminBtn();
 
                 if (int.Parse(Session["RoleID"].ToString()) >= 2)
                 {
+
                     ShowModeratorBtn();
+                    HideAdminBtn();
+
+                    if (int.Parse(Session["RoleID"].ToString()) >= 3)
+                    {
+                        ShowAdminBtn();
+                    }
                 }
             }
 
             if(!IsPostBack)
             {
                 lblUserPassWrong.Visible = false;
-
             }
         }
 
@@ -60,7 +68,10 @@ namespace ITSR
         {
             ModPanelLink.Visible = false;
         }
-
+        public void HideAdminBtn()
+        {
+            AdminPanelLink.Visible = false;
+        }
         /// <summary>
         /// Method shows menu items in left menu.
         /// </summary>
@@ -74,6 +85,10 @@ namespace ITSR
         private void ShowModeratorBtn()
         {
             ModPanelLink.Visible = true;
+        }
+        private void ShowAdminBtn()
+        {
+            AdminPanelLink.Visible = true;
         }
 
         /// <summary>
@@ -134,6 +149,10 @@ namespace ITSR
                     if (int.Parse(Session["RoleID"].ToString()) >= 2)
                     {
                         ShowModeratorBtn();
+                        if(int.Parse(Session["RoleID"].ToString()) >= 3)
+                        {
+                            ShowAdminBtn();
+                        }
                     }
                     CloseLoginMenu();
                     CheckPagePath();

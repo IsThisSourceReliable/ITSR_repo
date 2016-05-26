@@ -107,3 +107,16 @@
 .btndiv-floatright {
     float:right;
 }
+.ArticleLink {
+    color:black;
+    font-size: 20px;
+    cursor:pointer;
+    
+}
+.ArticleLink:hover {
+    font-weight:bolder;
+    color:black;
+}
+.minHeight {
+    min-height: 250px
+}

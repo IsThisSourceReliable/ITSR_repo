@@ -28,7 +28,6 @@ namespace ITSR
             DataTable dt;
 
             SetGUI();
-            emptyGv();
 
             string searchString = txtSearchField.Text.ToString();
 
@@ -42,7 +41,7 @@ namespace ITSR
 
                 if (dt.Rows.Count > 0)
                 {
-                    populateGv(dt);
+                    loadSearchResult(dt);
                     showMessageAndGv();
                 }
 
@@ -58,7 +57,7 @@ namespace ITSR
            else if (dt.Rows.Count > 1)
             {
                 dt = a.SearchForUnspecificArticle(searchString);
-                populateGv(dt);
+                loadSearchResult(dt);
                 showMessageAndGv();
             }
         }
@@ -66,20 +65,6 @@ namespace ITSR
         {
 
             Response.Redirect("~/CreateArticle.aspx");
-        }
-        protected void gvArticles_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                // Attaching one onclick event for the entire row, so that it will fire SelectedIndexChanged, while we click anywhere on the row.
-                e.Row.Attributes["onclick"] =
-                  ClientScript.GetPostBackClientHyperlink(gvArticles, "Select$" + e.Row.RowIndex);
-            }
-        }
-        protected void gvArticles_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Session["articleID"] = Convert.ToInt32(gvArticles.SelectedValue);          
-            Response.Redirect("~/Article.aspx");
         }
 
 
@@ -123,17 +108,11 @@ namespace ITSR
             searchMessage.Visible = false;
             searchMessage2.Visible = false;
             messageDiv.Visible = false;
-            //gvDiv.Visible = false;
         }
-        public void emptyGv()
+        public void loadSearchResult(DataTable dt)
         {
-            gvArticles.DataSource = "";
-            gvArticles.DataBind();
-        }
-        public void populateGv(DataTable dt)
-        {
-            gvArticles.DataSource = dt;
-            gvArticles.DataBind();
+            lvSearchResult.DataSource = dt;
+            lvSearchResult.DataBind();
         }
         public void showMessage()
         {
@@ -145,9 +124,21 @@ namespace ITSR
             searchMessage.Visible = false;
             searchMessage2.Visible = true;
             messageDiv.Visible = true;
-            gvDiv.Visible = true;
         }
 
+        protected void lvSearchResult_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            string CommandNamevalue = e.CommandName.ToString();
+            string CommandArgument = e.CommandArgument.ToString();
 
+
+            switch (CommandNamevalue)
+            {
+                case "GoToArticle":
+                    Session["ArticleID"] = CommandArgument;
+                    Response.Redirect("~/Article.aspx");
+                    break;
+            }
+        }
     }
 }

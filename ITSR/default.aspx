@@ -8,8 +8,6 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentHolder" runat="server">
-
-    <%--    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="fullBox center-text">
@@ -53,8 +51,8 @@
                 </asp:Panel>
             </div>
             </div>      
-             <div class="fullBox white-box center-text big-search-box" id="messageDiv" runat="server">
-                 <div class="search-message-box">
+             <div class="fullBox white-box big-search-box" id="messageDiv" runat="server">
+                 <div class="search-message-box center-text">
                      <p id="searchMessage" runat="server">
                          We could not find the source you were looking for. Click
                          <asp:LinkButton ID="lbNewARticle" runat="server" OnClick="lbNewARticle_Click">here</asp:LinkButton>
@@ -66,14 +64,18 @@
                          to add it!
                      </p>
                  </div>
-                 <div class="Default-gridview-box" id="gvDiv" runat="server">
-                     <asp:GridView ID="gvArticles" runat="server" AutoGenerateColumns="false" CssClass="gridview" GridLines="None" DataKeyNames="idarticle" OnRowDataBound="gvArticles_RowDataBound" OnSelectedIndexChanged="gvArticles_SelectedIndexChanged">
-                         <Columns>
-                             <asp:BoundField DataField="title" />
-                             <asp:BoundField DataField="url" />
-                             <asp:CommandField ShowSelectButton="true" ControlStyle-CssClass="OPEN-btn" SelectText="OPEN" />
-                         </Columns>
-                     </asp:GridView>
+                 <div class="fullBox center-text">
+                     <asp:ListView ID="lvSearchResult" OnItemCommand="lvSearchResult_ItemCommand" runat="server">
+                         <ItemTemplate>
+                             <div class="fullBox">
+                                 <asp:LinkButton ID="lbArticle" CssClass="SearchResult border-bottom" CommandName="GoToArticle" CommandArgument='<%# Eval("idarticle") %>' runat="server">
+                                     <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("title") %>'></asp:Label>
+                                     <asp:Label ID="lblSpace" runat="server" Text=" "></asp:Label>
+                                     <asp:Label ID="lblUrl" runat="server" Text='<%# Eval("url") %>'></asp:Label>
+                                 </asp:LinkButton>
+                             </div>
+                         </ItemTemplate>
+                     </asp:ListView>
                  </div>
              </div>
         </ContentTemplate>
