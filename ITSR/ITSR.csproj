@@ -84,6 +84,7 @@
     <Content Include="CSS\ArticleCSS.css" />
     <Content Include="CSS\DefaultCSS.css" />
     <Content Include="CSS\EditProfileCSS.css" />
+    <Content Include="CSS\font-awesome.min.css" />
     <Content Include="CSS\Glyphicons.css" />
     <Content Include="CSS\ProfileCSS.css" />
     <Content Include="CSS\RegisterCSS.css" />
@@ -91,6 +92,7 @@
     <Content Include="default.aspx" />
     <Content Include="EditArticle.aspx" />
     <Content Include="EditProfile.aspx" />
+    <Content Include="FONTS\fontawesome-webfont.svg" />
     <Content Include="IMG\profilepic.jpg" />
     <Content Include="IMG\books.jpg" />
     <Content Include="JS\AdminPanelJS.js" />
@@ -115,6 +117,11 @@
     <Content Include="FONTS\lato-lig-webfont.woff" />
     <Content Include="FONTS\monofont.ttf" />
     <Content Include="MainMaster.Master" />
+    <Content Include="FONTS\fontawesome-webfont.eot" />
+    <Content Include="FONTS\fontawesome-webfont.ttf" />
+    <Content Include="FONTS\fontawesome-webfont.woff" />
+    <Content Include="FONTS\fontawesome-webfont.woff2" />
+    <Content Include="FONTS\FontAwesome.otf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

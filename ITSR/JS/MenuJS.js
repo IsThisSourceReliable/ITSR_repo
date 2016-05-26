@@ -47,6 +47,10 @@ function OpenLeftMenu() {
             marginLeft: '+=322px'
         });
 
+        $('.footer').animate({
+            marginLeft: '+=322px'
+        });
+
         $('#glyph-left-menu').addClass('glyphicon-remove');
         $('#glyph-left-menu').removeClass('glyphicon-menu-hamburger');
 }
@@ -62,6 +66,9 @@ function CloseLeftMenu() {
     $('.books-background').animate({
         left: '-=322px'
     });
+    $('.footer').animate({
+        marginLeft: '-=322px'
+    });
     $('#glyph-left-menu').addClass('glyphicon-menu-hamburger');
     $('#glyph-left-menu').removeClass('glyphicon-remove');
 }
@@ -73,6 +80,9 @@ function OpenRightMenu() {
     });
     $('.books-background').animate({
         left: '-=322px'
+    });
+    $('.footer').animate({
+        marginLeft: '-=322px'
     });
     $('.menu-right').animate({
         right: '+=322px'
@@ -91,6 +101,9 @@ function CloseRightMenu() {
     });
     $('.books-background').animate({
         left: '+=322px'
+    });
+    $('.footer').animate({
+        marginLeft: '+=322px'
     });
     $('.menu-right').animate({
         right: '-=322px'
