@@ -28,19 +28,25 @@
                 <p class="panel-txt">
                     As a moderator this is where you can see comments and articles that has been reported and decide wheter or not to remove them. 
                     <br />
-                     <br />
-                And when it comes to articles you can choose to revert to an older version, edit or decide that the report was unecessary.
                     <br />
-                     <br />
-                A comment should always be removed if it violates the community standards or breaks any laws.
+                    And when it comes to articles you can choose to revert to an older version, edit or decide that the report was unecessary.
+                    <br />
+                    <br />
+                    A comment should always be removed if it violates the community standards or breaks any laws.
                 </p>
             </div>
             <div class="halfBox">
-                <p class="panel-txt">
-                    <strong>Current status: </strong>
-                    <br />
-                    <asp:Label ID="lblTotalReports" runat="server" Text="Label"></asp:Label>
-                </p>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                        <p class="panel-txt">
+                            <strong>Current status: </strong>
+                            <br />
+                            <asp:Label ID="lblTotalCommentReport" runat="server" Text="Label"></asp:Label>
+                            <br />
+                            <asp:Label ID="lblTotalArticleReport" runat="server" Text="Label"></asp:Label>
+                        </p>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
             </div>
         </div>
 

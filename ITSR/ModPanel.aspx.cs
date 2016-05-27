@@ -167,8 +167,9 @@ namespace ITSR
         {
             Report TotalReports = new Report();
             int totalCommentsReport = TotalReports.GetTotalCommentsReports();
-            int totalArticleReports = TotalReports.GetTotalArticleReports();
-            lblTotalReports.Text = totalCommentsReport.ToString() + " comments reports </br>" + totalArticleReports.ToString() + " article reports. ";
+            int totalArticleReport = TotalReports.GetTotalArticleReports();
+            lblTotalCommentReport.Text = totalCommentsReport.ToString() + " comments reports. ";
+            lblTotalArticleReport.Text = totalArticleReport.ToString() + " article reports. ";
         }
 
         /// <summary>
@@ -372,10 +373,11 @@ namespace ITSR
         protected void lBtnNoActionArticle_Click(object sender, EventArgs e)
         {
             ResolveArticleReport();
+            LoadReportedArticles();
+            LoadAndSetTotalReports();
             UnlockArticle();
             HideCommentsReports();
             ArticleBox.Visible = false;
-            LoadReportedArticles();
         }
 
         /// <summary>
@@ -452,6 +454,9 @@ namespace ITSR
                 {
                     ResolveArticleReport();
 
+                    LoadReportedArticles();
+                    LoadAndSetTotalReports();
+
                     ArticleBox.Visible = false;
                     dropDownDiv.Visible = false;
 
@@ -462,8 +467,6 @@ namespace ITSR
                     lBtnConfirmRevert.Visible = false;
                     lBtnCancelRevert.Visible = false;
 
-                    LoadReportedArticles();
-                    LoadAndSetTotalReports();
                 }
             }
         }
