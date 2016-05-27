@@ -199,19 +199,19 @@
                 <div class="fullbox">
                     <h4 class="info-titles">Up house man: </h4>
                     <p class="info-lbls">
-                        <asp:Label ID="lblUpHouseMan" runat="server" Text="UpHouseMan"></asp:Label>
+                        <asp:Label ID="lblUpHouseMan" runat="server" Text="Publisher/Author"></asp:Label>
                     </p>
                 </div>
                 <div class="fullbox">
                     <h4 class="info-titles">Domain owner: </h4>
                     <p class="info-lbls">
-                        <asp:Label ID="lblDomainOwner" runat="server" Text="DomainOwner"></asp:Label>
+                        <asp:Label ID="lblDomainOwner" runat="server" Text="Domain Owner"></asp:Label>
                     </p>
                 </div>
                 <div class="fullbox">
                     <h4 class="info-titles">Financer:  </h4>
                     <p class="info-lbls">
-                        <asp:Label ID="lblFinancer" runat="server" Text="Finnacer"></asp:Label>
+                        <asp:Label ID="lblFinancer" runat="server" Text="Main Owner"></asp:Label>
                     </p>
                 </div>
             </div>
