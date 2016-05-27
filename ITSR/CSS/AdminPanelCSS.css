@@ -216,10 +216,49 @@
 
 .HiddenBtn {
     display: none;
-    font-weight:Bolder;
-    height:48px
+    font-weight: Bolder;
+    height: 48px;
 }
 
 .listView {
     display: none;
+}
+
+/***********************************************************************************************
+                                            RESP
+************************************************************************************************/
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 992px) {
+    .Mainbtn {
+        margin: 2% 0;
+    }
+
+    .HiddenBtn {
+        margin: 5% 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .panel-navbar {
+        margin: 0;
+    }
+
+    .Mainbtn {
+        margin: 2% 0;
+    }
+        .HiddenBtn {
+        margin: 5% 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .panel-navbar {
+        margin: 0;
+    }
 }

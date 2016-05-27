@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentHolder" runat="server">
 
-    <div class="fullBox white-box">
+    <div class="fullBox white-box padding paddingFix">
         <div class="fullBox">
             <h2 class="panel-h2">MODERATOR PANEL</h2>
             <div class="fullBox">
@@ -47,7 +47,7 @@
         <asp:UpdatePanel ID="UpdatePanelReports" runat="server">
             <ContentTemplate>
 
-                <div class=" fullBox comment" style="width: 97%; margin-left: 1%;">
+                <div class="fullBox comment" style="width: 97%; margin-left: 1%;">
                     <h2>
                         <asp:Label ID="lblSection" runat="server" Text=""></asp:Label></h2>
                 </div>

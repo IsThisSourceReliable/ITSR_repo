@@ -18,7 +18,14 @@
 @media (max-width: 768px) {
     .ca-multi-txt
     {
-        width: 93%;
+        width: 94%;
+        margin-left: 1%;    
+    }
+}
+@media (max-width: 480px) {
+    .ca-multi-txt
+    {
+        width: 90%;
         margin-left: 1%;    
     }
 }

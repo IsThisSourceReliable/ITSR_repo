@@ -10,10 +10,10 @@
             <h2>
                 <asp:Label ID="lbluserName" runat="server" Text=""></asp:Label></h2>
         </div>
-        <div class="thirdBox padding paddingFix">
+        <div class="thirdBox padding paddingFix Profile">
             <img src="IMG/profilepic.jpg" style="width: 100%; border-radius: 10px;" />
         </div>
-        <div class="thirdBox padding paddingFix">
+        <div class="thirdBox padding paddingFix Profile">
             <h3>
                 <asp:Label ID="lblFullNAme" runat="server" Text="FullName"></asp:Label>
             </h3>

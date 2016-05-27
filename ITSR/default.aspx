@@ -69,7 +69,7 @@
                          <ItemTemplate>
                              <div class="fullBox">
                                  <asp:LinkButton ID="lbArticle" CssClass="SearchResult border-bottom" CommandName="GoToArticle" CommandArgument='<%# Eval("idarticle") %>' runat="server">
-                                     <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("title") %>'></asp:Label>
+                                     <asp:Label ID="lblTitle" CssClass="HiddenTitle" runat="server" Text='<%# Eval("title") %>'></asp:Label>
                                      <asp:Label ID="lblSpace" runat="server" Text=" "></asp:Label>
                                      <asp:Label ID="lblUrl" runat="server" Text='<%# Eval("url") %>'></asp:Label>
                                  </asp:LinkButton>

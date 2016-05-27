@@ -98,7 +98,6 @@
     <Content Include="JS\EditProfileJS.js" />
     <Content Include="JS\MenuJS.js" />
     <Content Include="JS\OverlayJS.js" />
-    <Content Include="martinstest.aspx" />
     <Content Include="ModPanel.aspx" />
     <Content Include="MYSQL_REF\MySql.Data.dll" />
     <Content Include="MYSQL_REF\MySql.Data.Entity.EF5.dll" />
@@ -134,7 +133,6 @@
     <Content Include="Profile.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Search.aspx" />
-    <Content Include="TestMaster.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -206,13 +204,6 @@
     <Compile Include="MainMaster.Master.designer.cs">
       <DependentUpon>MainMaster.Master</DependentUpon>
     </Compile>
-    <Compile Include="martinstest.aspx.cs">
-      <DependentUpon>martinstest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="martinstest.aspx.designer.cs">
-      <DependentUpon>martinstest.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ModPanel.aspx.cs">
       <DependentUpon>ModPanel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -241,13 +232,6 @@
     </Compile>
     <Compile Include="Search.aspx.designer.cs">
       <DependentUpon>Search.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TestMaster.aspx.cs">
-      <DependentUpon>TestMaster.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TestMaster.aspx.designer.cs">
-      <DependentUpon>TestMaster.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

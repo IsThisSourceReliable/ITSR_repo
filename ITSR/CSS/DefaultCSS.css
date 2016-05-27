@@ -55,7 +55,6 @@
 
 .marginAuto {
     margin: 0 auto !important;
-
 }
 /*****************************************
                 SearchArea
@@ -67,7 +66,7 @@
 
 .def-title {
     font-size: 6em;
-	color: #edf7f7; 
+    color: #edf7f7;
 }
 
 .def-search-box {
@@ -91,24 +90,26 @@
   AutoComplete
  ****************/
 .completionList {
-    border:solid 1px Gray;
-    margin:0px;
-    padding:3px;
-    overflow:auto;
+    border: solid 1px Gray;
+    margin: 0px;
+    padding: 3px;
+    overflow: auto;
     background-color: #FFFFFF;
-    font-size:20px;
-    border-radius:10px;
-    text-align:center;
-} 
+    font-size: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
 .listItem {
     color: #191919;
-} 
-.itemHighlighted {
-    background-color: #ADD6FF;       
 }
-.search-message-box{
-    padding: 2%;
 
+.itemHighlighted {
+    background-color: #ADD6FF;
+}
+
+.search-message-box {
+    padding: 2%;
 }
 
 /*****************************************
@@ -116,19 +117,18 @@
  ****************************************/
 
 .SearchResult {
-    color:black;
+    color: black;
     font-size: 30px;
-    cursor:pointer;
-    
+    cursor: pointer;
 }
-.SearchResult:hover {
-    font-weight:bolder;
-    color:black;
-}
+
+    .SearchResult:hover {
+        font-weight: bolder;
+        color: black;
+    }
 
 .border-bottom {
     border-bottom: 1px solid #4cb2b4;
-    
 }
 
 
@@ -139,38 +139,35 @@
 /****************
    Responsivitet
  ****************/
-@media (max-width: 1200px) {	
-    .def-title	
- {
-    font-size: 5.5em;  
-  }
+@media (max-width: 1200px) {
+    .def-title {
+        font-size: 5.5em;
+    }
 }
 
-@media (max-width: 992px) {	
-    .def-title	
- {
-    font-size: 4em;  
-  }
+@media (max-width: 992px) {
+    .def-title {
+        font-size: 4em;
+    }
 }
 
-@media (max-width: 768px) {	
-    .def-title	
- {
-    font-size: 3em;  
-  }
+@media (max-width: 768px) {
+    .def-title {
+        font-size: 3em;
+    }
+        .def-search-field,
+    .def-search-button {
+        width: 90%;
+    }
 }
 
-@media (max-width: 524px) {	
-    .def-title	
- {
-    font-size: 2em;  
-  }
+@media (max-width: 524px) {
+    .def-title {
+        font-size: 2em;    
+    }
+    .HiddenTitle {
+        display:none;
+    }
 }
 
-@media (max-width: 768px) {	
-    .def-search-field,
-    .def-search-button
- {
-    width:90%;
-  }
-}
+

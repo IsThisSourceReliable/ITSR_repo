@@ -51,32 +51,6 @@
 }
 
 /****************************************************************** 
-                                BUTTON
-*******************************************************************/
-
-.Mainbtn {
-    text-align: center;
-    display: inline-block;
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: #FFFFFF;
-    background-color: #4cb2b4;
-    border: 1px solid #81c9ca;
-    border-radius: 12px;
-    outline: none;
-    font-size: 1.4em;
-    cursor: pointer;
-}
-
-    .Mainbtn:hover {
-        color: #edf7f7;
-        background: #81c9ca;
-        border: 1px solid #81c9ca;
-        border-radius: 12px;
-    }
-
-/****************************************************************** 
                                 BORDERS
 *******************************************************************/
 
@@ -118,5 +92,29 @@
     color:black;
 }
 .minHeight {
-    min-height: 250px
+    min-height: 183px
+}
+/***********************************************************************************************
+                                            RESP
+************************************************************************************************/
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 992px) {
+        .Profile {
+        width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 480px) {
+    
 }
