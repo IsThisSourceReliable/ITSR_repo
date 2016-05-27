@@ -155,7 +155,7 @@
                     </asp:TextBox>
                 </div>
                 <div class="fullBox">
-                    <h4 class="title-h4">Up house man: </h4>
+                    <h4 class="title-h4">Publisher/Author: </h4>
                     <asp:TextBox
                         ID="txtUpHouseMan"
                         runat="server"
@@ -171,7 +171,7 @@
                     </asp:TextBox>
                 </div>
                 <div class="fullBox">
-                    <h4 class="title-h4">Financer: </h4>
+                    <h4 class="title-h4">Main Owner: </h4>
                     <asp:TextBox
                         ID="txtFinancer"
                         runat="server"
