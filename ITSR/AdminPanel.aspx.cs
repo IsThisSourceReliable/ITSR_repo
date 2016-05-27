@@ -133,6 +133,7 @@ namespace ITSR
                 {
                     ddlRoles.Enabled = false;
                     BtnSaveRole.Enabled = false;
+                    BtnSaveRole.Visible = false;
                 }
             }
 

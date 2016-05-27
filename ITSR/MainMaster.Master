@@ -233,10 +233,10 @@
         <div class="footer">
             <div class="center-text">
                 <div class="social-button">
-                    <div class="social-button-circle"><a href="https://www.twitter.com/" target="_blank" class="social-button"><i class="fa fa-facebook" aria-hidden="true"></i></a></div>
+                    <div class="social-button-circle"><a href="https://www.facebook.com/" target="_blank" class="social-button"><i class="fa fa-facebook" aria-hidden="true"></i></a></div>
                 </div>
                 <div class="social-button">
-                    <div class="social-button-circle"><a href="https://www.facebook.com/" target="_blank" class="social-button"><i class="fa fa-twitter" aria-hidden="true"></i></a></div>
+                    <div class="social-button-circle"><a href="https://www.twitter.com/ " target="_blank" class="social-button"><i class="fa fa-twitter" aria-hidden="true"></i></a></div>
                 </div>
                 <div class="social-button">
                     <div class="social-button-circle"><a href="https://www.google.com/" target="_blank" class="social-button"><i class="fa fa-google-plus-official" aria-hidden="true"></i></a></div>
@@ -247,9 +247,6 @@
             </div>
             <p style="color: #edf7f7; text-align: center; margin: 0.5em; font-size: 0.8em;">IsThisSourceReliable.com © 2016</p>
         </div>
-
-
-
     </form>
 </body>
 </html>

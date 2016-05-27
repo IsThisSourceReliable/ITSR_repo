@@ -15,6 +15,20 @@ namespace ITSR.CLASSES.USER
         //Methods
         public void CreateArticle(Articles a)
         {
+
+            if(a.domainOwner == "")
+            {
+                a.domainOwner = "N/A";
+            }
+            if(a.Publisher == "")
+            {
+                a.Publisher = "N/A";
+            }
+            if(a.Financing == "")
+            {
+                a.Financing = "N/A";
+            }
+
             try
             {
                 conn.Open();
@@ -48,6 +62,19 @@ namespace ITSR.CLASSES.USER
         public void EditArticle(Articles a)
         {
             string sql = "Update article SET title = @TI, text = @TE, orgtype_id = @OT, lastedit_date = @LED, votes_up = @VU, votes_down = @VD, lastedituser_id = @LEU, createuser_id = @CU, publisher = @P, domainowner = @DO, financing = @F WHERE idarticle = @ID";
+
+            if (a.domainOwner == "")
+            {
+                a.domainOwner = "N/A";
+            }
+            if (a.Publisher == "")
+            {
+                a.Publisher = "N/A";
+            }
+            if (a.Financing == "")
+            {
+                a.Financing = "N/A";
+            }
 
             try
             {

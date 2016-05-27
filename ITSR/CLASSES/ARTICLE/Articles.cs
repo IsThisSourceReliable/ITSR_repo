@@ -37,6 +37,18 @@ namespace ITSR.CLASSES.ARTICLE
         /// <returns></returns>
         public bool CreateArticle()
         {
+            if (domainOwner == "")
+            {
+                domainOwner = "N/A";
+            }
+            if (Publisher == "")
+            {
+                Publisher = "N/A";
+            }
+            if (Financing == "")
+            {
+                Financing = "N/A";
+            }
             bool ok = false;
             try
             {
@@ -82,6 +94,18 @@ namespace ITSR.CLASSES.ARTICLE
         /// <returns></returns>
         public bool UpdateArticle()
         {
+            if (domainOwner == "")
+            {
+                domainOwner = "N/A";
+            }
+            if (Publisher == "")
+            {
+                Publisher = "N/A";
+            }
+            if (Financing == "")
+            {
+                Financing = "N/A";
+            }
             bool ok = false;
             try
             {
