@@ -259,7 +259,7 @@
                     <asp:LinkButton ID="lBtnEdit" runat="server" OnClick="lBtnEdit_Click">Edit here</asp:LinkButton>
                         </p>
                         <p runat="server" id="reportText" class="edit-text">
-                            Is it something in this article you would like to <a class="hover" onclick="OpenOverlay2()">Report?</a>
+                            Is it something in this article you would like to <span class="span-link" onclick="OpenOverlay2()">Report?</span>
                         </p>
                     </ContentTemplate>
                 </asp:UpdatePanel>

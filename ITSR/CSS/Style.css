@@ -208,9 +208,20 @@ p {
 a {
     text-decoration: none;
     color: #4cb2b4;
+    cursor: pointer;
 }
 
     a:hover {
+        color: #81c9ca;
+    }
+
+
+.span-link {
+    color: #4cb2b4;
+    cursor: pointer;
+}
+
+    .span-link:hover {
         color: #81c9ca;
     }
 
@@ -787,7 +798,7 @@ h4 {
     left: 0px;
     bottom: 0px;
     /*height:30px;*/
-    z-index:100;
+    z-index: 100;
     width: 100%;
     /*background:#999;*/
 }
