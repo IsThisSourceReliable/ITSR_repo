@@ -191,6 +191,12 @@
                     </p>
                 </div>
                 <div class="fullbox">
+                    <h4 class="info-titles">URL </h4>
+                    <p class="info-lbls">
+                        <asp:HyperLink ID="urlArticle" runat="server"></asp:HyperLink>
+                    </p>
+                </div>
+                <div class="fullbox">
                     <h4 class="info-titles">Up house man: </h4>
                     <p class="info-lbls">
                         <asp:Label ID="lblUpHouseMan" runat="server" Text="UpHouseMan"></asp:Label>
