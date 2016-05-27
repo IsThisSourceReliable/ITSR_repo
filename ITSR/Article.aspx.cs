@@ -99,6 +99,10 @@ namespace ITSR
             lblFinancer.Text = dt.Rows[0]["financing"].ToString();
             lblEditDate.Text = dt.Rows[0]["lastedit_date"].ToString();
             linkBtnLastEdit.Text = dt.Rows[0]["edituser"].ToString();
+
+            urlArticle.Text = dt.Rows[0]["url"].ToString();
+            urlArticle.NavigateUrl = "http://" + dt.Rows[0]["url"].ToString();
+
             articleText.InnerHtml = dt.Rows[0]["text"].ToString();
 
             lblArticle.Text = lblArticleName.Text;
