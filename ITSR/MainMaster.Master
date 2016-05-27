@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainMaster.master.cs" Inherits="ITSR.MainMaster"  %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainMaster.master.cs" Inherits="ITSR.MainMaster" %>
 
 <!DOCTYPE html>
 
@@ -18,6 +18,7 @@
     <link href="CSS/font.css" rel="stylesheet" />
     <link href="CSS/Style.css" rel="stylesheet" />
     <link href="CSS/Glyphicons.css" rel="stylesheet" />
+    <link href="CSS/font-awesome.min.css" rel="stylesheet" />
 
     <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
@@ -26,6 +27,22 @@
 
     <script src="JS/MenuJS.js"></script>
     <script src="JS/OverlayJS.js"></script>
+    <script>
+        $(document).ready(function () {
+                if ($('body').height() >= ($(window).height())) {
+                    $('.footer').fadeOut('fast');
+                }
+
+            $(window).scroll(function () {
+                if ($('body').height() <= ($(window).height() + $(window).scrollTop())) {
+                    $('.footer').fadeIn('fast');
+                }
+                else {
+                    $('.footer').fadeOut('fast');
+                }
+            });
+        });
+    </script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -48,25 +65,39 @@
                         <div class="side-left-menu-holder">
                             <ul class="side-left-navbar">
                                 <li runat="server" id="HomeLink">
-                                    <p><asp:LinkButton ID="lBtnHomeLink" runat="server" OnClick="lBtnHomeLink_Click">HOME</asp:LinkButton></p>                                   
+                                    <p>
+                                        <asp:LinkButton ID="lBtnHomeLink" runat="server" OnClick="lBtnHomeLink_Click">HOME</asp:LinkButton>
+                                    </p>
                                 </li>
                                 <li runat="server" id="AboutLink">
-                                    <p><asp:LinkButton ID="lBtnAboutLink" runat="server" OnClick="lBtnAboutLink_Click">ABOUT</asp:LinkButton></p>
+                                    <p>
+                                        <asp:LinkButton ID="lBtnAboutLink" runat="server" OnClick="lBtnAboutLink_Click">ABOUT</asp:LinkButton>
+                                    </p>
                                 </li>
                                 <li runat="server" id="CreateSourceLink">
-                                    <p><asp:LinkButton ID="lBtnCreateArticle" runat="server" OnClick="lBtnCreateArticle_Click">CREATE SOURCE</asp:LinkButton></p>
+                                    <p>
+                                        <asp:LinkButton ID="lBtnCreateArticle" runat="server" OnClick="lBtnCreateArticle_Click">CREATE SOURCE</asp:LinkButton>
+                                    </p>
                                 </li>
                                 <li runat="server" id="MyProfileLink">
-                                    <p><asp:LinkButton ID="lBtnMyProfileLink" runat="server" OnClick="lBtnMyProfileLink_Click">MY PROFILE</asp:LinkButton></p>
+                                    <p>
+                                        <asp:LinkButton ID="lBtnMyProfileLink" runat="server" OnClick="lBtnMyProfileLink_Click">MY PROFILE</asp:LinkButton>
+                                    </p>
                                 </li>
-                                <li runat="server" id="EditProfileLink" >
-                                    <p><asp:LinkButton ID="lBtnEditProfileLink" runat="server" OnClick="lBtnEditProfileLink_Click">EDIT PROFILE</asp:LinkButton></p>
+                                <li runat="server" id="EditProfileLink">
+                                    <p>
+                                        <asp:LinkButton ID="lBtnEditProfileLink" runat="server" OnClick="lBtnEditProfileLink_Click">EDIT PROFILE</asp:LinkButton>
+                                    </p>
                                 </li>
                                 <li runat="server" id="ModPanelLink">
-                                    <p><asp:LinkButton ID="lBtnMoedPanelLink" runat="server" OnClick="lBtnMoedPanelLink_Click">MODERATOR PANEL</asp:LinkButton></p>
+                                    <p>
+                                        <asp:LinkButton ID="lBtnMoedPanelLink" runat="server" OnClick="lBtnMoedPanelLink_Click">MODERATOR PANEL</asp:LinkButton>
+                                    </p>
                                 </li>
                                 <li runat="server" id="AdminPanelLink">
-                                    <p><asp:LinkButton ID="lBAdminPanelLink" runat="server" OnClick="lBAdminPanelLink_Click">ADMIN PANEL</asp:LinkButton></p>
+                                    <p>
+                                        <asp:LinkButton ID="lBAdminPanelLink" runat="server" OnClick="lBAdminPanelLink_Click">ADMIN PANEL</asp:LinkButton>
+                                    </p>
                                 </li>
                             </ul>
                         </div>
@@ -168,7 +199,7 @@
                                             <asp:LinkButton
                                                 ID="lBtnLogOut"
                                                 runat="server"
-                                                CssClass="white-link" 
+                                                CssClass="white-link"
                                                 OnClick="lBtnLogOut_Click">
                                                 <span 
                                                     class="glyphicon glyphicon-lock" 
@@ -195,6 +226,26 @@
                 </div>
 
             </section>
+
+
+
+        </div>
+        <div class="footer">
+            <div class="center-text">
+                <div class="social-button">
+                    <div class="social-button-circle"><a href="https://www.twitter.com/" target="_blank" class="social-button"><i class="fa fa-facebook" aria-hidden="true"></i></a></div>
+                </div>
+                <div class="social-button">
+                    <div class="social-button-circle"><a href="https://www.facebook.com/" target="_blank" class="social-button"><i class="fa fa-twitter" aria-hidden="true"></i></a></div>
+                </div>
+                <div class="social-button">
+                    <div class="social-button-circle"><a href="https://www.google.com/" target="_blank" class="social-button"><i class="fa fa-google-plus-official" aria-hidden="true"></i></a></div>
+                </div>
+                <div class="social-button">
+                    <div class="social-button-circle"><a href="mailto:someone@example.com?Subject=Hello%20again" class="social-button"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></div>
+                </div>
+            </div>
+            <p style="color: #edf7f7; text-align: center; margin: 0.5em; font-size: 0.8em;">IsThisSourceReliable.com © 2016</p>
         </div>
 
 
