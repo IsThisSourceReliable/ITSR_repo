@@ -59,6 +59,7 @@ namespace ITSR
             EditProfileLink.Visible = false;
             MyProfileLink.Visible = false;
             CreateSourceLink.Visible = false;
+            RegisterLink.Visible = true;
         }
 
         /// <summary>
@@ -80,6 +81,7 @@ namespace ITSR
             EditProfileLink.Visible = true;
             MyProfileLink.Visible = true;
             CreateSourceLink.Visible = true;
+            RegisterLink.Visible = false;
         }
 
         private void ShowModeratorBtn()
@@ -227,6 +229,11 @@ namespace ITSR
         protected void lBAdminPanelLink_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/AdminPanel.aspx");
+        }
+
+        protected void lBtnRegister_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Register.aspx");
         }
     }
 }

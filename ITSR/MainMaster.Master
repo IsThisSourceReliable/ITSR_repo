@@ -29,9 +29,9 @@
     <script src="JS/OverlayJS.js"></script>
     <script>
         $(document).ready(function () {
-                if ($('body').height() >= ($(window).height())) {
-                    $('.footer').fadeOut('fast');
-                }
+            if ($('body').height() >= ($(window).height())) {
+                $('.footer').fadeOut('fast');
+            }
 
             $(window).scroll(function () {
                 if ($('body').height() <= ($(window).height() + $(window).scrollTop())) {
@@ -72,6 +72,11 @@
                                 <li runat="server" id="AboutLink">
                                     <p>
                                         <asp:LinkButton ID="lBtnAboutLink" runat="server" OnClick="lBtnAboutLink_Click">ABOUT</asp:LinkButton>
+                                    </p>
+                                </li>
+                                <li runat="server" id="RegisterLink">
+                                    <p>
+                                        <asp:LinkButton ID="lBtnRegister" runat="server" OnClick="lBtnRegister_Click">REGISTER</asp:LinkButton>
                                     </p>
                                 </li>
                                 <li runat="server" id="CreateSourceLink">

@@ -76,6 +76,24 @@ namespace ITSR {
         protected global::System.Web.UI.WebControls.LinkButton lBtnAboutLink;
         
         /// <summary>
+        /// RegisterLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl RegisterLink;
+        
+        /// <summary>
+        /// lBtnRegister control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lBtnRegister;
+        
+        /// <summary>
         /// CreateSourceLink control.
         /// </summary>
         /// <remarks>

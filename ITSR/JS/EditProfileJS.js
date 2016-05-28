@@ -11,3 +11,6 @@ function hideDiv() {
     });
     $("#Button1").show();
 }
+function SavedNewData() {
+    $(".page-overlay").show();
+}

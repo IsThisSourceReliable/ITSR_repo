@@ -28,7 +28,7 @@ namespace ITSR
         }
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            UpdateUser();
+            UpdateUser();           
         }
         protected void BtnNewPassword_Click(object sender, EventArgs e)
         {
@@ -76,8 +76,15 @@ namespace ITSR
 
             if (!m.CheckEmail(m, true))
             {
-                m.UpdateUser(m);
-                m.UpdateUserProfile(m);
+                if (m.UpdateUser(m) && m.UpdateUserProfile(m))
+                {
+                    ConfirmedValidator.IsValid = false;
+                }
+                else
+                {
+                    SomethingWrongVal.IsValid = false;
+                }
+                
                 LoadUser(Convert.ToInt32(Session["userID"]));
             }
             else

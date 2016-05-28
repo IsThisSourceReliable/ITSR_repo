@@ -4,7 +4,6 @@
     <link href="CSS/ProfileCSS.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentHolder" runat="server">
-
     <div class="fullBox white-box">
         <div class="fullBox center-text">
             <h2>

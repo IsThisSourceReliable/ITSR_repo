@@ -144,7 +144,7 @@ namespace ITSR.CLASSES.USER
         public int GetUserLvl(int userID)
         {
             string sql = "SELECT role_id FROM user WHERE iduser = @ID";
-            
+
             try
             {
                 conn.Open();
@@ -225,7 +225,7 @@ namespace ITSR.CLASSES.USER
             try
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand(sql, conn);                
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@EM", user.Email);
 
                 bool exists = Convert.ToBoolean(cmd.ExecuteScalar());
@@ -241,8 +241,8 @@ namespace ITSR.CLASSES.USER
                         string Email = Convert.ToString(dr["email"]);
                     }
                     conn.Close();
-                }                
-                
+                }
+
                 if (exists && user.Email != Email)
                 {
                     return true;
@@ -342,6 +342,7 @@ namespace ITSR.CLASSES.USER
                     user.certifedUser = Convert.ToBoolean(dr["certified_user"]);
                     user.Password = Convert.ToString(dr["password"]);
                 }
+
             }
             catch (MySqlException ex)
             {
@@ -383,7 +384,7 @@ namespace ITSR.CLASSES.USER
                 conn.Close();
             }
         }
-        public void UpdateUser(User user)
+        public bool UpdateUser(User user)
         {
             string sql = "Update user SET email = @EM WHERE iduser = @ID";
 
@@ -395,17 +396,19 @@ namespace ITSR.CLASSES.USER
                 cmd.Parameters.AddWithValue("@ID", user.ID);
 
                 cmd.ExecuteNonQuery();
+                return true;
             }
+            
             catch (MySqlException ex)
             {
-
+                return false;
             }
             finally
             {
                 conn.Close();
             }
         }
-        public void UpdateUserProfile(User user)
+        public bool UpdateUserProfile(User user)
         {
             string sql = "Update user_profile SET name = @N, lastname = @LN, country = @C, location = @L, occupation = @O, profilepic_id = @PPID, aboutme = @A  WHERE user_id = @UID";
             try
@@ -424,17 +427,18 @@ namespace ITSR.CLASSES.USER
                 cmd.Parameters.AddWithValue("@A", user.aboutme);
 
                 cmd.ExecuteNonQuery();
+                return true;
             }
             catch (MySqlException ex)
             {
-
+                return false;
             }
             finally
             {
                 conn.Close();
             }
         }
-        public void UpdatePassWord(User user)
+        public bool UpdatePassWord(User user)
         {
             string sql = "Update user SET password = @P WHERE iduser = @ID";
 
@@ -445,10 +449,11 @@ namespace ITSR.CLASSES.USER
                 cmd.Parameters.AddWithValue("@P", user.Password);
                 cmd.Parameters.AddWithValue("@ID", user.ID);
                 cmd.ExecuteNonQuery();
+                return true;
             }
             catch (MySqlException ex)
             {
-
+                return false;
             }
             finally
             {
