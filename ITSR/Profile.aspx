@@ -15,20 +15,21 @@
         </div>
         <div class="thirdBox padding paddingFix Profile">
             <h3>
-                <asp:Label ID="lblFullNAme" runat="server" Text="FullName"></asp:Label>
+                <asp:Label ID="lblFullNAme" CssClass="border-bottom marginBot" runat="server" Text="FullName"></asp:Label>
             </h3>
             <h3>
-                <asp:Label ID="lblCountry" runat="server" Text="Country"></asp:Label>
+                <asp:Label ID="lblCountry" CssClass="border-bottom marginBot" runat="server" Text="Country"></asp:Label>
             </h3>
             <h3>
-                <asp:Label ID="lblLocation" runat="server" Text="Location"></asp:Label>
+                <asp:Label ID="lblLocation" CssClass="border-bottom marginBot" runat="server" Text="Location"></asp:Label>
             </h3>
             <h3>
-                <asp:Label ID="lblOccupation" runat="server" Text="Occupation"></asp:Label>
+                <asp:Label ID="lblOccupation" CssClass="border-bottom marginBot" runat="server" Text="Occupation"></asp:Label>
             </h3>
-            <h3>
+            <br />
+            <h4>
                 <asp:Label ID="lblAboutme" runat="server" Text="Aboutme"></asp:Label>
-            </h3>
+            </h4>
         </div>
         <div class="thirdBox padding paddingFix floatRight">
             <div class="fullBox marginBot minHeight">

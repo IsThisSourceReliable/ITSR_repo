@@ -41,7 +41,7 @@
     margin-left: 2%;
 }
 .marginBot {
-    margin-bottom: 2%;
+    margin-bottom: 2% !important;
 }
 .marginRight {
     margin-right: 2%;
@@ -116,5 +116,7 @@
 }
 
 @media (max-width: 480px) {
-    
+            .Profile {
+        width: 100%;
+    }
 }
