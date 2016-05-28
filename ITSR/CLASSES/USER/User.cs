@@ -193,31 +193,31 @@ namespace ITSR.CLASSES.USER
             }
             return null;
         }
-        public int CheckUserLvl(User user)
-        {
-            string sql = "SELECT role_id FROM user WHERE iduser = @ID";
-            try
-            {
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
+        //public int CheckUserLvl(User user)
+        //{
+        //    string sql = "SELECT role_id FROM user WHERE iduser = @ID";
+        //    try
+        //    {
+        //        conn.Open();
+        //        MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                cmd.Parameters.AddWithValue("@ID", user.ID);
+        //        cmd.Parameters.AddWithValue("@ID", user.ID);
 
-                int userLvl = Convert.ToInt16(cmd.ExecuteScalar());
+        //        int userLvl = Convert.ToInt16(cmd.ExecuteScalar());
 
-                return userLvl;
+        //        return userLvl;
 
-            }
-            catch (MySqlException ex)
-            {
+        //    }
+        //    catch (MySqlException ex)
+        //    {
 
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return 0;
-        }
+        //    }
+        //    finally
+        //    {
+        //        conn.Close();
+        //    }
+        //    return 0;
+        //}
         public bool CheckEmail(User user, bool AlreadyMember)
         {
             string sql = "select exists(select 1 from user WHERE email = @EM)";

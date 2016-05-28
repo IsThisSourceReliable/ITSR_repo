@@ -197,7 +197,7 @@
                     </p>
                 </div>
                 <div class="fullbox">
-                    <h4 class="info-titles">Up house man: </h4>
+                    <h4 class="info-titles">Publisher/Author: </h4>
                     <p class="info-lbls">
                         <asp:Label ID="lblUpHouseMan" runat="server" Text="Publisher/Author"></asp:Label>
                     </p>
@@ -209,7 +209,7 @@
                     </p>
                 </div>
                 <div class="fullbox">
-                    <h4 class="info-titles">Financer:  </h4>
+                    <h4 class="info-titles">Main Owner:  </h4>
                     <p class="info-lbls">
                         <asp:Label ID="lblFinancer" runat="server" Text="Main Owner"></asp:Label>
                     </p>
