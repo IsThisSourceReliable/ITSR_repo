@@ -163,7 +163,7 @@
                     <div class="fullBox">
                         <div class=" fullBox comment" style="width: 97%; margin-left: 1%;">
                             <div class="halfBox">
-                                <h2>Review article details</h2>
+                                <h3>Review article details</h3>
                                 <p class="fail-text">
                                     <asp:Label ID="lblFail" runat="server" Text=""></asp:Label>
                                 </p>
