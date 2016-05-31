@@ -49,6 +49,7 @@ namespace ITSR.CLASSES.ARTICLE
             {
                 Financing = "N/A";
             }
+
             bool ok = false;
             try
             {
@@ -321,7 +322,6 @@ namespace ITSR.CLASSES.ARTICLE
             }
         }
 
-
         public DataTable SearchForUnspecificArticle(string SearchString)
         {
             string SS = "%" + SearchString + "%";
@@ -373,7 +373,6 @@ namespace ITSR.CLASSES.ARTICLE
             }
 
         }
-
 
         /// <summary>
         /// Gets a specific article with a sql question which joins user table and
@@ -484,7 +483,6 @@ namespace ITSR.CLASSES.ARTICLE
             return totalVotes;
         }
 
-
         /// <summary>
         /// Method calculates the percent of upvotes using the amount of totalvotes.
         /// </summary>
@@ -507,7 +505,6 @@ namespace ITSR.CLASSES.ARTICLE
                 return dazPercent;
             }
         }
-
 
         /// <summary>
         /// Method uses the upvotpercent to calculate the percent for the downvotes.
@@ -582,8 +579,6 @@ namespace ITSR.CLASSES.ARTICLE
                 conn.Close();
             }
         }
-
-
 
         //public int GetUpVotes(Articles a)
         //{

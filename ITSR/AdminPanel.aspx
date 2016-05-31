@@ -13,8 +13,11 @@
         <div class="fullBox">
             <h2 class="panel-h2">ADMIN PANEL</h2>
             <p class="panel-txt"><strong>Welcome to the Admin panel!</strong></p>
-            <p class="panel-txt">
-                As a Admin this is where you can......... bla bla bla do stuff
+            <p class="panel-txt marginTop marginBot">
+                As a Admin this is where you can see comments that has been removed and you have the opportunity to bring them back.
+            </p>
+            <p class="panel-txt marginTop marginBot">
+                You also have the power to change members roles.
             </p>
         </div>
         <div class="fullBox">
@@ -41,7 +44,7 @@
             <ContentTemplate>
                 <asp:ListView ID="lvSolvedCommentReports" runat="server" OnItemDataBound="lvSolvedCommentReports_ItemDataBound" OnItemCommand="lvSolvedCommentReports_ItemCommand">
                     <ItemTemplate>
- 
+
                         <asp:HiddenField ID="HiddenCommentID" runat="server" Value='<%# Eval("idcomment") %>' />
                         <asp:HiddenField ID="HiddenReportCommentID" runat="server" Value='<%# Eval("idreport_comment") %>' />
                         <div class="fullBox border-bottom">
@@ -133,7 +136,7 @@
                 <div class="listView">
                     <asp:ListView ID="lvSearchMember" OnItemDataBound="lvSearchMember_ItemDataBound" OnItemCommand="lvSearchMember_ItemCommand" runat="server">
                         <ItemTemplate>
-                         <asp:HiddenField ID="HiddenField1" runat="server" value="0"/>
+                            <asp:HiddenField ID="HiddenField1" runat="server" Value="0" />
                             <asp:HiddenField ID="HiddenUserID" Value='<%# Eval("iduser") %>' runat="server" />
                             <div class="fullBox marginTop border-bottom padding paddingFix">
                                 <div class="div25">

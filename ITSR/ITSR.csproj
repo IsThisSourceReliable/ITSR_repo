@@ -93,6 +93,7 @@
     <Content Include="EditArticle.aspx" />
     <Content Include="EditProfile.aspx" />
     <Content Include="FONTS\fontawesome-webfont.svg" />
+    <Content Include="IMG\default_profile.png" />
     <Content Include="IMG\profilepic.jpg" />
     <Content Include="IMG\books.jpg" />
     <Content Include="JS\AdminPanelJS.js" />

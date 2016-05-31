@@ -10,7 +10,7 @@
                 <asp:Label ID="lbluserName" runat="server" Text=""></asp:Label></h2>
         </div>
         <div class="thirdBox padding paddingFix Profile">
-            <img src="IMG/profilepic.jpg" style="width: 100%; border-radius: 10px;" />
+            <img src="IMG/default_profile.png" style="width: 100%; border-radius: 10px;" />
         </div>
         <div class="thirdBox padding paddingFix Profile">
             <h3>
